@@ -1,2 +1,3 @@
-export {useAppDispatch} from 'hooks/useAppDispatch';
-export {useAppSelector} from 'hooks/useAppSelector';
+export {useAppDispatch} from './useAppDispatch';
+export {useAppSelector} from './useAppSelector';
+export {useThemeColors} from './useThemeColors';

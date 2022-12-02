@@ -1,1 +1,1 @@
-export {selectThemeMode} from './app/selectThemeMode/selectThemeMode';
+export {isUserAuth, selectThemeMode} from './app';

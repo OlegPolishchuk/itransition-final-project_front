@@ -1,13 +1,13 @@
 import {instance} from "apis/instance/instance";
-import {authUrl} from "shared/utils/authUrl";
 import {AuthData} from "apis/auth/types";
+import {routes} from "shared";
 
 export const apiAuth = {
   register(data: AuthData) {
-    return instance.post(authUrl.register, data)
+    return instance.post(routes.auth.register, data)
   },
 
   login(data: AuthData) {
-    return instance.post(authUrl.login, data)
+    return instance.post(routes.auth.login, data)
   }
 }

@@ -7,6 +7,7 @@ const initialState: InitialState = {
   isLoading: false,
   review: [],
   themeMode: 'light',
+  isUserAuth: false,
 };
 
 const appSlice = createSlice({

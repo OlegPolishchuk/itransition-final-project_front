@@ -1,6 +1,6 @@
 import React from 'react';
-import {Box, Button} from "@mui/material";
 import {SubmitHandler} from "react-hook-form";
+import {Box, Button} from "@mui/material";
 import {AuthForm} from "common";
 import {NavLink} from "react-router-dom";
 import {routes} from "shared";
@@ -11,7 +11,7 @@ type Inputs = {
   password: string;
 }
 
-export const Login = () => {
+export const Register = () => {
   const themeColors = useThemeColors();
   const navLinkColor = themeColors.secondary.second
 
@@ -22,13 +22,13 @@ export const Login = () => {
   return (
     <Box className={'authContainer'}>
 
-      <AuthForm submitCallback={onSubmit} buttonTitle={'Sign In'}>
+      <AuthForm submitCallback={onSubmit} buttonTitle={'Sign Up'}>
         <Button variant={'text'} color={'secondary'}>
           <NavLink
-            to={routes.auth.register}
+            to={routes.auth.login}
             style={{color: navLinkColor}}
           >
-            Sign Up
+            Sign In
           </NavLink>
         </Button>
       </AuthForm>

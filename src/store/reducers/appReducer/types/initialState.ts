@@ -3,6 +3,7 @@ export type InitialState = {
   error: string;
   review: [];
   themeMode: ThemeMode;
+  isUserAuth: boolean;
 }
 
 export type ThemeMode = 'light' | 'dark';

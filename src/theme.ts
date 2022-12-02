@@ -6,9 +6,9 @@ import {ThemeOptions} from '@mui/material/styles/createTheme';
 interface CustomTheme {
   grey: ColorItem;
   primary: ColorItem;
-  turquoise: ColorItem;
-  red: ColorItem;
-  yellow: ColorItem;
+  secondary: ColorItem;
+  success: ColorItem;
+  warning: ColorItem;
 }
 
 interface ColorItem {
@@ -17,7 +17,7 @@ interface ColorItem {
 }
 
 // color design tokens
-export const tokens = (mode: PaletteMode): CustomTheme => ({
+export const colorTokens = (mode: PaletteMode): CustomTheme => ({
   ...(mode === 'dark'
     ? {
       grey: {
@@ -30,15 +30,15 @@ export const tokens = (mode: PaletteMode): CustomTheme => ({
         second: '#727169',
         main: '#2f2f28',
       },
-      turquoise: {
+      secondary: {
         main: '#31a2ac',
         second: '#60d9e4',
       },
-      red: {
+      success: {
         main: '#af1c1c',
         second: '#e8514f',
       },
-      yellow: {
+      warning: {
         main: '#edb83d',
         second: '#f1cf45'
       },
@@ -52,15 +52,15 @@ export const tokens = (mode: PaletteMode): CustomTheme => ({
         second: '#727169',
         main: '#2f2f28',
       },
-      turquoise: {
-        main: '#3ac8d9',
-        second: '#60d9e4',
+      secondary: {
+        main: '#31a2ac',
+        second: '#256a6a',
       },
-      red: {
+      success: {
         main: '#af1c1c',
         second: '#e8514f',
       },
-      yellow: {
+      warning: {
         main: '#f2df49',
         second: '#edb83d',
       },
@@ -69,7 +69,7 @@ export const tokens = (mode: PaletteMode): CustomTheme => ({
 
 // mui theme settings
 export const themeSettings = (mode: PaletteMode): ThemeOptions => {
-  const colors = tokens(mode);
+  const colors = colorTokens(mode);
 
   return {
     palette: {
@@ -80,10 +80,10 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             main: colors.primary.main,
           },
           secondary: {
-            main: colors.turquoise.main,
+            main: colors.secondary.main,
           },
           error: {
-            main: colors.red.second
+            main: colors.success.second
           },
           neutral: {
             main: colors.grey.second,
@@ -98,10 +98,10 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             main: colors.primary.main,
           },
           secondary: {
-            main: colors.turquoise.main,
+            main: colors.secondary.main,
           },
           error: {
-            main: colors.red.second
+            main: colors.success.second
           },
           neutral: {
             main: colors.grey.main,

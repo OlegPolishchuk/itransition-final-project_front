@@ -1,0 +1,1 @@
+export {routes} from 'shared/constants/routes';

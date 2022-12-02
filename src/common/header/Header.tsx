@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
-import {Box, Container} from "@mui/material";
-import {useAppDispatch, useAppSelector} from "hooks";
-import {selectThemeMode} from "store/selectors";
+import {Container} from "@mui/material";
+import {useAppDispatch} from "hooks";
 import {ThemeMode} from "store/reducers/appReducer/types/initialState";
 import {toggleTheme} from "store/reducers/appReducer/AppSlice";
 import {ThemeToggle} from "common/header/themeToggle/ThemeToggle";
