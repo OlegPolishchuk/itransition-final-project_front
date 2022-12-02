@@ -1,21 +1,26 @@
 import React, {useEffect} from 'react';
 import {Login} from "app/login/Login";
-import {ThemeProvider} from "@mui/material";
-import {useMode} from "hooks/useTheme";
-import { ColorModeContext } from 'theme';
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+// import {useMode} from "hooks/useTheme";
+import {themeSettings} from 'theme';
+import {useAppSelector} from "hooks";
+import {selectThemeMode} from "store/selectors";
+import {Header} from "common/header/Header";
 
 
 function App() {
-  const [theme, colorMode] = useMode();
+  // const [theme, colorMode] = useMode();
+  const themeMode = useAppSelector(selectThemeMode);
+  const theme = createTheme(themeSettings(themeMode));
 
   return (
-    <div className="App">
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <Login />
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <div className={'App'}>
+        <Header themeMode={themeMode} />
+        <Login />
+      </div>
+    </ThemeProvider>
   );
 }
 

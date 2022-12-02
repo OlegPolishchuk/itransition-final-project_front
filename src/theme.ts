@@ -143,8 +143,8 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
   };
 };
 
-// context for color mode
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {
-  },
-});
+// // context for color mode
+// export const ColorModeContext = createContext({
+//   toggleColorMode: () => {
+//   },
+// });

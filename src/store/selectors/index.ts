@@ -1,1 +1,1 @@
-export {};
+export {selectThemeMode} from './app/selectThemeMode/selectThemeMode';

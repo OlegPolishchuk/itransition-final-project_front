@@ -24,43 +24,39 @@ export const Login = () => {
   return (
     <Box className={'authContainer'}>
 
-      <Paper>
+      <form onSubmit={handleSubmit(onSubmit)} className={'wrapper'}>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={'wrapper'}>
+        <TextField
+          label={'Email'}
+          {...register('email', {
+            required: true
+          })}
+          error={!!errors.email}
+          helperText={errors.email && <span>Incorrect email</span>}
+        />
 
-          <TextField
-            label={'Email'}
-            {...register('email', {
-              required: true
-            })}
-            error={!!errors.email}
-            helperText={errors.email && <span>Incorrect email</span>}
-          />
+        <TextField
+          label={'Password'}
+          {...register('password', {
+            required: true,
+            minLength: {
+              value: 6,
+              message: 'Min length is 6 char'
+            }
+          })}
+          error={!!errors.password}
+          helperText={errors.password && (errors.password.message || 'Required')}
+        />
 
-          <TextField
-            label={'Password'}
-            {...register('password', {
-              required: true,
-              minLength: {
-                value: 6,
-                message: 'Min length is 6 char'
-              }
-            })}
-            error={!!errors.password}
-            helperText={errors.password && (errors.password.message || 'Required')}
-          />
+        <Button
+          color={'secondary'}
+          type={'submit'}
+          variant={'outlined'}
+        >
+          Sign Up
+        </Button>
 
-          <Button
-            color={'secondary'}
-            type={'submit'}
-            variant={'outlined'}
-          >
-            Sign Up
-          </Button>
-
-        </form>
-
-      </Paper>
+      </form>
 
     </Box>
   );

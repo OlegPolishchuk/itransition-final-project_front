@@ -1,18 +1,24 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {InitialState} from "store/reducers/appReducer/types/initialState";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {InitialState, ThemeMode} from "store/reducers/appReducer/types/initialState";
 
 
 const initialState: InitialState = {
   error: '',
   isLoading: false,
   review: [],
+  themeMode: 'light',
 };
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleTheme: (state) => {
+      state.themeMode = state.themeMode === 'light' ? 'dark' : 'light';
+    }
+  },
 })
 
 
 export const appReducer = appSlice.reducer;
+export const {toggleTheme} = appSlice.actions;
