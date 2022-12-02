@@ -1,17 +1,20 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
-import axios from "axios";
+import {Login} from "app/login/Login";
+import {ThemeProvider} from "@mui/material";
+import {useMode} from "hooks/useTheme";
+import { ColorModeContext } from 'theme';
 
 
 function App() {
-
-  useEffect(() => {
-    axios.get('http://localhost:5000')
-  }, [])
+  const [theme, colorMode] = useMode();
 
   return (
     <div className="App">
-
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <Login />
+        </ThemeProvider>
+      </ColorModeContext.Provider>
     </div>
   );
 }
