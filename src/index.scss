@@ -14,3 +14,18 @@
     gap: 15px;
   }
 }
+
+
+.css-a5a0qt-MuiInputBase-root-MuiOutlinedInput-root {
+  &.Mui-focused {
+
+    .MuiOutlinedInput-notchedOutline {
+      border-color: green;
+    }
+
+  }
+}
+
+
+
+

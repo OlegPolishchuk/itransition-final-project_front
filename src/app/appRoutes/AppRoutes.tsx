@@ -17,6 +17,7 @@ export const AppRoutes: FC<Props> = ({isUserAuth}) => {
       <Route path={routes.auth.register} element={<Register />}/>
       <Route path={routes.auth.login} element={<Login />}/>
       <Route path={'/'} element={<ProtectedRoute isUserAuth={isUserAuth} children={<div>protected</div>} />} />
+      <Route path={routes.notFound} element={<div>Not Found</div>}/>
     </Routes>
   );
 };

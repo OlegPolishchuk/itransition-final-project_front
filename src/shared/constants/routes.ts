@@ -3,4 +3,5 @@ export const routes = {
     register: '/api/auth/register',
     login: '/api/auth/login',
   },
+  notFound: '/not-found',
 }

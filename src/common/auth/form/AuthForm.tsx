@@ -36,6 +36,7 @@ export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) =>
 
       <TextField
         label={'Password'}
+        type={'password'}
         {...register('password', {
           required: true,
           minLength: {

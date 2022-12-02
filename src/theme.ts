@@ -1,5 +1,3 @@
-import {createContext} from 'react';
-
 import {PaletteMode} from '@mui/material';
 import {ThemeOptions} from '@mui/material/styles/createTheme';
 
@@ -140,11 +138,25 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
         fontSize: 14,
       },
     },
+    components: {
+
+      MuiTextField: {
+        styleOverrides: {
+
+          root: {
+            '& label.Mui-focused': {
+              color: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
+            },
+           '& .MuiOutlinedInput-root': {
+             '&.Mui-focused fieldset': {
+               borderColor: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
+             },
+           }
+         }
+
+        },
+      },
+
+    }
   };
 };
-
-// // context for color mode
-// export const ColorModeContext = createContext({
-//   toggleColorMode: () => {
-//   },
-// });
