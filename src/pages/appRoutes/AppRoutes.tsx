@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {routes} from "shared";
-import {Login} from "app/login/Login";
-import {ProtectedRoute} from "app/appRoutes/ProtectedRoute";
-import {Register} from "app/register/Register";
+import {Login, Main, ProtectedRoute, Register} from "pages";
+
+import {Protected} from "pages";
 
 
 type Props = {
@@ -16,8 +16,10 @@ export const AppRoutes: FC<Props> = ({isUserAuth}) => {
     <Routes>
       <Route path={routes.auth.register} element={<Register />}/>
       <Route path={routes.auth.login} element={<Login />}/>
-      <Route path={'/'} element={<ProtectedRoute isUserAuth={isUserAuth} children={<div>protected</div>} />} />
+      <Route path={routes.mainPage} element={<ProtectedRoute isUserAuth={isUserAuth} children={<Main />} />} />
       <Route path={routes.notFound} element={<div>Not Found</div>}/>
+
+      <Route path={routes.protectedRoute} element={<Protected />}/>
     </Routes>
   );
 };

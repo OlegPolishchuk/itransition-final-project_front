@@ -1,6 +1,6 @@
-import {instance} from "apis/instance/instance";
-import {AuthData} from "apis/auth/types";
 import {routes} from "shared";
+import {User} from "store/types/User";
+import {instance, AuthData} from "apis";
 
 export const apiAuth = {
   register(data: AuthData) {
@@ -8,6 +8,18 @@ export const apiAuth = {
   },
 
   login(data: AuthData) {
-    return instance.post(routes.auth.login, data)
+    return instance.post<User>(routes.auth.login, data)
+  },
+
+  logout() {
+    return instance.get(routes.auth.logout)
+  },
+
+  getProfile(token: string){
+    return instance.post<User>(routes.auth.profile, token)
+  },
+
+  refreshToken() {
+    return instance.get(routes.auth.refresh)
   }
 }

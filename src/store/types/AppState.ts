@@ -1,9 +1,10 @@
-export type InitialState = {
+export type AppState = {
   isLoading: boolean;
   error: string;
   review: [];
   themeMode: ThemeMode;
-  isUserAuth: boolean;
+  globalMessage: string;
 }
+
 
 export type ThemeMode = 'light' | 'dark';

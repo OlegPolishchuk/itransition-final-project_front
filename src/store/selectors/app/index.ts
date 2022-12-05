@@ -1,3 +1,3 @@
-export {isUserAuth} from './isUserAuth/isUserAuth';
 export {selectThemeMode} from './selectThemeMode/selectThemeMode';
-export {selectIsUserAuth} from './selectIsUserAuth/selectIsUserAuth';
+export {selectGlobalMessage} from './selectGlobalMessage/selectGlobalMessage';
+export {selectError} from './selectError/selectError';

@@ -1,7 +1,14 @@
+const baseAuthPath = '/api/auth';
+
 export const routes = {
   auth: {
-    register: '/api/auth/register',
-    login: '/api/auth/login',
+    register: `${baseAuthPath}/register`,
+    login: `${baseAuthPath}/login`,
+    refresh: `${baseAuthPath}/refresh`,
+    profile: `${baseAuthPath}/getProfile`,
+    logout: `${baseAuthPath}/logout`,
   },
   notFound: '/not-found',
+  mainPage: '/',
+  protectedRoute: '/protected'
 }

@@ -1,22 +1,25 @@
 import React, {useEffect} from 'react';
-import {Login} from "app/login/Login";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-// import {useMode} from "hooks/useTheme";
 import {themeSettings} from 'theme';
-import {useAppSelector} from "hooks";
-import {selectThemeMode} from "store/selectors";
-import {Header} from "common/header/Header";
-import {selectIsUserAuth} from "store/selectors/app";
-import {AppRoutes} from "app/appRoutes/AppRoutes";
+import {useAppDispatch, useAppSelector} from "hooks";
+import {selectAccessToken, selectIsUserAuth, selectThemeMode} from "store/selectors";
+import {Header} from "common";
+import {AppRoutes} from "pages";
+import {getProfile} from "store/actions";
 
 
-function App() {
-  // const [theme, colorMode] = useMode();
+export function App() {
+  const dispatch = useAppDispatch();
+
   const themeMode = useAppSelector(selectThemeMode);
   const isUserAuth = useAppSelector(selectIsUserAuth);
+  const token = useAppSelector(selectAccessToken);
 
   const theme = createTheme(themeSettings(themeMode));
 
+  useEffect(() => {
+    dispatch(getProfile(token));
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -24,7 +27,7 @@ function App() {
 
       <div className={'App'}>
 
-        <Header themeMode={themeMode} />
+        <Header themeMode={themeMode} isUserAuth={isUserAuth} />
 
         <AppRoutes isUserAuth={isUserAuth}/>
 
@@ -33,4 +36,3 @@ function App() {
   );
 }
 
-export default App;

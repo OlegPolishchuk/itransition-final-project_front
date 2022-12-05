@@ -157,6 +157,35 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
         },
       },
 
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+
+            '& a': {
+              textDecoration: 'none',
+              color: mode === 'dark' ? colors.grey.second  : colors.primary.main,
+            },
+
+            '&.MuiButton-outlined': {
+              color: mode === 'dark' ? colors.secondary.main  : colors.secondary.main,
+              borderColor: mode === 'dark' ? colors.secondary.main  : colors.secondary.main,
+              '&:hover': {
+                borderColor: mode === 'dark' ? colors.secondary.second  : colors.secondary.second,
+              }
+            },
+
+            '& .MuiButton-endIcon': {
+              color: mode === 'dark' ? '#fff' : colors.primary.main
+            },
+            '& .MuiButton-startIcon': {
+              color: mode === 'dark' ? '#fff' : colors.primary.main
+            }
+          }
+        },
+
+
+      }
+
     }
   };
 };
