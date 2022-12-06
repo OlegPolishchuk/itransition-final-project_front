@@ -8,7 +8,6 @@ import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
 import {setError} from "store/reducers";
 import {loginUser} from "store/actions";
 import {selectError, selectIsUserAuth} from "store/selectors";
-import {apiAuth, instance} from "apis";
 
 type Inputs = {
   email: string;
