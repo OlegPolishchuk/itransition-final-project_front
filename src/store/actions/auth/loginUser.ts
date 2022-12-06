@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiAuth, AuthData} from "apis";
 import {AxiosError} from "axios";
 import {User} from "store/types/User";
-import {setLocalStorageData} from "shared/utils";
+import {localStorageService} from "services";
 
 export const loginUser = createAsyncThunk<User, AuthData>(
   'app/loginUser', async (data: AuthData, {rejectWithValue}) => {
@@ -10,7 +10,7 @@ export const loginUser = createAsyncThunk<User, AuthData>(
     try {
       const res = await apiAuth.login(data);
 
-      setLocalStorageData(res.data)
+      localStorageService.setAuthUserData(res.data)
 
       return res.data;
     }

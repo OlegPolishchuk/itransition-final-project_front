@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios, {AxiosError} from "axios";
 import {apiAuth} from "apis";
-import {setLocalStorageData} from "shared/utils";
+import {localStorageService} from "services";
 
 export const getGithubUser = createAsyncThunk(
   'auth/getGithubUser', async (token: string, {rejectWithValue}) => {
@@ -17,7 +17,7 @@ export const getGithubUser = createAsyncThunk(
 
       const res = await apiAuth.socialLogin({login});
 
-      setLocalStorageData(res.data);
+      localStorageService.setAuthUserData(res.data);
       return res.data;
 
     } catch (e) {

@@ -1,7 +1,13 @@
-export {registerUser} from './registerUser';
-export {loginUser} from './loginUser';
-export {logoutUser} from './logoutUser';
+export {
+  loginUser,
+  logoutUser,
+  googleLogin,
+  twitterLogin,
+  getGithubUser,
+  registerUser,
+  refreshToken,
+  getProfile,
+  getAccessToken
+} from './auth';
 
-export {getAccessToken} from './getAccessToken';
-export {getProfile} from './getProfile';
-export {twitterLogin} from './twitterLogin';
+export {changeLocale, initializeApp, changeTheme} from './app';

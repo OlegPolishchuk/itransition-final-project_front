@@ -3,9 +3,10 @@ import {gapi} from "gapi-script";
 import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from "react-google-login";
 import {useAppDispatch} from "hooks";
 import {SocialResponse} from "store/types/SocialResponse";
-import {googleLogin} from "store/actions/googleLogin";
+import {googleLogin} from "store/actions/auth/googleLogin";
 import {Button} from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
+import {FormattedMessage} from "react-intl";
 
 const client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID as string;
 
@@ -52,7 +53,7 @@ export const GoogleAuth = () => {
           color={'secondary'}
           startIcon={<GoogleIcon/>}
         >
-          Sign in with Google
+          <FormattedMessage id='app.auth.button-google.title'/>
         </Button>
       )}
     />

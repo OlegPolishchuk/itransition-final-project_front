@@ -1,21 +1,21 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AuthState} from "store/types/AuthState";
 import {
-  getProfile,
+  getProfile, initializeApp,
   loginUser,
   logoutUser,
   registerUser,
   twitterLogin
 } from "store/actions";
-import {refreshToken} from "store/actions/refreshToken";
+import {refreshToken} from "store/actions/auth/refreshToken";
 import {getStartToken} from "shared";
-import {googleLogin} from "store/actions/googleLogin";
-import {getGithubUser} from "store/actions/getGithubUser";
+import {googleLogin} from "store/actions/auth/googleLogin";
+import {getGithubUser} from "store/actions/auth/getGithubUser";
 
 
 const initialState: AuthState = {
   error: '',
-  accessToken: getStartToken(),
+  accessToken: '',
   isUserAuth: false,
 };
 
@@ -29,6 +29,10 @@ const authSlice = createSlice({
   },
 
   extraReducers: builder => {
+
+    builder.addCase(initializeApp.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+    })
 
     builder.addCase(registerUser.rejected, (state, action) => {
       state.error = action.payload?.message as string;

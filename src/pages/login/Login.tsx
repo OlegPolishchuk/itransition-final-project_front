@@ -9,7 +9,8 @@ import {setError} from "store/reducers";
 import {loginUser, twitterLogin} from "store/actions";
 import {selectError, selectIsUserAuth} from "store/selectors";
 import {IResolveParams} from "reactjs-social-login";
-import {getGithubUser} from "store/actions/getGithubUser";
+import {getGithubUser} from "store/actions/auth/getGithubUser";
+import {FormattedMessage} from "react-intl";
 
 
 type Inputs = {
@@ -30,6 +31,8 @@ export const Login = () => {
 
   const [provider, setProvider] = useState('');
   const [profile, setProfile] = useState<any>();
+
+  const authFormButtonTitle = <FormattedMessage id='app.auth.button-login.title' />
 
   const onLogoutSuccess = useCallback(() => {
     setProfile(null)
@@ -57,7 +60,6 @@ export const Login = () => {
   }, [isUserAuth])
 
   useEffect(() => {
-    console.log(`provider, `, provider)
     if (profile) {
       const {access_token} = profile;
 
@@ -82,7 +84,7 @@ export const Login = () => {
     <Box className={'authContainer'}>
 
       <Typography variant={'h3'}>
-        Sign In
+        <FormattedMessage id='app.auth.login.title' />
       </Typography>
 
       <Box boxShadow={1} className={'login_box'}>
@@ -101,13 +103,13 @@ export const Login = () => {
         </Box>
 
 
-        <AuthForm submitCallback={onSubmit} buttonTitle={'Sign In'}>
+        <AuthForm submitCallback={onSubmit} buttonTitle={authFormButtonTitle}>
           <Button variant={'text'} color={'secondary'}>
             <NavLink
               to={routes.auth.register}
               style={{color: navLinkColor}}
             >
-              Sign Up
+              <FormattedMessage id='app.auth.button-register.title' />
             </NavLink>
           </Button>
         </AuthForm>

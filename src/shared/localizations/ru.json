@@ -1,0 +1,15 @@
+{
+  "app.auth.login.title": "Войти",
+  "app.auth.register.title": "Регистрация",
+  "app.auth.input-login.placeholder": "Логин",
+  "app.auth.input-password.placeholder": "Пароль",
+  "app.auth-form.input-login.error": "Неверный логин",
+  "app.auth-form.input-password.error-length": "Минимальная длина - 6 символов",
+  "app.auth.button-login.title": "Войти",
+  "app.auth.button-register.title": "Регистрация",
+  "app.auth.button-google.title": "Войти через GOOGLE",
+  "app.auth.button-twitter.title": "Войти через TWITTER",
+  "app.auth.button-github.title": "Войти через GITHUB",
+  "app.header.button.login.title": "Войти",
+  "app.header.button.logout.title": "Выйти"
+}

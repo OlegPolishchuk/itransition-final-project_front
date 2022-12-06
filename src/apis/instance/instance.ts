@@ -7,7 +7,7 @@ import {AnyAction, CombinedState, ThunkMiddleware} from "@reduxjs/toolkit";
 import {UserState} from "store/types/UserState";
 import {AuthState} from "store/types/AuthState";
 import {AppState} from "store/types/AppState";
-import {refreshToken} from "store/actions/refreshToken";
+import {refreshToken} from "store/actions/auth/refreshToken";
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';

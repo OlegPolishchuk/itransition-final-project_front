@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {IResolveParams, LoginSocialGithub} from "reactjs-social-login";
 import {Button} from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
+import {FormattedMessage} from "react-intl";
 
 const REDIRECT_URI = window.location.href;
 const client_id = process.env.REACT_APP_GITHUB_CLIENT_ID as string;
@@ -30,7 +31,7 @@ export const GithubAuth: FC<Props> = ({onResolve}) => {
         color={'secondary'}
         startIcon={<GitHubIcon />}
       >
-        Sign in with Github
+        <FormattedMessage id='app.auth.button-github.title'/>
       </Button>
     </LoginSocialGithub>
   );

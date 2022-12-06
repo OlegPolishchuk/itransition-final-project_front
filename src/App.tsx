@@ -1,11 +1,31 @@
 import React, {useEffect} from 'react';
+import {BrowserRouter} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "hooks";
+
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {themeSettings} from 'theme';
-import {useAppDispatch, useAppSelector} from "hooks";
-import {selectAccessToken, selectIsUserAuth, selectThemeMode} from "store/selectors";
-import {Header} from "common";
+
+import {
+  selectIsLoading,
+  selectIsUserAuth,
+  selectLocale,
+  selectThemeMode
+} from "store/selectors";
+import {initializeApp} from "store/actions";
+
+import {Header, Loader} from "common";
 import {AppRoutes} from "pages";
-import {getProfile} from "store/actions";
+
+
+import {IntlProvider} from "react-intl";
+import {locales} from "shared";
+import * as enMessages from 'shared/localizations/en.json';
+import ruMessages from 'shared/localizations/ru.json';
+
+const messages = {
+  [locales.EN]: enMessages,
+  [locales.RU]: ruMessages,
+}
 
 
 export function App() {
@@ -13,26 +33,33 @@ export function App() {
 
   const themeMode = useAppSelector(selectThemeMode);
   const isUserAuth = useAppSelector(selectIsUserAuth);
-  const token = useAppSelector(selectAccessToken);
+  const locale = useAppSelector(selectLocale);
+  const isLoading = useAppSelector(selectIsLoading);
 
   const theme = createTheme(themeSettings(themeMode));
 
   useEffect(() => {
-    dispatch(getProfile(token));
+    dispatch(initializeApp());
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
+    <BrowserRouter>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline/>
 
-      <div className={'App'}>
+          <div className={'App'}>
 
-        <Header themeMode={themeMode} isUserAuth={isUserAuth} />
+            <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
 
-        <AppRoutes isUserAuth={isUserAuth}/>
+            <AppRoutes isUserAuth={isUserAuth}/>
 
-      </div>
-    </ThemeProvider>
+          </div>
+
+          {isLoading && <Loader />}
+        </ThemeProvider>
+      </IntlProvider>
+    </BrowserRouter>
   );
 }
 

@@ -1,10 +1,11 @@
 import {localStorageData} from "shared/constants";
+import {localStorageService} from "services";
 
 export const getStartToken = () => {
-  const storageData = JSON.parse(localStorage.getItem(localStorageData.userData) as string)
+  const storageData = localStorageService.getItem(localStorageData.userData);
 
   if (storageData) {
-    return storageData.type
+    return storageData.token
   }
 
   return '';

@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiAuth} from "apis";
 import {AxiosError} from "axios";
 import {localStorageData} from "shared";
-import {logoutUser} from "store/actions/logoutUser";
+import {logoutUser} from "store/actions/auth/logoutUser";
 
 export const getProfile = createAsyncThunk(
   'auth/getProfile', async (token: string, {rejectWithValue, dispatch}) => {

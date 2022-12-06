@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {emailRegexp} from "shared";
 import {useAppSelector} from "hooks";
 import {selectGlobalMessage} from "store/selectors/app";
+import {FormattedMessage} from "react-intl";
 
 type Inputs = {
   email: string;
@@ -13,7 +14,7 @@ type Inputs = {
 type Props = {
   submitCallback: (data: Inputs) => void;
   children?: ReactNode;
-  buttonTitle: string;
+  buttonTitle: React.ReactElement;
 }
 
 export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) => {
@@ -24,6 +25,9 @@ export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) =>
     handleSubmit,
     formState: {errors}
   } = useForm<Inputs>({mode: 'onSubmit'});
+
+  const passErrorMessageLength = <FormattedMessage id='app.auth-form.input-password.error-length'/>
+  const loginErrorMessage = <FormattedMessage id='app.auth-form.input-login.error'/>
 
   return (
     <form onSubmit={handleSubmit(submitCallback)} className={'wrapper'}>
@@ -38,7 +42,7 @@ export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) =>
           }
         })}
         error={!!errors.email}
-        helperText={errors.email && errors.email.message}
+        helperText={errors.email && loginErrorMessage}
       />
 
       <TextField
@@ -46,13 +50,10 @@ export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) =>
         type={'password'}
         {...register('password', {
           required: true,
-          minLength: {
-            value: 6,
-            message: 'Min length is 6 char',
-          }
+          minLength: 6,
         })}
         error={!!errors.password}
-        helperText={errors.password && (errors.password.message || 'Required')}
+        helperText={errors.password && (passErrorMessageLength)}
       />
 
       <Box sx={{

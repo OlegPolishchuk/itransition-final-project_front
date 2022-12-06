@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {setLocalStorageData} from "shared/utils";
-import axios, {AxiosError} from "axios";
+import {AxiosError} from "axios";
 import {apiAuth} from "apis";
+import {localStorageService} from "services";
 
 export const twitterLogin = createAsyncThunk(
   'auth/twitterLogin', async (login: string, {rejectWithValue}) => {
@@ -9,7 +9,7 @@ export const twitterLogin = createAsyncThunk(
     try {
       const res = await apiAuth.socialLogin({login})
 
-      setLocalStorageData(res.data);
+      localStorageService.setAuthUserData(res.data)
 
       return res.data;
     } catch (e) {

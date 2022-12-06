@@ -1,0 +1,15 @@
+{
+  "app.auth.login.title": "Sign In",
+  "app.auth.register.title": "Sign In",
+  "app.auth-form.input-login.placeholder": "Login",
+  "app.auth-form.input-password.placeholder": "Password",
+  "app.auth-form.input-login.error": "Invalid login",
+  "app.auth-form.input-password.error-length": "Min length id 6 char",
+  "app.auth.button-login.title": "SIGN IN",
+  "app.auth.button-register.title": "SIGN UP",
+  "app.auth.button-google.title": "SIGN IN WITH GOOGLE",
+  "app.auth.button-twitter.title": "SIGN IN WITH TWITTER",
+  "app.auth.button-github.title": "SIGN IN WITH GITHUB",
+  "app.header.button.login.title": "LOGIN",
+  "app.header.button.logout.title": "LOGOUT"
+}

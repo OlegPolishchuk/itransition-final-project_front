@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
 import {selectError, selectGlobalMessage} from "store/selectors/app";
 import {registerUser} from "store/actions";
 import {clearGlobalMessage, setError} from "store/reducers";
+import {FormattedMessage} from "react-intl";
 
 
 type Inputs = {
@@ -25,6 +26,8 @@ export const Register = () => {
 
   const themeColors = useThemeColors();
   const navLinkColor = themeColors.secondary.second;
+
+  const authFormButtonTitle = <FormattedMessage id='app.auth.button-register.title' />
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data)
@@ -45,16 +48,16 @@ export const Register = () => {
     <Box className={'authContainer'}>
 
       <Typography variant={'h3'}>
-        Sign Up
+        <FormattedMessage id='app.auth.register.title'/>
       </Typography>
 
-      <AuthForm submitCallback={onSubmit} buttonTitle={'Sign Up'}>
+      <AuthForm submitCallback={onSubmit} buttonTitle={authFormButtonTitle}>
         <Button variant={'text'} color={'secondary'}>
           <NavLink
             to={routes.auth.login}
             style={{color: navLinkColor}}
           >
-            Sign In
+            <FormattedMessage id='app.auth.button-login.title'/>
           </NavLink>
         </Button>
       </AuthForm>
