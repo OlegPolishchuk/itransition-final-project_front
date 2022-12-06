@@ -18,7 +18,8 @@ const PUBLIC_ROUTES = [
   routes.auth.logout,
   routes.auth.register,
   routes.auth.refresh,
-  routes.auth.google,
+  // routes.auth.google,
+  routes.auth.social
 ]
 
 let store:  ToolkitStore<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, [ThunkMiddleware<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, undefined>]>;
@@ -37,7 +38,7 @@ instance.interceptors.request.use(async (config) => {
     return config
   }
 
-  const {token} = await JSON.parse(localStorage.getItem(localStorageData.userData) as string)
+  const {token} = await JSON.parse(localStorage.getItem(localStorageData.userData) as string);
   const isUserAuth = store.getState().authReducer.isUserAuth;
 
   if (token) {

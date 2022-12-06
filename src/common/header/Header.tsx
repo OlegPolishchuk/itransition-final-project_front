@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Box, Button, Container, IconButton} from "@mui/material";
+import {Box, Button, Container} from "@mui/material";
 import {useAppDispatch} from "hooks";
 import {ThemeMode} from "store/types/AppState";
 import {toggleTheme} from "store/reducers/appReducer/appSlice";
@@ -7,7 +7,7 @@ import {ThemeToggle} from "common/header/themeToggle/ThemeToggle";
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import {logoutUser} from "store/actions";
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {routes} from "shared";
 
 type Props = {
@@ -38,7 +38,7 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
         <Container sx={{
           display: 'flex',
           justifyContent: 'flex-end',
-          padding: '10px 0',
+          padding: '10px',
           gap: '30px',
         }}>
 

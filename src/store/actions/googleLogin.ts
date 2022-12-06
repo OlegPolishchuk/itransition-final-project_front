@@ -1,15 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiAuth, AuthData} from "apis";
+import {apiAuth} from "apis";
 import {AxiosError} from "axios";
-import {GoogleLoginData} from "store/types/GoogleResponse";
 import {User} from "store/types/User";
 import {setLocalStorageData} from "shared/utils";
+import {SocialResponse} from "store/types/SocialResponse";
 
-export const googleLogin = createAsyncThunk<User, GoogleLoginData>(
-  'auth/googleLogin', async (data:GoogleLoginData, {rejectWithValue}) => {
+export const googleLogin = createAsyncThunk<User, SocialResponse>(
+  'auth/googleLogin', async (data:SocialResponse, {rejectWithValue}) => {
 
     try {
-      const res = await apiAuth.googleLogin(data)
+      const {login} = data;
+      const res = await apiAuth.socialLogin({login})
 
       setLocalStorageData(res.data)
       return res.data

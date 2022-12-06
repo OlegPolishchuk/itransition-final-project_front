@@ -1,7 +1,7 @@
 import {routes} from "shared";
 import {User} from "store/types/User";
 import {instance, AuthData} from "apis";
-import {GoogleLoginData} from "store/types/GoogleResponse";
+import {SocialResponse} from "store/types/SocialResponse";
 
 export const apiAuth = {
   register(data: AuthData) {
@@ -24,7 +24,8 @@ export const apiAuth = {
     return instance.get(routes.auth.refresh)
   },
 
-  googleLogin(data: GoogleLoginData) {
-    return instance.post<User>(routes.auth.google, data)
+  socialLogin(data: SocialResponse ) {
+    return instance.post<User>(routes.auth.social, data)
   }
+
 }

@@ -23,8 +23,6 @@ export const colorTokens = (mode: PaletteMode): CustomTheme => ({
         second: '#858585',
       },
       primary: {
-        // second: '#727169',
-        // main: '#2f2f28',
         second: '#727169',
         main: '#2f2f28',
       },
@@ -80,6 +78,9 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
           secondary: {
             main: colors.secondary.main,
           },
+          success: {
+            main: colors.success.main
+          },
           error: {
             main: colors.success.second
           },
@@ -97,6 +98,9 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
           },
           secondary: {
             main: colors.secondary.main,
+          },
+          success: {
+            main: colors.success.main
           },
           error: {
             main: colors.success.second
@@ -171,7 +175,20 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
               borderColor: mode === 'dark' ? colors.secondary.main  : colors.secondary.main,
               '&:hover': {
                 borderColor: mode === 'dark' ? colors.secondary.second  : colors.secondary.second,
+              },
+              '&.MuiButton-outlinedSuccess': {
+                color: colors.success.main,
+                borderColor: colors.success.main,
+              },
+              '&.MuiButton-outlinedPrimary': {
+                color: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
+                borderColor: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
+                '&:hover': {
+                  color: mode === 'dark' ? 'rgba(255,255,255,.9)' : colors.primary.second,
+                  borderColor: mode === 'dark' ? 'rgba(255,255,255,.9)' : colors.primary.second,
+                }
               }
+
             },
 
             '& .MuiButton-endIcon': {
@@ -179,7 +196,7 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             },
             '& .MuiButton-startIcon': {
               color: mode === 'dark' ? '#fff' : colors.primary.main
-            }
+            },
           }
         },
 

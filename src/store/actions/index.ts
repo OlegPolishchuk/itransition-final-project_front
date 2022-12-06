@@ -4,3 +4,4 @@ export {logoutUser} from './logoutUser';
 
 export {getAccessToken} from './getAccessToken';
 export {getProfile} from './getProfile';
+export {twitterLogin} from './twitterLogin';

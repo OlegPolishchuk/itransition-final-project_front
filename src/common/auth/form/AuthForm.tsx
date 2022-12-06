@@ -22,7 +22,6 @@ export const AuthForm: FC<Props> = ({submitCallback, children, buttonTitle }) =>
   const {
     register,
     handleSubmit,
-    reset,
     formState: {errors}
   } = useForm<Inputs>({mode: 'onSubmit'});
 

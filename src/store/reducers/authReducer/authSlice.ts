@@ -1,9 +1,16 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AuthState} from "store/types/AuthState";
-import {getProfile, loginUser, logoutUser, registerUser} from "store/actions";
+import {
+  getProfile,
+  loginUser,
+  logoutUser,
+  registerUser,
+  twitterLogin
+} from "store/actions";
 import {refreshToken} from "store/actions/refreshToken";
 import {getStartToken} from "shared";
 import {googleLogin} from "store/actions/googleLogin";
+import {getGithubUser} from "store/actions/getGithubUser";
 
 
 const initialState: AuthState = {
@@ -59,6 +66,16 @@ const authSlice = createSlice({
     builder.addCase(logoutUser.fulfilled, () => initialState)
 
     builder.addCase(googleLogin.fulfilled, (state, {payload}) => {
+      state.isUserAuth = true;
+      state.accessToken = payload.token;
+    })
+
+    builder.addCase(twitterLogin.fulfilled, (state, {payload}) => {
+      state.isUserAuth = true;
+      state.accessToken = payload.token;
+    })
+
+    builder.addCase(getGithubUser.fulfilled, (state,{payload}) => {
       state.isUserAuth = true;
       state.accessToken = payload.token;
     })

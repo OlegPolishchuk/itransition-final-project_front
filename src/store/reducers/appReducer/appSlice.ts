@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppState} from "store/types/AppState";
-import {registerUser, loginUser} from "store/actions";
+import {registerUser, loginUser, twitterLogin} from "store/actions";
+import {getGithubUser} from "store/actions/getGithubUser";
 
 const initialState: AppState = {
   error: '',
@@ -49,6 +50,14 @@ const appSlice = createSlice({
       state.error = action.payload as string;
       state.isLoading = false;
       state.globalMessage = '';
+    })
+
+    builder.addCase(twitterLogin.pending, (state) => {
+      state.isLoading = true;
+    })
+
+    builder.addCase(getGithubUser.pending, (state) => {
+      state.isLoading = true
     })
   }
 })

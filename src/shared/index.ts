@@ -1,2 +1,2 @@
-export {routes, localStorageData, emailRegexp} from './constants';
+export {routes, localStorageData, emailRegexp, auth0} from './constants';
 export {getStartToken, isTokenExpired} from './utils';

@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserState} from "store/types/UserState";
-import {loginUser} from "store/actions";
+import {loginUser, twitterLogin} from "store/actions";
 import {googleLogin} from "store/actions/googleLogin";
+import {getGithubUser} from "store/actions/getGithubUser";
 
 const initialState: UserState = {
   user: {
@@ -23,6 +24,14 @@ const userSlice = createSlice({
     })
 
     builder.addCase(googleLogin.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+
+    builder.addCase(twitterLogin.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+
+    builder.addCase(getGithubUser.fulfilled, (state,action) => {
       state.user = action.payload;
     })
   },
