@@ -3,6 +3,7 @@ import {AuthData, apiAuth} from "apis";
 import {AxiosError} from "axios";
 import {localStorageData} from "shared";
 import {User} from "store/types/User";
+import {setLocalStorageData} from "shared/utils";
 
 export const loginUser = createAsyncThunk<User, AuthData>(
   'app/loginUser', async (data: AuthData, {rejectWithValue}) => {
@@ -10,16 +11,7 @@ export const loginUser = createAsyncThunk<User, AuthData>(
     try {
       const res = await apiAuth.login(data);
 
-      const user = res.data;
-      const token = user.token;
-
-      const dataToLocalStorage = {
-        token,
-        userId: user._id,
-        tokenStartTime: Date.now(),
-      }
-
-      localStorage.setItem(localStorageData.userData,JSON.stringify(dataToLocalStorage))
+      setLocalStorageData(res.data)
 
       return res.data;
     }

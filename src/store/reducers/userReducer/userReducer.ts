@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserState} from "store/types/UserState";
 import {loginUser} from "store/actions";
+import {googleLogin} from "store/actions/googleLogin";
 
 const initialState: UserState = {
   user: {
@@ -18,6 +19,10 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+
+    builder.addCase(googleLogin.fulfilled, (state, action) => {
       state.user = action.payload;
     })
   },

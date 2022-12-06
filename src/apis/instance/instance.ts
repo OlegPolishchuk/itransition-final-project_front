@@ -18,6 +18,7 @@ const PUBLIC_ROUTES = [
   routes.auth.logout,
   routes.auth.register,
   routes.auth.refresh,
+  routes.auth.google,
 ]
 
 let store:  ToolkitStore<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, [ThunkMiddleware<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, undefined>]>;

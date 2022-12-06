@@ -7,6 +7,7 @@ export const routes = {
     refresh: `${baseAuthPath}/refresh`,
     profile: `${baseAuthPath}/getProfile`,
     logout: `${baseAuthPath}/logout`,
+    google: `${baseAuthPath}/googleAuth`,
   },
   notFound: '/not-found',
   mainPage: '/',

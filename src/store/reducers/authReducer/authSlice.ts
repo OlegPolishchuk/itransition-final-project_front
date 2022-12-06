@@ -3,6 +3,7 @@ import {AuthState} from "store/types/AuthState";
 import {getProfile, loginUser, logoutUser, registerUser} from "store/actions";
 import {refreshToken} from "store/actions/refreshToken";
 import {getStartToken} from "shared";
+import {googleLogin} from "store/actions/googleLogin";
 
 
 const initialState: AuthState = {
@@ -56,6 +57,11 @@ const authSlice = createSlice({
     })
 
     builder.addCase(logoutUser.fulfilled, () => initialState)
+
+    builder.addCase(googleLogin.fulfilled, (state, {payload}) => {
+      state.isUserAuth = true;
+      state.accessToken = payload.token;
+    })
   }
 })
 
