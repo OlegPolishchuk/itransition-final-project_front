@@ -9,7 +9,7 @@ export const initializeApp = createAsyncThunk<InitializeApp, void>(
   'app/initializeApp',  async (_, {dispatch}) => {
 
     console.log(`initialize APP`)
-    const locale =  localStorageService.getItem(localStorageData.locale) as Locale  || '';
+    const locale =  localStorageService.getItem(localStorageData.locale) as Locale  || 'en';
     const theme = localStorageService.getItem(localStorageData.theme) as ThemeMode || 'light';
     const accessToken = getStartToken();
 

@@ -21,6 +21,7 @@ export const Main = () => {
       <Button onClick={handleClick}>Refresh Profile</Button>
 
       <NavLink to={routes.protectedRoute} >to Protected</NavLink>
+      <NavLink to={routes.admin.main} >to admin</NavLink>
     </div>
   );
 };

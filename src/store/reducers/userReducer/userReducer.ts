@@ -1,15 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserState} from "store/types/UserState";
-import {loginUser, twitterLogin} from "store/actions";
+import {getProfile, loginUser, twitterLogin} from "store/actions";
 import {googleLogin} from "store/actions/auth/googleLogin";
 import {getGithubUser} from "store/actions/auth/getGithubUser";
+import {userRoles} from "shared";
 
 const initialState: UserState = {
   user: {
     _id: '',
-    email: '',
+    login: '',
     token: '',
-    role: 'user',
+    role: userRoles.user,
+    status: 'active',
     reviews: [],
   }
 }
@@ -19,6 +21,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(getProfile.fulfilled, (state, {payload}) => {
+      if (payload) {
+        state.user = payload;
+      }
+    })
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
     })
@@ -35,4 +42,3 @@ const userSlice = createSlice({
 })
 
 export const userReducer = userSlice.reducer;
-export const {} = userSlice.actions;

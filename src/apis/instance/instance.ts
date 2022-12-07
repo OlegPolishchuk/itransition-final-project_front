@@ -1,5 +1,5 @@
 import axios, {AxiosError} from "axios";
-import {localStorageData, routes} from "shared";
+import {apiRoutes, localStorageData, routes} from "shared";
 import {logoutUser} from "store/actions";
 import {isTokenExpired} from "shared/utils/isTokenExpired";
 import {ToolkitStore} from "@reduxjs/toolkit/dist/configureStore";
@@ -15,14 +15,25 @@ const PUBLIC_ROUTES = [
   // routes.mainPage,
   routes.notFound,
   routes.auth.login,
-  routes.auth.logout,
+  // routes.auth.logout,
   routes.auth.register,
-  routes.auth.refresh,
+  // routes.auth.refresh,
   // routes.auth.google,
-  routes.auth.social
+  apiRoutes.auth.social,
 ]
 
-let store:  ToolkitStore<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, [ThunkMiddleware<CombinedState<{appReducer: AppState, authReducer: AuthState, userReducer: UserState}>, AnyAction, undefined>]>;
+let store: ToolkitStore<CombinedState<{
+  appReducer: AppState,
+  authReducer: AuthState,
+  userReducer: UserState
+}>,
+  AnyAction,
+  [ThunkMiddleware<CombinedState<{
+    appReducer: AppState,
+    authReducer: AuthState,
+    userReducer: UserState
+  }>,
+    AnyAction, undefined>]>;
 export const injectStore = (_store: any) => {
   store = _store
 }
@@ -40,10 +51,10 @@ instance.interceptors.request.use(async (config) => {
 
   const {token} = await JSON.parse(localStorage.getItem(localStorageData.userData) as string);
   const isUserAuth = store.getState().authReducer.isUserAuth;
-
+  console.log('INTERCEPTORS REQUEST')
   if (token) {
     const authorization = `Bearer ${token}`;
-
+    console.log('INTERCEPTORS REQUEST, token = ', token)
 
     config.headers = {
       ...config.headers,
@@ -52,6 +63,10 @@ instance.interceptors.request.use(async (config) => {
   }
 
   if (isTokenExpired() && isUserAuth) {
+    console.log('INTERCEPTORS REQUEST, TOKEN EXPIRED && isUserAuth = true')
+    const isTokenExp = isTokenExpired();
+    console.log(isTokenExp)
+    debugger
     store.dispatch(refreshToken());
   }
 
@@ -62,7 +77,8 @@ instance.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
     const isUserAuth = store.getState().authReducer.isUserAuth;
-    if ((error.response?.status === 401) && isUserAuth && error.request.url !== routes.auth.logout) {
+    if ((error.response?.status === 401) && isUserAuth && error.request.url !== apiRoutes.auth.logout) {
+      console.log('Must do dispatch(logout())')
       store.dispatch(logoutUser())
     }
 

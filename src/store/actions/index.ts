@@ -10,4 +10,5 @@ export {
   getAccessToken
 } from './auth';
 
-export {changeLocale, initializeApp, changeTheme} from './app';
+export {changeLocale,initializeApp, changeTheme} from './app';
+export {fetchUsers, updateUsersStatus, deleteUsers} from './users';

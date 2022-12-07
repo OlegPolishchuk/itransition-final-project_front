@@ -6,4 +6,5 @@ export {
   selectLocale,
 } from './app';
 export {selectIsUserAuth, selectAccessToken} from './auth';
-export {selectUser} from './user';
+export {selectUser, selectUserRole} from './user';
+export {selectUsers} from './admin';

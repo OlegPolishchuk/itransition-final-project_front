@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {Button} from "@mui/material";
-import {useAppDispatch} from "hooks";
 import {IResolveParams, LoginSocialTwitter} from "reactjs-social-login";
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {FormattedMessage} from "react-intl";
@@ -18,9 +17,11 @@ export const TwitterAuth: FC<Props> = ({onResolve}) => {
     <LoginSocialTwitter
       client_id={client_id}
       redirect_uri={REDIRECT_URI}
+      // isOnlyGetCode
+      isOnlyGetToken
       onResolve={onResolve}
       onReject={(err: any) => {
-        console.log(err)
+        console.log(`Twitter Error`, err)
       }}
     >
      <Button

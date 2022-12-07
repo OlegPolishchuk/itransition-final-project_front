@@ -29,7 +29,7 @@ export const GoogleAuth = () => {
 
   useEffect(() => {
     const initClient = () => {
-      gapi.client.init({
+      gapi.auth2.init({
         client_id,
         scope: '',
       })
@@ -42,7 +42,6 @@ export const GoogleAuth = () => {
   return (
     <GoogleLogin
       clientId={client_id}
-      // buttonText={'Sign in with Google'}
       onSuccess={handleSuccess}
       onFailure={handleFailure}
       isSignedIn={false}

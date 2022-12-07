@@ -1,31 +1,33 @@
-import {routes} from "shared";
+import {apiRoutes} from "shared";
 import {User} from "store/types/User";
-import {instance, AuthData} from "apis";
+import {AuthData, instance} from "apis";
 import {SocialResponse} from "store/types/SocialResponse";
 
 export const apiAuth = {
   register(data: AuthData) {
-    return instance.post(routes.auth.register, data)
+    return instance.post(apiRoutes.auth.register, data)
   },
 
   login(data: AuthData) {
-    return instance.post<User>(routes.auth.login, data)
+    return instance.post<User>(apiRoutes.auth.login, data)
   },
 
   logout() {
-    return instance.get(routes.auth.logout)
+    console.log('logout api')
+    return instance.get(apiRoutes.auth.logout)
   },
 
   getProfile(token: string){
-    return instance.post<User>(routes.auth.profile, token)
+    return instance.post<User>(apiRoutes.auth.profile, token)
   },
 
   refreshToken() {
-    return instance.get(routes.auth.refresh)
+    return instance.get(apiRoutes.auth.refresh)
   },
 
   socialLogin(data: SocialResponse ) {
-    return instance.post<User>(routes.auth.social, data)
+    console.log(`socialLogin api`)
+    return instance.post<User>(apiRoutes.auth.social, data)
   }
 
 }

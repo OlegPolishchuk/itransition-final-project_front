@@ -9,7 +9,8 @@ import {
   selectIsLoading,
   selectIsUserAuth,
   selectLocale,
-  selectThemeMode
+  selectThemeMode,
+  selectUserRole
 } from "store/selectors";
 import {initializeApp} from "store/actions";
 
@@ -35,7 +36,10 @@ export function App() {
   const isUserAuth = useAppSelector(selectIsUserAuth);
   const locale = useAppSelector(selectLocale);
   const isLoading = useAppSelector(selectIsLoading);
+  const userRole = useAppSelector(selectUserRole);
 
+  // const user = useAppSelector(selectUser)
+  // console.log(user)
   const theme = createTheme(themeSettings(themeMode));
 
   useEffect(() => {
@@ -52,7 +56,7 @@ export function App() {
 
             <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
 
-            <AppRoutes isUserAuth={isUserAuth}/>
+            <AppRoutes isUserAuth={isUserAuth} userRole={userRole}/>
 
           </div>
 

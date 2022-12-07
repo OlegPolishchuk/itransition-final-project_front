@@ -116,7 +116,7 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
     },
     typography: {
       fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
-      fontSize: 12,
+      fontSize: 14,
       h1: {
         fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
         fontSize: 40,
@@ -161,6 +161,21 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
         },
       },
 
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            '&.MuiAlert-root': {
+              '&.MuiAlert-standardSuccess': {
+                backgroundColor: '#bdefbd',
+                '& .MuiAlert-icon': {
+                  color: 'green',
+                }
+              }
+            }
+          }
+        }
+      },
+
       MuiButtonBase: {
         styleOverrides: {
           root: {
@@ -183,11 +198,17 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
               '&.MuiButton-outlinedPrimary': {
                 color: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
                 borderColor: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
+                '&.Mui-disabled': {
+                  color: colors.grey.second,
+                  '& .MuiButton-endIcon': {
+                    opacity: .5,
+                  }
+                },
                 '&:hover': {
                   color: mode === 'dark' ? 'rgba(255,255,255,.9)' : colors.primary.second,
                   borderColor: mode === 'dark' ? 'rgba(255,255,255,.9)' : colors.primary.second,
-                }
-              }
+                },
+              },
 
             },
 
@@ -199,8 +220,18 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             },
           }
         },
+      },
 
-
+      MuiCheckbox: {
+        styleOverrides: {
+          root: {
+            '&.MuiCheckbox-root': {
+              '&.Mui-checked': {
+                color: colors.secondary.second
+              }
+            }
+          }
+        }
       }
 
     }

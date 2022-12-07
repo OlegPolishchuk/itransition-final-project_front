@@ -49,6 +49,7 @@ const appSlice = createSlice({
     builder.addCase(registerUser.pending, (state) => {
       state.error = '';
       state.isLoading = true;
+      state.globalMessage = '';
     })
     builder.addCase(registerUser.fulfilled, (state, action: PayloadAction<{ message: string }>) => {
       state.globalMessage = action.payload.message;
@@ -64,7 +65,10 @@ const appSlice = createSlice({
       state.error = '';
       state.isLoading = true;
     })
-    builder.addCase(loginUser.fulfilled, state => {state.isLoading = false})
+    builder.addCase(loginUser.fulfilled, state => {
+      state.isLoading = false;
+      state.error = '';
+    })
     builder.addCase(loginUser.rejected, (state, action) => {
       state.error = action.payload as string;
       state.isLoading = false;
@@ -81,10 +85,10 @@ const appSlice = createSlice({
       state.isLoading = true
     })
     builder.addCase(getGithubUser.fulfilled, (state) => {
-      state.isLoading = true
+      state.isLoading = false;
     })
     builder.addCase(getGithubUser.rejected, (state) => {
-      state.isLoading = true
+      state.isLoading = false
     })
 
     builder.addCase(changeLocale.fulfilled, (state, action) => {
