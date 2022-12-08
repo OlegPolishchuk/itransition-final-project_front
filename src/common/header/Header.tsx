@@ -55,7 +55,7 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
                 onClick={handleLogout}
                 endIcon={<ExitToAppOutlinedIcon/>}
               >
-                <FormattedMessage id='app.header.button.logout.title'/>
+                <FormattedMessage id='app.header.button.logout.title' />
               </Button>
             )
             : (

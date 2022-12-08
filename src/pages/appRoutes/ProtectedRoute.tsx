@@ -1,30 +1,36 @@
 import React, {ReactNode, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
-import {routes} from "shared";
+import {routes, userRoles} from "shared";
 import {UserRole} from "store/types/User";
-import {userRoles} from "shared";
 
 type Props = {
   isUserAuth: boolean;
-  isCheckAdmin?: boolean;
-  userRole?: UserRole;
   children: ReactNode;
+  userRole?: UserRole;
+  checkAdmin?: boolean;
+  isInitialize?: boolean;
 }
 
-export const ProtectedRoute = React.memo(({isUserAuth, children, userRole, isCheckAdmin}: Props) => {
+export const ProtectedRoute = React.memo(({
+                                            isUserAuth,
+                                            children
+                                            , userRole,
+                                            isInitialize,
+                                            checkAdmin
+                                          }: Props) => {
   const navigate = useNavigate();
-  console.log(`ProtectedRoute, isUserAuth = ${isUserAuth}`)
-  useEffect(() => {
-    if (!isUserAuth) navigate(routes.auth.login);
-  }, [isUserAuth])
 
   useEffect(() => {
-    // console.log(`isCheckAdmin`, isCheckAdmin);
-    // console.log(`userRole`, userRole)
-    if (isCheckAdmin && userRole !== userRoles.admin) {
-      navigate(routes.mainPage)
+    if (!isUserAuth) navigate(routes.auth.login);
+  }, [isUserAuth, navigate])
+
+  useEffect(() => {
+    if (checkAdmin) {
+      if (isInitialize && userRole !== userRoles.admin) {
+        navigate(routes.mainPage)
+      }
     }
-  }, [isCheckAdmin, userRole])
+  }, [userRole, checkAdmin, isInitialize, navigate])
 
   return (
     <>

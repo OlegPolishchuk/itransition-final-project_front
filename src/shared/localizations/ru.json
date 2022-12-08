@@ -11,5 +11,18 @@
   "app.auth.button-twitter.title": "Войти через TWITTER",
   "app.auth.button-github.title": "Войти через GITHUB",
   "app.header.button.login.title": "Войти",
-  "app.header.button.logout.title": "Выйти"
+  "app.header.button.logout.title": "Выйти",
+  "app.admin.button-block.title": "Заблокировать",
+  "app.admin.button-unblock.title": "Разблокировать",
+  "app.admin.button-delete.title": "Удалить",
+  "app.user.info.button-edit.title": "Редакрировать",
+  "app.user.info.button-save.title": "Сохранить",
+  "app.user.info.field-id.title": "Идентификатор:",
+  "app.user.info.field-login.title": "Логин:",
+  "app.user.info.field-userName.title": "Имя Пользователя:",
+  "app.user.info.field-role.title": "Роль Пользователя:",
+  "app.user.info.field-status.title": "Статус Пользователя:",
+  "app.user.info.field-reviews.title": "Количество Рецензий:",
+  "app.user.info.field-created.title": "Дата Создания",
+  "app.user.info.field-lastLogin.title": "Последний раз был онлайн:"
 }

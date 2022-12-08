@@ -6,6 +6,7 @@ import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {themeSettings} from 'theme';
 
 import {
+  selectIsInitialize,
   selectIsLoading,
   selectIsUserAuth,
   selectLocale,
@@ -37,9 +38,8 @@ export function App() {
   const locale = useAppSelector(selectLocale);
   const isLoading = useAppSelector(selectIsLoading);
   const userRole = useAppSelector(selectUserRole);
+  const isInitialize = useAppSelector(selectIsInitialize);
 
-  // const user = useAppSelector(selectUser)
-  // console.log(user)
   const theme = createTheme(themeSettings(themeMode));
 
   useEffect(() => {
@@ -56,7 +56,11 @@ export function App() {
 
             <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
 
-            <AppRoutes isUserAuth={isUserAuth} userRole={userRole}/>
+            <AppRoutes
+              isUserAuth={isUserAuth}
+              userRole={userRole}
+              isInitialize={isInitialize}
+            />
 
           </div>
 

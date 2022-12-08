@@ -17,4 +17,8 @@ export const apiUsers = {
   deleteUsers(queryString: string) {
     return instance.delete(`${apiRoutes.users.base}?id=${queryString}`)
   },
+
+  fetchCurrentUser(userId: string){
+    return instance.get(`${apiRoutes.currentUser.base}?id=${userId}`)
+  }
 }

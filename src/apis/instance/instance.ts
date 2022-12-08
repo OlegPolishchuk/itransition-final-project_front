@@ -15,11 +15,10 @@ const PUBLIC_ROUTES = [
   // routes.mainPage,
   routes.notFound,
   routes.auth.login,
-  // routes.auth.logout,
+  apiRoutes.auth.logout,
   routes.auth.register,
-  // routes.auth.refresh,
-  // routes.auth.google,
   apiRoutes.auth.social,
+  apiRoutes.auth.refresh,
 ]
 
 let store: ToolkitStore<CombinedState<{
@@ -51,10 +50,9 @@ instance.interceptors.request.use(async (config) => {
 
   const {token} = await JSON.parse(localStorage.getItem(localStorageData.userData) as string);
   const isUserAuth = store.getState().authReducer.isUserAuth;
-  console.log('INTERCEPTORS REQUEST')
+
   if (token) {
     const authorization = `Bearer ${token}`;
-    console.log('INTERCEPTORS REQUEST, token = ', token)
 
     config.headers = {
       ...config.headers,
@@ -63,10 +61,6 @@ instance.interceptors.request.use(async (config) => {
   }
 
   if (isTokenExpired() && isUserAuth) {
-    console.log('INTERCEPTORS REQUEST, TOKEN EXPIRED && isUserAuth = true')
-    const isTokenExp = isTokenExpired();
-    console.log(isTokenExp)
-    debugger
     store.dispatch(refreshToken());
   }
 
@@ -78,7 +72,6 @@ instance.interceptors.response.use(
   (error: AxiosError) => {
     const isUserAuth = store.getState().authReducer.isUserAuth;
     if ((error.response?.status === 401) && isUserAuth && error.request.url !== apiRoutes.auth.logout) {
-      console.log('Must do dispatch(logout())')
       store.dispatch(logoutUser())
     }
 

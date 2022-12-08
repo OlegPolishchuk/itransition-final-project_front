@@ -4,4 +4,5 @@ export type AdminState = {
   users: User[];
   isLoading: boolean;
   error: string;
+  currentUser: User;
 }

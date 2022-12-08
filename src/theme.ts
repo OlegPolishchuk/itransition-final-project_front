@@ -199,7 +199,7 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
                 color: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
                 borderColor: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,
                 '&.Mui-disabled': {
-                  color: colors.grey.second,
+                  color: mode === 'dark' ? colors.grey.second : colors.grey.main,
                   '& .MuiButton-endIcon': {
                     opacity: .5,
                   }

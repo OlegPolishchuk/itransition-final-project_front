@@ -10,5 +10,8 @@ export const apiRoutes = {
   },
   users: {
     base: '/users',
+  },
+  currentUser: {
+    base: '/user'
   }
 }

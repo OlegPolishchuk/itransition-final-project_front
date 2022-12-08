@@ -10,6 +10,22 @@
   "app.auth.button-google.title": "SIGN IN WITH GOOGLE",
   "app.auth.button-twitter.title": "SIGN IN WITH TWITTER",
   "app.auth.button-github.title": "SIGN IN WITH GITHUB",
+
   "app.header.button.login.title": "LOGIN",
-  "app.header.button.logout.title": "LOGOUT"
+  "app.header.button.logout.title": "LOGOUT",
+
+  "app.admin.button-block.title": "BLOCK",
+  "app.admin.button-unblock.title": "UNBLOCK",
+  "app.admin.button-delete.title": "DELETE",
+
+  "app.user.info.button-edit.title": "EDIT",
+  "app.user.info.button-save.title": "SAVE",
+  "app.user.info.field-id.title": "User ID",
+  "app.user.info.field-login.title": "User Login",
+  "app.user.info.field-userName.title": "User Name",
+  "app.user.info.field-role.title": "User Role",
+  "app.user.info.field-status.title": "User Status",
+  "app.user.info.field-reviews.title": "User Reviews Count",
+  "app.user.info.field-created.title": "Created",
+  "app.user.info.field-lastLogin.title": "Last Login"
 }

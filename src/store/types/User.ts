@@ -1,9 +1,12 @@
 export type User = {
   _id: string;
   login: string;
+  userName: string;
   token: string;
   role: UserRole;
   status: string;
+  created: string;
+  lastLogin: string;
   reviews: [];
 }
 

@@ -8,5 +8,5 @@ export {GoogleAuth} from './auth/googleLogin/GoogleAuth';
 export {TwitterAuth} from './auth/twitterLogin/TwitterAuth';
 export {GithubAuth} from './auth/githubLogin/githubAuth';
 
-export {UsersTable} from './usersTable/UsersTable';
+export {UsersTable, UserInfo, UserAvatar, UserDescription} from './users';
 export {Title} from './title/Title';

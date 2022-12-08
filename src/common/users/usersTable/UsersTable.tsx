@@ -1,6 +1,6 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {User} from "store/types/User";
-import {DataGrid, GridColDef, GridSelectionModel} from "@mui/x-data-grid";
+import {DataGrid, GridColDef, GridRowParams, GridSelectionModel} from "@mui/x-data-grid";
 import {userRoles} from "shared";
 import {Box} from "@mui/material";
 import {useAppSelector, useThemeColors} from "hooks";
@@ -11,13 +11,15 @@ type Props = {
   rows: User[];
   setSelectionModel: (newSelectionModel: GridSelectionModel) => void;
   selectionModel: GridSelectionModel;
+  handleRowClickCallback: (user: User) => void;
 }
 
 export const UsersTable: FC<Props> = ({
                                         rows,
                                         columns,
                                         setSelectionModel,
-                                        selectionModel
+                                        selectionModel,
+                                        handleRowClickCallback
                                       }) => {
 
   const theme = useAppSelector(selectThemeMode);
@@ -25,6 +27,10 @@ export const UsersTable: FC<Props> = ({
 
   const handleSelectRow = (newSelectionModel: GridSelectionModel) => {
     setSelectionModel(newSelectionModel);
+  }
+
+  const handleRowClick = (params: GridRowParams) => {
+    handleRowClickCallback(params.row)
   }
 
   return (
@@ -50,6 +56,7 @@ export const UsersTable: FC<Props> = ({
         isCellEditable={params => params.row.role !== userRoles.admin}
         selectionModel={selectionModel}
         onSelectionModelChange={handleSelectRow}
+        onRowClick={handleRowClick}
       />
     </Box>
   );

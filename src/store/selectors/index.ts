@@ -4,7 +4,8 @@ export {
   selectError,
   selectIsLoading,
   selectLocale,
+  selectIsInitialize
 } from './app';
 export {selectIsUserAuth, selectAccessToken} from './auth';
 export {selectUser, selectUserRole} from './user';
-export {selectUsers} from './admin';
+export {selectUsers, selectCurrentUser} from './admin';
