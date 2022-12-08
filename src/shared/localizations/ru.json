@@ -10,11 +10,21 @@
   "app.auth.button-google.title": "Войти через GOOGLE",
   "app.auth.button-twitter.title": "Войти через TWITTER",
   "app.auth.button-github.title": "Войти через GITHUB",
+
   "app.header.button.login.title": "Войти",
   "app.header.button.logout.title": "Выйти",
+
   "app.admin.button-block.title": "Заблокировать",
   "app.admin.button-unblock.title": "Разблокировать",
   "app.admin.button-delete.title": "Удалить",
+
+  "app.admin.generate.slider.title": "Количество:",
+  "app.admin.generate.switcher.title": "Статус:",
+  "app.admin.generate.switcher-active.title": "Активный",
+  "app.admin.generate.switcher-blocked.title": "Заблокирован",
+  "app.admin.generate.select.locale.title": "Язык:",
+  "app.admin.generate.button.title": "Сгенерировать",
+
   "app.user.info.button-edit.title": "Редакрировать",
   "app.user.info.button-save.title": "Сохранить",
   "app.user.info.field-id.title": "Идентификатор:",

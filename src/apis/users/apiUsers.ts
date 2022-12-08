@@ -2,6 +2,7 @@ import {instance} from "apis/instance/instance";
 import {apiRoutes} from "shared";
 import {User} from "store/types/User";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
+import {Locale} from "store/types/AppState";
 
 export const apiUsers = {
   fetchUsers(){
@@ -20,5 +21,9 @@ export const apiUsers = {
 
   fetchCurrentUser(userId: string){
     return instance.get(`${apiRoutes.currentUser.base}?id=${userId}`)
-  }
+  },
+
+  generateRandomUsers(count: number, locale: Locale) {
+    return instance.post(apiRoutes.users.base, {count, locale})
+  },
 }

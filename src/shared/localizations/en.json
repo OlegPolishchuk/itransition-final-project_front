@@ -18,6 +18,13 @@
   "app.admin.button-unblock.title": "UNBLOCK",
   "app.admin.button-delete.title": "DELETE",
 
+  "app.admin.generate.slider.title": "Users Count:",
+  "app.admin.generate.switcher.title": "Users Status:",
+  "app.admin.generate.switcher-active.title": "Active",
+  "app.admin.generate.switcher-blocked.title": "Blocked",
+  "app.admin.generate.select.locale.title": "Users Locale:",
+  "app.admin.generate.button.title": "Generate",
+
   "app.user.info.button-edit.title": "EDIT",
   "app.user.info.button-save.title": "SAVE",
   "app.user.info.field-id.title": "User ID",

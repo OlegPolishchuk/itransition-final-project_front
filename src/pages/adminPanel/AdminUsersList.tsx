@@ -3,7 +3,7 @@ import {Box, Button} from "@mui/material";
 import BlockIcon from "@mui/icons-material/Block";
 import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import {UsersTable} from "common";
+import {CreateUserPanel, UsersTable} from "common";
 import {User} from "store/types/User";
 import {GridColDef, GridSelectionModel} from "@mui/x-data-grid";
 import {parseDate, routes, userRoles, userStatus} from "shared";
@@ -108,6 +108,8 @@ export const AdminUsersList = () => {
 
   return (
     <Box>
+
+      <CreateUserPanel />
 
       <Box>
         <Button
