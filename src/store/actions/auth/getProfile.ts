@@ -3,6 +3,7 @@ import {apiAuth} from "apis";
 import {AxiosError} from "axios";
 import {localStorageData} from "shared";
 import {logoutUser} from "store/actions/auth/logoutUser";
+import {localStorageService} from "services";
 
 export const getProfile = createAsyncThunk(
   'auth/getProfile', async (token: string, {rejectWithValue, dispatch}) => {
@@ -13,7 +14,8 @@ export const getProfile = createAsyncThunk(
       if (res.status === 200) {
         const user = res.data;
         const token = user.token;
-        const {tokenStartTime} = JSON.parse(localStorage.getItem(localStorageData.userData)as string);
+        // const {tokenStartTime} = JSON.parse(localStorage.getItem(localStorageData.userData)as string);
+        const {tokenStartTime} = localStorageService.getItem(localStorageData.userData);
 
         const dataToLocalStorage = {
           token,
@@ -21,7 +23,8 @@ export const getProfile = createAsyncThunk(
           tokenStartTime,
         }
 
-        localStorage.setItem(localStorageData.userData,JSON.stringify(dataToLocalStorage))
+        localStorageService.setAuthUserData(dataToLocalStorage)
+        // localStorage.setItem(localStorageData.userData,JSON.stringify(dataToLocalStorage))
 
         return res.data
       }

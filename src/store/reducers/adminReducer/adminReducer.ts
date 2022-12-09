@@ -13,6 +13,7 @@ const initialState: AdminState = {
     status: userStatus.active,
     _id: '',
     userName: '',
+    avatar: '',
     role: userRoles.user,
     login: '',
     token: '',

@@ -2,7 +2,7 @@ import {User} from "store/types/User";
 import {localStorageData} from "shared";
 
 export const localStorageService = {
-  setAuthUserData(data: User) {
+  setAuthUserData(data: Partial<User>) {
     const token = data.token;
     const dataToLocalStorage = {
       token,

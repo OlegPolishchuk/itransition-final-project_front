@@ -11,4 +11,5 @@ export {
   usersTablePaginationData,
   adminTableSearchParams,
 } from './constants';
-export {getStartToken, isTokenExpired, parseDate} from './utils';
+export {getStartToken, isTokenExpired, parseDate, getWindowWidth, addCheckboxToUser} from './utils';
+export {adminTableColumns} from './adminTableColumns/adminTableColumns';

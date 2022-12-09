@@ -40,7 +40,7 @@ export function App() {
   const userRole = useAppSelector(selectUserRole);
   const isInitialize = useAppSelector(selectIsInitialize);
 
-  const theme = createTheme(themeSettings(themeMode));
+  const theme = createTheme(themeSettings(themeMode))
 
   useEffect(() => {
     dispatch(initializeApp());

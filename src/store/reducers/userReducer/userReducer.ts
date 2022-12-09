@@ -12,6 +12,7 @@ const initialState: UserState = {
     token: '',
     created: '',
     lastLogin: '',
+    avatar: '',
     userName: '',
     role: userRoles.user,
     status: 'active',

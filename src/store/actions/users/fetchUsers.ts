@@ -9,7 +9,6 @@ export const fetchUsers = createAsyncThunk<FetchUsersResponse, void, {state: Roo
     try {
       const {page, limit} = getState().adminReducer.tableSearchParams;
 
-      console.log('page in thunk', page)
       const res = await apiUsers.fetchUsers(page, limit);
 
       return res.data;

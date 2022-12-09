@@ -20,8 +20,8 @@ type Props = {
   userRole: UserRole;
 }
 
-export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
-
+export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
+  console.log('App Routes')
   return (
     <Routes>
       <Route path={routes.auth.register} element={<Register/>}/>

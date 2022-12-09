@@ -2,6 +2,7 @@ export type User = {
   _id: string;
   login: string;
   userName: string;
+  avatar: string;
   token: string;
   role: UserRole;
   status: string;

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {User} from "store/types/User";
 import {DataGrid, GridColDef, GridRowParams, GridSelectionModel} from "@mui/x-data-grid";
 import {userRoles} from "shared";
@@ -21,7 +21,7 @@ type Props = {
   rowsPerPageOptions: number[];
 }
 
-export const UsersTable: FC<Props> = ({
+export const UsersTable: FC<Props> = memo( ({
                                         rows,
                                         columns,
                                         setSelectionModel,
@@ -34,7 +34,6 @@ export const UsersTable: FC<Props> = ({
                                         onPageChange,
                                         rowsPerPageOptions,
                                       }) => {
-
 
   const theme = useAppSelector(selectThemeMode);
   const themeColors = useThemeColors();
@@ -58,9 +57,10 @@ export const UsersTable: FC<Props> = ({
       }
     }}>
       <DataGrid
+        className={'admin-table-dataGrid'}
         columns={columns}
         rows={rows}
-        rowsPerPageOptions={[10, 20, 30]}
+        rowsPerPageOptions={rowsPerPageOptions}
         pageSize={pageSize}
         page={pageNumber}
         onPageChange={onPageChange}
@@ -80,4 +80,4 @@ export const UsersTable: FC<Props> = ({
       />
     </Box>
   );
-};
+});
