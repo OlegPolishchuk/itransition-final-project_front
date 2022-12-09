@@ -19,3 +19,4 @@ export {
   LocaleSelect,
 } from './users';
 export {Title} from './title/Title';
+export {CustomPagination} from './pagination/CustomPagination';

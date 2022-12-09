@@ -16,7 +16,7 @@ const initialState: UserState = {
     role: userRoles.user,
     status: 'active',
     reviews: [],
-  }
+  },
 }
 
 const userSlice = createSlice({

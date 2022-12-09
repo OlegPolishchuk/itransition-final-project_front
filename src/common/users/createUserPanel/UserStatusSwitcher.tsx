@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
+import React, {FC} from 'react';
 import {Box, Stack, Switch, Typography} from "@mui/material";
 import {userStatus} from "shared";
 import {FormattedMessage} from "react-intl";
-import {useAppSelector, useThemeColors} from "hooks";
+import {useThemeColors} from "hooks";
 
-export const UserStatusSwitcher = () => {
-  const [status, setStatus] = useState(userStatus.active);
+type Props = {
+  status: string;
+  handleChangeStatus: () => void;
+}
 
+export const UserStatusSwitcher: FC<Props> = ({status, handleChangeStatus}) => {
   const colors = useThemeColors();
-
-  const handleChangeStatus = () => {
-    setStatus((prevState => prevState === userStatus.active ? userStatus.blocked : userStatus.active))
-  }
 
   return (
     <Box className={'status-switcher-wrapper'}>

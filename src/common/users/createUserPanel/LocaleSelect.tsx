@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC} from 'react';
 import {
   Box,
   FormControl,
@@ -7,15 +7,14 @@ import {
   SelectChangeEvent,
   Typography
 } from "@mui/material";
-import {locales} from "shared";
 import {FormattedMessage} from "react-intl";
 
-export const LocaleSelect = () => {
-  const [locale, setLocale] = useState(locales.EN);
-  const handleChangeLocale = (event: SelectChangeEvent) => {
-    setLocale(event.target.value as string);
-  }
+type Props = {
+  locale: string;
+  handleChangeLocale: (event: SelectChangeEvent) => void;
+}
 
+export const LocaleSelect: FC<Props> = ({locale, handleChangeLocale}) => {
   return (
     <Box className={'locale-select-wrapper'}>
       <Typography id="input-slider" gutterBottom>

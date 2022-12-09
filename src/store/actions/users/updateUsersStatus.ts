@@ -3,8 +3,9 @@ import {apiUsers} from "apis";
 import {fetchUsers} from "store/actions/users/fetchUsers";
 import {AxiosError} from "axios";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
+import {RootState} from "store/store";
 
-export const updateUsersStatus = createAsyncThunk(
+export const updateUsersStatus = createAsyncThunk<void, UpdatedUsersStatusRequest[], {state: RootState}>(
   'blockUsers', async (users: UpdatedUsersStatusRequest[], {rejectWithValue, dispatch}) => {
     if (!users.length) return;
 

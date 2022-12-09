@@ -1,12 +1,12 @@
 import {instance} from "apis/instance/instance";
 import {apiRoutes} from "shared";
-import {User} from "store/types/User";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
-import {Locale} from "store/types/AppState";
+import {GenerateRandomUserData} from "store/types/GenerateRandomUserData";
+import {FetchUsersResponse} from "store/types/FetchUsersResponse";
 
 export const apiUsers = {
-  fetchUsers(){
-    return instance.get<User[]>(apiRoutes.users.base);
+  fetchUsers(page: number, limit: number){
+    return instance.get<FetchUsersResponse>(`${apiRoutes.users.base}?page=${page}&limit=${limit}`);
   },
 
   updateUsersStatus(users: UpdatedUsersStatusRequest[]) {
@@ -23,7 +23,7 @@ export const apiUsers = {
     return instance.get(`${apiRoutes.currentUser.base}?id=${userId}`)
   },
 
-  generateRandomUsers(count: number, locale: Locale) {
-    return instance.post(apiRoutes.users.base, {count, locale})
+  generateRandomUsers(data: GenerateRandomUserData) {
+    return instance.post(apiRoutes.users.base, data)
   },
 }

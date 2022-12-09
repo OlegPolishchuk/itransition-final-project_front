@@ -8,4 +8,9 @@ export {
 } from './app';
 export {selectIsUserAuth, selectAccessToken} from './auth';
 export {selectUser, selectUserRole} from './user';
-export {selectUsers, selectCurrentUser} from './admin';
+export {
+  selectUsers,
+  selectCurrentUser,
+  selectTotalCount,
+  selectAdminTableSearchParams,
+} from './admin';

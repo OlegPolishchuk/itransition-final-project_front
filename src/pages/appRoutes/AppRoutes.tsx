@@ -37,11 +37,12 @@ export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
         element={
           <ProtectedRoute
             isUserAuth={isUserAuth}
-            children={<AdminPanel/>}
             userRole={userRole}
             isInitialize={isInitialize}
             checkAdmin
-          />}
+          >
+            <AdminPanel/>
+          </ProtectedRoute>}
       >
         <Route
           index

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {Box, Button} from "@mui/material";
 import BlockIcon from "@mui/icons-material/Block";
 import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
@@ -6,13 +6,27 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import {CreateUserPanel, UsersTable} from "common";
 import {User} from "store/types/User";
 import {GridColDef, GridSelectionModel} from "@mui/x-data-grid";
-import {parseDate, routes, userRoles, userStatus} from "shared";
+import {
+  adminTableSearchParams,
+  parseDate,
+  routes,
+  userRoles,
+  usersTablePaginationData,
+  userStatus
+} from "shared";
 import {AdminPanelSettingsOutlined, LockOpenOutlined} from "@mui/icons-material";
 import {useAppDispatch, useAppSelector} from "hooks";
 import {deleteUsers, fetchUsers, updateUsersStatus} from "store/actions";
-import {selectUsers} from "store/selectors";
-import {useNavigate} from "react-router-dom";
-import {setCurrentUser} from "store/reducers/adminReducer/adminReducer";
+import {
+  selectAdminTableSearchParams,
+  selectTotalCount,
+  selectUsers
+} from "store/selectors";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {
+  setCurrentUser,
+  setTableSearchParams
+} from "store/reducers/adminReducer/adminReducer";
 import {FormattedMessage} from "react-intl";
 
 const columns: GridColDef[] = [
@@ -65,16 +79,28 @@ const columns: GridColDef[] = [
   },
 ]
 
-export const AdminUsersList = () => {
+export const AdminUsersList = memo( () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
   const users = useAppSelector(selectUsers);
+  const totalUsersCount = useAppSelector(selectTotalCount);
+  const tableSearchParams = useAppSelector(selectAdminTableSearchParams);
 
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
+  // const [pageSize, setPageSize] = useState(usersTablePaginationData.defaultRowPerPage);
+  // const [page, setPage] = useState(0)
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = searchParams.get(adminTableSearchParams.page) || tableSearchParams.page;
+  const limit = searchParams.get(adminTableSearchParams.limit) || tableSearchParams.limit;
+
+
   const disabled = !selectionModel.length;
 
+  const rowsPerPageOptions = usersTablePaginationData.rowsPerPage
 
   const handleBlockUsers = () => {
     const users = selectionModel.map(id =>
@@ -100,10 +126,24 @@ export const AdminUsersList = () => {
     navigate(`${routes.admin.user}/${user._id}`)
   }
 
+  const handleChangePage = (page: number) => {
+    dispatch(setTableSearchParams({page}));
+
+    searchParams.set(`${adminTableSearchParams.page}`, `${page}`);
+    setSearchParams(searchParams);
+  }
+
+  const handleChangeLimit = (limit: number) => {
+    dispatch(setTableSearchParams({limit}));
+
+    searchParams.set(`${adminTableSearchParams.limit}`, `${limit}`);
+    setSearchParams(searchParams);
+  }
+
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [])
+  }, [tableSearchParams])
 
 
   return (
@@ -143,11 +183,17 @@ export const AdminUsersList = () => {
       <UsersTable
         columns={columns}
         rows={users}
+        rowsPerPageOptions={rowsPerPageOptions}
         selectionModel={selectionModel}
         setSelectionModel={setSelectionModel}
         handleRowClickCallback={handleRowClick}
+        totalUsersCount={totalUsersCount}
+        pageSize={Number(limit)}
+        setPageSize={handleChangeLimit}
+        pageNumber={Number(page)}
+        onPageChange={handleChangePage}
       />
 
     </Box>
   );
-};
+});

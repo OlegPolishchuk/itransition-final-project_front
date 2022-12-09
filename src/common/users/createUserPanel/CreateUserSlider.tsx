@@ -1,33 +1,30 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import {Box, Input, Slider, Typography} from "@mui/material";
-import {sliderValue} from "shared";
 import {FormattedMessage} from "react-intl";
+import {SliderValues} from "store/types/SliderValues";
 
-export const CreateUserSlider = () => {
-  const [usersCount, setUsersCount] = useState<number | string | Array<number | string>>(0);
+type Props = {
+  usersCount: number | string | Array<number | string>;
+  sliderValue: SliderValues;
+  handleSliderChange: (event: Event, newValue: number | number[]) => void;
+  handleBlur: () => void;
+  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const {MAX_SLIDER, MIN_SLIDER, MARKS} = sliderValue;
+export const CreateUserSlider: FC<Props> = ({
+                                              sliderValue,
+                                              usersCount,
+                                              handleSliderChange,
+                                              handleBlur,
+                                              handleInputChange,
+                                            }) => {
+  const {MAX_SLIDER, MIN_SLIDER, MAX_SLIDER_INPUT, MARKS} = sliderValue;
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setUsersCount(newValue);
-  };
-
-  const handleBlur = () => {
-    if (usersCount < 0) {
-      setUsersCount(0);
-    } else if (usersCount > 100) {
-      setUsersCount(100);
-    }
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsersCount(event.target.value === '' ? '' : Number(event.target.value));
-  };
 
   return (
     <Box className={'slider-box'}>
       <Typography id="input-slider" gutterBottom>
-        <FormattedMessage id='app.admin.generate.slider.title' />
+        <FormattedMessage id='app.admin.generate.slider.title'/>
       </Typography>
 
       <Box className={'slider-wrapper'}>
@@ -47,11 +44,9 @@ export const CreateUserSlider = () => {
           onChange={handleInputChange}
           onBlur={handleBlur}
           inputProps={{
-            step: 10,
-            min: 0,
-            max: 100,
+            min: MIN_SLIDER,
+            max: MAX_SLIDER_INPUT,
             type: 'number',
-            'aria-labelledby': 'input-slider',
           }}
         />
       </Box>

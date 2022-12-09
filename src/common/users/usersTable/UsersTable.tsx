@@ -5,6 +5,7 @@ import {userRoles} from "shared";
 import {Box} from "@mui/material";
 import {useAppSelector, useThemeColors} from "hooks";
 import {selectThemeMode} from "store/selectors";
+import {CustomPagination} from "common/pagination/CustomPagination";
 
 type Props = {
   columns: GridColDef[];
@@ -12,6 +13,12 @@ type Props = {
   setSelectionModel: (newSelectionModel: GridSelectionModel) => void;
   selectionModel: GridSelectionModel;
   handleRowClickCallback: (user: User) => void;
+  totalUsersCount: number;
+  pageSize: number;
+  setPageSize: (pageSize: number) => void;
+  pageNumber: number;
+  onPageChange: (pageNumber: number) => void;
+  rowsPerPageOptions: number[];
 }
 
 export const UsersTable: FC<Props> = ({
@@ -20,7 +27,14 @@ export const UsersTable: FC<Props> = ({
                                         setSelectionModel,
                                         selectionModel,
                                         handleRowClickCallback
+                                        , totalUsersCount,
+                                        setPageSize,
+                                        pageSize,
+                                        pageNumber,
+                                        onPageChange,
+                                        rowsPerPageOptions,
                                       }) => {
+
 
   const theme = useAppSelector(selectThemeMode);
   const themeColors = useThemeColors();
@@ -46,8 +60,14 @@ export const UsersTable: FC<Props> = ({
       <DataGrid
         columns={columns}
         rows={rows}
+        rowsPerPageOptions={[10, 20, 30]}
+        pageSize={pageSize}
+        page={pageNumber}
+        onPageChange={onPageChange}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        paginationMode={'server'}
+        rowCount={totalUsersCount}
         getRowId={(row: User) => row._id}
-        pageSize={25}
         checkboxSelection
         disableSelectionOnClick
         isRowSelectable={(params) => params.row.role !== userRoles.admin}

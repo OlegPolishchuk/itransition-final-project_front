@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AdminState} from "store/types/AdminState";
+import {AdminState, TableSearchParams} from "store/types/AdminState";
 import {fetchUsers} from "store/actions/users/fetchUsers";
-import {userRoles, userStatus} from "shared";
+import {userRoles, usersTablePaginationData, userStatus} from "shared";
 import {User} from "store/types/User";
 import {fetchUser} from "store/actions/users/fetchUser";
 
@@ -19,6 +19,11 @@ const initialState: AdminState = {
     created: '',
     lastLogin: '',
     reviews: [],
+  },
+  totalCount: 0,
+  tableSearchParams: {
+    page: usersTablePaginationData.defaultPageNumber,
+    limit: usersTablePaginationData.defaultRowPerPage
   }
 }
 
@@ -28,6 +33,10 @@ const adminSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action: PayloadAction<User>) => {
       state.currentUser = action.payload;
+    },
+
+    setTableSearchParams: (state, action: PayloadAction<Partial<TableSearchParams>>) => {
+      state.tableSearchParams = {...state.tableSearchParams, ...action.payload};
     }
   },
   extraReducers: builder => {
@@ -35,7 +44,8 @@ const adminSlice = createSlice({
       state.isLoading = true
     })
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      state.users = action.payload;
+      state.users = action.payload.users;
+      state.totalCount = action.payload.count;
       state.isLoading = false;
     })
     builder.addCase(fetchUsers.rejected, (state, action) => {
@@ -58,4 +68,4 @@ const adminSlice = createSlice({
 })
 
 export const adminReducer = adminSlice.reducer;
-export const {setCurrentUser} = adminSlice.actions;
+export const {setCurrentUser, setTableSearchParams} = adminSlice.actions;

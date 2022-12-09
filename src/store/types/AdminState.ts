@@ -5,4 +5,11 @@ export type AdminState = {
   isLoading: boolean;
   error: string;
   currentUser: User;
+  totalCount: number;
+  tableSearchParams: TableSearchParams;
+}
+
+export type TableSearchParams = {
+  page: number;
+  limit: number;
 }

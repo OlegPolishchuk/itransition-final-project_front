@@ -1,6 +1,9 @@
-export const sliderValue = {
+import {SliderValues} from "store/types/SliderValues";
+
+export const sliderValue: SliderValues = {
   MIN_SLIDER: 0,
   MAX_SLIDER: 10,
+  MAX_SLIDER_INPUT: 100,
   MARKS: [
     {value: 0, label: '0'},
     {value: 1, label: '1'},
