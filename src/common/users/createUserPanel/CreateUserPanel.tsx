@@ -11,7 +11,6 @@ import {useAppDispatch} from "hooks";
 import {generateRandomUsers} from "store/actions/users";
 
 export const CreateUserPanel = memo( () => {
-  console.log('Create User Panel')
   const dispatch = useAppDispatch();
 
   const [usersCount, setUsersCount] = useState<number | string | Array<number | string>>(0);

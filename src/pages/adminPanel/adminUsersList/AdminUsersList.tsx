@@ -153,6 +153,10 @@ export const AdminUsersList = () => {
             cardListSelection={cardListSelection}
             mainCheckboxChecked={cardsListMainCheckbox}
             setMainCheckboxChecked={setCardsListMainCheckbox}
+            totalCount={totalUsersCount}
+            page={Number(page)}
+            limitPerPage={Number(limit)}
+            onChangeCallback={handleChangePage}
           />
         )
       }

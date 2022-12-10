@@ -12,15 +12,16 @@ export const CustomPagination: FC<Props> = ({page, onChangeCallback, totalCount,
   const totalPageCount = Math.ceil(totalCount / limitPerPage);
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    onChangeCallback(value);
+    onChangeCallback(value - 1);
   }
 
   return (
     <Pagination
-      count={totalPageCount}
-      page={page}
       variant="outlined"
       shape="rounded"
+      color='secondary'
+      count={totalPageCount}
+      page={page + 1}
       onChange={handleChangePage}
     />
   );

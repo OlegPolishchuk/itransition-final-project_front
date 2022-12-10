@@ -1,16 +1,21 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, ReactNode, useEffect, useState} from 'react';
 import {User} from "store/types/User";
 import {
   Avatar,
-  Box,
-  Card,
+  Box, Button,
+  Card, CardActions,
   CardHeader,
   Checkbox,
   FormControlLabel,
   Grid,
   Typography
 } from "@mui/material";
-import {addCheckboxToUser, userRoles} from "shared";
+import {addCheckboxToUser, routes, userRoles, userStatus} from "shared";
+import {CustomPagination} from "common";
+import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
+import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
+import {NavLink} from "react-router-dom";
+import {useAppDispatch, useThemeColors} from "hooks";
 
 type Props = {
   users: User[];
@@ -18,6 +23,10 @@ type Props = {
   setCardListSelection: (newValues: string[]) => void;
   mainCheckboxChecked: boolean;
   setMainCheckboxChecked: (mainCheckboxChecked: boolean) => void;
+  totalCount: number;
+  page: number;
+  onChangeCallback: (page: number) => void;
+  limitPerPage: number
 }
 
 export const AdminUserCardsList: FC<Props> = ({
@@ -25,10 +34,16 @@ export const AdminUserCardsList: FC<Props> = ({
                                                 cardListSelection,
                                                 setCardListSelection,
                                                 mainCheckboxChecked,
-                                                setMainCheckboxChecked
+                                                setMainCheckboxChecked,
+                                                totalCount,
+                                                page,
+                                                onChangeCallback,
+                                                limitPerPage
                                               }) => {
 
   const [usersWithCheckbox, setUsersWithCheckbox] = useState(addCheckboxToUser(users))
+
+  const themeColors = useThemeColors();
 
   const handleChangeMainCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
@@ -77,7 +92,8 @@ export const AdminUserCardsList: FC<Props> = ({
       <Grid item xs={12} sm={12}>
         <FormControlLabel
           label="Choose All"
-          control={<Checkbox checked={mainCheckboxChecked} onChange={handleChangeMainCheckbox}/>}
+          control={<Checkbox checked={mainCheckboxChecked}
+                             onChange={handleChangeMainCheckbox}/>}
         />
       </Grid>
 
@@ -86,28 +102,76 @@ export const AdminUserCardsList: FC<Props> = ({
           <Grid key={user._id} item xs={12} sm={6}>
 
             <Card>
+              <Box
+                display={'flex'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                padding={'0 0 0 16px'}
+              >
 
-              {user.role !== userRoles.admin && (
-                <Box display={'flex'} justifyContent={'flex-end'}>
+                <Box>
+                  {user.status === userStatus.blocked
+                  ? <BlockOutlinedIcon color={'warning'} />
+                  : <VerifiedUserOutlinedIcon color={'secondary'} />
+                  }
+                </Box>
+
+                <Typography variant={'h5'}>
+                  {user._id}
+                </Typography>
+
+                {user.role !== userRoles.admin && (
                   <Checkbox
                     checked={user.checked}
                     disabled={user.role === userRoles.admin}
                     onChange={(e) => handleChangeCurrentCheckbox(e, user._id)}
                     color="secondary"
                   />
-                </Box>
-              )}
+                )}
+
+              </Box>
 
               <CardHeader
                 avatar={<Avatar src={user.avatar} aria-label="recipe"/>}
                 title={<Typography>{user.login}</Typography>}
                 subheader={<Typography>{user.userName}</Typography>}
               />
+
+              <CardActions sx={{
+                justifyContent: 'center',
+                '& .navLink': {
+                  color: themeColors.secondary.main,
+                }
+              }}>
+
+                <Box textAlign={'center'}>
+                  <Button variant={'outlined'} color={'secondary'}>
+                    <NavLink className='navLink' to={`${routes.admin.user}/${user._id}`}>
+                      View info
+                    </NavLink>
+                  </Button>
+                </Box>
+
+              </CardActions>
+
             </Card>
 
           </Grid>
         )
       })}
+
+      <Grid item xs={12} sm={12}>
+
+        <Box display={'flex'} justifyContent={'center'}>
+          <CustomPagination
+            totalCount={totalCount}
+            page={page}
+            onChangeCallback={onChangeCallback}
+            limitPerPage={limitPerPage}
+          />
+        </Box>
+
+      </Grid>
 
     </Grid>
   );

@@ -5,8 +5,11 @@ import {selectCurrentUser, selectIsInitialize} from "store/selectors";
 import {fetchUser} from "store/actions/users/fetchUser";
 import {Box} from "@mui/material";
 import {UserInfo} from "common";
+import {setCurrentUser} from "store/reducers/adminReducer/adminReducer";
+import {User} from "store/types/User";
 
 export const AdminUser = () => {
+  console.log('AdminUser')
   const dispatch = useAppDispatch();
 
   const isInitialize = useAppSelector(selectIsInitialize);
@@ -15,13 +18,17 @@ export const AdminUser = () => {
   const {userId} = useParams();
 
   useEffect(() => {
-    if (!user._id) {
+    if (isInitialize) {
       dispatch(fetchUser(userId as string))
     }
-  }, [isInitialize, user])
+
+    return () => {
+      dispatch(setCurrentUser({} as User))
+    }
+  }, [isInitialize])
 
   return (
-    <Box className={'USERINFO'}>
+    <Box>
       <UserInfo user={user} />
     </Box>
   );

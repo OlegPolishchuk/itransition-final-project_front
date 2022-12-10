@@ -25,7 +25,7 @@ export const AdminControlPanel: FC<Props> = ({
                                                setMainCheckboxChecked,
                                              }) => {
   const dispatch = useAppDispatch();
-  console.log(cardListSelection.length)
+
   const disabled = !selectionModel.length && !cardListSelection.length;
 
   const handleBlockUsers = () => {

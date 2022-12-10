@@ -17,8 +17,6 @@ export const UserInfo: FC<Props> = ({user}) => {
 
   const [editMode, setEditMode] = useState(false);
 
-  const userFieldsList = [];
-
   const handleSaveUserDescription = () => {
 
     setEditMode(false);
@@ -31,7 +29,7 @@ export const UserInfo: FC<Props> = ({user}) => {
 
       <Grid item xs={12} sm={4} md={3}>
         <UserAvatar
-          avatarSrc={'#'}
+          avatarSrc={user.avatar}
           editAvatarCallback={() => {
           }}
         />

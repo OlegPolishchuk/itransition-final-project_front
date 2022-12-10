@@ -52,17 +52,22 @@ export function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline/>
 
-          <div className={'App'}>
+          {isInitialize
+          ? (
+              <div className={'App'}>
 
-            <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
+                <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
 
-            <AppRoutes
-              isUserAuth={isUserAuth}
-              userRole={userRole}
-              isInitialize={isInitialize}
-            />
+                <AppRoutes
+                  isUserAuth={isUserAuth}
+                  userRole={userRole}
+                  isInitialize={isInitialize}
+                />
 
-          </div>
+              </div>
+            )
+          : <Loader />
+          }
 
           {isLoading && <Loader />}
         </ThemeProvider>
