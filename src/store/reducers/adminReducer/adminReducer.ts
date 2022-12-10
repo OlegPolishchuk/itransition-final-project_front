@@ -4,6 +4,7 @@ import {fetchUsers} from "store/actions/users/fetchUsers";
 import {userRoles, usersTablePaginationData, userStatus} from "shared";
 import {User} from "store/types/User";
 import {fetchUser} from "store/actions/users/fetchUser";
+import {updateCurrentUser} from "store/actions/users/updateCurrentUser";
 
 const initialState: AdminState = {
   users: [],
@@ -65,6 +66,16 @@ const adminSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload as string;
     })
+
+    // builder.addCase(updateCurrentUser.pending, state => {
+    //   state.isLoading = true;
+    //   state.error = '';
+    // })
+    // builder.addCase(updateCurrentUser.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.currentUser = action.payload;
+    // })
+    // builder.
   },
 })
 

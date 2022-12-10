@@ -1,56 +1,92 @@
-import React, {FC} from 'react';
-import {Box, Typography} from "@mui/material";
+import React, {FC, forwardRef, useRef, useState} from 'react';
+import {
+  Box,
+  Input,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography
+} from "@mui/material";
 import {User} from "store/types/User";
 import {useAppSelector, useThemeColors} from "hooks";
 import {userFields, userRoles} from "shared";
 import {selectThemeMode, selectUserRole} from "store/selectors";
 import {FormattedMessage} from "react-intl";
+import {CommonFieldList, UserFieldsList} from "store/types/UserFieldsList";
+import {UserProfileEditor} from "common/users/userFrofileEditor/UserProfileEditor";
 
 type Props = {
   user: User;
+  editMode: boolean;
+  userCopy: { [key: string]: any };
+  setUserCopy: (userCopy: { [key: string]: any }) => void;
 }
 
-export const UserDescription: FC<Props> = ({user}) => {
-  const themeColors = useThemeColors();
-  const themeMode = useAppSelector(selectThemeMode);
-  const userRole = useAppSelector(selectUserRole);
+export const UserDescription = forwardRef<HTMLInputElement, Props>(
+  ({user, editMode, setUserCopy, userCopy}, userNameRef) => {
+    const themeColors = useThemeColors();
+    const themeMode = useAppSelector(selectThemeMode);
+    const userRole = useAppSelector(selectUserRole);
 
-  const userCopy: {[key: string]: any} = {...user};
-  const fields = userRole === userRoles.user ? userFields.user : userFields.admin;
 
-  const fieldColor = themeMode === 'light' ? themeColors.primary.main : themeColors.secondary.main;
+    // const userCopy: { [key: string]: any } = {...user};
+    const fields = userRole === userRoles.user ? userFields.user : userFields.admin;
 
-  const styleForInfoField = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    color: '#706f6f',
-  }
+    const fieldColor = themeMode === 'light' ? themeColors.primary.main : themeColors.secondary.main;
 
-  return (
-    <Box sx={{
-      minWidth: '300px',
+    const handleUserRoleChange = (event: SelectChangeEvent) => {
+      setUserCopy((user: object ) => ({...user, role: event.target.value}))
+    }
+
+    const handleChangeUserStatus = (event: SelectChangeEvent) => {
+      setUserCopy((user: object ) => ({...user, status: event.target.value}))
+    }
+
+    const styleForInfoField = {
       display: 'flex',
-      flexDirection: 'column',
-      gap: '20px'
-    }}>
+      justifyContent: 'space-between',
+      color: '#706f6f',
+      height: '30px',
+    }
 
-      {fields.map((field, index) => (
-        <Typography
-          key={`${field.value}${index}`}
-          style={styleForInfoField}
-        >
-          <FormattedMessage id={field.title}/>
+    return (
+      <Box sx={{
+        minWidth: '300px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '15px'
+      }}>
 
+        {fields.map((field, index) => (
           <Typography
-            color={field.value === 'role' ? themeColors.success.second : fieldColor}
-            component={'span'}
+            key={`${field.value}${index}`}
+            style={styleForInfoField}
+            component={'div'}
           >
-            {userCopy[field.value]}
+
+            <FormattedMessage id={field.title}/>
+
+            {editMode
+              ? (<UserProfileEditor
+                ref={userNameRef}
+                field={field}
+                userCopy={userCopy}
+                handleChangeUserStatus={handleChangeUserStatus}
+                handleUserRoleChange={handleUserRoleChange}
+                fieldColor={fieldColor}
+              />)
+              : (<Typography
+                color={field.value === 'role' ? themeColors.success.second : fieldColor}
+                component={'span'}
+              >
+                {userCopy[field.value]}
+              </Typography>)
+            }
+
           </Typography>
+        ))}
 
-        </Typography>
-      ))}
-
-    </Box>
-  );
-};
+      </Box>
+    );
+  });

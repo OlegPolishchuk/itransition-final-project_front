@@ -3,7 +3,7 @@ export type UserFieldsList = {
   user: CommonFieldList[];
 }
 
-type CommonFieldList = {
+export type CommonFieldList = {
   value: string;
   title: string;
   editable: boolean;

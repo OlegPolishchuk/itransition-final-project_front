@@ -1,12 +1,30 @@
-import React, {FC, useState} from 'react';
-import {Avatar, Box, Button, Grid, Typography} from "@mui/material";
-import {User} from "store/types/User";
+import React, {FC, useEffect, useRef, useState} from 'react';
+import {
+  Avatar,
+  Box,
+  Button,
+  ButtonGroup,
+  Grid,
+  IconButton, Tooltip,
+  Typography
+} from "@mui/material";
+import {User, UserStatus} from "store/types/User";
 import {useAppDispatch, useThemeColors} from "hooks";
 import {UserAvatar} from "common/users/userInfo/userAvatar/UserAvatar";
 import {UserDescription} from "common/users/userInfo/userDescription/UserDescription";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
 import {FormattedMessage} from "react-intl";
+import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
+import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {updateCurrentUser} from "store/actions/users/updateCurrentUser";
+import {userStatus} from "shared";
+import {useNavigate} from "react-router-dom";
+import {deleteUsers} from "store/actions";
+import {deleteCurrentUser} from "store/actions/users";
+import {AdminUserHeader} from "pages";
 
 type Props = {
   user: User;
@@ -16,16 +34,43 @@ export const UserInfo: FC<Props> = ({user}) => {
   const dispatch = useAppDispatch();
 
   const [editMode, setEditMode] = useState(false);
+  const [userCopy, setUserCopy] = useState<{ [key: string]: any }>({...user});
+
+  const userNameRef = useRef<HTMLInputElement>(null);
 
   const handleSaveUserDescription = () => {
+    const usernameInput = userNameRef.current as HTMLInputElement;
+    const username = usernameInput.value.length
+      ? usernameInput.value
+      : userCopy.userName;
 
+    setEditMode(false);
+    const userData = {
+      ...userCopy,
+      userName: username,
+    }
+
+    dispatch(updateCurrentUser(userData));
+  }
+
+  const handleCancelEditing = () => {
+    setUserCopy({...user});
     setEditMode(false);
   }
 
+
+  useEffect(() => {
+    setUserCopy({...user})
+  }, [user])
+
   return (
-    <Grid container  rowSpacing={8} sx={{
+    <Grid container rowSpacing={8} sx={{
       display: 'flex',
     }}>
+
+      <Grid item xs={12} sm={12}>
+        <AdminUserHeader user={userCopy}/>
+      </Grid>
 
       <Grid item xs={12} sm={4} md={3}>
         <UserAvatar
@@ -42,28 +87,53 @@ export const UserInfo: FC<Props> = ({user}) => {
         gap: '30px',
       }}>
 
-        <UserDescription user={user}/>
+        <UserDescription
+          user={user}
+          editMode={editMode}
+          userCopy={userCopy}
+          setUserCopy={setUserCopy}
+          ref={userNameRef}
+        />
 
         <Box alignSelf={'flex-end'}>
+
           {editMode
             ? (
-              <Button
-                sx={{width: '200px'}}
-                variant='outlined'
-                endIcon={<SaveAsOutlinedIcon />}
-                onClick={handleSaveUserDescription}
-              >
-                <FormattedMessage id='app.user.info.button-save.title' />
-              </Button>
+
+              <Box sx={{display: 'flex'}}>
+
+                <ButtonGroup>
+                  <Button
+                    sx={{minWidth: '100px'}}
+                    variant='outlined'
+                    color={'secondary'}
+                    endIcon={<SaveAsOutlinedIcon/>}
+                    onClick={handleSaveUserDescription}
+                  >
+                    <FormattedMessage id='app.user.info.button-save.title'/>
+                  </Button>
+
+                  <Button
+                    sx={{minWidth: '100px'}}
+                    variant='outlined'
+                    color={'success'}
+                    endIcon={<CancelOutlinedIcon/>}
+                    onClick={handleCancelEditing}
+                  >
+                    <FormattedMessage id={'app.user.info.button-cancel.title'}/>
+                  </Button>
+                </ButtonGroup>
+
+              </Box>
             )
             : (
               <Button
                 sx={{width: '200px'}}
                 variant='outlined'
-                endIcon={<EditOutlinedIcon />}
+                endIcon={<EditOutlinedIcon/>}
                 onClick={() => setEditMode(true)}
               >
-                <FormattedMessage id='app.user.info.button-edit.title' />
+                <FormattedMessage id='app.user.info.button-edit.title'/>
               </Button>)
           }
         </Box>

@@ -12,6 +12,8 @@ export type User = {
 }
 
 export type UserRole = 'admin' | 'user';
+export type UserStatus = 'active' | 'blocked';
+
 export type UserRoles = {
   admin: UserRole;
   user: UserRole;

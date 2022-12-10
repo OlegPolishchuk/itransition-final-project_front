@@ -1,10 +1,12 @@
 {
   "app.auth.login.title": "Sign In",
   "app.auth.register.title": "Sign In",
+
   "app.auth-form.input-login.placeholder": "Login",
   "app.auth-form.input-password.placeholder": "Password",
   "app.auth-form.input-login.error": "Invalid login",
   "app.auth-form.input-password.error-length": "Min length id 6 char",
+
   "app.auth.button-login.title": "SIGN IN",
   "app.auth.button-register.title": "SIGN UP",
   "app.auth.button-google.title": "SIGN IN WITH GOOGLE",
@@ -25,8 +27,10 @@
   "app.admin.generate.select.locale.title": "Users Locale:",
   "app.admin.generate.button.title": "Generate",
 
-  "app.user.info.button-edit.title": "EDIT",
-  "app.user.info.button-save.title": "SAVE",
+  "app.user.info.button-edit.title": "Edit",
+  "app.user.info.button-save.title": "Save",
+  "app.user.info.button-cancel.title": "Cancel",
+
   "app.user.info.field-id.title": "User ID",
   "app.user.info.field-login.title": "User Login",
   "app.user.info.field-userName.title": "User Name",
@@ -34,5 +38,14 @@
   "app.user.info.field-status.title": "User Status",
   "app.user.info.field-reviews.title": "User Reviews Count",
   "app.user.info.field-created.title": "Created",
-  "app.user.info.field-lastLogin.title": "Last Login"
+  "app.user.info.field-lastLogin.title": "Last Login",
+
+  "app.user.info.tooltip-status-blocked": "Blocked",
+  "app.user.info.tooltip-status-active": "Active",
+
+  "app.user.info.button-block.title": "Block",
+  "app.user.info.button-unblock.title": "Unblock",
+  "app.user.info.button-delete.title": "Delete",
+
+  "app.breadcrumbs.title": "Return back"
 }

@@ -7,6 +7,7 @@ export {
   AdminUsersList,
   AdminControlPanel,
   AdminUserCardsList,
+  AdminUserHeader,
 } from './adminPanel';
 
 export {Protected} from './Protected'

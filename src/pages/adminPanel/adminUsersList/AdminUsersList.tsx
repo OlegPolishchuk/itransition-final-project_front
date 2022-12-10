@@ -91,10 +91,8 @@ export const AdminUsersList = () => {
 
 
   useEffect(() => {
-    if (isInitiaize) {
-      dispatch(fetchUsers());
-    }
-  }, [tablePage, tableLimit, isInitiaize])
+    dispatch(fetchUsers());
+  }, [tablePage, tableLimit])
 
   useEffect(() => {
     const resizeListener = () => {

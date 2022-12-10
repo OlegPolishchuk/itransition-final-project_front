@@ -3,6 +3,7 @@ import {apiRoutes} from "shared";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
 import {GenerateRandomUserData} from "store/types/GenerateRandomUserData";
 import {FetchUsersResponse} from "store/types/FetchUsersResponse";
+import {User} from "store/types/User";
 
 export const apiUsers = {
   fetchUsers(page: number, limit: number){
@@ -26,4 +27,8 @@ export const apiUsers = {
   generateRandomUsers(data: GenerateRandomUserData) {
     return instance.post(apiRoutes.users.base, data)
   },
+
+  updateCurrentUser(user: Partial<User>) {
+    return instance.put(apiRoutes.currentUser.base, {user})
+  }
 }

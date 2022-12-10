@@ -131,6 +131,25 @@
   }
 }
 
+.admin-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  @media (max-width: 800px) {
+    flex-direction: column;
+
+    .admin-user-header-status {
+      align-self: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .admin-user-header-status-buttonGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+}
 
 

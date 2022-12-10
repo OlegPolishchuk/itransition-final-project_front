@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {apiUsers} from "apis";
 import {fetchUsers} from "store/actions/users/fetchUsers";
-import {AppDispatch, RootState} from "store/store";
+import {RootState} from "store/store";
 
 export const deleteUsers = createAsyncThunk<void, string[], {state: RootState}>(
   'users/deleteUsers', async (usersId: string[], {rejectWithValue, dispatch}) => {

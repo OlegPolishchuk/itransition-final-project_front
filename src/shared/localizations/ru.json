@@ -1,10 +1,12 @@
 {
   "app.auth.login.title": "Войти",
   "app.auth.register.title": "Регистрация",
+
   "app.auth.input-login.placeholder": "Логин",
   "app.auth.input-password.placeholder": "Пароль",
   "app.auth-form.input-login.error": "Неверный логин",
   "app.auth-form.input-password.error-length": "Минимальная длина - 6 символов",
+
   "app.auth.button-login.title": "Войти",
   "app.auth.button-register.title": "Регистрация",
   "app.auth.button-google.title": "Войти через GOOGLE",
@@ -27,6 +29,8 @@
 
   "app.user.info.button-edit.title": "Редакрировать",
   "app.user.info.button-save.title": "Сохранить",
+  "app.user.info.button-cancel.title": "Отмена",
+
   "app.user.info.field-id.title": "Идентификатор:",
   "app.user.info.field-login.title": "Логин:",
   "app.user.info.field-userName.title": "Имя Пользователя:",
@@ -34,5 +38,14 @@
   "app.user.info.field-status.title": "Статус Пользователя:",
   "app.user.info.field-reviews.title": "Количество Рецензий:",
   "app.user.info.field-created.title": "Дата Создания",
-  "app.user.info.field-lastLogin.title": "Последний раз был онлайн:"
+  "app.user.info.field-lastLogin.title": "Последний раз был онлайн:",
+
+  "app.user.info.tooltip-status-blocked": "Забокирован",
+  "app.user.info.tooltip-status-active": "Активный",
+
+  "app.user.info.button-block.title": "Заблокировать",
+  "app.user.info.button-unblock.title": "Разблокировать",
+  "app.user.info.button-delete.title": "Удалить",
+
+  "app.breadcrumbs.title": "Вернуться назад"
 }

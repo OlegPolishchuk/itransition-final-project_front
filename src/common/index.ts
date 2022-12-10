@@ -8,6 +8,8 @@ export {GoogleAuth} from './auth/googleLogin/GoogleAuth';
 export {TwitterAuth} from './auth/twitterLogin/TwitterAuth';
 export {GithubAuth} from './auth/githubLogin/githubAuth';
 
+export {Breadcrumbs} from './breadcrumbs/Breadcrumbs';
+
 export {
   UsersTable,
   UserInfo,
@@ -17,6 +19,7 @@ export {
   UserStatusSwitcher,
   CreateUserSlider,
   LocaleSelect,
+  UserProfileEditor,
 } from './users';
 export {Title} from './title/Title';
 export {CustomPagination} from './pagination/CustomPagination';
