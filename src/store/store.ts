@@ -1,5 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {adminReducer, appReducer, authReducer, userReducer} from "store/reducers";
+import {
+  adminReducer,
+  appReducer,
+  authReducer,
+  reviewsReducer,
+  userReducer
+} from "store/reducers";
 
 
 const rootReducer = combineReducers({
@@ -7,6 +13,7 @@ const rootReducer = combineReducers({
   authReducer,
   userReducer,
   adminReducer,
+  reviewsReducer,
 })
 
 export const store = configureStore({

@@ -1,29 +1,14 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  ButtonGroup,
-  Grid,
-  IconButton, Tooltip,
-  Typography
-} from "@mui/material";
-import {User, UserStatus} from "store/types/User";
-import {useAppDispatch, useThemeColors} from "hooks";
+import {Box, Button, ButtonGroup, Grid} from "@mui/material";
+import {User} from "store/types/User";
+import {useAppDispatch} from "hooks";
 import {UserAvatar} from "common/users/userInfo/userAvatar/UserAvatar";
 import {UserDescription} from "common/users/userInfo/userDescription/UserDescription";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
 import {FormattedMessage} from "react-intl";
-import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
-import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import {updateCurrentUser} from "store/actions/users/updateCurrentUser";
-import {userStatus} from "shared";
-import {useNavigate} from "react-router-dom";
-import {deleteUsers} from "store/actions";
-import {deleteCurrentUser} from "store/actions/users";
 import {AdminUserHeader} from "pages";
 
 type Props = {

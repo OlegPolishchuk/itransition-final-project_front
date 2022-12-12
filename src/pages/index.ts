@@ -8,6 +8,10 @@ export {
   AdminControlPanel,
   AdminUserCardsList,
   AdminUserHeader,
+  AdminReviewsTagsPicker,
+  CreateUserPanel,
+  UserStatusSwitcher,
+  LocaleSelect,
 } from './adminPanel';
 
 export {Protected} from './Protected'

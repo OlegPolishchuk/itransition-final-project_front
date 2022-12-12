@@ -64,33 +64,37 @@ export const AdminControlPanel: FC<Props> = ({
   }
 
   return (
-    <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-      <Button
-        variant={'outlined'}
-        endIcon={<BlockIcon color={'warning'}/>}
-        onClick={handleBlockUsers}
-        disabled={disabled}
-      >
-        <FormattedMessage id='app.admin.button-block.title'/>
-      </Button>
+    <Box className={'admin-controls'} justifyContent={'flex-end'} mb={'30px'}>
 
-      <Button
-        variant={'outlined'}
-        endIcon={<BeenhereOutlinedIcon color={'info'}/>}
-        onClick={handleUnblockUsers}
-        disabled={disabled}
-      >
-        <FormattedMessage id='app.admin.button-unblock.title'/>
-      </Button>
+      <Box className={'admin-controls-buttonGroup'}>
+        <Button
+          variant={'outlined'}
+          endIcon={<BlockIcon color={'warning'}/>}
+          onClick={handleBlockUsers}
+          disabled={disabled}
+        >
+          <FormattedMessage id='app.admin.button-block.title'/>
+        </Button>
 
-      <Button
-        variant={'outlined'}
-        endIcon={<DeleteOutlinedIcon color={'error'}/>}
-        onClick={handleDeleteUsers}
-        disabled={disabled}
-      >
-        <FormattedMessage id='app.admin.button-delete.title'/>
-      </Button>
+        <Button
+          variant={'outlined'}
+          endIcon={<BeenhereOutlinedIcon color={'info'}/>}
+          onClick={handleUnblockUsers}
+          disabled={disabled}
+        >
+          <FormattedMessage id='app.admin.button-unblock.title'/>
+        </Button>
+
+        <Button
+          variant={'outlined'}
+          endIcon={<DeleteOutlinedIcon color={'error'}/>}
+          onClick={handleDeleteUsers}
+          disabled={disabled}
+        >
+          <FormattedMessage id='app.admin.button-delete.title'/>
+        </Button>
+      </Box>
+
     </Box>
   );
 };

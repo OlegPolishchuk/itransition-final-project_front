@@ -35,7 +35,7 @@ export const AdminUserHeader: FC<Props> = ({user}) => {
   }
 
   return (
-    <Box className={'admin-user-header'}>
+    <Box className={'admin-controls'}>
 
       <Box className={'admin-user-header-status'}>
         {user.status === userStatus.blocked
@@ -58,24 +58,30 @@ export const AdminUserHeader: FC<Props> = ({user}) => {
         }
       </Box>
 
-      <Box className={'admin-user-header-status-buttonGroup'}>
-        <Button
-          variant={'outlined'}
-          endIcon={<BlockOutlinedIcon color={'warning'}/>}
-          onClick={() => handleUpdateUserStatus(userStatus.blocked)}
-          disabled={user.status === userStatus.blocked}
-        >
-          <FormattedMessage id={'app.user.info.button-block.title'} />
-        </Button>
+      <Box className={'admin-controls-buttonGroup'}>
 
-        <Button
-          variant={'outlined'}
-          endIcon={<VerifiedUserOutlinedIcon color={'info'}/>}
-          onClick={() => handleUpdateUserStatus(userStatus.active)}
-          disabled={user.status === userStatus.active}
-        >
-          <FormattedMessage id={'app.user.info.button-unblock.title'} />
-        </Button>
+        {user.status === userStatus.active
+        ?(
+            <Button
+              variant={'outlined'}
+              endIcon={<BlockOutlinedIcon color={'warning'}/>}
+              onClick={() => handleUpdateUserStatus(userStatus.blocked)}
+              disabled={user.status === userStatus.blocked}
+            >
+              <FormattedMessage id={'app.user.info.button-block.title'} />
+            </Button>
+          )
+        :(
+            <Button
+              variant={'outlined'}
+              endIcon={<VerifiedUserOutlinedIcon color={'info'}/>}
+              onClick={() => handleUpdateUserStatus(userStatus.active)}
+              disabled={user.status === userStatus.active}
+            >
+              <FormattedMessage id={'app.user.info.button-unblock.title'} />
+            </Button>
+          )
+        }
 
         <Button
           variant={'outlined'}

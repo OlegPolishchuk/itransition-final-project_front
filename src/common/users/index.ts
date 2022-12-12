@@ -5,7 +5,6 @@ export {UserDescription} from './userInfo/userDescription/UserDescription';
 export {UserProfileEditor} from './userFrofileEditor/UserProfileEditor';
 export {
   CreateUserPanel,
-  CreateUserSlider,
   UserStatusSwitcher,
   LocaleSelect,
-} from './createUserPanel';
+} from '../../pages/adminPanel/createUserPanel';

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {selectCurrentUser, selectIsInitialize} from "store/selectors";
+import {selectCurrentUser, selectIsInitialize, selectReviews} from "store/selectors";
 import {fetchUser} from "store/actions/users/fetchUser";
 import {Box} from "@mui/material";
 import {Breadcrumbs, UserInfo} from "common";
@@ -14,6 +14,7 @@ export const AdminUser = () => {
 
   const isInitialize = useAppSelector(selectIsInitialize);
   const user = useAppSelector(selectCurrentUser);
+  const reviews = useAppSelector(selectReviews);
 
   const {userId} = useParams();
 
@@ -33,6 +34,21 @@ export const AdminUser = () => {
       <Breadcrumbs />
 
       <UserInfo user={user}/>
+
+      <Box>
+
+        {reviews.map(review => (
+          <div key={review.userId + "" + review.title}>
+            <div>{review.title}</div>
+            <div>{review.subtitle}</div>
+            <div>{review.tag}</div>
+            <div>{review.body}</div>
+            <div>{review.created}</div>
+            <br/>
+          </div>
+        ))}
+
+      </Box>
 
     </Box>
   );

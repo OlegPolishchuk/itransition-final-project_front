@@ -16,7 +16,7 @@ const initialState: UserState = {
     userName: '',
     role: userRoles.user,
     status: 'active',
-    reviews: [],
+    reviewsCount: 0,
   },
 }
 

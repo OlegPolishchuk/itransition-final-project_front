@@ -12,3 +12,4 @@ export {
 
 export {changeLocale,initializeApp, changeTheme} from './app';
 export {fetchUsers, updateUsersStatus, deleteUsers} from './users';
+export {getTags} from './reviews';

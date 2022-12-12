@@ -1,4 +1,5 @@
 const baseAuthPath = '/api/auth';
+
 export const apiRoutes = {
   auth: {
     register: `${baseAuthPath}/register`,
@@ -13,5 +14,12 @@ export const apiRoutes = {
   },
   currentUser: {
     base: '/user'
+  },
+  reviews: {
+    base: '/reviews',
+    userReviews: '/userReviews',
+  },
+  tags: {
+    base: '/tags',
   }
 }

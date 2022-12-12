@@ -29,8 +29,6 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
     const themeMode = useAppSelector(selectThemeMode);
     const userRole = useAppSelector(selectUserRole);
 
-
-    // const userCopy: { [key: string]: any } = {...user};
     const fields = userRole === userRoles.user ? userFields.user : userFields.admin;
 
     const fieldColor = themeMode === 'light' ? themeColors.primary.main : themeColors.secondary.main;

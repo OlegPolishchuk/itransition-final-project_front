@@ -6,6 +6,7 @@ export {locales} from './locales';
 export {userRoles} from './userRoles';
 export {userStatus} from './userStatus';
 export {userFields} from './userFields';
-export {sliderValue} from './sliderValue';
+export {usersSliderValue} from './usersSliderValue';
+export {reviewsSliderValue} from './reviewsSliderValue';
 export {usersTablePaginationData} from './usersTablePaginationData';
 export {adminTableSearchParams} from './adminTableSearchParams';

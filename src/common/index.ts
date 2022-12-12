@@ -17,9 +17,10 @@ export {
   UserDescription,
   CreateUserPanel,
   UserStatusSwitcher,
-  CreateUserSlider,
   LocaleSelect,
   UserProfileEditor,
 } from './users';
 export {Title} from './title/Title';
 export {CustomPagination} from './pagination/CustomPagination';
+export {RandomReviewsGenerator, TagsPicker} from './reviews';
+export {SliderGenerator} from './sliderGenerator/SliderGenerator';

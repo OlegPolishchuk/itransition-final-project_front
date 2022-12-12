@@ -20,12 +20,19 @@
   "app.admin.button-unblock.title": "UNBLOCK",
   "app.admin.button-delete.title": "DELETE",
 
-  "app.admin.generate.slider.title": "Users Count:",
+  "app.admin.generate-users.title": "Generate random users:",
+  "app.admin.generate-reviews.title": "Generate random views:",
+  "app.admin.generate.slider-users.title": "Users Count:",
+  "app.admin.generate.slider-reviews.title": "Reviews Count:",
   "app.admin.generate.switcher.title": "Users Status:",
   "app.admin.generate.switcher-active.title": "Active",
   "app.admin.generate.switcher-blocked.title": "Blocked",
   "app.admin.generate.select.locale.title": "Users Locale:",
   "app.admin.generate.button.title": "Generate",
+  "app.admin.generate.checkbox-accordion.title": "With Reviews",
+
+  "app.admin.generate.tags-picker.radio-random.title": "Random",
+  "app.admin.generate.tags-picker.radio-custom.title": "Custom",
 
   "app.user.info.button-edit.title": "Edit",
   "app.user.info.button-save.title": "Save",

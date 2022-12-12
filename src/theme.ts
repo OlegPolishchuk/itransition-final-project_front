@@ -192,8 +192,8 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
                 borderColor: mode === 'dark' ? colors.secondary.second  : colors.secondary.second,
               },
               '&.MuiButton-outlinedSuccess': {
-                color: colors.success.main,
-                borderColor: colors.success.main,
+                color: colors.success.second,
+                borderColor: colors.success.second,
               },
               '&.MuiButton-outlinedPrimary': {
                 color: mode === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.second,

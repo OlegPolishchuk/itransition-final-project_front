@@ -16,7 +16,13 @@ import {
 } from "shared";
 import {AdminPanelSettingsOutlined, LockOpenOutlined} from "@mui/icons-material";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {deleteUsers, fetchUsers, initializeApp, updateUsersStatus} from "store/actions";
+import {
+  deleteUsers,
+  fetchUsers,
+  getTags,
+  initializeApp,
+  updateUsersStatus
+} from "store/actions";
 import {
   selectAdminTableSearchParams, selectIsInitialize,
   selectTotalCount,
@@ -29,9 +35,9 @@ import {
 } from "store/reducers/adminReducer/adminReducer";
 import {FormattedMessage} from "react-intl";
 import {RootState} from "store/store";
-import {adminTableColumns} from 'shared'
-import {AdminControlPanel} from "pages/adminPanel/adminUsersList/AdminControlPanel";
-import {AdminUserCardsList} from "pages/adminPanel/adminUsersList/AdminUserCardsList";
+import {adminTableColumns} from 'shared';
+import { AdminControlPanel, AdminUserCardsList } from 'pages';
+
 
 export const AdminUsersList = () => {
   const dispatch = useAppDispatch();
@@ -92,6 +98,7 @@ export const AdminUsersList = () => {
 
   useEffect(() => {
     dispatch(fetchUsers());
+    dispatch(getTags());
   }, [tablePage, tableLimit])
 
   useEffect(() => {

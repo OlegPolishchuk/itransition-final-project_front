@@ -8,7 +8,7 @@ export type User = {
   status: string;
   created: string;
   lastLogin: string;
-  reviews: [];
+  reviewsCount: number;
 }
 
 export type UserRole = 'admin' | 'user';

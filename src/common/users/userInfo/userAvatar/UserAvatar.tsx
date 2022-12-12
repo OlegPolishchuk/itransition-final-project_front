@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import {Avatar, Box, Button} from "@mui/material";
+import {Avatar, Box, Button, IconButton} from "@mui/material";
+import {PhotoCamera} from "@mui/icons-material";
 
 type Props = {
   avatarSrc: string;
@@ -16,13 +17,24 @@ export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback}) => {
       />
 
       <Box mt={'20px'}>
-        <Button
-          variant={'outlined'}
-          size={'small'}
-          onClick={editAvatarCallback}
+        {/*<Button*/}
+        {/*  variant={'outlined'}*/}
+        {/*  size={'small'}*/}
+        {/*  onClick={editAvatarCallback}*/}
+        {/*>*/}
+        {/*  Edit*/}
+        {/*</Button>*/}
+
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+          size={'large'}
         >
-          Edit
-        </Button>
+          <input hidden accept="image/*" type="file" />
+          <PhotoCamera />
+        </IconButton>
+
       </Box>
 
     </Box>

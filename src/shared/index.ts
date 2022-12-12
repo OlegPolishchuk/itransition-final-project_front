@@ -7,7 +7,7 @@ export {
   apiRoutes,
   userStatus,
   userFields,
-  sliderValue,
+  usersSliderValue,
   usersTablePaginationData,
   adminTableSearchParams,
 } from './constants';

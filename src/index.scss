@@ -85,6 +85,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 
   .slider-wrapper {
     display: flex;
@@ -112,10 +113,6 @@
 
   @media (max-width: 1000px) {
     flex-wrap: wrap;
-
-    .slider-wrapper {
-      //width: 300px;
-    }
   }
 
   @media (min-width: 800px) {
@@ -131,7 +128,7 @@
   }
 }
 
-.admin-user-header {
+.admin-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -144,12 +141,31 @@
       margin-bottom: 20px;
     }
 
-    .admin-user-header-status-buttonGroup {
+    .admin-controls-buttonGroup {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
   }
 }
+
+//.select__control {
+//  &.css-13cymwt-control {
+//    background-color: transparent;
+//  }
+//
+//  &.css-t3ipsp-control {
+//    background-color: transparent;
+//    box-shadow: none;
+//
+//    &:hover {
+//      border-color: #31a2ac;
+//    }
+//  }
+//
+//  &.select__menu {
+//    background-color: transparent;
+//  }
+//}
 
 

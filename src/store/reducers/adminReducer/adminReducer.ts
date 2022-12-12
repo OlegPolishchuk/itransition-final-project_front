@@ -20,7 +20,7 @@ const initialState: AdminState = {
     token: '',
     created: '',
     lastLogin: '',
-    reviews: [],
+    reviewsCount: 0,
   },
   totalCount: 0,
   tableSearchParams: {
@@ -60,7 +60,8 @@ const adminSlice = createSlice({
     })
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.user;
+      state.currentUser.reviewsCount = action.payload.reviews.length;
     })
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.isLoading = false;

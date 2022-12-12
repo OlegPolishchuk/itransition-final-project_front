@@ -20,12 +20,19 @@
   "app.admin.button-unblock.title": "Разблокировать",
   "app.admin.button-delete.title": "Удалить",
 
-  "app.admin.generate.slider.title": "Количество:",
+  "app.admin.generate-users.title": "Создать рандомных пользователей:",
+  "app.admin.generate-reviews.title": "Создать рандомные обзоры:",
+  "app.admin.generate.slider-users.title": "Количество пользователей:",
+  "app.admin.generate.slider-reviews.title": "Количество обзоров:",
   "app.admin.generate.switcher.title": "Статус:",
   "app.admin.generate.switcher-active.title": "Активный",
   "app.admin.generate.switcher-blocked.title": "Заблокирован",
   "app.admin.generate.select.locale.title": "Язык:",
   "app.admin.generate.button.title": "Сгенерировать",
+  "app.admin.generate.checkbox-accordion.title": "С обзорами",
+
+  "app.admin.generate.tags-picker.radio-random.title": "Случайные тэги",
+  "app.admin.generate.tags-picker.radio-custom.title": "Выбрать",
 
   "app.user.info.button-edit.title": "Редакрировать",
   "app.user.info.button-save.title": "Сохранить",
