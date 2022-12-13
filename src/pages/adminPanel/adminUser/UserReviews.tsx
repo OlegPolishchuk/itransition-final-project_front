@@ -57,8 +57,10 @@ export const UserReviews: FC<Props> = ({userId}) => {
 
 
   useEffect(() => {
-    dispatch(fetchUserReviews(userId))
-  }, [page, limit])
+    if (userId) {
+      dispatch(fetchUserReviews(userId))
+    }
+  }, [page, limit, userId])
 
 
   return (
