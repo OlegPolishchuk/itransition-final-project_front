@@ -1,23 +1,22 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {Pagination} from "@mui/material";
 import {
-  gridPageCountSelector, gridPageSelector,
+  gridPageCountSelector,
+  gridPageSelector,
+  gridRowCountSelector,
   useGridApiContext,
   useGridSelector
 } from "@mui/x-data-grid";
 
-export type Props = {
-  totalCount: number;
-  page: number;
-  onChangeCallback: (page: number) => void;
-  limitPerPage: number;
-}
+export const DataGridCustomPagination= () => {
+  const apiRef = useGridApiContext();
 
-export const CustomPagination: FC<Props> = ({page, onChangeCallback, totalCount, limitPerPage}) => {
-  const totalPageCount = Math.ceil(totalCount / limitPerPage);
+  const page = useGridSelector(apiRef, gridPageSelector);
+  const totalPageCount = useGridSelector(apiRef, gridPageCountSelector);
+
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    onChangeCallback(value - 1);
+    apiRef.current.setPage(value - 1)
   }
 
   return (

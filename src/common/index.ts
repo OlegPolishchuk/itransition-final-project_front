@@ -20,7 +20,11 @@ export {
   LocaleSelect,
   UserProfileEditor,
 } from './users';
+
 export {Title} from './title/Title';
 export {CustomPagination} from './pagination/CustomPagination';
-export {RandomReviewsGenerator, TagsPicker} from './reviews';
+export {DataGridCustomPagination} from './pagination/DataGridCustomPagination';
+export {RandomReviewsGenerator, TagsPicker, ReviewList, ReviewHeader} from './reviews';
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';
+export {CardItemTitle} from './cardItemTitle/CardItemTitle';
+export {MainCheckbox} from './mainCheckbox/MainCheckbox';

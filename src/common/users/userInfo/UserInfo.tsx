@@ -8,7 +8,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
 import {FormattedMessage} from "react-intl";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import {updateCurrentUser} from "store/actions/users/updateCurrentUser";
+import {updateCurrentUser} from "store/actions/admin/updateCurrentUser";
 import {AdminUserHeader} from "pages";
 
 type Props = {

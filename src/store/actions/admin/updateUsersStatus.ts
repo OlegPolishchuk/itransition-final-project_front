@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiUsers} from "apis";
-import {fetchUsers} from "store/actions/users/fetchUsers";
+import {fetchUsers} from "store/actions/admin/fetchUsers";
 import {AxiosError} from "axios";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
 import {RootState} from "store/store";

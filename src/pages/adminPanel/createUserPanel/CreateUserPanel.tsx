@@ -5,7 +5,7 @@ import {
   AccordionSummary,
   Box,
   Button,
-  Checkbox, Divider,
+  Checkbox, CircularProgress, Divider,
   FormControlLabel,
   SelectChangeEvent
 } from "@mui/material";
@@ -15,14 +15,17 @@ import {LocaleSelect} from "pages/adminPanel/createUserPanel/LocaleSelect";
 import {FormattedMessage} from "react-intl";
 import {locales, usersSliderValue, userStatus} from "shared";
 import {Locale} from "store/types/AppState";
-import {useAppDispatch} from "hooks";
-import {generateRandomUsers} from "store/actions/users";
+import {useAppDispatch, useAppSelector} from "hooks";
+import {generateRandomUsers} from "store/actions/admin";
 import {Title} from "common/title/Title";
 import {RandomReviewsGenerator} from "common/reviews";
 import {GenerateRandomData} from "store/types/GenerateRandomData";
+import {selectIsGenerating} from "store/selectors";
 
 export const CreateUserPanel = memo(() => {
   const dispatch = useAppDispatch();
+
+  const isGenerating = useAppSelector(selectIsGenerating);
 
   const [generateRandomData, setGenerateRandomData] = useState<GenerateRandomData>({
     usersCount: 0,
@@ -75,6 +78,17 @@ export const CreateUserPanel = memo(() => {
 
   const handleGenerate = () => {
     dispatch(generateRandomUsers(generateRandomData));
+
+    setGenerateRandomData({
+        usersCount: 0,
+        locale: locales.EN,
+        status: userStatus.active,
+        reviewsCount: 0,
+        tags: [],
+      }
+    )
+
+    setExpanded(false);
   }
 
 
@@ -102,7 +116,7 @@ export const CreateUserPanel = memo(() => {
           marginBottom: '30px',
           padding: '10px',
           backgroundColor: 'transparent'
-      }}>
+        }}>
 
         <AccordionSummary sx={{padding: '10px 15px'}}>
           <Box className={'admin-controls-wrapper'}>
@@ -141,7 +155,6 @@ export const CreateUserPanel = memo(() => {
           </Box>
 
 
-
         </AccordionSummary>
 
         <Divider variant={'fullWidth'}/>
@@ -156,7 +169,7 @@ export const CreateUserPanel = memo(() => {
       </Accordion>
 
 
-      <Box textAlign={'center'}>
+      <Box sx={{textAlign: 'center', position: 'relative'}}>
         <Button
           className={'button-generate-user'}
           variant={'contained'}
@@ -166,6 +179,20 @@ export const CreateUserPanel = memo(() => {
         >
           <FormattedMessage id='app.admin.generate.button.title'/>
         </Button>
+
+        {isGenerating && (
+          <CircularProgress
+            size={24}
+            sx={{
+              color: '#fff',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              marginTop: '-12px',
+              marginLeft: '-12px',
+            }}
+          />
+        )}
       </Box>
 
     </Box>

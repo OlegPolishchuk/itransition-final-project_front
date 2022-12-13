@@ -10,3 +10,4 @@ export {usersSliderValue} from './usersSliderValue';
 export {reviewsSliderValue} from './reviewsSliderValue';
 export {usersTablePaginationData} from './usersTablePaginationData';
 export {adminTableSearchParams} from './adminTableSearchParams';
+export {paginationDefaultParams} from './paginationDefaultParams';

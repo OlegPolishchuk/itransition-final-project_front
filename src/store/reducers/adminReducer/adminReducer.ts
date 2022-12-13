@@ -1,14 +1,16 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AdminState, TableSearchParams} from "store/types/AdminState";
-import {fetchUsers} from "store/actions/users/fetchUsers";
+import {fetchUsers} from "store/actions/admin/fetchUsers";
 import {userRoles, usersTablePaginationData, userStatus} from "shared";
 import {User} from "store/types/User";
-import {fetchUser} from "store/actions/users/fetchUser";
-import {updateCurrentUser} from "store/actions/users/updateCurrentUser";
+import {fetchUser} from "store/actions/admin/fetchUser";
+import {generateRandomUsers} from "store/actions/admin";
+import {fetchUserReviews} from "store/actions";
 
 const initialState: AdminState = {
   users: [],
   isLoading: false,
+  isGenerating: false,
   error: '',
   currentUser: {
     status: userStatus.active,
@@ -60,23 +62,28 @@ const adminSlice = createSlice({
     })
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.currentUser = action.payload.user;
-      state.currentUser.reviewsCount = action.payload.reviews.length;
+      state.currentUser = action.payload;
     })
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
     })
 
-    // builder.addCase(updateCurrentUser.pending, state => {
-    //   state.isLoading = true;
-    //   state.error = '';
-    // })
-    // builder.addCase(updateCurrentUser.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.currentUser = action.payload;
-    // })
-    // builder.
+    builder.addCase(generateRandomUsers.pending, state => {
+      state.isGenerating = true;
+    })
+    builder.addCase(generateRandomUsers.fulfilled, state => {
+      state.isGenerating = false
+    })
+    builder.addCase(generateRandomUsers.rejected, (state, action) => {
+      state.isGenerating = false;
+      state.error = action.payload as string;
+    })
+
+
+    builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
+      state.currentUser.reviewsCount = action.payload.totalCount;
+    })
   },
 })
 

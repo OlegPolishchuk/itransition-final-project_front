@@ -44,10 +44,6 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
             <AdminPanel/>
           </ProtectedRoute>}
       >
-      {/*<Route*/}
-      {/*  path={routes.admin.main}*/}
-      {/*  element={<AdminPanel/>}*/}
-      {/*>*/}
         <Route
           index
           element={<AdminUsersList/>}
@@ -57,6 +53,12 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
           path={`${routes.admin.user}/:userId`}
           element={<AdminUser/>}
         />
+
+        <Route
+          path={`${routes.admin.review}/:reviewId`}
+          element={<h1>Review</h1>}
+        />
+
       </Route>
 
 

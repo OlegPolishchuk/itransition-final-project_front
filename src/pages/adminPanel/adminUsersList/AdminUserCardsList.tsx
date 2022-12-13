@@ -1,21 +1,24 @@
-import React, {FC, ReactNode, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {User} from "store/types/User";
 import {
   Avatar,
-  Box, Button,
-  Card, CardActions,
+  Box,
+  Button,
+  Card,
+  CardActions,
   CardHeader,
   Checkbox,
   FormControlLabel,
   Grid,
   Typography
 } from "@mui/material";
-import {addCheckboxToUser, routes, userRoles, userStatus} from "shared";
-import {CustomPagination} from "common";
+import {addCheckboxIntoObjectList, routes, userRoles, userStatus} from "shared";
+import {CustomPagination, MainCheckbox} from "common";
 import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import {NavLink} from "react-router-dom";
-import {useAppDispatch, useThemeColors} from "hooks";
+import {useThemeColors} from "hooks";
+import {FormattedMessage} from "react-intl";
 
 type Props = {
   users: User[];
@@ -41,7 +44,7 @@ export const AdminUserCardsList: FC<Props> = ({
                                                 limitPerPage
                                               }) => {
 
-  const [usersWithCheckbox, setUsersWithCheckbox] = useState(addCheckboxToUser(users))
+  const [usersWithCheckbox, setUsersWithCheckbox] = useState<(User & { checked: boolean })[]>(addCheckboxIntoObjectList(users))
 
   const themeColors = useThemeColors();
 
@@ -83,18 +86,20 @@ export const AdminUserCardsList: FC<Props> = ({
   }
 
   useEffect(() => {
-    setUsersWithCheckbox(addCheckboxToUser(users))
+    setUsersWithCheckbox(addCheckboxIntoObjectList(users))
   }, [users])
 
   return (
     <Grid container spacing={2} rowSpacing={3}>
 
       <Grid item xs={12} sm={12}>
-        <FormControlLabel
-          label="Choose All"
-          control={<Checkbox checked={mainCheckboxChecked}
-                             onChange={handleChangeMainCheckbox}/>}
+
+        <MainCheckbox
+          checked={mainCheckboxChecked}
+          changeCallback={handleChangeMainCheckbox}
+          label={<FormattedMessage id='app.admin.card-list.main-checkbox.title'/>}
         />
+
       </Grid>
 
       {usersWithCheckbox.map(user => {
@@ -111,8 +116,8 @@ export const AdminUserCardsList: FC<Props> = ({
 
                 <Box>
                   {user.status === userStatus.blocked
-                  ? <BlockOutlinedIcon color={'warning'} />
-                  : <VerifiedUserOutlinedIcon color={'secondary'} />
+                    ? <BlockOutlinedIcon color={'warning'}/>
+                    : <VerifiedUserOutlinedIcon color={'secondary'}/>
                   }
                 </Box>
 

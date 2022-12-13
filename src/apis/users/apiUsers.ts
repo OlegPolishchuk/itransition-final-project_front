@@ -1,7 +1,6 @@
 import {instance} from "apis/instance/instance";
 import {apiRoutes} from "shared";
 import {UpdatedUsersStatusRequest} from "store/types/UpdatedUsersStatusRequest";
-import {GenerateRandomUserData} from "store/types/GenerateRandomUserData";
 import {FetchUsersResponse} from "store/types/FetchUsersResponse";
 import {User} from "store/types/User";
 import {GenerateRandomData} from "store/types/GenerateRandomData";

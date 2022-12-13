@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {GenerateRandomUserData} from "store/types/GenerateRandomUserData";
 import {AxiosError} from "axios";
 import {apiUsers} from "apis";
-import {fetchUsers} from "store/actions/users/fetchUsers";
+import {fetchUsers} from "store/actions/admin/fetchUsers";
 import {RootState} from "store/store";
 import {GenerateRandomData} from "store/types/GenerateRandomData";
 

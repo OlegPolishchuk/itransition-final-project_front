@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {User} from "store/types/User";
 import {AxiosError} from "axios";
 import {apiUsers} from "apis";
-import {fetchUser} from "store/actions/users/fetchUser";
+import {fetchUser} from "store/actions/admin/fetchUser";
 
 export const updateCurrentUser = createAsyncThunk(
   'admin/updateCurrentUser', async (user: Partial<User>, {rejectWithValue, dispatch}) => {

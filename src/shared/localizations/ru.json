@@ -20,6 +20,8 @@
   "app.admin.button-unblock.title": "Разблокировать",
   "app.admin.button-delete.title": "Удалить",
 
+  "app.admin.table-footer.rowsPerPage.title": "Строк на странице:",
+
   "app.admin.generate-users.title": "Создать рандомных пользователей:",
   "app.admin.generate-reviews.title": "Создать рандомные обзоры:",
   "app.admin.generate.slider-users.title": "Количество пользователей:",
@@ -33,6 +35,8 @@
 
   "app.admin.generate.tags-picker.radio-random.title": "Случайные тэги",
   "app.admin.generate.tags-picker.radio-custom.title": "Выбрать",
+
+  "app.admin.card-list.main-checkbox.title": "Выбрать все",
 
   "app.user.info.button-edit.title": "Редакрировать",
   "app.user.info.button-save.title": "Сохранить",
@@ -53,6 +57,11 @@
   "app.user.info.button-block.title": "Заблокировать",
   "app.user.info.button-unblock.title": "Разблокировать",
   "app.user.info.button-delete.title": "Удалить",
+
+  "app.user.reviews.title": "Список обзоров:",
+  "app.user.reviews.reviews-list.link-info.title": "Смотреть:",
+  "app.user.reviews-list.main-checkbox.title": "Выбрать все",
+  "app.user.reviews-list.header.button.delete.title": "Удалить",
 
   "app.breadcrumbs.title": "Вернуться назад"
 }

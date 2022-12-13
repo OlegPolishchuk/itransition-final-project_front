@@ -11,7 +11,6 @@ export const logoutUser = createAsyncThunk(
       let auth2;
 
       if (gapi.auth2) {
-        // gapi.auth2.getAuthInstance()
         auth2 = gapi.auth2.getAuthInstance();
 
         await auth2.signOut();

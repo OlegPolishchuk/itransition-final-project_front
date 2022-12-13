@@ -7,7 +7,8 @@ import {CreateUserPanel, UsersTable} from "common";
 import {User} from "store/types/User";
 import {GridColDef, GridSelectionModel} from "@mui/x-data-grid";
 import {
-  adminTableSearchParams, getWindowWidth,
+  adminTableSearchParams,
+  getWindowWidth, paginationDefaultParams,
   parseDate,
   routes,
   userRoles,
@@ -24,11 +25,11 @@ import {
   updateUsersStatus
 } from "store/actions";
 import {
-  selectAdminTableSearchParams, selectIsInitialize,
+  selectAdminTableSearchParams, selectIsInitialize, selectIsUsersLoading,
   selectTotalCount,
   selectUsers
 } from "store/selectors";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {
   setCurrentUser,
   setTableSearchParams
@@ -46,10 +47,9 @@ export const AdminUsersList = () => {
 
   const isInitiaize = useAppSelector(selectIsInitialize);
   const users = useAppSelector(selectUsers);
+  const isUsersLoading = useAppSelector(selectIsUsersLoading);
   const totalUsersCount = useAppSelector(selectTotalCount);
   const tableSearchParams = useAppSelector(selectAdminTableSearchParams);
-  const tablePage = useAppSelector((state: RootState) => state.adminReducer.tableSearchParams.page)
-  const tableLimit = useAppSelector((state: RootState) => state.adminReducer.tableSearchParams.limit)
 
   const [windowWidth, setWindowWidth] = useState(getWindowWidth());
 
@@ -59,15 +59,23 @@ export const AdminUsersList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = searchParams.get(adminTableSearchParams.page) || tableSearchParams.page;
-  const limit = searchParams.get(adminTableSearchParams.limit) || tableSearchParams.limit;
+  const page = Number(searchParams.get(adminTableSearchParams.page)) || tableSearchParams.page;
+  const limit = Number(searchParams.get(adminTableSearchParams.limit)) || tableSearchParams.limit;
 
   const rowsPerPageOptions = usersTablePaginationData.rowsPerPage
 
   const handleRowClick = (user: User) => {
+    const userPagePaginationPrams = {
+      'page': `${paginationDefaultParams.page}`,
+      'limit': `${paginationDefaultParams.limit}`
+    }
+
     dispatch(setCurrentUser(user))
 
-    navigate(`${routes.admin.user}/${user._id}`)
+    navigate({
+      pathname: `${routes.admin.user}/${user._id}`,
+      search: `${createSearchParams(userPagePaginationPrams)}`
+    })
   }
 
   const handleChangePage = (page: number) => {
@@ -86,8 +94,8 @@ export const AdminUsersList = () => {
 
   useEffect(() => {
     dispatch(setTableSearchParams({
-      page: Number(page),
-      limit: Number(limit),
+      page,
+      limit,
     }))
 
     searchParams.set(`${adminTableSearchParams.page}`, `${page}`);
@@ -99,7 +107,7 @@ export const AdminUsersList = () => {
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(getTags());
-  }, [tablePage, tableLimit])
+  }, [tableSearchParams.page, tableSearchParams.limit])
 
   useEffect(() => {
     const resizeListener = () => {
@@ -121,7 +129,7 @@ export const AdminUsersList = () => {
   }, [windowWidth])
 
   return (
-    <Box className={'admin-users-list'}>
+    <Box className={'admin-admin-list'}>
 
       <CreateUserPanel/>
 
@@ -144,10 +152,11 @@ export const AdminUsersList = () => {
               setSelectionModel={setSelectionModel}
               handleRowClickCallback={handleRowClick}
               totalUsersCount={totalUsersCount}
-              pageSize={Number(limit)}
+              pageSize={limit}
               setPageSize={handleChangeLimit}
-              pageNumber={Number(page)}
+              pageNumber={page}
               onPageChange={handleChangePage}
+              loading={isUsersLoading}
             />
           </Box>
         )
@@ -159,8 +168,8 @@ export const AdminUsersList = () => {
             mainCheckboxChecked={cardsListMainCheckbox}
             setMainCheckboxChecked={setCardsListMainCheckbox}
             totalCount={totalUsersCount}
-            page={Number(page)}
-            limitPerPage={Number(limit)}
+            page={page}
+            limitPerPage={limit}
             onChangeCallback={handleChangePage}
           />
         )

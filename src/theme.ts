@@ -232,6 +232,14 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             }
           }
         }
+      },
+
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: mode === 'dark' ? colors.primary.main : '#fff',
+          }
+        }
       }
 
     }

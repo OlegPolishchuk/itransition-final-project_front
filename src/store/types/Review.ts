@@ -1,8 +1,9 @@
 export type Review = {
   userId: string;
+  _id: string;
   title: string;
   subtitle: string;
-  tag: string;
+  tags: string | string[];
   body: string;
   personalScore: number;
   overallScore: number;

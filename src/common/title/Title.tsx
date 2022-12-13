@@ -5,7 +5,7 @@ import {Variant} from "@mui/material/styles/createTypography";
 import {TypographyPropsVariantOverrides} from "@mui/material/Typography/Typography";
 
 type Props = {
-  title: React.ReactElement;
+  title: React.ReactElement | string;
   color?: string;
   variant?: OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>
 }

@@ -1,4 +1,4 @@
-export const parseDate = (date: Date) => {
+export const parseDate = (date: string) => {
   const updatedDate = Date.parse(`${date}`)
   const  options: Intl.DateTimeFormatOptions  = {
     year: 'numeric',

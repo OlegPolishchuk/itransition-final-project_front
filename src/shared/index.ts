@@ -10,6 +10,16 @@ export {
   usersSliderValue,
   usersTablePaginationData,
   adminTableSearchParams,
+  paginationDefaultParams,
+  reviewsSliderValue,
 } from './constants';
-export {getStartToken, isTokenExpired, parseDate, getWindowWidth, addCheckboxToUser} from './utils';
+
+export {
+  getStartToken,
+  isTokenExpired,
+  parseDate,
+  getWindowWidth,
+  addCheckboxIntoObjectList,
+} from './utils';
+
 export {adminTableColumns} from './adminTableColumns/adminTableColumns';

@@ -7,8 +7,10 @@ export const routes = {
   },
   admin: {
     main: '/admin',
-    user:'/admin/user'
+    user:'/admin/user',
+    review: '/admin/review',
   },
+  review: '/review',
   notFound: '/not-found',
   mainPage: '/',
   protectedRoute: '/protected'

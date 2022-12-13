@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {selectCurrentUser, selectIsInitialize, selectReviews} from "store/selectors";
-import {fetchUser} from "store/actions/users/fetchUser";
+import {selectCurrentUser, selectIsInitialize} from "store/selectors";
+import {fetchUser} from "store/actions/admin/fetchUser";
 import {Box} from "@mui/material";
 import {Breadcrumbs, UserInfo} from "common";
 import {setCurrentUser} from "store/reducers/adminReducer/adminReducer";
 import {User} from "store/types/User";
+import {UserReviews} from "pages/adminPanel/adminUser/UserReviews";
 
 export const AdminUser = () => {
   console.log('AdminUser')
@@ -14,9 +15,9 @@ export const AdminUser = () => {
 
   const isInitialize = useAppSelector(selectIsInitialize);
   const user = useAppSelector(selectCurrentUser);
-  const reviews = useAppSelector(selectReviews);
 
   const {userId} = useParams();
+
 
   useEffect(() => {
     if (isInitialize) {
@@ -28,6 +29,7 @@ export const AdminUser = () => {
     }
   }, [isInitialize])
 
+
   return (
     <Box>
 
@@ -35,18 +37,9 @@ export const AdminUser = () => {
 
       <UserInfo user={user}/>
 
-      <Box>
+      <Box sx={{padding: '30px 0'}}>
 
-        {reviews.map(review => (
-          <div key={review.userId + "" + review.title}>
-            <div>{review.title}</div>
-            <div>{review.subtitle}</div>
-            <div>{review.tag}</div>
-            <div>{review.body}</div>
-            <div>{review.created}</div>
-            <br/>
-          </div>
-        ))}
+        <UserReviews userId={user._id} />
 
       </Box>
 

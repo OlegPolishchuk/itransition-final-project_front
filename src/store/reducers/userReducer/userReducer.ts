@@ -18,6 +18,7 @@ const initialState: UserState = {
     status: 'active',
     reviewsCount: 0,
   },
+  isLoading: false,
 }
 
 const userSlice = createSlice({

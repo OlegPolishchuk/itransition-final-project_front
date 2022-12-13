@@ -2,10 +2,11 @@ import React, {FC, memo} from 'react';
 import {User} from "store/types/User";
 import {DataGrid, GridColDef, GridRowParams, GridSelectionModel} from "@mui/x-data-grid";
 import {userRoles} from "shared";
-import {Box} from "@mui/material";
+import {Box, LinearProgress} from "@mui/material";
 import {useAppSelector, useThemeColors} from "hooks";
 import {selectThemeMode} from "store/selectors";
 import {CustomPagination} from "common/pagination/CustomPagination";
+import {AdminDataGridFooter} from "pages";
 
 type Props = {
   columns: GridColDef[];
@@ -19,21 +20,23 @@ type Props = {
   pageNumber: number;
   onPageChange: (pageNumber: number) => void;
   rowsPerPageOptions: number[];
+  loading: boolean;
 }
 
-export const UsersTable: FC<Props> = memo( ({
-                                        rows,
-                                        columns,
-                                        setSelectionModel,
-                                        selectionModel,
-                                        handleRowClickCallback
-                                        , totalUsersCount,
-                                        setPageSize,
-                                        pageSize,
-                                        pageNumber,
-                                        onPageChange,
-                                        rowsPerPageOptions,
-                                      }) => {
+export const UsersTable: FC<Props> = memo(({
+                                             rows,
+                                             columns,
+                                             setSelectionModel,
+                                             selectionModel,
+                                             handleRowClickCallback
+                                             , totalUsersCount,
+                                             setPageSize,
+                                             pageSize,
+                                             pageNumber,
+                                             onPageChange,
+                                             rowsPerPageOptions,
+                                             loading,
+                                           }) => {
 
   const theme = useAppSelector(selectThemeMode);
   const themeColors = useThemeColors();
@@ -77,6 +80,24 @@ export const UsersTable: FC<Props> = memo( ({
         selectionModel={selectionModel}
         onSelectionModelChange={handleSelectRow}
         onRowClick={handleRowClick}
+        components={{
+          LoadingOverlay: LinearProgress,
+          // Pagination: CustomPagination,
+          Footer: AdminDataGridFooter,
+        }}
+        componentsProps={{
+          footer: {
+            rowsPerPageOptions,
+            pageSize,
+            changePageSizeCallback: setPageSize,
+          }
+        }}
+        loading={loading}
+        sx={{
+          '& .MuiLinearProgress-colorPrimary': {
+            backgroundColor: themeColors.secondary.main
+          }
+        }}
       />
     </Box>
   );

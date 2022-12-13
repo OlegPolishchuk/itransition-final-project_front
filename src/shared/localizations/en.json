@@ -20,6 +20,8 @@
   "app.admin.button-unblock.title": "UNBLOCK",
   "app.admin.button-delete.title": "DELETE",
 
+  "app.admin.table-footer.rowsPerPage.title": "Rows per page:",
+
   "app.admin.generate-users.title": "Generate random users:",
   "app.admin.generate-reviews.title": "Generate random views:",
   "app.admin.generate.slider-users.title": "Users Count:",
@@ -33,6 +35,8 @@
 
   "app.admin.generate.tags-picker.radio-random.title": "Random",
   "app.admin.generate.tags-picker.radio-custom.title": "Custom",
+
+  "app.admin.card-list.main-checkbox.title": "Choose All",
 
   "app.user.info.button-edit.title": "Edit",
   "app.user.info.button-save.title": "Save",
@@ -53,6 +57,11 @@
   "app.user.info.button-block.title": "Block",
   "app.user.info.button-unblock.title": "Unblock",
   "app.user.info.button-delete.title": "Delete",
+
+  "app.user.reviews.title": "Reviews List:",
+  "app.user.reviews.reviews-list.link-info.title": "View info:",
+  "app.user.reviews-list.main-checkbox.title": "Choose all",
+  "app.user.reviews-list.header.button.delete.title": "Delete",
 
   "app.breadcrumbs.title": "Return back"
 }

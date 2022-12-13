@@ -12,6 +12,8 @@ export {
   CreateUserPanel,
   UserStatusSwitcher,
   LocaleSelect,
+  AdminDataGridFooter,
+  UserReviews,
 } from './adminPanel';
 
 export {Protected} from './Protected'
