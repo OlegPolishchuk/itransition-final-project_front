@@ -1,11 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AdminState, TableSearchParams} from "store/types/AdminState";
-import {fetchUsers} from "store/actions/admin/fetchUsers";
 import {userRoles, usersTablePaginationData, userStatus} from "shared";
-import {User} from "store/types/User";
-import {fetchUser} from "store/actions/admin/fetchUser";
-import {generateRandomUsers} from "store/actions/admin";
-import {fetchUserReviews} from "store/actions";
+import {User, AdminState, TableSearchParams} from "store/types";
+import {
+  generateRandomUsers,
+  fetchUser,
+  fetchUserReviews,
+  fetchUsers
+} from "store/actions";
+
 
 const initialState: AdminState = {
   users: [],

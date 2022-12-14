@@ -1,5 +1,20 @@
-export {appReducer, clearGlobalMessage, setError, toggleTheme} from 'store/reducers/appReducer/appSlice';
+export {
+  appReducer,
+  clearGlobalMessage,
+  setError,
+  toggleTheme
+} from './appReducer/appSlice';
+
 export {authReducer, setIsUserAuth} from './authReducer/authSlice';
 export {userReducer} from './userReducer/userReducer';
-export {adminReducer} from './adminReducer/adminReducer';
-export {reviewsReducer} from './rewiewsReducer/reviewsSlice';
+
+export {
+  adminReducer,
+  setTableSearchParams,
+  setCurrentUser
+} from './adminReducer/adminReducer';
+
+export {
+  reviewsReducer,
+  setReviewsPaginationParams
+} from './rewiewsReducer/reviewsSlice';

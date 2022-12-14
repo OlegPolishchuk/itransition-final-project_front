@@ -1,5 +1,5 @@
 import React, {FC, memo} from 'react';
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {DataGrid, GridColDef, GridRowParams, GridSelectionModel} from "@mui/x-data-grid";
 import {userRoles} from "shared";
 import {Box, LinearProgress} from "@mui/material";

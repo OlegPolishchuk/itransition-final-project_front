@@ -9,27 +9,36 @@ import {
   Typography,
   useMediaQuery
 } from "@mui/material";
-import {CardItemTitle} from "common/cardItemTitle/CardItemTitle";
-import {NavLink} from "react-router-dom";
-import {Review} from "store/types/Review";
+import {CardItemTitle} from "common";
+import {NavLink, useSearchParams} from "react-router-dom";
+import {Review} from "store/types";
 import {useThemeColors} from "hooks";
 import {FormattedMessage} from "react-intl";
-import {addCheckboxIntoObjectList, parseDate, routes} from "shared";
+import {
+  addCheckboxIntoObjectList,
+  paginationDefaultParams,
+  parseDate,
+  routes
+} from "shared";
+
 
 type Props = {
   reviews: Review[];
   reviewsWithCheckbox: (Review & { checked: boolean })[];
   setReviewsWithCheckbox: (reviews: (Review & { checked: boolean })[]) => void;
+  pageNumber: number;
 }
 
 export const ReviewList: FC<Props> = ({
                                         reviews,
                                         reviewsWithCheckbox,
-                                        setReviewsWithCheckbox
+                                        setReviewsWithCheckbox,
+                                        pageNumber,
                                       }) => {
+
   const themeColors = useThemeColors();
   const largeScreen = useMediaQuery('(min-width: 900px)');
-
+  const listItemIndexRatio = pageNumber * paginationDefaultParams.limit;
 
   const handleChangeCurrentCheckbox = (event: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const checked = event.target.checked;
@@ -62,7 +71,7 @@ export const ReviewList: FC<Props> = ({
                 variant={'h5'}
                 component={'span'}
               >
-                {index + 1}.
+                {listItemIndexRatio + index + 1}.
               </Typography>
 
               <Typography
@@ -99,6 +108,11 @@ export const ReviewList: FC<Props> = ({
             <CardItemTitle
               title={'Subject Title'}
               description={review.subtitle}
+            />
+
+            <CardItemTitle
+              title={'Tags'}
+              description={review.tags.join(',')}
             />
 
             <CardItemTitle

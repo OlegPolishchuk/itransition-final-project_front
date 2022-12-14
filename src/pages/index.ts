@@ -13,7 +13,7 @@ export {
   UserStatusSwitcher,
   LocaleSelect,
   AdminDataGridFooter,
-  UserReviews,
+  AdminUserReviews,
 } from './adminPanel';
 
 export {Protected} from './Protected'

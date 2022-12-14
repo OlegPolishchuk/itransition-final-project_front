@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthState} from "store/types/AuthState";
+import {AuthState} from "store/types/initialStates/AuthState";
 import {
   getProfile,
   initializeApp,

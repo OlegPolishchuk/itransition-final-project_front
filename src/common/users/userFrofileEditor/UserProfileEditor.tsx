@@ -1,6 +1,6 @@
 import React, {FC, forwardRef, useState} from 'react';
-import {CommonFieldList} from "store/types/UserFieldsList";
-import {User} from "store/types/User";
+import {CommonFieldList} from "store/types/User/UserFieldsList";
+import {User} from "store/types/User/User";
 import {MenuItem, Select, SelectChangeEvent, TextField, Typography} from "@mui/material";
 import {userRoles, userStatus} from "shared";
 import {useAppSelector, useThemeColors} from "hooks";

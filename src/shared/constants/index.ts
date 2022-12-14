@@ -1,13 +1,11 @@
-export {emailRegexp} from './emailRegexp';
-export {localStorageData} from './localStorage';
-export {routes} from './routes';
-export {apiRoutes} from './apiRoutes';
-export {locales} from './locales';
-export {userRoles} from './userRoles';
-export {userStatus} from './userStatus';
-export {userFields} from './userFields';
-export {usersSliderValue} from './usersSliderValue';
-export {reviewsSliderValue} from './reviewsSliderValue';
-export {usersTablePaginationData} from './usersTablePaginationData';
-export {adminTableSearchParams} from './adminTableSearchParams';
-export {paginationDefaultParams} from './paginationDefaultParams';
+export {
+  usersSliderValue,
+  reviewsSliderValue,
+  usersTablePaginationData,
+  adminTableSearchParams
+} from './admin';
+
+export {userFields, userRoles, userStatus} from './user';
+export {routes, apiRoutes} from './routes';
+export {emailRegexp, localStorageData, tokenData} from './auth';
+export {paginationDefaultParams, locales} from './app';

@@ -1,9 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {localStorageService} from "services";
-import {Locale, ThemeMode} from "store/types/AppState";
+import {Locale} from "store/types";
 import {getStartToken, localStorageData} from "shared";
 import {getProfile} from "store/actions/auth";
-import {InitializeApp} from "store/types/InitializeApp";
+import {InitializeApp} from "store/types";
+import {ThemeMode} from "store/types";
 
 export const initializeApp = createAsyncThunk<InitializeApp, void>(
   'app/initializeApp',  async (_, {dispatch}) => {

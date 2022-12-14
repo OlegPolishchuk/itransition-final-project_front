@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {
   Avatar,
   Box,
@@ -85,8 +85,16 @@ export const AdminUserCardsList: FC<Props> = ({
     ))))
   }
 
+
   useEffect(() => {
     setUsersWithCheckbox(addCheckboxIntoObjectList(users))
+  }, [users])
+
+
+  useEffect(() => {
+    if (users.length === 0 && page > 0) {
+      onChangeCallback(page - 1)
+    }
   }, [users])
 
   return (
@@ -152,7 +160,7 @@ export const AdminUserCardsList: FC<Props> = ({
                 <Box textAlign={'center'}>
                   <Button variant={'outlined'} color={'secondary'}>
                     <NavLink className='navLink' to={`${routes.admin.user}/${user._id}`}>
-                      View info
+                      <FormattedMessage id='app.user.card-list.link-info.title'/>
                     </NavLink>
                   </Button>
                 </Box>

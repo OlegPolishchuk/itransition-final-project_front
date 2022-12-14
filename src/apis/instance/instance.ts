@@ -4,9 +4,9 @@ import {logoutUser} from "store/actions";
 import {isTokenExpired} from "shared/utils/isTokenExpired";
 import {ToolkitStore} from "@reduxjs/toolkit/dist/configureStore";
 import {AnyAction, CombinedState, ThunkMiddleware} from "@reduxjs/toolkit";
-import {UserState} from "store/types/UserState";
-import {AuthState} from "store/types/AuthState";
-import {AppState} from "store/types/AppState";
+import {UserState} from "store/types/initialStates/UserState";
+import {AuthState} from "store/types/initialStates/AuthState";
+import {AppState} from "store/types/initialStates/AppState";
 import {refreshToken} from "store/actions/auth/refreshToken";
 
 

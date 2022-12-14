@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {AxiosError} from "axios";
 import {apiUsers} from "apis";
 import {fetchUser} from "store/actions/admin/fetchUser";

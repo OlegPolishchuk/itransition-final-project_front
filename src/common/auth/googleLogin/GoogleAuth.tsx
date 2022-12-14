@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {gapi} from "gapi-script";
 import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from "react-google-login";
 import {useAppDispatch} from "hooks";
-import {SocialResponse} from "store/types/SocialResponse";
+import {SocialResponse} from "store/types/responses/SocialResponse";
 import {googleLogin} from "store/actions/auth/googleLogin";
 import {Button} from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';

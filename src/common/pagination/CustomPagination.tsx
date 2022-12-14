@@ -1,12 +1,7 @@
 import React, {FC} from 'react';
 import {Pagination} from "@mui/material";
-import {
-  gridPageCountSelector, gridPageSelector,
-  useGridApiContext,
-  useGridSelector
-} from "@mui/x-data-grid";
 
-export type Props = {
+type Props = {
   totalCount: number;
   page: number;
   onChangeCallback: (page: number) => void;

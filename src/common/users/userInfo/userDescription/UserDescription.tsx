@@ -8,12 +8,12 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {useAppSelector, useThemeColors} from "hooks";
 import {userFields, userRoles} from "shared";
 import {selectThemeMode, selectUserRole} from "store/selectors";
 import {FormattedMessage} from "react-intl";
-import {CommonFieldList, UserFieldsList} from "store/types/UserFieldsList";
+import {CommonFieldList, UserFieldsList} from "store/types/User/UserFieldsList";
 import {UserProfileEditor} from "common/users/userFrofileEditor/UserProfileEditor";
 
 type Props = {

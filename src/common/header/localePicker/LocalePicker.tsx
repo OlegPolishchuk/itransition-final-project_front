@@ -4,8 +4,9 @@ import {Box, FormControl, MenuItem, Select, SelectChangeEvent} from "@mui/materi
 import {locales} from 'shared';
 import {useAppDispatch, useAppSelector} from "hooks";
 import {selectLocale} from "store/selectors";
-import {Locale} from "store/types/AppState";
-import {changeLocale} from "store/actions/app/changeLocale";
+import {Locale} from "store/types";
+import {changeLocale} from "store/actions";
+
 
 export const LocalePicker = () => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiUsers} from "apis";
 import {AxiosError} from "axios";
-import {FetchUsersResponse} from "store/types/FetchUsersResponse";
+import {FetchUsersResponse} from "store/types/responses/FetchUsersResponse";
 import {RootState} from "store/store";
 
 export const fetchUsers = createAsyncThunk<FetchUsersResponse, void, {state: RootState}>(

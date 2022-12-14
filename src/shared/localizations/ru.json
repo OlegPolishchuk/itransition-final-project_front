@@ -37,6 +37,7 @@
   "app.admin.generate.tags-picker.radio-custom.title": "Выбрать",
 
   "app.admin.card-list.main-checkbox.title": "Выбрать все",
+  "app.user.card-list.link-info.title": "Сотреть",
 
   "app.user.info.button-edit.title": "Редакрировать",
   "app.user.info.button-save.title": "Сохранить",
@@ -62,6 +63,9 @@
   "app.user.reviews.reviews-list.link-info.title": "Смотреть:",
   "app.user.reviews-list.main-checkbox.title": "Выбрать все",
   "app.user.reviews-list.header.button.delete.title": "Удалить",
+
+  "app.user.reviews-list.header.collapse-button.title": "Случайные обзоры",
+  "app.user.reviews-list.no-values.title": "Ничего нет",
 
   "app.breadcrumbs.title": "Вернуться назад"
 }

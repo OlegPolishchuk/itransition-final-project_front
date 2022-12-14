@@ -11,7 +11,7 @@ import {
   ProtectedRoute,
   Register
 } from "pages";
-import {UserRole} from "store/types/User";
+import {UserRole} from "store/types/User/User";
 
 
 type Props = {

@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC, ReactNode} from 'react';
 import {Box, Input, Slider, Typography} from "@mui/material";
-import {FormattedMessage} from "react-intl";
-import {SliderValues} from "store/types/SliderValues";
+import {SliderValues} from "store/types";
+
 
 type Props = {
   itemsCount: number | string | Array<number | string>;

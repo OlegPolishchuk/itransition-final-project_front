@@ -1,10 +1,17 @@
-export {AdminUser} from 'pages/adminPanel/adminUser/AdminUser';
 export {AdminPanel} from './AdminPanel';
-export {AdminUsersList} from 'pages/adminPanel/adminUsersList/AdminUsersList';
-export {AdminControlPanel} from './adminUsersList/AdminControlPanel';
-export {AdminUserCardsList} from './adminUsersList/AdminUserCardsList';
-export {AdminUserHeader} from './adminUser/AdminUserHeader';
-export {AdminReviewsTagsPicker} from './adminUsersList/AdminReviewsTagsPicker';
-export {UserStatusSwitcher, CreateUserPanel, LocaleSelect} from './createUserPanel';
-export {AdminDataGridFooter} from './adminUsersList/AdminDataGridFooter';
-export {UserReviews} from 'pages/adminPanel/adminUser/UserReviews';
+
+export {
+  UserStatusSwitcher,
+  CreateUserPanel,
+  LocaleSelect
+} from './createUserPanel';
+
+export {
+  AdminControlPanel,
+  AdminUserCardsList,
+  AdminUsersList,
+  AdminReviewsTagsPicker,
+  AdminDataGridFooter
+} from './adminUsersList';
+
+export {AdminUserHeader, AdminUserReviews, AdminUser} from './adminUser';

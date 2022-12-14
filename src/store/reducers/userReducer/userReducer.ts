@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {UserState} from "store/types/UserState";
+import {UserState} from "store/types/initialStates/UserState";
 import {getProfile, loginUser, twitterLogin} from "store/actions";
 import {googleLogin} from "store/actions/auth/googleLogin";
 import {getGithubUser} from "store/actions/auth/getGithubUser";

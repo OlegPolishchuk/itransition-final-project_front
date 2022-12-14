@@ -1,4 +1,4 @@
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {localStorageData} from "shared";
 
 export const localStorageService = {

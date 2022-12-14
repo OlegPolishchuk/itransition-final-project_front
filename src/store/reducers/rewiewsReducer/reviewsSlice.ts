@@ -1,18 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchUserReviews, getTags} from "store/actions";
-import {fetchUser} from "store/actions/admin";
-import {Review} from "store/types/Review";
-import {PaginationParams} from "store/types/PaginationParams";
 import {paginationDefaultParams} from "shared";
+import {ReviewsState} from "store/types";
 
-type InitialState = {
-  reviews: Review[];
-  tags: string[];
-  paginationParams: PaginationParams;
-  reviewCount: number;
-}
 
-const initialState: InitialState = {
+const initialState: ReviewsState = {
   tags: [],
   reviews: [],
   reviewCount: 0,

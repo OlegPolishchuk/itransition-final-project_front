@@ -9,46 +9,47 @@ import {
   FormControlLabel,
   SelectChangeEvent
 } from "@mui/material";
-import {SliderGenerator} from "common/sliderGenerator/SliderGenerator";
-import {UserStatusSwitcher} from "pages/adminPanel/createUserPanel/UserStatusSwitcher";
-import {LocaleSelect} from "pages/adminPanel/createUserPanel/LocaleSelect";
+
+import {UserStatusSwitcher, LocaleSelect} from "pages";
 import {FormattedMessage} from "react-intl";
 import {locales, usersSliderValue, userStatus} from "shared";
-import {Locale} from "store/types/AppState";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {generateRandomUsers} from "store/actions/admin";
-import {Title} from "common/title/Title";
-import {RandomReviewsGenerator} from "common/reviews";
-import {GenerateRandomData} from "store/types/GenerateRandomData";
+import {generateRandomUsers, getTags} from "store/actions";
+import {RandomReviewsGenerator, SliderGenerator, Title} from "common";
 import {selectIsGenerating} from "store/selectors";
+import {RandomReviewsData, RandomUserData, Locale} from "store/types";
+
 
 export const CreateUserPanel = memo(() => {
   const dispatch = useAppDispatch();
 
   const isGenerating = useAppSelector(selectIsGenerating);
 
-  const [generateRandomData, setGenerateRandomData] = useState<GenerateRandomData>({
+  const [randomUsersData, setRandomUsersData] = useState<RandomUserData>({
     usersCount: 0,
     locale: locales.EN,
     status: userStatus.active,
+  })
+
+  const [randomReviewsData, setRandomReviewsData] = useState<RandomReviewsData>({
     reviewsCount: 0,
     tags: [],
-  })
+  });
 
   const [expanded, setExpanded] = useState(false);
 
   const handleUsersSliderChange = (event: Event, newValue: number | number[]) => {
-    setGenerateRandomData(data => ({
+    setRandomUsersData(data => ({
       ...data,
       usersCount: newValue
     }))
   };
 
   const handleUsersSliderBlur = () => {
-    if (generateRandomData.usersCount < usersSliderValue.MIN_SLIDER) {
-      setGenerateRandomData(data => ({...data, usersCount: usersSliderValue.MIN_SLIDER}));
-    } else if (generateRandomData.usersCount > usersSliderValue.MAX_SLIDER) {
-      setGenerateRandomData(data => ({
+    if (randomUsersData.usersCount < usersSliderValue.MIN_SLIDER) {
+      setRandomUsersData(data => ({...data, usersCount: usersSliderValue.MIN_SLIDER}));
+    } else if (randomUsersData.usersCount > usersSliderValue.MAX_SLIDER) {
+      setRandomUsersData(data => ({
         ...data,
         usersCount: usersSliderValue.MAX_SLIDER_INPUT
       }));
@@ -56,44 +57,55 @@ export const CreateUserPanel = memo(() => {
   };
 
   const handleSliderInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGenerateRandomData(data => ({
+    setRandomUsersData(data => ({
       ...data,
       usersCount: event.target.value === '' ? '' : Number(event.target.value)
     }))
   };
 
   const handleChangeStatus = () => {
-    setGenerateRandomData(data => ({
+    setRandomUsersData(data => ({
       ...data,
-      status: generateRandomData.status === userStatus.active ? userStatus.blocked : userStatus.active
+      status: randomUsersData.status === userStatus.active ? userStatus.blocked : userStatus.active
     }))
   }
 
   const handleChangeLocale = (event: SelectChangeEvent) => {
-    setGenerateRandomData(data => ({
+    setRandomUsersData(data => ({
       ...data,
       locale: event.target.value as Locale
     }))
   }
 
   const handleGenerate = () => {
-    dispatch(generateRandomUsers(generateRandomData));
+    const resultData = {
+      ...randomUsersData,
+      ...randomReviewsData,
+    }
 
-    setGenerateRandomData({
+    dispatch(generateRandomUsers(resultData));
+
+    setRandomUsersData({
         usersCount: 0,
         locale: locales.EN,
         status: userStatus.active,
-        reviewsCount: 0,
-        tags: [],
       }
     )
+
+    setRandomReviewsData({reviewsCount: 0, tags: []})
 
     setExpanded(false);
   }
 
 
   const handleToggleAccordion = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setExpanded(event.target.checked);
+    const checked = event.target.checked;
+
+    if (checked) {
+      dispatch(getTags());
+    }
+
+    setExpanded(checked);
   }
 
 
@@ -123,7 +135,7 @@ export const CreateUserPanel = memo(() => {
 
             <SliderGenerator
               sliderValue={usersSliderValue}
-              itemsCount={generateRandomData.usersCount}
+              itemsCount={randomUsersData.usersCount}
               handleSliderChange={handleUsersSliderChange}
               handleBlur={handleUsersSliderBlur}
               handleInputChange={handleSliderInputChange}
@@ -131,12 +143,12 @@ export const CreateUserPanel = memo(() => {
             />
 
             <UserStatusSwitcher
-              status={generateRandomData.status}
+              status={randomUsersData.status}
               handleChangeStatus={handleChangeStatus}
             />
 
             <LocaleSelect
-              locale={generateRandomData.locale}
+              locale={randomUsersData.locale}
               handleChangeLocale={handleChangeLocale}
             />
 
@@ -150,7 +162,8 @@ export const CreateUserPanel = memo(() => {
               )}
               label={(
                 <FormattedMessage id={'app.admin.generate.checkbox-accordion.title'}/>
-              )}/>
+              )}
+            />
 
           </Box>
 
@@ -161,8 +174,8 @@ export const CreateUserPanel = memo(() => {
 
         <AccordionDetails sx={{marginTop: '20px'}}>
           <RandomReviewsGenerator
-            data={generateRandomData}
-            setDataCallback={setGenerateRandomData}
+            data={randomReviewsData}
+            setDataCallback={setRandomReviewsData}
           />
         </AccordionDetails>
 
@@ -175,7 +188,7 @@ export const CreateUserPanel = memo(() => {
           variant={'contained'}
           color={'secondary'}
           onClick={handleGenerate}
-          disabled={generateRandomData.usersCount === 0}
+          disabled={randomUsersData.usersCount === 0}
         >
           <FormattedMessage id='app.admin.generate.button.title'/>
         </Button>

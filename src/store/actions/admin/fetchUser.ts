@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {apiUsers} from "apis";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 
 export const fetchUser = createAsyncThunk<User, string>(
   'admin/fetchUser', async (userId: string, {rejectWithValue, dispatch}) => {

@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiAuth, AuthData} from "apis";
 import {AxiosError} from "axios";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {localStorageService} from "services";
 
 export const loginUser = createAsyncThunk<User, AuthData>(

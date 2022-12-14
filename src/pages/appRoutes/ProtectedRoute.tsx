@@ -1,7 +1,7 @@
 import React, {ReactNode, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {routes, userRoles} from "shared";
-import {UserRole} from "store/types/User";
+import {UserRole} from "store/types/User/User";
 import {initializeApp} from "store/actions";
 
 type Props = {

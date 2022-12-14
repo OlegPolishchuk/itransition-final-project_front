@@ -240,7 +240,7 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
             backgroundColor: mode === 'dark' ? colors.primary.main : '#fff',
           }
         }
-      }
+      },
 
     }
   };

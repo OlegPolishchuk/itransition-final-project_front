@@ -10,12 +10,12 @@ export const adminTableColumns: GridColDef[] = [
   {field: 'login', headerName: 'User', flex: 2},
   {field: 'status', headerName: 'User Status', flex: 1},
   {
-    field: 'reviews',
+    field: 'reviewsCount',
     headerName: 'Reviews',
     flex: 1,
-    renderCell: ({row: {reviews}}) => {
+    renderCell: ({row: {reviewsCount}}) => {
       return (
-        reviews.lenght || 0
+        reviewsCount || 0
       )
     }
   },

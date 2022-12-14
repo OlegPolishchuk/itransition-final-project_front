@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {apiAuth} from "apis";
 import {AxiosError} from "axios";
-import {User} from "store/types/User";
-import {SocialResponse} from "store/types/SocialResponse";
+import {User} from "store/types/User/User";
+import {SocialResponse} from "store/types/responses/SocialResponse";
 import {localStorageService} from "services";
 
 export const googleLogin = createAsyncThunk<User, SocialResponse>(

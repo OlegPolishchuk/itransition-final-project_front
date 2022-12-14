@@ -1,7 +1,7 @@
 import {apiRoutes} from "shared";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {AuthData, instance} from "apis";
-import {SocialResponse} from "store/types/SocialResponse";
+import {SocialResponse} from "store/types/responses/SocialResponse";
 
 export const apiAuth = {
   register(data: AuthData) {

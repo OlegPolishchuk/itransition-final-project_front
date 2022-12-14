@@ -6,8 +6,8 @@ import {fetchUser} from "store/actions/admin/fetchUser";
 import {Box} from "@mui/material";
 import {Breadcrumbs, UserInfo} from "common";
 import {setCurrentUser} from "store/reducers/adminReducer/adminReducer";
-import {User} from "store/types/User";
-import {UserReviews} from "pages/adminPanel/adminUser/UserReviews";
+import {User} from "store/types/User/User";
+import {AdminUserReviews} from "pages/adminPanel/adminUser/AdminUserReviews";
 
 export const AdminUser = () => {
   console.log('AdminUser')
@@ -38,9 +38,7 @@ export const AdminUser = () => {
       <UserInfo user={user}/>
 
       <Box sx={{padding: '30px 0'}}>
-
-        <UserReviews userId={user._id} />
-
+        <AdminUserReviews userId={user._id} />
       </Box>
 
     </Box>

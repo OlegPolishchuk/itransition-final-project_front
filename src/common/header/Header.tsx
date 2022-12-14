@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Box, Button, Container} from "@mui/material";
 import {useAppDispatch} from "hooks";
-import {ThemeMode} from "store/types/AppState";
+import {ThemeMode} from "store/types";
 import {ThemeToggle} from "common/header/themeToggle/ThemeToggle";
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';

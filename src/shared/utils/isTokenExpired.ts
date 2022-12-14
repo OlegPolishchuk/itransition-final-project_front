@@ -1,4 +1,4 @@
-import {tokenData} from "shared/constants/tokenData";
+import {tokenData} from "shared/constants/auth/tokenData";
 import {localStorageData} from "shared/constants";
 
 export const isTokenExpired = () => {

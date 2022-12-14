@@ -1,8 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AppState, Locale} from "store/types/AppState";
-import {initializeApp, loginUser, registerUser, twitterLogin} from "store/actions";
-import {getGithubUser} from "store/actions/auth/getGithubUser";
-import {changeLocale} from "store/actions/app/changeLocale";
+import {AppState, Locale} from "store/types";
+import {
+  initializeApp,
+  loginUser,
+  registerUser,
+  twitterLogin,
+  getGithubUser,
+  changeLocale
+} from "store/actions";
+
 
 const initialState: AppState = {
   error: '',

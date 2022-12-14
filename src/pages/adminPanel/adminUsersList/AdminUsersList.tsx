@@ -4,7 +4,7 @@ import BlockIcon from "@mui/icons-material/Block";
 import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import {CreateUserPanel, UsersTable} from "common";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {GridColDef, GridSelectionModel} from "@mui/x-data-grid";
 import {
   adminTableSearchParams,
@@ -33,7 +33,7 @@ import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom
 import {
   setCurrentUser,
   setTableSearchParams
-} from "store/reducers/adminReducer/adminReducer";
+} from "store/reducers";
 import {FormattedMessage} from "react-intl";
 import {RootState} from "store/store";
 import {adminTableColumns} from 'shared';
@@ -106,7 +106,6 @@ export const AdminUsersList = () => {
 
   useEffect(() => {
     dispatch(fetchUsers());
-    dispatch(getTags());
   }, [tableSearchParams.page, tableSearchParams.limit])
 
   useEffect(() => {

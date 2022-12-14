@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {Box, Button, ButtonGroup, Grid} from "@mui/material";
-import {User} from "store/types/User";
+import {User} from "store/types/User/User";
 import {useAppDispatch} from "hooks";
 import {UserAvatar} from "common/users/userInfo/userAvatar/UserAvatar";
 import {UserDescription} from "common/users/userInfo/userDescription/UserDescription";
