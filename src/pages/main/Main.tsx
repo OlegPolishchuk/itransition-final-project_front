@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button} from "@mui/material";
+import {Container, CssBaseline} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "hooks";
 import {selectUser} from "store/selectors";
 import {getProfile} from "store/actions";
-import {NavLink} from "react-router-dom";
-import {routes} from "shared";
+import {Outlet} from "react-router-dom";
+import {MainNav} from "common";
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -15,13 +15,11 @@ export const Main = () => {
   }
 
   return (
-    <div>
-      <h1>Protected check authorization headers</h1>
+    <Container>
+      <MainNav />
 
-      <Button onClick={handleClick}>Refresh Profile</Button>
+      <Outlet />
 
-      <NavLink to={routes.protectedRoute} >to Protected</NavLink>
-      <NavLink to={routes.admin.main} >to admin</NavLink>
-    </div>
+    </Container>
   );
 };

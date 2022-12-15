@@ -12,6 +12,9 @@ export const routes = {
   },
   review: '/review',
   notFound: '/not-found',
-  mainPage: '/',
+  mainPage: {
+    base: '/',
+    popular: '/popular',
+  },
   protectedRoute: '/protected'
 }

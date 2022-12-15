@@ -5,13 +5,13 @@ import {
   AdminPanel,
   AdminUser,
   AdminUsersList,
+  LatestReviews,
   Login,
-  Main,
-  Protected,
+  Main, PopularReviews,
   ProtectedRoute,
   Register
 } from "pages";
-import {UserRole} from "store/types/User/User";
+import {UserRole} from "store/types";
 
 
 type Props = {
@@ -24,13 +24,12 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
   console.log('App Routes')
   return (
     <Routes>
-      <Route path={routes.auth.register} element={<Register/>}/>
-      <Route path={routes.auth.login} element={<Login/>}/>
-
-      <Route
-        path={routes.mainPage}
-        element={<ProtectedRoute isUserAuth={isUserAuth} children={<Main/>}/>}
-      />
+      <Route path={routes.auth.register} element={<Register/>} />
+      <Route path={routes.auth.login} element={<Login/>} />
+      <Route path={routes.mainPage.base} element={<Main/>} >
+        <Route index element={<LatestReviews />}/>
+        <Route path={routes.mainPage.popular} element={<PopularReviews />} />
+      </Route>
 
       <Route
         path={routes.admin.main}
@@ -62,8 +61,7 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
       </Route>
 
 
-      <Route path={routes.notFound} element={<div>Not Found</div>}/>
-      <Route path={routes.protectedRoute} element={<Protected/>}/>
+      <Route path={routes.notFound} element={<div>Not Found</div>} />
     </Routes>
   );
 };

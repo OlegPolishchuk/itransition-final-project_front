@@ -8,6 +8,7 @@ import {Breadcrumbs, UserInfo} from "common";
 import {setCurrentUser} from "store/reducers/adminReducer/adminReducer";
 import {User} from "store/types/User/User";
 import {AdminUserReviews} from "pages/adminPanel/adminUser/AdminUserReviews";
+import {routes} from "shared";
 
 export const AdminUser = () => {
   console.log('AdminUser')
@@ -33,7 +34,7 @@ export const AdminUser = () => {
   return (
     <Box>
 
-      <Breadcrumbs />
+      <Breadcrumbs returnTo={routes.admin.main}/>
 
       <UserInfo user={user}/>
 

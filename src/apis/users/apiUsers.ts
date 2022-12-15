@@ -25,7 +25,7 @@ export const apiUsers = {
   },
 
   generateRandomUsers(data: RandomUserData) {
-    return instance.post(apiRoutes.users.base, {data})
+    return instance.post(apiRoutes.users.base, data)
   },
 
   updateCurrentUser(user: Partial<User>) {

@@ -16,5 +16,4 @@ export {
   AdminUserReviews,
 } from './adminPanel';
 
-export {Protected} from './Protected'
-export {Main} from './main/Main';
+export {Main, LatestReviews, PopularReviews} from './main';

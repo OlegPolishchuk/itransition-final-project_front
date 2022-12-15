@@ -1,8 +1,7 @@
 import React, {ReactNode, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import {routes, userRoles} from "shared";
-import {UserRole} from "store/types/User/User";
-import {initializeApp} from "store/actions";
+import {UserRole} from "store/types";
 
 type Props = {
   isUserAuth: boolean;
@@ -28,7 +27,7 @@ export const ProtectedRoute = React.memo(({
   useEffect(() => {
     if (checkAdmin) {
       if (userRole !== userRoles.admin) {
-        navigate(routes.mainPage)
+        navigate(routes.mainPage.base)
       }
     }
   }, [userRole, checkAdmin, isInitialize, navigate])

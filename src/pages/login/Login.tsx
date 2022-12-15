@@ -56,7 +56,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isUserAuth) {
-      navigate(userRole === userRoles.user ? routes.mainPage : routes.admin.main)
+      navigate(userRole === userRoles.user ? routes.mainPage.base : routes.admin.main)
     }
   }, [isUserAuth, userRole])
 

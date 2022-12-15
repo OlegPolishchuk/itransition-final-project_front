@@ -1,5 +1,5 @@
 export {TwitterAuth, AuthForm, GoogleAuth, GithubAuth} from './auth';
-export {Header, LocalePicker, ThemeToggle} from './header';
+export {Header, LocalePicker, ThemeToggle, AuthButton} from './header';
 export {Loader} from './loader/Loader';
 export {Breadcrumbs} from './breadcrumbs/Breadcrumbs';
 
@@ -29,4 +29,5 @@ export {CardItemTitle} from './cardItemTitle/CardItemTitle';
 export {MainCheckbox} from './mainCheckbox/MainCheckbox';
 export {NothingToShow} from './nothingToShow/NothingToShow';
 export {CustomPagination, DataGridCustomPagination} from './pagination';
+export {MainNav} from './navigations';
 

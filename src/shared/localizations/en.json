@@ -67,5 +67,8 @@
   "app.user.reviews-list.header.collapse-button.title": "Random Reviews",
   "app.user.reviews-list.no-values.title": "Nothing to show",
 
-  "app.breadcrumbs.title": "Return back"
+  "app.breadcrumbs.title": "Return back",
+
+  "app.navigation-main.latest.title": "Latest",
+  "app.navigation-main.popular.title": "Popular"
 }

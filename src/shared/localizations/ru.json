@@ -67,5 +67,8 @@
   "app.user.reviews-list.header.collapse-button.title": "Случайные обзоры",
   "app.user.reviews-list.no-values.title": "Ничего нет",
 
-  "app.breadcrumbs.title": "Вернуться назад"
+  "app.breadcrumbs.title": "Вернуться назад",
+
+  "app.navigation-main.latest.title": "Последние",
+  "app.navigation-main.popular.title": "Популярные"
 }

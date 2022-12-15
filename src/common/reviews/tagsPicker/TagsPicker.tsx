@@ -75,12 +75,12 @@ export const TagsPicker: FC<Props> = ({handleChangeOptionCallback}) => {
     <CreatableSelect
       isMulti
       options={options}
-      // className="basic-multi-select"
       classNamePrefix="select"
       isClearable
       value={value}
       onChange={handleChangeOption}
       styles={selectStyles}
+      escapeClearsValue
     />
   );
 };
