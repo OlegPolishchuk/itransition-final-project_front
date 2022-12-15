@@ -21,7 +21,11 @@ export {
   TagsPicker,
   ReviewList,
   ReviewHeader,
-  UserReviews
+  UserReviews,
+  ReviewItem,
+  ReviewItemHeader,
+  ReviewItemBody,
+  ReviewItemFooter
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';
@@ -30,4 +34,8 @@ export {MainCheckbox} from './mainCheckbox/MainCheckbox';
 export {NothingToShow} from './nothingToShow/NothingToShow';
 export {CustomPagination, DataGridCustomPagination} from './pagination';
 export {MainNav} from './navigations';
+export {BaseNavLink} from './baseNavLink/BaseNavLink';
+export {Tag} from './tag/Tag';
+export {OverallScore} from './scores';
+
 

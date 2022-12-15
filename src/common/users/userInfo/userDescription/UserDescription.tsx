@@ -14,7 +14,7 @@ import {userFields, userRoles} from "shared";
 import {selectThemeMode, selectUserRole} from "store/selectors";
 import {FormattedMessage} from "react-intl";
 import {CommonFieldList, UserFieldsList} from "store/types/User/UserFieldsList";
-import {UserProfileEditor} from "common/users/userFrofileEditor/UserProfileEditor";
+import {UserProfileEditor} from "common/users/userProfileEditor/UserProfileEditor";
 
 type Props = {
   user: User;

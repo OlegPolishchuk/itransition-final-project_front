@@ -23,6 +23,8 @@ export const apiRoutes = {
     base: baseReviewsPath,
     userReviews: `${baseReviewsPath}/userReviews`,
     random: `${baseReviewsPath}/random`,
+    latest: `${baseReviewsPath}/latest`,
+    popular: `${baseReviewsPath}/popular`,
   },
   tags: {
     base: baseTagsPath,

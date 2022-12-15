@@ -1,5 +1,4 @@
 export type Review = {
-  userId: string;
   _id: string;
   title: string;
   subtitle: string;
@@ -10,4 +9,7 @@ export type Review = {
   comments: [];
   created: string,
   updated: string,
+  userId: string;
+  userName: string;
+  userAvatar: string;
 }

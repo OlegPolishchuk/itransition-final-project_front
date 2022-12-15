@@ -21,4 +21,11 @@ export {
   fetchUser,
 } from './admin';
 
-export {getTags, fetchUserReviews, deleteReviews, generateRandomReviews} from './reviews';
+export {
+  getTags,
+  fetchUserReviews,
+  deleteReviews,
+  generateRandomReviews,
+  fetchPopularReviews,
+  fetchLatestReviews
+} from './reviews';

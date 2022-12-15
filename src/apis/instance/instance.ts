@@ -12,13 +12,14 @@ import {refreshToken} from "store/actions/auth/refreshToken";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 const PUBLIC_ROUTES = [
-  // routes.mainPage,
   routes.notFound,
   routes.auth.login,
   apiRoutes.auth.logout,
   routes.auth.register,
   apiRoutes.auth.social,
   apiRoutes.auth.refresh,
+  apiRoutes.reviews.latest,
+  apiRoutes.reviews.popular
 ]
 
 let store: ToolkitStore<CombinedState<{

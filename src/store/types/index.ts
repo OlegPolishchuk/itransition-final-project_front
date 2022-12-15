@@ -5,10 +5,10 @@ export type {
 } from './randomGenerator';
 
 export type {
-  FetchUserReviewsResponse,
   SocialResponse,
   FetchUsersResponse,
-  LoginUserData
+  LoginUserData,
+  FetchReviewsResponse,
 } from './responses';
 
 export type {UpdatedUsersStatusRequest} from './requests';

@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {apiReviews} from "apis";
-import {FetchUserReviewsResponse} from "store/types/responses/FetchUserReviewsResponse";
 import {RootState} from "store/store";
+import {FetchReviewsResponse} from "store/types";
 
-export const fetchUserReviews = createAsyncThunk<FetchUserReviewsResponse, string, {state: RootState}>(
+export const fetchUserReviews = createAsyncThunk<FetchReviewsResponse, string, {state: RootState}>(
   'reviews/fetchUserReviews',
   async (userId: string, {rejectWithValue, getState}) => {
     try {

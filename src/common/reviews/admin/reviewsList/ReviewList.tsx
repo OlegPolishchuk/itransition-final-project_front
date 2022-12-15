@@ -9,7 +9,7 @@ import {
   Typography,
   useMediaQuery
 } from "@mui/material";
-import {CardItemTitle} from "common";
+import {CardItemTitle} from "common/index";
 import {NavLink, useSearchParams} from "react-router-dom";
 import {Review} from "store/types";
 import {useThemeColors} from "hooks";

@@ -70,5 +70,7 @@
   "app.breadcrumbs.title": "Вернуться назад",
 
   "app.navigation-main.latest.title": "Последние",
-  "app.navigation-main.popular.title": "Популярные"
+  "app.navigation-main.popular.title": "Популярные",
+
+  "app.overall-score.tooltip.title": "оценка пользвоателей"
 }

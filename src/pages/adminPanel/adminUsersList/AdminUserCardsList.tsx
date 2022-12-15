@@ -8,7 +8,6 @@ import {
   CardActions,
   CardHeader,
   Checkbox,
-  FormControlLabel,
   Grid,
   Typography
 } from "@mui/material";
