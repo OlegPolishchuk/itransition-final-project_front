@@ -1,16 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
+import {FetchReviews, FetchReviewsResponse} from "store/types";
 import {apiReviews} from "apis";
-import {FetchReviewsResponse, FetchReviews} from "store/types";
+import {AxiosError} from "axios/index";
 import {RootState} from "store/store";
 
-export const fetchReviews = createAsyncThunk<FetchReviewsResponse, undefined | FetchReviews>(
-  'reviews/fetchLatestReviews',
-  async (sortData:FetchReviews = {sortReviews: '', reviewId: ''}, {rejectWithValue}) => {
+export const fetchMoreReviews = createAsyncThunk<FetchReviewsResponse, undefined | FetchReviews, {state: RootState}>(
+  'reviews/fetchMoreReviews',
+  async (sortData:FetchReviews = {sortReviews: '', reviewId: ''}, {rejectWithValue, getState}) => {
     try {
       const page =  sortData.page
         ? sortData.page
-        : 0;
+        :getState().reviewsReducer.paginationParams.page;
 
       const updatedSortData: FetchReviews = {...sortData, page };
 

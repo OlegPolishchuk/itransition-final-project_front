@@ -6,7 +6,7 @@ import {MainNav, TagsCloud} from "common";
 export const Main = () => {
 
   return (
-    <Container>
+    <Container sx={{paddingBottom: '50px'}}>
 
       <Box mb={'50px'}>
         <MainNav />

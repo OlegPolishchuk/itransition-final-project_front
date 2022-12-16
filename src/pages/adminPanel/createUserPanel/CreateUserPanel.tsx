@@ -48,7 +48,7 @@ export const CreateUserPanel = memo(() => {
   const handleUsersSliderBlur = () => {
     if (randomUsersData.usersCount < usersSliderValue.MIN_SLIDER) {
       setRandomUsersData(data => ({...data, usersCount: usersSliderValue.MIN_SLIDER}));
-    } else if (randomUsersData.usersCount > usersSliderValue.MAX_SLIDER) {
+    } else if (randomUsersData.usersCount > usersSliderValue.MAX_SLIDER_INPUT) {
       setRandomUsersData(data => ({
         ...data,
         usersCount: usersSliderValue.MAX_SLIDER_INPUT
