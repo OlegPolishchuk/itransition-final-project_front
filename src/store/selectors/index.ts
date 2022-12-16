@@ -25,4 +25,6 @@ export {
   selectTags,
   selectPaginationParams,
   selectReviewCount,
+  selectIsReviewLoading,
+  selectReviewSortType,
 } from './reviews';

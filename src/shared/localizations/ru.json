@@ -72,5 +72,8 @@
   "app.navigation-main.latest.title": "Последние",
   "app.navigation-main.popular.title": "Популярные",
 
+  "app.page-main.latest.title": "Последние обзоры:",
+  "app.page-main.popular.title": "Популярные обзоры:",
+
   "app.overall-score.tooltip.title": "оценка пользвоателей"
 }

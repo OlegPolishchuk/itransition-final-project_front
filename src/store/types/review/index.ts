@@ -13,3 +13,5 @@ export type Review = {
   userName: string;
   userAvatar: string;
 }
+
+export type SortReviews = 'created' | 'overallScore'  | '';

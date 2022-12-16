@@ -15,7 +15,7 @@ import {
 } from "store/selectors";
 import {initializeApp} from "store/actions";
 
-import {Header, Loader} from "common";
+import {Header, MainLoader} from "common";
 import {AppRoutes} from "pages";
 
 
@@ -66,10 +66,10 @@ export function App() {
 
               </div>
             )
-          : <Loader />
+          : <MainLoader />
           }
 
-          {isLoading && <Loader />}
+          {isLoading && <MainLoader />}
         </ThemeProvider>
       </IntlProvider>
     </BrowserRouter>

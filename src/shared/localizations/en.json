@@ -72,5 +72,8 @@
   "app.navigation-main.latest.title": "Latest",
   "app.navigation-main.popular.title": "Popular",
 
+  "app.page-main.latest.title": "Latest reviews:",
+  "app.page-main.popular.title": "Popular reviews:",
+
   "app.overall-score.tooltip.title": "overall score"
 }

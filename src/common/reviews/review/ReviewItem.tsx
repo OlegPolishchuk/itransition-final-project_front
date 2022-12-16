@@ -9,15 +9,16 @@ import {selectThemeMode} from "store/selectors";
 
 type Props = {
   review: Review;
+  isHide: boolean;
 }
 
-export const ReviewItem: FC<Props> = ({review}) => {
+export const ReviewItem: FC<Props> = ({review, isHide}) => {
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
 
   return (
     <Box sx={{
-      margin: '50px 0',
+      marginBottom: '50px',
       backgroundColor: theme === 'dark' ?  colors.primary.main : '#fff',
       borderRadius: '4px',
       backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
@@ -35,6 +36,8 @@ export const ReviewItem: FC<Props> = ({review}) => {
         subtitle={review.subtitle}
         body={review.body}
         overallScore={review.overallScore}
+        reviewId={review._id}
+        isHide={isHide}
       />
 
       <ReviewItemFooter tags={review.tags} />

@@ -18,8 +18,8 @@ const PUBLIC_ROUTES = [
   routes.auth.register,
   apiRoutes.auth.social,
   apiRoutes.auth.refresh,
-  apiRoutes.reviews.latest,
-  apiRoutes.reviews.popular
+  apiRoutes.reviews.base,
+  apiRoutes.tags.base,
 ]
 
 let store: ToolkitStore<CombinedState<{

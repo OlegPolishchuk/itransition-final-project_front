@@ -1,6 +1,6 @@
 export {TwitterAuth, AuthForm, GoogleAuth, GithubAuth} from './auth';
 export {Header, LocalePicker, ThemeToggle, AuthButton} from './header';
-export {Loader} from './loader/Loader';
+export {MainLoader, Loader} from './loaders';
 export {Breadcrumbs} from './breadcrumbs/Breadcrumbs';
 
 export {
@@ -25,7 +25,8 @@ export {
   ReviewItem,
   ReviewItemHeader,
   ReviewItemBody,
-  ReviewItemFooter
+  ReviewItemFooter,
+  Reviews,
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';
@@ -33,9 +34,9 @@ export {CardItemTitle} from './cardItemTitle/CardItemTitle';
 export {MainCheckbox} from './mainCheckbox/MainCheckbox';
 export {NothingToShow} from './nothingToShow/NothingToShow';
 export {CustomPagination, DataGridCustomPagination} from './pagination';
-export {MainNav} from './navigations';
+export {MainNav,AsideNav} from './navigations';
 export {BaseNavLink} from './baseNavLink/BaseNavLink';
-export {Tag} from './tag/Tag';
+export {Tag, TagsCloud} from './tags';
 export {OverallScore} from './scores';
 
 

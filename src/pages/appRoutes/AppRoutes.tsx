@@ -5,13 +5,14 @@ import {
   AdminPanel,
   AdminUser,
   AdminUsersList,
-  LatestReviews,
   Login,
-  Main, PopularReviews,
+  Main,
   ProtectedRoute,
-  Register
+  Register,
+  CurrentReview
 } from "pages";
 import {UserRole} from "store/types";
+import { Reviews } from 'common';
 
 
 type Props = {
@@ -26,9 +27,11 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
     <Routes>
       <Route path={routes.auth.register} element={<Register/>} />
       <Route path={routes.auth.login} element={<Login/>} />
+
       <Route path={routes.mainPage.base} element={<Main/>} >
-        <Route index element={<LatestReviews />}/>
-        <Route path={routes.mainPage.popular} element={<PopularReviews />} />
+        <Route index element={<Reviews />}/>
+        <Route path={routes.mainPage.popular} element={<Reviews />} />
+        <Route path={`${routes.review}/:reviewId`} element={<CurrentReview />} />
       </Route>
 
       <Route
@@ -55,7 +58,7 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
 
         <Route
           path={`${routes.admin.review}/:reviewId`}
-          element={<h1>Review</h1>}
+          element={<CurrentReview />}
         />
 
       </Route>

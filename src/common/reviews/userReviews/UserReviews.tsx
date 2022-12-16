@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Box} from "@mui/material";
-import {NothingToShow, CustomPagination, ReviewList, ReviewHeader} from "common";
+import {NothingToShow, CustomPagination, ReviewList, ReviewHeader} from "common/index";
 import {FormattedMessage} from "react-intl";
 import {Review} from "store/types";
 import {useAppDispatch, useAppSelector} from "hooks";

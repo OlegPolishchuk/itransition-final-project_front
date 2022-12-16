@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Box, Typography} from "@mui/material";
-import {Tag} from "common/tag/Tag";
+import {Tag} from "common/tags/tag/Tag";
 
 type Props = {
   tags: string[];

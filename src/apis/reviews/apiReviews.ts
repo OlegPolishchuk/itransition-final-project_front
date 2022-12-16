@@ -1,7 +1,11 @@
 import {instance} from "apis/instance/instance";
 import {apiRoutes} from "shared";
-import {GenerateRandomReviewsRequest} from "store/types/requests";
-import {FetchReviewsResponse} from "store/types";
+import {
+  FetchReviews,
+  FetchReviewsResponse,
+  GenerateRandomReviewsRequest
+} from "store/types";
+
 
 export const apiReviews = {
   getUsersReviews(userId: string, page: number, limit: number) {
@@ -18,15 +22,14 @@ export const apiReviews = {
     return instance.delete(`${apiRoutes.reviews.base}?id=${queryString}`)
   },
 
-  generateRandomReviews(data: GenerateRandomReviewsRequest){
+  generateRandomReviews(data: GenerateRandomReviewsRequest) {
     return instance.post(apiRoutes.reviews.random, data)
   },
 
-  getLatestReviews() {
-    return instance.get<FetchReviewsResponse>(apiRoutes.reviews.latest)
+  getReviews(sortType: FetchReviews) {
+    return instance.get<FetchReviewsResponse>(apiRoutes.reviews.base, {
+      params: {...sortType}
+    })
   },
 
-  getPopularReviews() {
-    return instance.get<FetchReviewsResponse>(apiRoutes.reviews.popular)
-  }
 }

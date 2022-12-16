@@ -1,24 +1,28 @@
 import React from 'react';
-import {Container, CssBaseline} from "@mui/material";
-import {useAppDispatch, useAppSelector} from "hooks";
-import {selectUser} from "store/selectors";
-import {getProfile} from "store/actions";
+import {Box, Container, Grid} from "@mui/material";
 import {Outlet} from "react-router-dom";
-import {MainNav} from "common";
+import {MainNav, TagsCloud} from "common";
 
 export const Main = () => {
-  const dispatch = useAppDispatch();
-  const {token} = useAppSelector(selectUser);
-
-  const handleClick = () => {
-    dispatch(getProfile(token))
-  }
 
   return (
     <Container>
-      <MainNav />
 
-      <Outlet />
+      <Box mb={'50px'}>
+        <MainNav />
+      </Box>
+
+      <Grid container spacing={4}>
+
+        <Grid item xs={12} md={8} lg={9}>
+          <Outlet />
+        </Grid>
+
+        <Grid item xs={12} md={4} lg={3}>
+          <TagsCloud />
+        </Grid>
+
+      </Grid>
 
     </Container>
   );

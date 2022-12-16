@@ -26,6 +26,5 @@ export {
   fetchUserReviews,
   deleteReviews,
   generateRandomReviews,
-  fetchPopularReviews,
-  fetchLatestReviews
+  fetchReviews
 } from './reviews';
