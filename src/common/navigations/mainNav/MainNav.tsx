@@ -7,10 +7,11 @@ import {selectThemeMode} from "store/selectors";
 import {FormattedMessage} from "react-intl";
 
 type Props = {
-  variant?: 'vertical' | 'horizontal' ;
+  variant?: 'vertical' | 'horizontal';
+  callback?: () => void;
 }
 
-export const MainNav: FC<Props> = ({variant = 'horizontal'}) => {
+export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
 
@@ -25,6 +26,11 @@ export const MainNav: FC<Props> = ({variant = 'horizontal'}) => {
     isActive ? activeNavLinkStyles : navLinkStyles
 
 
+  const handleClick = () => {
+    callback && callback();
+  }
+
+
   return (
     <Box sx={{margin: '30px 0'}}>
       <nav>
@@ -35,13 +41,22 @@ export const MainNav: FC<Props> = ({variant = 'horizontal'}) => {
         }}>
 
           <li>
-            <NavLink style={activeNavLink} to={routes.mainPage.base} end>
+            <NavLink
+              onClick={handleClick}
+              style={activeNavLink}
+              to={routes.mainPage.base}
+              end
+            >
               <FormattedMessage id='app.navigation-main.latest.title'/>
             </NavLink>
           </li>
 
           <li>
-            <NavLink style={activeNavLink} to={routes.mainPage.popular}>
+            <NavLink
+              onClick={handleClick}
+              style={activeNavLink}
+              to={routes.mainPage.popular}
+            >
               <FormattedMessage id='app.navigation-main.popular.title'/>
             </NavLink>
           </li>

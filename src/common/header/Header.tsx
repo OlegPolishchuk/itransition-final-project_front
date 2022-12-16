@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {Box, Button, Container, Drawer, IconButton, useMediaQuery} from "@mui/material";
+import {Box, Container, Drawer, IconButton, useMediaQuery} from "@mui/material";
 import {useAppDispatch, useThemeColors} from "hooks";
 import {ThemeMode} from "store/types";
 import {ThemeToggle} from "common/header/themeToggle/ThemeToggle";
@@ -26,8 +26,22 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
     dispatch(changeTheme())
   }
 
-  const toggleDrawer = (isOpen: boolean) => {
-    setIsDrawerOpen(isOpen)
+
+ const toggleDrawer = (isOpen: boolean)  =>
+   (event: React.KeyboardEvent | React.MouseEvent) => {
+     if (
+       event.type === 'keydown' &&
+       ((event as React.KeyboardEvent).key === 'Tab' ||
+         (event as React.KeyboardEvent).key === 'Shift')
+     ) {
+       return;
+     }
+
+     setIsDrawerOpen(isOpen);
+   };
+
+  const navCallback = () => {
+    setIsDrawerOpen(false)
   }
 
 
@@ -51,7 +65,7 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
             ? (
               <>
                 <IconButton
-                  onClick={() => toggleDrawer(true)}
+                  onClick={toggleDrawer(true)}
                 >
                   <MenuOutlinedIcon
                   />
@@ -60,9 +74,10 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
                 <Drawer
                   anchor={'left'}
                   open={isDrawerOpen}
-                  onClose={() => toggleDrawer(false)}
+                  onClose={toggleDrawer(false)}
+                  onClick={navCallback}
                 >
-                  <AsideNav/>
+                  <AsideNav />
                 </Drawer>
               </>
             )

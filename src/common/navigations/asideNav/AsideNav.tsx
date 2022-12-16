@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box, Divider} from "@mui/material";
 import {AuthButton} from "common/header";
 import {MainNav} from "common/navigations/mainNav/MainNav";
+
 
 export const AsideNav = () => {
   return (
@@ -13,11 +14,13 @@ export const AsideNav = () => {
       width: '300px',
     }}>
 
-      <AuthButton />
+      <AuthButton/>
 
-      <Divider />
+      <Divider/>
 
-      <MainNav variant={'vertical'}/>
+      <MainNav
+        variant={'vertical'}
+      />
     </Box>
   );
 };

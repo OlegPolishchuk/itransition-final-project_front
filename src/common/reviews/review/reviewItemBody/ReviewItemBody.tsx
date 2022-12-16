@@ -5,6 +5,7 @@ import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
 import {useThemeColors} from "hooks";
 import {OverallScore} from "common/scores";
 import {routes} from "shared";
+import {FormattedMessage} from "react-intl";
 
 type Props = {
   title: string;
@@ -25,7 +26,6 @@ export const ReviewItemBody: FC<Props> = ({
                                           }) => {
   const colors = useThemeColors();
   const smallScreen = useMediaQuery('(max-width: 600px)');
-  // const isHideReviewStyle = {maxHeight: '300px', overflow: 'hidden'};
 
   return (
     <Box>
@@ -54,8 +54,11 @@ export const ReviewItemBody: FC<Props> = ({
 
       {isHide && (
         <Box pt={'15px'}>
-          <BaseNavLink to={`${routes.review}/${reviewId}`} color={colors.secondary.main}>
-            Показать полностью
+          <BaseNavLink
+            to={`${routes.review}/${reviewId}`}
+            color={colors.secondary.main}
+          >
+            <FormattedMessage id='app.review-body.see-more-button.title'/>
           </BaseNavLink>
         </Box>
       )}

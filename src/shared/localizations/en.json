@@ -75,5 +75,6 @@
   "app.page-main.latest.title": "Latest reviews:",
   "app.page-main.popular.title": "Popular reviews:",
 
-  "app.overall-score.tooltip.title": "overall score"
+  "app.overall-score.tooltip.title": "overall score",
+  "app.review-body.see-more-button.title": "Show the entire review"
 }

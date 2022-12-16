@@ -75,5 +75,6 @@
   "app.page-main.latest.title": "Последние обзоры:",
   "app.page-main.popular.title": "Популярные обзоры:",
 
-  "app.overall-score.tooltip.title": "оценка пользвоателей"
+  "app.overall-score.tooltip.title": "оценка пользвоателей",
+  "app.review-body.see-more-button.title": "Показать полностью"
 }
