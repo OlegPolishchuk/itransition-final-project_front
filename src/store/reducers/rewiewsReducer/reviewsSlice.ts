@@ -61,6 +61,7 @@ const reviewsSlice = createSlice({
       state.isLoading = false;
       state.reviews = [...state.reviews, ...action.payload.reviews];
       state.reviewCount = action.payload.totalCount;
+      console.log(state.reviews)
     })
     builder.addCase(fetchMoreReviews.rejected, (state, action) => {
       state.isLoading = false;

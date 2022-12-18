@@ -34,38 +34,13 @@ export const Reviews = () => {
   useEffect(() => {
     const sortType: SortReviews = pathname === '/' ? "" : 'overallScore';
 
+    dispatch(setReviewsPaginationParams({page: 0}))
     dispatch(fetchReviews({sortReviews: sortType}))
   }, [pathname])
 
 
   return (
     <>
-
-      {/*{isLoading*/}
-      {/*  ? (<Loader/>)*/}
-      {/*  : (*/}
-      {/*    <>*/}
-      {/*      {reviews.map(review => (*/}
-      {/*        <ReviewItem*/}
-      {/*          key={review._id}*/}
-      {/*          review={review}*/}
-      {/*          isHide*/}
-      {/*        />*/}
-      {/*      ))}*/}
-      {/*      */}
-      {/*      <Box textAlign={'center'}>*/}
-      {/*        <Button*/}
-      {/*          color={'secondary'}*/}
-      {/*          variant={'outlined'}*/}
-      {/*          onClick={handleLoadMore}*/}
-      {/*        >*/}
-      {/*          Load more*/}
-      {/*        </Button>*/}
-      {/*      </Box>*/}
-
-      {/*    </>*/}
-      {/*  )*/}
-      {/*}*/}
 
       {isLoading && <Loader/>}
 
@@ -78,6 +53,13 @@ export const Reviews = () => {
       ))}
 
       <Box textAlign={'center'}>
+
+        {(isLoading && reviews.length > 10) && (
+          <Box textAlign={'center'}>
+            <Loader/>
+          </Box>
+        )}
+
         {totalCount > reviews.length
           ? (<Button
             color={'secondary'}
