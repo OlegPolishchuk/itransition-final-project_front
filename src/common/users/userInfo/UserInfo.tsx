@@ -26,7 +26,7 @@ export const UserInfo: FC<Props> = ({user, isMyProfile}) => {
   const [userCopy, setUserCopy] = useState<{ [key: string]: any }>({...user});
 
   const userNameRef = useRef<HTMLInputElement>(null);
-
+  console.log(isMyProfile)
 
   const handleSaveUserDescription = () => {
     const usernameInput = userNameRef.current as HTMLInputElement;

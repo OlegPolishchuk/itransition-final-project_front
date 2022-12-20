@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "hooks";
-import {selectSelectedUser, selectUser} from "store/selectors";
+import {selectSelectedUser, selectUser, selectUserRole} from "store/selectors";
 import {Breadcrumbs, UserInfo, UserReviews} from "common";
 import {Box, Container, Divider} from "@mui/material";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {fetchUser} from "store/actions";
 
 export const Profile = () => {
@@ -11,10 +11,11 @@ export const Profile = () => {
 
   const selectedUser = useAppSelector(selectSelectedUser);
   const user = useAppSelector(selectUser);
+  const userRole = useAppSelector(selectUserRole);
 
   const {id} = useParams();
 
-  const isMyProfile = user._id === id;
+  const isMyProfile = user._id === id || userRole === 'admin';
 
   useEffect(() => {
     dispatch(fetchUser(id as string))
