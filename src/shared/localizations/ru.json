@@ -74,6 +74,10 @@
 
   "app.page-main.latest.title": "Последние обзоры:",
   "app.page-main.popular.title": "Популярные обзоры:",
+  "app.navigation-main.profile.title": "Профиль",
+  "app.navigation-main.admin-panel.title": "Панель администратора",
+
+  "app.page-main.button-show-more.title": "Показать больше",
 
   "app.overall-score.tooltip.title": "оценка пользвоателей",
   "app.review-body.see-more-button.title": "Показать полностью"

@@ -2,16 +2,18 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "hooks";
 import {fetchReviews} from "store/actions/reviews/fetchReviews";
 import {
+  selectIsFirstLoading,
   selectIsReviewLoading,
   selectPaginationParams, selectReviewCount,
   selectReviews
 } from "store/selectors";
 import {Loader, NothingToShow, ReviewItem} from "common/index";
 import {useLocation} from "react-router-dom";
-import {SortReviews} from "store/types";
 import {Box, Button} from "@mui/material";
 import {setReviewsPaginationParams} from "store/reducers";
 import {fetchMoreReviews} from "store/actions";
+import {FormattedMessage} from "react-intl";
+import {ReviewSortType} from "store/types";
 
 export const Reviews = () => {
   const dispatch = useAppDispatch();
@@ -22,55 +24,61 @@ export const Reviews = () => {
   const isLoading = useAppSelector(selectIsReviewLoading);
   const {page} = useAppSelector(selectPaginationParams);
   const totalCount = useAppSelector(selectReviewCount);
+  const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
   const handleLoadMore = () => {
     const newPage = page + 1;
-    const sortType: SortReviews = pathname === '/' ? "" : 'overallScore';
+    const sortType: ReviewSortType = pathname === '/' ? "created" : 'overallScore';
 
     dispatch(setReviewsPaginationParams({page: newPage}))
-    dispatch(fetchMoreReviews({sortReviews: sortType, page: newPage}))
+    dispatch(fetchMoreReviews({reviewsSortParams: sortType, page: newPage}))
   }
 
   useEffect(() => {
-    const sortType: SortReviews = pathname === '/' ? "" : 'overallScore';
+    const sortType: ReviewSortType = pathname === '/' ? "created" : 'overallScore';
 
     dispatch(setReviewsPaginationParams({page: 0}))
-    dispatch(fetchReviews({sortReviews: sortType}))
+    dispatch(fetchReviews({reviewsSortParams: sortType}))
   }, [pathname])
 
 
   return (
     <>
 
-      {isLoading && <Loader/>}
+      {(isLoading && isFirstLoading)
+        ? <Loader/>
+        : (
+          <>
+            {reviews.map(review => (
+              <ReviewItem
+                key={review._id}
+                review={review}
+                isHide
+              />
+            ))}
 
-      {reviews.map(review => (
-        <ReviewItem
-          key={review._id}
-          review={review}
-          isHide
-        />
-      ))}
+            <Box textAlign={'center'}>
 
-      <Box textAlign={'center'}>
+              {(isLoading && reviews.length >= 10) && (
+                <Box textAlign={'center'}>
+                  <Loader/>
+                </Box>
+              )}
 
-        {(isLoading && reviews.length > 10) && (
-          <Box textAlign={'center'}>
-            <Loader/>
-          </Box>
-        )}
-
-        {totalCount > reviews.length
-          ? (<Button
-            color={'secondary'}
-            variant={'outlined'}
-            onClick={handleLoadMore}
-          >
-            Load more
-          </Button>)
-          : (<NothingToShow title={'no more'}/>)
-        }
-      </Box>
+              {totalCount > reviews.length
+                ? (<Button
+                  color={'secondary'}
+                  variant={'outlined'}
+                  onClick={handleLoadMore}
+                >
+                  <FormattedMessage id={'app.page-main.button-show-more.title'}/>
+                </Button>)
+                : (<NothingToShow title={'no more'}/>)
+              }
+            </Box>
+          </>
+        )
+      }
 
     </>
   );

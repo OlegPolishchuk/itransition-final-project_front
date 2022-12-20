@@ -1,15 +1,20 @@
 import React, {FC} from 'react';
-import {Avatar, Box, Button, IconButton} from "@mui/material";
+import {Avatar, Box, IconButton, useMediaQuery} from "@mui/material";
 import {PhotoCamera} from "@mui/icons-material";
 
 type Props = {
   avatarSrc: string;
-  editAvatarCallback: () => void;
+  editAvatarCallback?: () => void;
+  isMyProfile: boolean;
 }
 
-export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback}) => {
+export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback, isMyProfile}) => {
+  const smallScreen = useMediaQuery('(max-width: 600px)');
+
+  const avatarMargin = smallScreen ? '0 auto' : '';
+
   return (
-    <Box sx={{maxWidth: '200px'}} textAlign={'center'} margin={'0 auto'}>
+    <Box sx={{maxWidth: '200px'}} textAlign={'center'} margin={avatarMargin}>
 
       <Avatar
         src={avatarSrc}
@@ -25,15 +30,17 @@ export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback}) => {
         {/*  Edit*/}
         {/*</Button>*/}
 
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="label"
-          size={'large'}
-        >
-          <input hidden accept="image/*" type="file" />
-          <PhotoCamera />
-        </IconButton>
+        {isMyProfile && (
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="label"
+            size={'large'}
+          >
+            <input hidden accept="image/*" type="file" />
+            <PhotoCamera />
+          </IconButton>
+        )}
 
       </Box>
 

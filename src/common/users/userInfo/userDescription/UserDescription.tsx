@@ -1,19 +1,10 @@
-import React, {FC, forwardRef, useRef, useState} from 'react';
-import {
-  Box,
-  Input,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography
-} from "@mui/material";
+import React, {forwardRef} from 'react';
+import {Box, SelectChangeEvent, Typography} from "@mui/material";
 import {User} from "store/types/User/User";
 import {useAppSelector, useThemeColors} from "hooks";
 import {userFields, userRoles} from "shared";
-import {selectThemeMode, selectUserRole} from "store/selectors";
+import {selectThemeMode, selectUser, selectUserRole} from "store/selectors";
 import {FormattedMessage} from "react-intl";
-import {CommonFieldList, UserFieldsList} from "store/types/User/UserFieldsList";
 import {UserProfileEditor} from "common/users/userProfileEditor/UserProfileEditor";
 
 type Props = {
@@ -29,7 +20,11 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
     const themeMode = useAppSelector(selectThemeMode);
     const userRole = useAppSelector(selectUserRole);
 
-    const fields = userRole === userRoles.user ? userFields.user : userFields.admin;
+    const currentUser = useAppSelector(selectUser);
+
+    const fields = userRole === userRoles.admin
+      ? userFields.admin
+      : user._id === currentUser._id ? userFields.currentUser : userFields.user;
 
     const fieldColor = themeMode === 'light' ? themeColors.primary.main : themeColors.secondary.main;
 

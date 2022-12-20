@@ -39,7 +39,8 @@ export type {
   CommonFieldList,
 } from './User';
 
-export type {Review, SortReviews} from './review';
+export type {Review} from './review';
 export type {InitializeApp} from './initializeApp';
 export type {PaginationParams} from './paginationParams';
 export type {SliderValues} from './sliderValues';
+export type {ReviewSortType} from './reviewsSortParams';

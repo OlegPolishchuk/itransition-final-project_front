@@ -17,5 +17,4 @@ export {
 export {
   reviewsReducer,
   setReviewsPaginationParams,
-  setReviewsSortType,
 } from './rewiewsReducer/reviewsSlice';

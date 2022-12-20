@@ -133,7 +133,7 @@ export const AdminUserReviews: FC<Props> = ({userId}) => {
 
       </Box>
 
-      <UserReviews userId={userId} />
+      <UserReviews userId={userId} isMyProfile={true} />
 
     </Box>
   );

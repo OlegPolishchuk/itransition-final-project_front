@@ -3,4 +3,5 @@ export {selectTags} from './selectTags/selectTags';
 export {selectPaginationParams} from './selectPaginationParams/selectPaginationParams';
 export {selectReviewCount} from './selectReviewCount/selectReviewCount';
 export {selectIsReviewLoading} from './selectIsReviewLoading/selectIsReviewLoading';
-export {selectReviewSortType} from './selectReviewSortType/selectReviewSortType';
+export {selectIsFirstLoading} from './selectIsFirstLoading/selectIsFirstLoading';
+export {selectReviewsSortType} from 'store/selectors/reviews/selectReviewsSortParams/selectReviewsSortType';

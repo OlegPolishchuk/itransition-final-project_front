@@ -9,13 +9,14 @@ const initialState: ReviewsState = {
   tags: [],
   reviews: [],
   reviewCount: 0,
-  sortType: '',
   error: '',
   isLoading: false,
+  isFirstLoading: true,
   paginationParams: {
       page: paginationDefaultParams.page,
       limit: paginationDefaultParams.limit,
-  }
+  },
+  sortType: 'created',
 }
 
 const reviewsSlice = createSlice({
@@ -43,11 +44,13 @@ const reviewsSlice = createSlice({
 
     builder.addCase(fetchReviews.pending, state => {
       state.isLoading = true;
+      state.isFirstLoading = true;
     })
     builder.addCase(fetchReviews.fulfilled, (state, action) => {
       state.isLoading = false;
       state.reviews = action.payload.reviews;
       state.reviewCount = action.payload.totalCount;
+      state.isFirstLoading = false;
     })
     builder.addCase(fetchReviews.rejected, (state, action) => {
       state.isLoading = false;
@@ -61,7 +64,6 @@ const reviewsSlice = createSlice({
       state.isLoading = false;
       state.reviews = [...state.reviews, ...action.payload.reviews];
       state.reviewCount = action.payload.totalCount;
-      console.log(state.reviews)
     })
     builder.addCase(fetchMoreReviews.rejected, (state, action) => {
       state.isLoading = false;

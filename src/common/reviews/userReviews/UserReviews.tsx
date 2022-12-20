@@ -1,6 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Box} from "@mui/material";
-import {NothingToShow, CustomPagination, ReviewList, ReviewHeader} from "common/index";
+import {
+  CustomPagination,
+  NothingToShow,
+  ReviewHeader,
+  ReviewList,
+  ReviewsSorting
+} from "common/index";
 import {FormattedMessage} from "react-intl";
 import {Review} from "store/types";
 import {useAppDispatch, useAppSelector} from "hooks";
@@ -9,18 +15,21 @@ import {addCheckboxIntoObjectList} from "shared";
 import {deleteReviews, fetchUserReviews} from "store/actions";
 import {setReviewsPaginationParams} from "store/reducers";
 import {useSearchParams} from "react-router-dom";
+import {selectReviewsSortType} from "store/selectors/reviews";
+import {setReviewsSortType} from "store/reducers/rewiewsReducer/reviewsSlice";
 
 type Props = {
   userId: string;
+  isMyProfile: boolean;
 }
 
-export const UserReviews: FC<Props> = ({userId}) => {
+export const UserReviews: FC<Props> = ({userId, isMyProfile}) => {
   const dispatch = useAppDispatch();
 
   const reviews = useAppSelector(selectReviews);
   const totalCount = useAppSelector(selectReviewCount);
-
   const {page, limit} = useAppSelector(selectPaginationParams);
+  const reviewsSortType = useAppSelector(selectReviewsSortType);
 
   const [mainCheckbox, setMainCheckbox] = useState(false);
   const [reviewsWithCheckbox, setReviewsWithCheckbox] =
@@ -29,6 +38,9 @@ export const UserReviews: FC<Props> = ({userId}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = Number(searchParams.get('page')) || page;
   const limitParam = Number(searchParams.get('limit')) || limit;
+
+  const disabledDeleteButton = reviewsWithCheckbox.filter(review => review.checked).length === 0;
+
 
   const handleChangeMainCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
@@ -57,12 +69,16 @@ export const UserReviews: FC<Props> = ({userId}) => {
     setSearchParams(searchParams);
   }
 
+  const handleChangeReviewsSortParams = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setReviewsSortType((event.target as HTMLInputElement).value))
+  }
+
 
   useEffect(() => {
     if (userId) {
       dispatch(fetchUserReviews(userId))
     }
-  }, [page, limit, userId])
+  }, [page, limit, userId, reviewsSortType])
 
 
   useEffect(() => {
@@ -74,16 +90,25 @@ export const UserReviews: FC<Props> = ({userId}) => {
 
   return (
     <>
+
+      <ReviewsSorting
+        value={reviewsSortType}
+        onChangeCallback={handleChangeReviewsSortParams}
+      />
+
       {totalCount
         ? (
           <>
-            <Box mt={'30px'}>
-              <ReviewHeader
-                isMainCheckboxChecked={mainCheckbox}
-                handleChangeMainCheckbox={handleChangeMainCheckbox}
-                deleteCallback={handleDelete}
-              />
-            </Box>
+            {isMyProfile && (
+              <Box mt={'30px'}>
+                <ReviewHeader
+                  isMainCheckboxChecked={mainCheckbox}
+                  handleChangeMainCheckbox={handleChangeMainCheckbox}
+                  deleteCallback={handleDelete}
+                  disabled={disabledDeleteButton}
+                />
+              </Box>
+            )}
 
             <Box sx={{
               display: 'flex',

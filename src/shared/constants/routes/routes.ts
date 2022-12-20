@@ -16,5 +16,9 @@ export const routes = {
     base: '/',
     popular: '/popular',
   },
+  profile: {
+    base: '/profile',
+    myProfile: '/myProfile',
+  },
   protectedRoute: '/protected'
 }

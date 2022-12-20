@@ -29,6 +29,7 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         userName={review.userName}
         userAvatar={review.userAvatar}
         created={review.created}
+        userId={review.userId}
       />
 
       <ReviewItemBody

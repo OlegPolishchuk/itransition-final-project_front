@@ -3,3 +3,4 @@ export {UserReviews} from './userReviews/UserReviews';
 export {ReviewList, RandomReviewsGenerator, ReviewHeader} from './admin';
 export {ReviewItem, ReviewItemHeader, ReviewItemBody, ReviewItemFooter} from './review';
 export {Reviews} from './Reviews';
+export {ReviewsSorting} from './reviewsSorting/ReviewsSorting';

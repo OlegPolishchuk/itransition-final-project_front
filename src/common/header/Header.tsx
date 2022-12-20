@@ -6,7 +6,7 @@ import {ThemeToggle} from "common/header/themeToggle/ThemeToggle";
 import {changeTheme} from "store/actions";
 import {LocalePicker} from "common/header/localePicker/LocalePicker";
 import {AuthButton} from "common/header/authButton/AuthButton";
-import {AsideNav} from "common/navigations";
+import {AsideNav, MainNav} from "common/navigations";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 type Props = {
@@ -27,18 +27,18 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
   }
 
 
- const toggleDrawer = (isOpen: boolean)  =>
-   (event: React.KeyboardEvent | React.MouseEvent) => {
-     if (
-       event.type === 'keydown' &&
-       ((event as React.KeyboardEvent).key === 'Tab' ||
-         (event as React.KeyboardEvent).key === 'Shift')
-     ) {
-       return;
-     }
+  const toggleDrawer = (isOpen: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-     setIsDrawerOpen(isOpen);
-   };
+      setIsDrawerOpen(isOpen);
+    };
 
   const navCallback = () => {
     setIsDrawerOpen(false)
@@ -54,7 +54,14 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
           alignItems: 'center',
           padding: '10px',
           gap: '30px',
+          marginBottom: '50px',
         }}>
+
+          {!isSmallScreen && (
+            <Box mr={'auto'}>
+              <MainNav/>
+            </Box>
+          )}
 
           <LocalePicker/>
 
@@ -77,7 +84,7 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
                   onClose={toggleDrawer(false)}
                   onClick={navCallback}
                 >
-                  <AsideNav />
+                  <AsideNav/>
                 </Drawer>
               </>
             )

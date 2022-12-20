@@ -71,9 +71,13 @@
 
   "app.navigation-main.latest.title": "Latest",
   "app.navigation-main.popular.title": "Popular",
+  "app.navigation-main.profile.title": "Profile",
+  "app.navigation-main.admin-panel.title": "Admin panel",
 
   "app.page-main.latest.title": "Latest reviews:",
   "app.page-main.popular.title": "Popular reviews:",
+
+  "app.page-main.button-show-more.title": "See more",
 
   "app.overall-score.tooltip.title": "overall score",
   "app.review-body.see-more-button.title": "Show the entire review"

@@ -6,7 +6,7 @@ import {RootState} from "store/store";
 
 export const fetchMoreReviews = createAsyncThunk<FetchReviewsResponse, undefined | FetchReviews, {state: RootState}>(
   'reviews/fetchMoreReviews',
-  async (sortData:FetchReviews = {sortReviews: '', reviewId: ''}, {rejectWithValue, getState}) => {
+  async (sortData:FetchReviews = {reviewsSortParams: 'created', reviewId: ''}, {rejectWithValue, getState}) => {
     try {
       const page =  sortData.page
         ? sortData.page

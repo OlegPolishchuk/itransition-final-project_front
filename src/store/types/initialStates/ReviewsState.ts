@@ -1,11 +1,13 @@
-import {PaginationParams, Review, SortReviews} from "store/types";
+import {PaginationParams, Review, ReviewSortType} from "store/types";
 
 export type ReviewsState = {
   reviews: Review[];
   tags: string[];
-  sortType: SortReviews;
   error: string;
+  isFirstLoading: boolean;
   paginationParams: PaginationParams;
   reviewCount: number;
   isLoading: boolean;
+  sortType: ReviewSortType;
 }
+

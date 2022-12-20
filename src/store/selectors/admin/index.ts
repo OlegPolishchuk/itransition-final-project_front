@@ -1,5 +1,5 @@
 export {selectUsers} from './selectUsers/selectUsers';
-export {selectCurrentUser} from './selectCurrentUser/selectCurrentUser';
+export {selectAdminCurrentUser} from 'store/selectors/admin/selectAdminCurrentUser/selectAdminCurrentUser';
 export {selectTotalCount} from './selectTotalCount/selectTotalCount';
 export {selectAdminTableSearchParams} from './selectAdminTableSearchParams/selectAdminTableSearchParams';
 export {selectIsGenerating} from './selectIsGenerating/selectIsGenerating';

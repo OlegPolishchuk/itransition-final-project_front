@@ -1,16 +1,12 @@
 import React from 'react';
-import {Box, Container, Grid} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import {Outlet} from "react-router-dom";
-import {MainNav, TagsCloud} from "common";
+import {TagsCloud} from "common";
 
 export const Main = () => {
 
   return (
     <Container sx={{paddingBottom: '50px'}}>
-
-      <Box mb={'50px'}>
-        <MainNav />
-      </Box>
 
       <Grid container spacing={4}>
 

@@ -27,6 +27,7 @@ export {
   ReviewItemBody,
   ReviewItemFooter,
   Reviews,
+  ReviewsSorting,
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';

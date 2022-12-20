@@ -8,12 +8,14 @@ type Props = {
   isMainCheckboxChecked: boolean;
   handleChangeMainCheckbox: (event: React.ChangeEvent<HTMLInputElement>) => void;
   deleteCallback: () => void;
+  disabled: boolean;
 }
 
 export const ReviewHeader: FC<Props> = ({
                                           isMainCheckboxChecked,
                                           deleteCallback,
-                                          handleChangeMainCheckbox
+                                          handleChangeMainCheckbox,
+                                          disabled
                                         }) => {
 
   return (
@@ -29,6 +31,7 @@ export const ReviewHeader: FC<Props> = ({
         variant={'outlined'}
         endIcon={<DeleteOutlineOutlinedIcon color={'error'}/>}
         onClick={deleteCallback}
+        disabled={disabled}
       >
         <FormattedMessage id='app.user.reviews-list.header.button.delete.title'/>
       </Button>

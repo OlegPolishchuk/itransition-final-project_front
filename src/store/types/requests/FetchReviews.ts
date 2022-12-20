@@ -1,7 +1,7 @@
-import { SortReviews } from "../review";
+import {ReviewSortType} from "store/types/reviewsSortParams";
 
 export type FetchReviews = {
-  sortReviews?: SortReviews;
+  reviewsSortParams?: ReviewSortType;
   reviewId?: string;
   page?: number;
   limit?: number;

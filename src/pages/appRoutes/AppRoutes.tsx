@@ -9,10 +9,10 @@ import {
   Main,
   ProtectedRoute,
   Register,
-  CurrentReview
+  CurrentReview, Profile
 } from "pages";
 import {UserRole} from "store/types";
-import { Reviews } from 'common';
+import {Reviews} from 'common';
 
 
 type Props = {
@@ -21,18 +21,34 @@ type Props = {
   userRole: UserRole;
 }
 
-export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
+export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
   console.log('App Routes')
   return (
     <Routes>
-      <Route path={routes.auth.register} element={<Register/>} />
-      <Route path={routes.auth.login} element={<Login/>} />
+      <Route path={routes.auth.register} element={<Register/>}/>
+      <Route path={routes.auth.login} element={<Login/>}/>
 
-      <Route path={routes.mainPage.base} element={<Main/>} >
-        <Route index element={<Reviews />}/>
-        <Route path={routes.mainPage.popular} element={<Reviews />} />
-        <Route path={`${routes.review}/:reviewId`} element={<CurrentReview />} />
+      <Route path={routes.mainPage.base} element={<Main/>}>
+        <Route index element={<Reviews/>}/>
+        <Route path={routes.mainPage.popular} element={<Reviews/>}/>
+        <Route path={`${routes.review}/:reviewId`} element={<CurrentReview/>}/>
       </Route>
+
+      <Route
+        path={`${routes.profile.myProfile}/:id`}
+        element={
+          <ProtectedRoute
+            isUserAuth={isUserAuth}
+          >
+            <Profile/>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path={`${routes.profile.base}/:id`}
+        element={<Profile/>}
+      />
 
       <Route
         path={routes.admin.main}
@@ -58,13 +74,13 @@ export const AppRoutes: FC<Props> =({isUserAuth, userRole, isInitialize}) => {
 
         <Route
           path={`${routes.admin.review}/:reviewId`}
-          element={<CurrentReview />}
+          element={<CurrentReview/>}
         />
 
       </Route>
 
 
-      <Route path={routes.notFound} element={<div>Not Found</div>} />
+      <Route path={routes.notFound} element={<div>Not Found</div>}/>
     </Routes>
   );
 };

@@ -9,12 +9,14 @@ export const fetchUserReviews = createAsyncThunk<FetchReviewsResponse, string, {
   async (userId: string, {rejectWithValue, getState}) => {
     try {
       const {page, limit} = getState().reviewsReducer.paginationParams;
+      const sortType = getState().reviewsReducer.sortType;
 
-      const res = await apiReviews.getUsersReviews(userId, page, limit);
+      const res = await apiReviews.getUsersReviews(userId, page, limit, sortType );
 
       return res.data;
     }
     catch (e) {
+      console.log(e)
       const err = e as AxiosError;
       return rejectWithValue(err.message)
     }

@@ -18,3 +18,5 @@ export {
 
 export {Main} from './main/Main';
 export {CurrentReview} from './review/CurrentReview';
+
+export {Profile} from './profile/Profile';

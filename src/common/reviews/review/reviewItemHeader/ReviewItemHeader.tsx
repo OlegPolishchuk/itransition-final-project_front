@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Avatar, Box, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import {parseDate} from "shared";
+import {parseDate, routes} from "shared";
 import {Review} from "store/types";
 import {useAppSelector, useThemeColors} from "hooks";
 import {selectThemeMode} from "store/selectors";
@@ -11,9 +11,10 @@ type Props = {
   userName: string;
   userAvatar: string;
   created: string;
+  userId: string;
 }
 
-export const ReviewItemHeader: FC<Props> = ({userName, userAvatar, created}) => {
+export const ReviewItemHeader: FC<Props> = ({userName, userAvatar, created, userId}) => {
   const colors = useThemeColors();
 
   return (
@@ -32,7 +33,7 @@ export const ReviewItemHeader: FC<Props> = ({userName, userAvatar, created}) => 
         />
 
         <Typography>
-          <BaseNavLink to={'/'} >
+          <BaseNavLink to={`${routes.profile.base}/${userId}`} >
             {userName}
           </BaseNavLink>
         </Typography>

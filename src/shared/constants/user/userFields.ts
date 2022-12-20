@@ -12,6 +12,11 @@ export const userFields: UserFieldsList = {
     {value: 'lastLogin', title: 'app.user.info.field-lastLogin.title', editable: false},
   ],
   user: [
+    {value: 'userName', title: 'app.user.info.field-userName.title', editable: false},
+    {value: 'reviewsCount', title: 'app.user.info.field-reviews.title', editable: false},
+    {value: 'created', title: 'app.user.info.field-created.title', editable: false},
+  ],
+  currentUser: [
     {value: '_id', title: 'app.user.info.field-id.title', editable: false},
     {value: 'login', title: 'app.user.info.field-login.title', editable: false},
     {value: 'userName', title: 'app.user.info.field-userName.title', editable: true},

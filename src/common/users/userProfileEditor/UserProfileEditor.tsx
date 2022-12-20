@@ -1,10 +1,8 @@
-import React, {FC, forwardRef, useState} from 'react';
+import React, {forwardRef} from 'react';
 import {CommonFieldList} from "store/types/User/UserFieldsList";
-import {User} from "store/types/User/User";
 import {MenuItem, Select, SelectChangeEvent, TextField, Typography} from "@mui/material";
 import {userRoles, userStatus} from "shared";
-import {useAppSelector, useThemeColors} from "hooks";
-import {selectThemeMode} from "store/selectors";
+import {useThemeColors} from "hooks";
 
 type Props = {
   field: CommonFieldList;
@@ -23,14 +21,16 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>( ({
                                              }, usernameRef) => {
   const themeColors = useThemeColors();
 
-  // const [userData, setUserData] = useState(userCopy);
-
   let resultJSX;
 
   if (field.editable) {
 
     if (field.value === 'userName') {
-      resultJSX = <TextField inputRef={usernameRef} size={'small'} defaultValue={userCopy[field.value]}/>
+      resultJSX = <TextField
+        inputRef={usernameRef}
+        size={'small'}
+        defaultValue={userCopy[field.value]}
+      />
     }
     if (field.value === 'role') {
       resultJSX = (

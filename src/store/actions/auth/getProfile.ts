@@ -14,7 +14,7 @@ export const getProfile = createAsyncThunk(
       if (res.status === 200) {
         const user = res.data;
         const token = user.token;
-        // const {tokenStartTime} = JSON.parse(localStorage.getItem(localStorageData.userData)as string);
+
         const {tokenStartTime} = localStorageService.getItem(localStorageData.userData);
 
         const dataToLocalStorage = {
@@ -24,7 +24,6 @@ export const getProfile = createAsyncThunk(
         }
 
         localStorageService.setAuthUserData(dataToLocalStorage)
-        // localStorage.setItem(localStorageData.userData,JSON.stringify(dataToLocalStorage))
 
         return res.data
       }

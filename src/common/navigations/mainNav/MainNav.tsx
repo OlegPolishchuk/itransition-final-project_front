@@ -1,9 +1,13 @@
 import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
 import {routes} from "shared";
-import {Box} from "@mui/material";
 import {useAppSelector, useThemeColors} from "hooks";
-import {selectThemeMode} from "store/selectors";
+import {
+  selectIsUserAuth,
+  selectThemeMode,
+  selectUser,
+  selectUserRole
+} from "store/selectors";
 import {FormattedMessage} from "react-intl";
 
 type Props = {
@@ -12,8 +16,13 @@ type Props = {
 }
 
 export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
+  const isUserAuth = useAppSelector(selectIsUserAuth);
+  const userRole = useAppSelector(selectUserRole);
+  const user = useAppSelector(selectUser);
+
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
+
 
   const navLinkStyles = {
     fontSize: '18px',
@@ -32,37 +41,63 @@ export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
 
 
   return (
-    <Box sx={{margin: '30px 0'}}>
-      <nav>
-        <ul style={{
-          display: 'flex',
-          flexDirection: variant === 'vertical' ? 'column' : 'row',
-          gap: '30px'
-        }}>
+    <nav>
+      <ul style={{
+        display: 'flex',
+        flexDirection: variant === 'vertical' ? 'column' : 'row',
+        gap: '30px'
+      }}>
 
-          <li>
-            <NavLink
-              onClick={handleClick}
-              style={activeNavLink}
-              to={routes.mainPage.base}
-              end
-            >
-              <FormattedMessage id='app.navigation-main.latest.title'/>
-            </NavLink>
-          </li>
+        <li>
+          <NavLink
+            onClick={handleClick}
+            style={activeNavLink}
+            to={routes.mainPage.base}
+            end
+          >
+            <FormattedMessage id='app.navigation-main.latest.title'/>
+          </NavLink>
+        </li>
 
-          <li>
-            <NavLink
-              onClick={handleClick}
-              style={activeNavLink}
-              to={routes.mainPage.popular}
-            >
-              <FormattedMessage id='app.navigation-main.popular.title'/>
-            </NavLink>
-          </li>
+        <li>
+          <NavLink
+            onClick={handleClick}
+            style={activeNavLink}
+            to={routes.mainPage.popular}
+          >
+            <FormattedMessage id='app.navigation-main.popular.title'/>
+          </NavLink>
+        </li>
 
-        </ul>
-      </nav>
-    </Box>
+        {isUserAuth && (
+          <>
+            {userRole === 'admin'
+            ? (
+            <li>
+              <NavLink
+                onClick={handleClick}
+                style={activeNavLink}
+                to={routes.admin.main}
+              >
+                <FormattedMessage id='app.navigation-main.admin-panel.title'/>
+              </NavLink>
+            </li>
+            )
+            : (
+            <li>
+              <NavLink
+                onClick={handleClick}
+                style={activeNavLink}
+                to={`${routes.profile.myProfile}/${user._id}`}
+              >
+                <FormattedMessage id='app.navigation-main.profile.title'/>
+              </NavLink>
+            </li>
+            )}
+          </>
+        )}
+
+      </ul>
+    </nav>
   );
 };

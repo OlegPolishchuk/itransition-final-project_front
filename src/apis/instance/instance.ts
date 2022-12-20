@@ -11,6 +11,7 @@ import {refreshToken} from "store/actions/auth/refreshToken";
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+
 const PUBLIC_ROUTES = [
   routes.notFound,
   routes.auth.login,
@@ -19,7 +20,9 @@ const PUBLIC_ROUTES = [
   apiRoutes.auth.social,
   apiRoutes.auth.refresh,
   apiRoutes.reviews.base,
+  apiRoutes.reviews.userReviews,
   apiRoutes.tags.base,
+  apiRoutes.currentUser.base
 ]
 
 let store: ToolkitStore<CombinedState<{
@@ -45,8 +48,13 @@ export const instance = axios.create({
 })
 
 instance.interceptors.request.use(async (config) => {
-  if (config.url && PUBLIC_ROUTES.includes(config.url)) {
-    return config
+
+  if (config.url) {
+    const cleanUrl = config.url.slice(0, config.url.indexOf('?'));
+
+    if (PUBLIC_ROUTES.includes(config.url) || PUBLIC_ROUTES.includes(cleanUrl)) {
+      return config
+    }
   }
 
   const {token} = await JSON.parse(localStorage.getItem(localStorageData.userData) as string);
