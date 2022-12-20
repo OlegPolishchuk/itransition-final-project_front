@@ -37,9 +37,17 @@ const reviewsSlice = createSlice({
       state.tags = action.payload;
     })
 
+    builder.addCase(fetchUserReviews.pending, state => {
+      state.isLoading = true;
+    })
     builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
       state.reviews = action.payload.reviews;
       state.reviewCount = action.payload.totalCount;
+      state.isLoading = false;
+    })
+    builder.addCase(fetchUserReviews.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
     })
 
     builder.addCase(fetchReviews.pending, state => {

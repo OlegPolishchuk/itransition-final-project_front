@@ -21,7 +21,7 @@ export const Profile = () => {
   }, [id])
 
   return (
-    <Container>
+    <Container sx={{paddingBottom: '50px'}}>
 
       <Box mb={'50px'}>
         <Breadcrumbs />

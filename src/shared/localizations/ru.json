@@ -64,6 +64,11 @@
   "app.user.reviews-list.main-checkbox.title": "Выбрать все",
   "app.user.reviews-list.header.button.delete.title": "Удалить",
 
+  "app.user.reviews-list.sorting.title": "Сортировать по:",
+  "app.user.reviews-list.sorting.date-radio.title": "Дате",
+  "app.user.reviews-list.sorting.overallScore-radio.title": "Оценке пользователей",
+  "app.user.reviews-list.sorting.personalScore-radio.title": "Оценки автора",
+
   "app.user.reviews-list.header.collapse-button.title": "Случайные обзоры",
   "app.user.reviews-list.no-values.title": "Ничего нет",
 

@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Box} from "@mui/material";
 import {
-  CustomPagination,
+  CustomPagination, Loader,
   NothingToShow,
   ReviewHeader,
   ReviewList,
@@ -10,7 +10,12 @@ import {
 import {FormattedMessage} from "react-intl";
 import {Review} from "store/types";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {selectPaginationParams, selectReviewCount, selectReviews} from "store/selectors";
+import {
+  selectIsReviewLoading,
+  selectPaginationParams,
+  selectReviewCount,
+  selectReviews
+} from "store/selectors";
 import {addCheckboxIntoObjectList} from "shared";
 import {deleteReviews, fetchUserReviews} from "store/actions";
 import {setReviewsPaginationParams} from "store/reducers";
@@ -30,6 +35,7 @@ export const UserReviews: FC<Props> = ({userId, isMyProfile}) => {
   const totalCount = useAppSelector(selectReviewCount);
   const {page, limit} = useAppSelector(selectPaginationParams);
   const reviewsSortType = useAppSelector(selectReviewsSortType);
+  const isLoading = useAppSelector(selectIsReviewLoading);
 
   const [mainCheckbox, setMainCheckbox] = useState(false);
   const [reviewsWithCheckbox, setReviewsWithCheckbox] =
@@ -117,12 +123,17 @@ export const UserReviews: FC<Props> = ({userId, isMyProfile}) => {
               marginTop: '30px',
             }}>
 
-              <ReviewList
-                reviews={reviews}
-                reviewsWithCheckbox={reviewsWithCheckbox}
-                setReviewsWithCheckbox={setReviewsWithCheckbox}
-                pageNumber={page}
-              />
+              {isLoading
+              ? <Loader />
+              : (
+                  <ReviewList
+                    reviews={reviews}
+                    reviewsWithCheckbox={reviewsWithCheckbox}
+                    setReviewsWithCheckbox={setReviewsWithCheckbox}
+                    pageNumber={page}
+                  />
+                )
+              }
 
             </Box>
 
