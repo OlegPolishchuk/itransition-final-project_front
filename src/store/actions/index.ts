@@ -30,3 +30,5 @@ export {
   fetchMoreReviews,
 } from './reviews';
 
+export {changeUserAvatar} from './user';
+

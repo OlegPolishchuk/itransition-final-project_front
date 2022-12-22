@@ -1,6 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserState} from "store/types/initialStates/UserState";
-import {fetchUser, getProfile, loginUser, twitterLogin} from "store/actions";
+import {
+  changeUserAvatar,
+  fetchUser,
+  getProfile,
+  loginUser,
+  twitterLogin
+} from "store/actions";
 import {googleLogin} from "store/actions/auth/googleLogin";
 import {getGithubUser} from "store/actions/auth/getGithubUser";
 import {userRoles} from "shared";

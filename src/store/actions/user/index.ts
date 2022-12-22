@@ -1,0 +1,1 @@
+export {changeUserAvatar} from './changeUserAvatar';

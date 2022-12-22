@@ -26,7 +26,7 @@ export const UserInfo: FC<Props> = ({user, isMyProfile}) => {
   const [userCopy, setUserCopy] = useState<{ [key: string]: any }>({...user});
 
   const userNameRef = useRef<HTMLInputElement>(null);
-  console.log(isMyProfile)
+
 
   const handleSaveUserDescription = () => {
     const usernameInput = userNameRef.current as HTMLInputElement;
@@ -83,7 +83,7 @@ export const UserInfo: FC<Props> = ({user, isMyProfile}) => {
       <Grid item xs={12} sm={4} md={3}>
         <UserAvatar
           avatarSrc={user.avatar}
-          editAvatarCallback={() => {}}
+          userId={user._id}
           isMyProfile={isMyProfile}
         />
       </Grid>

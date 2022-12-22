@@ -30,5 +30,13 @@ export const apiUsers = {
 
   updateCurrentUser(user: Partial<User>) {
     return instance.put(apiRoutes.currentUser.base, {user})
+  },
+
+  changeUserAvatar(avatar: FormData) {
+    return instance.post(apiRoutes.currentUser.base, avatar, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
   }
 }

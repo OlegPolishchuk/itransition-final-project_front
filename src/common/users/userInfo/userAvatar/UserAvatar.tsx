@@ -1,34 +1,45 @@
-import React, {FC} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import {Avatar, Box, IconButton, useMediaQuery} from "@mui/material";
 import {PhotoCamera} from "@mui/icons-material";
+import {useAppDispatch} from "hooks";
+import {changeUserAvatar} from "store/actions";
+
 
 type Props = {
   avatarSrc: string;
-  editAvatarCallback?: () => void;
   isMyProfile: boolean;
+  userId: string;
 }
 
-export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback, isMyProfile}) => {
+export const UserAvatar: FC<Props> = ({avatarSrc, userId, isMyProfile}) => {
+  const dispatch = useAppDispatch();
+
   const smallScreen = useMediaQuery('(max-width: 600px)');
 
   const avatarMargin = smallScreen ? '0 auto' : '';
+
+
+  const handleChangeAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+
+      const formData = new FormData();
+
+      formData.append('file', file as File, `${userId}_${file.name}`);
+
+      dispatch(changeUserAvatar(formData));
+    }
+  }
 
   return (
     <Box sx={{maxWidth: '200px'}} textAlign={'center'} margin={avatarMargin}>
 
       <Avatar
         src={avatarSrc}
-        sx={{ width: 180, height: 180, margin: '0 auto'}}
+        sx={{width: 180, height: 180, margin: '0 auto'}}
       />
 
       <Box mt={'20px'}>
-        {/*<Button*/}
-        {/*  variant={'outlined'}*/}
-        {/*  size={'small'}*/}
-        {/*  onClick={editAvatarCallback}*/}
-        {/*>*/}
-        {/*  Edit*/}
-        {/*</Button>*/}
 
         {isMyProfile && (
           <IconButton
@@ -37,8 +48,13 @@ export const UserAvatar: FC<Props> = ({avatarSrc, editAvatarCallback, isMyProfil
             component="label"
             size={'large'}
           >
-            <input hidden accept="image/*" type="file" />
-            <PhotoCamera />
+            <input
+              hidden
+              accept="image/*"
+              type="file"
+              onChange={handleChangeAvatar}
+            />
+            <PhotoCamera/>
           </IconButton>
         )}
 

@@ -1,10 +1,7 @@
 import React, {FC} from 'react';
 import {Avatar, Box, Typography} from "@mui/material";
-import {NavLink} from "react-router-dom";
 import {parseDate, routes} from "shared";
-import {Review} from "store/types";
-import {useAppSelector, useThemeColors} from "hooks";
-import {selectThemeMode} from "store/selectors";
+import {useThemeColors} from "hooks";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
 
 type Props = {
