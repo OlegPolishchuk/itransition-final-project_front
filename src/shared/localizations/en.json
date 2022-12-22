@@ -43,6 +43,8 @@
   "app.user.info.button-save.title": "Save",
   "app.user.info.button-cancel.title": "Cancel",
 
+  "app.user.info.avatar.button-change.title": "Change Avatar",
+
   "app.user.info.field-id.title": "User ID",
   "app.user.info.field-login.title": "User Login",
   "app.user.info.field-userName.title": "User Name",

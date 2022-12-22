@@ -15,7 +15,7 @@ type Props = {
 export const ReviewItem: FC<Props> = ({review, isHide}) => {
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
-  console.log(review)
+
   return (
     <Box sx={{
       marginBottom: '50px',

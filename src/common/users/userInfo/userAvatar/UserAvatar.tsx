@@ -1,8 +1,9 @@
 import React, {ChangeEvent, FC} from 'react';
-import {Avatar, Box, IconButton, useMediaQuery} from "@mui/material";
+import {Avatar, Box, Button, IconButton, useMediaQuery} from "@mui/material";
 import {PhotoCamera} from "@mui/icons-material";
 import {useAppDispatch} from "hooks";
 import {changeUserAvatar} from "store/actions";
+import {FormattedMessage} from "react-intl";
 
 
 type Props = {
@@ -42,20 +43,22 @@ export const UserAvatar: FC<Props> = ({avatarSrc, userId, isMyProfile}) => {
       <Box mt={'20px'}>
 
         {isMyProfile && (
-          <IconButton
-            color="primary"
+          <Button
+            // color="secondary"
+            variant='outlined'
             aria-label="upload picture"
             component="label"
-            size={'large'}
+            size='small'
+            endIcon={<PhotoCamera />}
           >
+            <FormattedMessage id='app.user.info.avatar.button-change.title'/>
             <input
               hidden
               accept="image/*"
               type="file"
               onChange={handleChangeAvatar}
             />
-            <PhotoCamera/>
-          </IconButton>
+          </Button>
         )}
 
       </Box>

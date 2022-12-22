@@ -43,6 +43,8 @@
   "app.user.info.button-save.title": "Сохранить",
   "app.user.info.button-cancel.title": "Отмена",
 
+  "app.user.info.avatar.button-change.title": "Сменить фото",
+
   "app.user.info.field-id.title": "Идентификатор:",
   "app.user.info.field-login.title": "Логин:",
   "app.user.info.field-userName.title": "Имя Пользователя:",
