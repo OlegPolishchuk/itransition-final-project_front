@@ -8,9 +8,19 @@ export const createReview = createAsyncThunk<void, Partial<Review>, {state: Root
   'reviews/createReview', async (reviewData: Partial<Review>, {rejectWithValue, getState}) => {
 
     try {
-      const userName = getState().userReducer.user.userName;
-      const userId = getState().userReducer.user._id;
-      const userAvatar = getState().userReducer.user.avatar;
+      const userRole = getState().userReducer.user.role;
+
+      let userName = getState().userReducer.user.userName;
+      let userId = getState().userReducer.user._id;
+      let userAvatar = getState().userReducer.user.avatar;
+
+      if (userRole === 'admin') {
+         userName = getState().userReducer.selectedUser.userName;
+         userId = getState().userReducer.selectedUser._id;
+         userAvatar = getState().userReducer.selectedUser.avatar;
+      }
+
+      console.log(userAvatar, userRole, userId, userName)
 
       const newReviewData = {...reviewData, userAvatar, userName, userId}
 

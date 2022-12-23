@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Box, IconButton, Rating, Typography} from "@mui/material";
 import {Tag} from "common/tags/tag/Tag";
 import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
-import {selectIsUserAuth, selectUser} from "store/selectors";
+import {selectIsUserAuth, selectThemeMode, selectUser} from "store/selectors";
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
@@ -34,6 +34,7 @@ export const ReviewItemFooter: FC<Props> = ({
   const user = useAppSelector(selectUser);
 
   const colors = useThemeColors();
+  const theme = useAppSelector(selectThemeMode);
 
   const footerItemStyle = {display: 'flex', alignItems: 'center', gap: '10px'};
   const disabledLike = likesId.includes(user._id);
@@ -67,7 +68,7 @@ export const ReviewItemFooter: FC<Props> = ({
 
       <Box
         sx={{
-          backgroundColor: '#f6f6f6',
+          backgroundColor: theme === 'dark' ? '#464242' : '#f6f6f6',
           padding: '10px',
           display: 'flex',
           alignItems: 'center',

@@ -6,6 +6,7 @@ import {useThemeColors} from "hooks";
 import {PersonalScore} from "common/scores";
 import {routes} from "shared";
 import {FormattedMessage} from "react-intl";
+import MDEditor from "@uiw/react-md-editor";
 
 type Props = {
   title: string;
@@ -49,8 +50,10 @@ export const ReviewItemBody: FC<Props> = ({
         overflow: isHide ? 'hidden' : '',
         paddingBottom: '15px',
       }}>
-        {body}
+        <MDEditor.Markdown source={body} style={{ whiteSpace: 'pre-wrap' }}/>
       </Box>
+
+
 
       {isHide && (
         <Box pt={'15px'}>

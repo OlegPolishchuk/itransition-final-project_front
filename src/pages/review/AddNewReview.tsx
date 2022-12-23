@@ -164,7 +164,6 @@ export const AddNewReview = () => {
         </Button>
       </Box>
 
-      <MDEditor.Markdown source={reviewValue.body} style={{ whiteSpace: 'pre-wrap' }} />
     </Container>
   );
 };
