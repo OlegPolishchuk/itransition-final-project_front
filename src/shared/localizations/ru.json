@@ -76,6 +76,12 @@
 
   "app.user.reviews.add-new-review.button.title": "Добавить новый обзор",
 
+  "app.user.add-new-review.button-publish.title": "Опубликовать",
+  "app.user.add-new-review.rating.title": "Дайте свою оценку",
+  "app.user.add-new-review.tags-picker.title": "Выберете один или несколько тегов",
+  "app.user.add-new-review.field-title.title": "Заголовок",
+  "app.user.add-new-review.field-subtitle.title": "Название произведения",
+
   "app.breadcrumbs.title": "Вернуться назад",
 
   "app.navigation-main.latest.title": "Последние",

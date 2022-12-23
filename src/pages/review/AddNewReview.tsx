@@ -5,6 +5,7 @@ import {Breadcrumbs, TagsPicker, Title} from "common";
 import {useAppDispatch} from "hooks";
 import {createReview, getTags} from "store/actions";
 import {useNavigate} from "react-router-dom";
+import {FormattedMessage} from "react-intl";
 
 export const AddNewReview = () => {
   const dispatch = useAppDispatch();
@@ -98,7 +99,7 @@ export const AddNewReview = () => {
        marginBottom: '30px',
      }}>
        <TextField
-         label="Title"
+         label={<FormattedMessage id='app.user.add-new-review.field-title.title'/>}
          variant="outlined"
          value={reviewValue.title}
          onChange={handleChangeTitle}
@@ -109,7 +110,7 @@ export const AddNewReview = () => {
        />
 
        <TextField
-         label="Subtitle"
+         label={<FormattedMessage id='app.user.add-new-review.field-subtitle.title'/>}
          variant="outlined"
          value={reviewValue.subtitle}
          onChange={handleChangeSubtitle}
@@ -131,7 +132,7 @@ export const AddNewReview = () => {
       <Box mt={'30px'}>
         <Title
           variant={"subtitle2"}
-          title={'Choose one or several tags'}
+          title={<FormattedMessage id='app.user.add-new-review.tags-picker.title'/>}
           color={error.tags ? 'error' : ''}
         />
 
@@ -141,7 +142,10 @@ export const AddNewReview = () => {
       </Box>
 
       <Box mt={'30px'}>
-        <Title variant={'subtitle2'} title={'Give your score'} />
+        <Title
+          variant={'subtitle2'}
+          title={<FormattedMessage id='app.user.add-new-review.rating.title'/>}
+        />
 
         <Rating
           value={reviewValue.personalScore}
@@ -156,7 +160,7 @@ export const AddNewReview = () => {
           color={'error'}
           onClick={handlePublishReview}
         >
-          PUBLISH
+          <FormattedMessage id='app.user.add-new-review.button-publish.title'/>
         </Button>
       </Box>
 

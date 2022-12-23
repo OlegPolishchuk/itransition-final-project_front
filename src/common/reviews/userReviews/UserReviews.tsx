@@ -108,14 +108,20 @@ export const UserReviews: FC<Props> = ({userId, isMyProfile}) => {
         ? (
           <>
             {isMyProfile && (
-              <Box mt={'30px'}>
-                <ReviewHeader
-                  isMainCheckboxChecked={mainCheckbox}
-                  handleChangeMainCheckbox={handleChangeMainCheckbox}
-                  deleteCallback={handleDelete}
-                  disabled={disabledDeleteButton}
-                />
-              </Box>
+              <>
+                <Box textAlign={'end'}>
+                  <AddNewReviewButton />
+                </Box>
+
+                <Box mt={'30px'}>
+                  <ReviewHeader
+                    isMainCheckboxChecked={mainCheckbox}
+                    handleChangeMainCheckbox={handleChangeMainCheckbox}
+                    deleteCallback={handleDelete}
+                    disabled={disabledDeleteButton}
+                  />
+                </Box>
+              </>
             )}
 
             <Box sx={{

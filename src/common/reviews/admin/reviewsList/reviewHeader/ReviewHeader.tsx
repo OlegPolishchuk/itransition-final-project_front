@@ -31,19 +31,15 @@ export const ReviewHeader: FC<Props> = ({
         label={<FormattedMessage id='app.user.reviews-list.main-checkbox.title'/>}
       />
 
-      <Box>
-        <AddNewReviewButton />
-
-        <Button
-          variant={'outlined'}
-          endIcon={<DeleteOutlineOutlinedIcon color={'error'}/>}
-          onClick={deleteCallback}
-          disabled={disabled}
-          sx={{marginLeft: '20px'}}
-        >
-          <FormattedMessage id='app.user.reviews-list.header.button.delete.title'/>
-        </Button>
-      </Box>
+      <Button
+        variant={'outlined'}
+        endIcon={<DeleteOutlineOutlinedIcon color={'error'}/>}
+        onClick={deleteCallback}
+        disabled={disabled}
+        sx={{marginLeft: '20px'}}
+      >
+        <FormattedMessage id='app.user.reviews-list.header.button.delete.title'/>
+      </Button>
 
     </Box>
   );

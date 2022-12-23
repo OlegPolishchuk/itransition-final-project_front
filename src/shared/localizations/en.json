@@ -76,6 +76,12 @@
 
   "app.user.reviews.add-new-review.button.title": "Add new Review",
 
+  "app.user.add-new-review.button-publish.title": "Publish",
+  "app.user.add-new-review.rating.title": "Give your score",
+  "app.user.add-new-review.tags-picker.title": "Choose one or several tags",
+  "app.user.add-new-review.field-title.title": "Title",
+  "app.user.add-new-review.field-subtitle.title": "Subject Title",
+
   "app.breadcrumbs.title": "Return back",
 
   "app.navigation-main.latest.title": "Latest",
