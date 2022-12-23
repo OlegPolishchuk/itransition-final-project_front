@@ -36,12 +36,20 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         title={review.title}
         subtitle={review.subtitle}
         body={review.body}
-        overallScore={review.overallScore}
+        personalScore={review.personalScore}
         reviewId={review._id}
         isHide={isHide}
       />
 
-      <ReviewItemFooter tags={review.tags} />
+      <ReviewItemFooter
+        tags={review.tags}
+        overallScore={review.overallScore}
+        comments={review.comments}
+        reviewId={review._id}
+        likes={review.likes}
+        likesId={review.likesId}
+        overallScoresId={review.overallScoresId}
+      />
 
     </Box>
   );

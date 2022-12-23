@@ -6,11 +6,14 @@ export type Review = {
   body: string;
   personalScore: number;
   overallScore: number;
-  comments: [];
+  overallScoresId: string[];
+  comments: number;
   created: string,
   updated: string,
   userId: string;
   userName: string;
   userAvatar: string;
+  likes: number;
+  likesId: string[];
 }
 

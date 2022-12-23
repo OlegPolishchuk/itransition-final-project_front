@@ -24,6 +24,8 @@ export const apiRoutes = {
     userReviews: `${baseReviewsPath}/userReviews`,
     random: `${baseReviewsPath}/random`,
     new: `${baseReviewsPath}/new`,
+    like: `${baseReviewsPath}/like`,
+    score: `${baseReviewsPath}/score`,
   },
   tags: {
     base: baseTagsPath,

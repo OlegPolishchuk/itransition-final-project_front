@@ -29,6 +29,8 @@ export {
   fetchReviews,
   fetchMoreReviews,
   createReview,
+  setReviewLike,
+  addOverallScore,
 } from './reviews';
 
 export {changeUserAvatar} from './user';

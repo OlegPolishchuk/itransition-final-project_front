@@ -3,7 +3,7 @@ import {Box, useMediaQuery} from "@mui/material";
 import {Title} from "common/title/Title";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
 import {useThemeColors} from "hooks";
-import {OverallScore} from "common/scores";
+import {PersonalScore} from "common/scores";
 import {routes} from "shared";
 import {FormattedMessage} from "react-intl";
 
@@ -11,7 +11,7 @@ type Props = {
   title: string;
   subtitle: string;
   body: string;
-  overallScore: number;
+  personalScore: number;
   reviewId: string;
   isHide: boolean;
 }
@@ -20,7 +20,7 @@ export const ReviewItemBody: FC<Props> = ({
                                             body,
                                             title,
                                             subtitle,
-                                            overallScore,
+                                            personalScore,
                                             reviewId,
                                             isHide
                                           }) => {
@@ -37,8 +37,8 @@ export const ReviewItemBody: FC<Props> = ({
 
         <Box display={'flex'} justifyContent={'space-between'} mt={'10px'}>
           <Title variant={'h4'} title={subtitle}/>
-          <OverallScore
-            overallScore={overallScore}
+          <PersonalScore
+            overallScore={personalScore}
             isSmall={smallScreen}
           />
         </Box>

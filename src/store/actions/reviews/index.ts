@@ -5,3 +5,5 @@ export {generateRandomReviews} from './generateRandomReviews';
 export {fetchReviews} from 'store/actions/reviews/fetchReviews';
 export {fetchMoreReviews} from './fetchMoreReviews';
 export {createReview} from './createReview';
+export {setReviewLike} from './setReviewLike';
+export {addOverallScore} from 'store/actions/reviews/addOverallScore';

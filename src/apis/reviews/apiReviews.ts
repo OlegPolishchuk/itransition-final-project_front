@@ -35,6 +35,14 @@ export const apiReviews = {
 
   createNewReview(review: Partial<Review>) {
     return instance.post(apiRoutes.reviews.new, {review})
+  },
+
+  setReviewLike(reviewId: string, userId: string) {
+    return instance.post<{review: Review}>(apiRoutes.reviews.like, {reviewId, userId})
+  },
+
+  setPersonalScore(reviewId: string, userId: string, score: number) {
+    return instance.post<{review: Review}>(apiRoutes.reviews.score, {reviewId, userId, score})
   }
 
 }

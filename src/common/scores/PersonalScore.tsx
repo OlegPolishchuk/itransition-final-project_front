@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import React, {FC} from 'react';
-import {overallScoreData} from "shared/constants";
+import {overallScoreData, personalScoreData} from "shared/constants";
 import {useThemeColors} from "hooks";
 import {Tooltip} from "@mui/material";
 import {FormattedMessage} from "react-intl";
@@ -12,7 +12,7 @@ type Props = {
   color?: string;
 }
 
-export const OverallScore: FC<Props> = ({overallScore, color, isSmall}) => {
+export const PersonalScore: FC<Props> = ({overallScore, color, isSmall}) => {
   const colors = useThemeColors();
 
   const size = isSmall ? '12px' : '16px';
@@ -32,7 +32,7 @@ export const OverallScore: FC<Props> = ({overallScore, color, isSmall}) => {
 
       <Box style={styles}>
         <span>
-          {`${overallScore} / ${overallScoreData.max}`}
+          {`${overallScore} / ${personalScoreData.max}`}
         </span>
       </Box>
 

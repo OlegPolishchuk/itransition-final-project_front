@@ -1,5 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchMoreReviews, fetchUserReviews, getTags} from "store/actions";
+import {
+  addOverallScore,
+  fetchMoreReviews,
+  fetchUserReviews,
+  getTags,
+  setReviewLike
+} from "store/actions";
 import {paginationDefaultParams} from "shared";
 import {ReviewsState} from "store/types";
 import {fetchReviews} from "store/actions/reviews/fetchReviews";
@@ -76,6 +82,16 @@ const reviewsSlice = createSlice({
     builder.addCase(fetchMoreReviews.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
+    })
+
+    builder.addCase(setReviewLike.fulfilled, (state, action) => {
+      state.reviews = state.reviews.map(review => {
+        return  review._id === action.payload.review._id ? action.payload.review : review })
+    })
+
+    builder.addCase(addOverallScore.fulfilled, (state, action) => {
+      state.reviews = state.reviews.map(review => {
+        return  review._id === action.payload.review._id ? action.payload.review : review })
     })
   },
 })
