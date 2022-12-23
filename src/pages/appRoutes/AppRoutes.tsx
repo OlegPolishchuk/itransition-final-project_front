@@ -31,7 +31,7 @@ export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
       <Route path={routes.mainPage.base} element={<Main/>}>
         <Route index element={<Reviews/>}/>
         <Route path={routes.mainPage.popular} element={<Reviews/>}/>
-        <Route path={`${routes.review}/:reviewId`} element={<CurrentReview/>}/>
+        <Route path={`${routes.review.base}/:reviewId`} element={<CurrentReview/>}/>
       </Route>
 
       <Route

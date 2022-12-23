@@ -31,7 +31,7 @@ export const ReviewItemBody: FC<Props> = ({
     <Box>
 
       <Box mb={'20px'}>
-        <BaseNavLink to={`${routes.review}/${reviewId}`}>
+        <BaseNavLink to={`${routes.review.base}/${reviewId}`}>
           <Title variant={'h3'} title={title}/>
         </BaseNavLink>
 
@@ -55,7 +55,7 @@ export const ReviewItemBody: FC<Props> = ({
       {isHide && (
         <Box pt={'15px'}>
           <BaseNavLink
-            to={`${routes.review}/${reviewId}`}
+            to={`${routes.review.base}/${reviewId}`}
             color={colors.secondary.main}
           >
             <FormattedMessage id='app.review-body.see-more-button.title'/>
