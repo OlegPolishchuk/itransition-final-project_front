@@ -5,7 +5,7 @@ import {
   generateRandomUsers,
   fetchUser,
   fetchUserReviews,
-  fetchUsers
+  fetchUsers, changeUserAvatar
 } from "store/actions";
 
 
@@ -85,6 +85,10 @@ const adminSlice = createSlice({
 
     builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
       state.currentUser.reviewsCount = action.payload.totalCount;
+    })
+
+    builder.addCase(changeUserAvatar.fulfilled, (state, action) => {
+      state.currentUser.avatar = action.payload.avatar;
     })
   },
 })

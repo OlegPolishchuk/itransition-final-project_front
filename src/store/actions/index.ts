@@ -28,6 +28,7 @@ export {
   generateRandomReviews,
   fetchReviews,
   fetchMoreReviews,
+  createReview,
 } from './reviews';
 
 export {changeUserAvatar} from './user';

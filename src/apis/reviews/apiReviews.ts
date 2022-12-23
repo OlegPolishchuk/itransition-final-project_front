@@ -3,7 +3,7 @@ import {apiRoutes} from "shared";
 import {
   FetchReviews,
   FetchReviewsResponse,
-  GenerateRandomReviewsRequest, ReviewSortType
+  GenerateRandomReviewsRequest, Review, ReviewSortType
 } from "store/types";
 
 
@@ -32,5 +32,9 @@ export const apiReviews = {
       params: {...sortType}
     })
   },
+
+  createNewReview(review: Partial<Review>) {
+    return instance.post(apiRoutes.reviews.new, {review})
+  }
 
 }

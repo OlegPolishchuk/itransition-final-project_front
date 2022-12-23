@@ -1,6 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import {
+  AddNewReviewButton,
+  BaseNavLink,
   CustomPagination, Loader,
   NothingToShow,
   ReviewHeader,
@@ -16,7 +18,7 @@ import {
   selectReviewCount,
   selectReviews
 } from "store/selectors";
-import {addCheckboxIntoObjectList} from "shared";
+import {addCheckboxIntoObjectList, routes} from "shared";
 import {deleteReviews, fetchUserReviews} from "store/actions";
 import {setReviewsPaginationParams} from "store/reducers";
 import {useSearchParams} from "react-router-dom";
@@ -152,9 +154,15 @@ export const UserReviews: FC<Props> = ({userId, isMyProfile}) => {
           </>
         )
         : (
-          <NothingToShow
-            title={<FormattedMessage id='app.user.reviews-list.no-values.title'/>}
-          />
+          <>
+            <Box textAlign={'end'}>
+              <AddNewReviewButton />
+            </Box>
+
+            <NothingToShow
+              title={<FormattedMessage id='app.user.reviews-list.no-values.title'/>}
+            />
+          </>
         )
       }
     </>

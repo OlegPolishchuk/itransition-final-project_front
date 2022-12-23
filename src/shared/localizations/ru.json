@@ -74,6 +74,8 @@
   "app.user.reviews-list.header.collapse-button.title": "Случайные обзоры",
   "app.user.reviews-list.no-values.title": "Ничего нет",
 
+  "app.user.reviews.add-new-review.button.title": "Добавить новый обзор",
+
   "app.breadcrumbs.title": "Вернуться назад",
 
   "app.navigation-main.latest.title": "Последние",

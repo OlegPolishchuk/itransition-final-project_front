@@ -72,6 +72,17 @@ const userSlice = createSlice({
     builder.addCase(fetchUser.rejected, state => {
       state.isLoading = false;
     })
+
+    builder.addCase(changeUserAvatar.pending, state => {
+      state.isLoading = true
+    })
+    builder.addCase(changeUserAvatar.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.selectedUser.avatar = action.payload.avatar;
+    })
+    builder.addCase(changeUserAvatar.rejected, state => {
+      state.isLoading = false;
+    })
   },
 })
 

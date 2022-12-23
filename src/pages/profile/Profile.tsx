@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "hooks";
 import {selectSelectedUser, selectUser, selectUserRole} from "store/selectors";
 import {Breadcrumbs, UserInfo, UserReviews} from "common";
-import {Box, Container, Divider} from "@mui/material";
+import {Box, Button, Container, Divider} from "@mui/material";
 import {useLocation, useParams} from "react-router-dom";
 import {fetchUser} from "store/actions";
 

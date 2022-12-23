@@ -10,7 +10,10 @@ export const routes = {
     user:'/admin/user',
     review: '/admin/review',
   },
-  review: '/review',
+  review: {
+    base: '/review',
+    addNew: '/addReview'
+  },
   notFound: '/not-found',
   mainPage: {
     base: '/',

@@ -9,7 +9,7 @@ import {
   Main,
   ProtectedRoute,
   Register,
-  CurrentReview, Profile
+  CurrentReview, Profile, AddNewReview
 } from "pages";
 import {UserRole} from "store/types";
 import {Reviews} from 'common';
@@ -33,6 +33,17 @@ export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
         <Route path={routes.mainPage.popular} element={<Reviews/>}/>
         <Route path={`${routes.review}/:reviewId`} element={<CurrentReview/>}/>
       </Route>
+
+      <Route
+        path={routes.review.addNew}
+        element={
+          <ProtectedRoute
+            isUserAuth={isUserAuth}
+          >
+            <AddNewReview/>
+          </ProtectedRoute>
+        }
+      />
 
       <Route
         path={`${routes.profile.myProfile}/:id`}

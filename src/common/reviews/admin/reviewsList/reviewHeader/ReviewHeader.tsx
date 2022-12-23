@@ -3,6 +3,10 @@ import {Box, Button} from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import {MainCheckbox} from "common/mainCheckbox/MainCheckbox";
 import {FormattedMessage} from "react-intl";
+import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
+import {AddNewReview} from "pages";
+import {routes} from "shared";
+import {AddNewReviewButton} from "common/addNewReviewButton/AddNewReviewButton";
 
 type Props = {
   isMainCheckboxChecked: boolean;
@@ -27,14 +31,20 @@ export const ReviewHeader: FC<Props> = ({
         label={<FormattedMessage id='app.user.reviews-list.main-checkbox.title'/>}
       />
 
-      <Button
-        variant={'outlined'}
-        endIcon={<DeleteOutlineOutlinedIcon color={'error'}/>}
-        onClick={deleteCallback}
-        disabled={disabled}
-      >
-        <FormattedMessage id='app.user.reviews-list.header.button.delete.title'/>
-      </Button>
+      <Box>
+        <AddNewReviewButton />
+
+        <Button
+          variant={'outlined'}
+          endIcon={<DeleteOutlineOutlinedIcon color={'error'}/>}
+          onClick={deleteCallback}
+          disabled={disabled}
+          sx={{marginLeft: '20px'}}
+        >
+          <FormattedMessage id='app.user.reviews-list.header.button.delete.title'/>
+        </Button>
+      </Box>
+
     </Box>
   );
 };

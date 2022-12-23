@@ -9,7 +9,12 @@ export {
 
 export {selectIsUserAuth, selectAccessToken} from './auth';
 
-export {selectUser, selectUserRole, selectSelectedUser} from './user';
+export {
+  selectUser,
+  selectUserRole,
+  selectSelectedUser,
+  selectIsUserLoading
+} from './user';
 
 export {
   selectUsers,

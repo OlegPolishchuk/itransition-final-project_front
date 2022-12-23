@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Grid} from "@mui/material";
 import {Outlet} from "react-router-dom";
-import {TagsCloud} from "common";
+import {AddNewReviewButton, TagsCloud} from "common";
 
 export const Main = () => {
 

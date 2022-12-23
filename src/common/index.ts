@@ -39,5 +39,6 @@ export {MainNav,AsideNav} from './navigations';
 export {BaseNavLink} from './baseNavLink/BaseNavLink';
 export {Tag, TagsCloud} from './tags';
 export {OverallScore} from './scores';
+export {AddNewReviewButton} from './addNewReviewButton/AddNewReviewButton';
 
 
