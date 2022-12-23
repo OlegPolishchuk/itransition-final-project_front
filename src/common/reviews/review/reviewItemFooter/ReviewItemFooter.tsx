@@ -99,7 +99,7 @@ export const ReviewItemFooter: FC<Props> = ({
                 <Rating
                   value={overallScore}
                   max={5}
-                  precision={.5}
+                  precision={0.5}
                   disabled={disabledScore}
                   onChange={(event, newValue) => handleChangePersonalScore(newValue)}
                 />
