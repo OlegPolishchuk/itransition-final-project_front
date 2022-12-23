@@ -9,5 +9,6 @@ export type ReviewsState = {
   reviewCount: number;
   isLoading: boolean;
   sortType: ReviewSortType;
+  uploadedImgSrc: string;
 }
 

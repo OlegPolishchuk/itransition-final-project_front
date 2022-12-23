@@ -1,16 +1,29 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Box, Button, Container, Rating, TextField, useMediaQuery} from "@mui/material";
 import MDEditor from '@uiw/react-md-editor';
-import {Breadcrumbs, TagsPicker, Title} from "common";
-import {useAppDispatch} from "hooks";
-import {createReview, getTags} from "store/actions";
+import {Breadcrumbs, ImgUploader, TagsPicker, Title} from "common";
+import {useAppDispatch, useAppSelector} from "hooks";
+import {addReviewImage, createReview, getTags} from "store/actions";
 import {useNavigate} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
+import {
+  selectSelectedUser,
+  selectUploadedReviewImgSrc,
+  selectUser
+} from "store/selectors";
 
 export const AddNewReview = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
+
+  const user = useAppSelector(selectUser);
+  const selectedUser = useAppSelector(selectSelectedUser);
+  const uploadedImgSrc = useAppSelector(selectUploadedReviewImgSrc);
+
+  const userRole = user.role;
+
+  const userId = userRole === 'admin' ? selectedUser._id : user._id;
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
@@ -80,6 +93,13 @@ export const AddNewReview = () => {
     return values.some(value => value)
   }
 
+  const handleUploadFile = (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file, `${userId}-${Date.now()}-${file.name}`)
+
+    dispatch(addReviewImage(formData));
+  }
+
 
   useEffect(() => {
     dispatch(getTags());
@@ -120,6 +140,25 @@ export const AddNewReview = () => {
          helperText={error.subtitle ? 'Required' : ''}
        />
      </Box>
+
+      <Box
+        sx={{
+          marginBottom: '30px',
+          display: 'flex',
+          flexDirection: isSmallScreen ? 'column' : 'row',
+          alignItems: 'center',
+          gap: '50px',
+        }}
+      >
+        <ImgUploader onChangeFileCallback={handleUploadFile} />
+
+        <Box sx={{
+          overflowWrap: 'break-word'
+        }}>
+          {uploadedImgSrc}
+        </Box>
+        {/*<Title component={'span'} variant={'subtitle1'} title={uploadedImgSrc} />*/}
+      </Box>
 
 
       <MDEditor

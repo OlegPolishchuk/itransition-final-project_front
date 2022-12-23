@@ -32,4 +32,5 @@ export {
   selectReviewCount,
   selectIsReviewLoading,
   selectIsFirstLoading,
+  selectUploadedReviewImgSrc,
 } from './reviews';

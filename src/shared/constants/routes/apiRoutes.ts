@@ -26,6 +26,7 @@ export const apiRoutes = {
     new: `${baseReviewsPath}/new`,
     like: `${baseReviewsPath}/like`,
     score: `${baseReviewsPath}/score`,
+    img: `${baseReviewsPath}/image`,
   },
   tags: {
     base: baseTagsPath,

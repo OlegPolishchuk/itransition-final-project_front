@@ -43,6 +43,14 @@ export const apiReviews = {
 
   setPersonalScore(reviewId: string, userId: string, score: number) {
     return instance.post<{review: Review}>(apiRoutes.reviews.score, {reviewId, userId, score})
+  },
+
+  setReviewImage(image:FormData) {
+    return instance.post<{imgSrc: string}>(apiRoutes.reviews.img, image, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
   }
 
 }

@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-  addOverallScore,
+  addOverallScore, addReviewImage,
   fetchMoreReviews,
   fetchUserReviews,
   getTags,
@@ -23,6 +23,7 @@ const initialState: ReviewsState = {
       limit: paginationDefaultParams.limit,
   },
   sortType: 'created',
+  uploadedImgSrc: '',
 }
 
 const reviewsSlice = createSlice({
@@ -92,6 +93,10 @@ const reviewsSlice = createSlice({
     builder.addCase(addOverallScore.fulfilled, (state, action) => {
       state.reviews = state.reviews.map(review => {
         return  review._id === action.payload.review._id ? action.payload.review : review })
+    })
+
+    builder.addCase(addReviewImage.fulfilled, (state, action) => {
+      state.uploadedImgSrc = state.uploadedImgSrc.concat(` ${action.payload.imgSrc}`)
     })
   },
 })

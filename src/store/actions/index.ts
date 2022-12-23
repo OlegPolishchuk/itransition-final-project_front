@@ -31,6 +31,7 @@ export {
   createReview,
   setReviewLike,
   addOverallScore,
+  addReviewImage,
 } from './reviews';
 
 export {changeUserAvatar} from './user';

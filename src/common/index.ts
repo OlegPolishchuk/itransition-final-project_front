@@ -28,6 +28,7 @@ export {
   ReviewItemFooter,
   Reviews,
   ReviewsSorting,
+  ImgUploader,
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';
