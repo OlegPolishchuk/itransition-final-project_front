@@ -1,5 +1,9 @@
 export {AdminPanel} from './AdminPanel';
 
+export {AdminNav} from './adminNav/AdminNav';
+
+export {AdminTags} from './adminTags/AdminTags';
+
 export {
   UserStatusSwitcher,
   CreateUserPanel,

@@ -45,6 +45,11 @@
 
   "app.user.info.avatar.button-change.title": "Change Avatar",
 
+  "app.admin.navigation.users.title": "Users",
+  "app.admin.navigation.tags.title": "Tags",
+
+  "app.admin.tags.button-delete.title": "Delete tags",
+
   "app.user.info.field-id.title": "User ID",
   "app.user.info.field-login.title": "User Login",
   "app.user.info.field-userName.title": "User Name",

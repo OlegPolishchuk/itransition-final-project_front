@@ -157,7 +157,6 @@ export const AddNewReview = () => {
         }}>
           {uploadedImgSrc}
         </Box>
-        {/*<Title component={'span'} variant={'subtitle1'} title={uploadedImgSrc} />*/}
       </Box>
 
 

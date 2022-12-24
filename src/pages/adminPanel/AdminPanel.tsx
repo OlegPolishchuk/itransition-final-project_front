@@ -1,11 +1,18 @@
 import React from 'react';
-import {Container} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {Outlet} from 'react-router-dom';
+import {BaseNavLink} from "common";
+import {routes} from "shared";
+import {AdminNav} from "pages/adminPanel/adminNav/AdminNav";
 
 
 export const AdminPanel = () => {
   return (
-    <Container sx={{padding: '30px 10px'}}>
+    <Container sx={{padding: '10px 10px 30px 10px'}}>
+
+      <Box mb={'30px'}>
+        <AdminNav />
+      </Box>
 
       <Outlet/>
 

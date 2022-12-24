@@ -10,7 +10,7 @@ import {
   useMediaQuery
 } from "@mui/material";
 import {CardItemTitle} from "common/index";
-import {NavLink, useSearchParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Review} from "store/types";
 import {useThemeColors} from "hooks";
 import {FormattedMessage} from "react-intl";
@@ -138,7 +138,7 @@ export const ReviewList: FC<Props> = ({
 
             <Box textAlign={'center'}>
               <Button variant={'outlined'} color={'secondary'}>
-                <NavLink className='navLink' to={`${routes.admin.review}/${review._id}`}>
+                <NavLink className='navLink' to={`${routes.review.base}/${review._id}`}>
                   <FormattedMessage id='app.user.reviews.reviews-list.link-info.title'/>
                 </NavLink>
               </Button>

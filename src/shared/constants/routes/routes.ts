@@ -1,14 +1,13 @@
-const baseAuthPath = '/api/auth';
-
 export const routes = {
   auth: {
-    register: `${baseAuthPath}/register`,
-    login: `${baseAuthPath}/login`,
+    register: '/api/auth/register',
+    login: '/api/auth/login',
   },
   admin: {
     main: '/admin',
     user:'/admin/user',
     review: '/admin/review',
+    tags: '/admin/tags',
   },
   review: {
     base: '/review',

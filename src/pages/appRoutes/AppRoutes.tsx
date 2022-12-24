@@ -9,7 +9,7 @@ import {
   Main,
   ProtectedRoute,
   Register,
-  CurrentReview, Profile, AddNewReview
+  CurrentReview, Profile, AddNewReview, AdminTags
 } from "pages";
 import {UserRole} from "store/types";
 import {Reviews} from 'common';
@@ -86,6 +86,11 @@ export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
         <Route
           path={`${routes.admin.review}/:reviewId`}
           element={<CurrentReview/>}
+        />
+
+        <Route
+          path={routes.admin.tags}
+          element={<AdminTags />}
         />
 
       </Route>

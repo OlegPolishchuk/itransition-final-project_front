@@ -4,3 +4,4 @@ export {deleteUsers} from './deleteUsers';
 export {generateRandomUsers} from './generateRandomUsers';
 export {deleteCurrentUser} from './deleteCurrentUser';
 export {fetchUser} from './fetchUser';
+export {deleteTags} from './deleteTags';

@@ -19,6 +19,7 @@ export {
   generateRandomUsers,
   deleteCurrentUser,
   fetchUser,
+  deleteTags,
 } from './admin';
 
 export {

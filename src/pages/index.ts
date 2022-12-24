@@ -14,6 +14,8 @@ export {
   LocaleSelect,
   AdminDataGridFooter,
   AdminUserReviews,
+  AdminNav,
+  AdminTags,
 } from './adminPanel';
 
 export {Main} from './main/Main';

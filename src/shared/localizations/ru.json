@@ -22,6 +22,11 @@
 
   "app.admin.table-footer.rowsPerPage.title": "Строк на странице:",
 
+  "app.admin.navigation.users.title": "Пользователи",
+  "app.admin.navigation.tags.title": "Тэги",
+
+  "app.admin.tags.button-delete.title": "Удалить тэги",
+
   "app.admin.generate-users.title": "Создать рандомных пользователей:",
   "app.admin.generate-reviews.title": "Создать рандомные обзоры:",
   "app.admin.generate.slider-users.title": "Количество пользователей:",

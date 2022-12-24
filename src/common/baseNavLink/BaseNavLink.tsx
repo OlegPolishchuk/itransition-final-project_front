@@ -19,7 +19,8 @@ export const BaseNavLink: FC<Props> = ({to, children, color}) => {
     color: color
       ? color
       : theme === 'dark' ? colors.grey.main : colors.primary.second,
-    transition: 'all .2s ease'
+    borderBottom: '1px solid transparent',
+    transition: 'all .2s ease',
   }
 
   const hoverStyles = {
