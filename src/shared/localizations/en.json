@@ -49,6 +49,8 @@
   "app.admin.navigation.tags.title": "Tags",
 
   "app.admin.tags.button-delete.title": "Delete tags",
+  "app.admin.tags.choices.title": "Choices",
+  "app.admin.tags.chosen.title": "Chosen",
 
   "app.user.info.field-id.title": "User ID",
   "app.user.info.field-login.title": "User Login",

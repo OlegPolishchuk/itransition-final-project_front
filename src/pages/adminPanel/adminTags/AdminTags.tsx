@@ -156,7 +156,9 @@ export const AdminTags = () => {
               direction={isSmallScreen ? 'column': 'row'}
             >
 
-              <Grid item>{customList('Choices', left)}</Grid>
+              <Grid item>
+                {customList(<FormattedMessage id='app.admin.tags.choices.title'/>, left)}
+              </Grid>
 
               <Grid item>
                 <Grid container direction={isSmallScreen ? 'row' : 'column'} alignItems="center">
@@ -183,7 +185,10 @@ export const AdminTags = () => {
                 </Grid>
               </Grid>
 
-              <Grid item>{customList('Chosen', right)}</Grid>
+              <Grid item>
+                {customList(<FormattedMessage id='app.admin.tags.chosen.title'/>, right)}
+              </Grid>
+
             </Grid>
 
             <Box  sx={{textAlign: 'center', marginY: '50px'}}>

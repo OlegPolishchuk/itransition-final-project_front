@@ -26,6 +26,8 @@
   "app.admin.navigation.tags.title": "Тэги",
 
   "app.admin.tags.button-delete.title": "Удалить тэги",
+  "app.admin.tags.choices.title": "Список тэгов",
+  "app.admin.tags.chosen.title": "Выбранные тэги",
 
   "app.admin.generate-users.title": "Создать рандомных пользователей:",
   "app.admin.generate-reviews.title": "Создать рандомные обзоры:",
