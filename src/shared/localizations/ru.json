@@ -42,6 +42,7 @@
 
   "app.admin.generate.tags-picker.radio-random.title": "Случайные тэги",
   "app.admin.generate.tags-picker.radio-custom.title": "Выбрать",
+  "app.admin.generate.group-picker.title": "Группа:",
 
   "app.admin.card-list.main-checkbox.title": "Выбрать все",
   "app.user.card-list.link-info.title": "Сотреть",
@@ -104,5 +105,10 @@
   "app.page-main.button-show-more.title": "Показать больше",
 
   "app.overall-score.tooltip.title": "оценка пользвоателей",
+
+  "app.review-header.group-books.title": "На книгу",
+  "app.review-header.group-games.title": "На игру",
+  "app.review-header.group-movies.title": "На фильм",
+  "app.review-header.group-music.title": "На песню",
   "app.review-body.see-more-button.title": "Показать полностью"
 }

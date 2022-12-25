@@ -20,6 +20,7 @@ export {
   parseDate,
   getWindowWidth,
   addCheckboxIntoObjectList,
+  getReviewHeaderGroupTitle,
 } from './utils';
 
 export {adminTableColumns} from './adminTableColumns/adminTableColumns';

@@ -29,6 +29,7 @@ export {
   Reviews,
   ReviewsSorting,
   ImgUploader,
+  GroupPicker,
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';

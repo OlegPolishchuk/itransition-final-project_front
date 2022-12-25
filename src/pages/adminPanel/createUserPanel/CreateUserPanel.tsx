@@ -5,19 +5,21 @@ import {
   AccordionSummary,
   Box,
   Button,
-  Checkbox, CircularProgress, Divider,
+  Checkbox,
+  CircularProgress,
+  Divider,
   FormControlLabel,
   SelectChangeEvent
 } from "@mui/material";
 
-import {UserStatusSwitcher, LocaleSelect} from "pages";
+import {LocaleSelect, UserStatusSwitcher} from "pages";
 import {FormattedMessage} from "react-intl";
 import {locales, usersSliderValue, userStatus} from "shared";
 import {useAppDispatch, useAppSelector} from "hooks";
 import {generateRandomUsers, getTags} from "store/actions";
 import {RandomReviewsGenerator, SliderGenerator, Title} from "common";
 import {selectIsGenerating} from "store/selectors";
-import {RandomReviewsData, RandomUserData, Locale} from "store/types";
+import {Locale, RandomReviewsData, RandomUserData} from "store/types";
 
 
 export const CreateUserPanel = memo(() => {

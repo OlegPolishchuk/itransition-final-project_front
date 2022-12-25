@@ -33,6 +33,7 @@
   "app.admin.generate.button.title": "Generate",
   "app.admin.generate.checkbox-accordion.title": "With Reviews",
 
+  "app.admin.generate.group-picker.title": "Group:",
   "app.admin.generate.tags-picker.radio-random.title": "Random",
   "app.admin.generate.tags-picker.radio-custom.title": "Custom",
 
@@ -103,5 +104,10 @@
   "app.page-main.button-show-more.title": "See more",
 
   "app.overall-score.tooltip.title": "overall score",
+
+  "app.review-header.group-books.title": "On book",
+  "app.review-header.group-games.title": "On game",
+  "app.review-header.group-movies.title": "On movie",
+  "app.review-header.group-music.title": "On song",
   "app.review-body.see-more-button.title": "Show the entire review"
 }

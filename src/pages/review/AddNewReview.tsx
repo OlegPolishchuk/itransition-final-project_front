@@ -151,7 +151,7 @@ export const AddNewReview = () => {
         <ItemPicker
           valueList={groups}
           changeValueCallback={handleChangeGroup}
-          startValue={reviewValue.group}
+          value={reviewValue.group}
         />
 
         <TextField

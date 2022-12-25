@@ -1,21 +1,21 @@
-import React, {FC} from 'react';
+import React, {CSSProperties, FC} from 'react';
 import {FormControl, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 type Props = {
   valueList: string[]
   changeValueCallback: (event: SelectChangeEvent) => void;
-  startValue: string;
+  value: string;
+  style?: CSSProperties;
 }
 
-export const ItemPicker: FC<Props> = ({changeValueCallback, valueList, startValue}) => {
-
+export const ItemPicker: FC<Props> = ({changeValueCallback, valueList, value, style}) => {
   return (
-    <FormControl>
+    <FormControl style={ style ? style : {}}>
       <Select
         variant='outlined'
         size='small'
-        id='select-locale'
-        value={startValue}
+        color={'secondary'}
+        value={value}
         onChange={changeValueCallback}
       >
 

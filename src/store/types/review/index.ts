@@ -3,6 +3,7 @@ export type Review = {
   title: string;
   subtitle: string;
   tags: string[];
+  group: string;
   body: string;
   personalScore: number;
   overallScore: number;

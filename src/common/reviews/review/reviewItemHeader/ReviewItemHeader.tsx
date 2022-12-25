@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import {Avatar, Box, Typography} from "@mui/material";
-import {parseDate, routes} from "shared";
+import {getReviewHeaderGroupTitle, parseDate, routes} from "shared";
 import {useThemeColors} from "hooks";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import {PersonalScore} from "common/scores";
+import {FormattedMessage} from "react-intl";
 
 type Props = {
   userName: string;
@@ -14,6 +15,7 @@ type Props = {
   userLikes: number;
   subtitle: string;
   personalScore: number;
+  group: string;
 }
 
 export const ReviewItemHeader: FC<Props> = ({
@@ -23,7 +25,8 @@ export const ReviewItemHeader: FC<Props> = ({
                                               userId,
                                               userLikes,
                                               subtitle,
-                                              personalScore
+                                              personalScore,
+                                              group,
                                             }) => {
 
   const colors = useThemeColors();
@@ -95,7 +98,7 @@ export const ReviewItemHeader: FC<Props> = ({
               variant={'subtitle2'}
               sx={{color: colors.grey.main}}
             >
-              On book:
+              <FormattedMessage id={getReviewHeaderGroupTitle(group)}/>
               <Typography
                 component={'span'}
                 variant={'h4'}
@@ -111,7 +114,6 @@ export const ReviewItemHeader: FC<Props> = ({
               personalScore={personalScore}
             />
           </Box>
-
 
 
           <Typography

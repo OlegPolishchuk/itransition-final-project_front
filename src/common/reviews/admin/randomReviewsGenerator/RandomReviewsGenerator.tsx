@@ -4,7 +4,6 @@ import {FormattedMessage} from "react-intl";
 import {Title} from "common/title/Title";
 import {SliderGenerator} from "common/sliderGenerator/SliderGenerator";
 import {reviewsSliderValue} from "shared/constants";
-import {RandomUserData} from "store/types/randomGenerator/RandomUserData";
 import {AdminReviewsTagsPicker} from "pages";
 import {RandomReviewsData} from "store/types/randomGenerator/RandomReviewsData";
 
@@ -44,6 +43,7 @@ export const RandomReviewsGenerator: FC<Props> = ({setDataCallback, data, childr
 
     setDataCallback(updatedData)
   }
+
 
   return (
     <Box>

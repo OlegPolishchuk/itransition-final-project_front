@@ -33,6 +33,7 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         userLikes={review.userLikes}
         subtitle={review.subtitle}
         personalScore={review.personalScore}
+        group={review.group}
       />
 
       <ReviewItemBody
