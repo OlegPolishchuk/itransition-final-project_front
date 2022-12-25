@@ -1,18 +1,16 @@
 import React, {FC} from 'react';
-import {Box, useMediaQuery} from "@mui/material";
+import {Box} from "@mui/material";
 import {Title} from "common/title/Title";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
-import {useThemeColors} from "hooks";
-import {PersonalScore} from "common/scores";
+import {useAppSelector, useThemeColors} from "hooks";
 import {routes} from "shared";
 import {FormattedMessage} from "react-intl";
 import MDEditor from "@uiw/react-md-editor";
+import {selectThemeMode} from "store/selectors";
 
 type Props = {
   title: string;
-  subtitle: string;
   body: string;
-  personalScore: number;
   reviewId: string;
   isHide: boolean;
 }
@@ -20,13 +18,11 @@ type Props = {
 export const ReviewItemBody: FC<Props> = ({
                                             body,
                                             title,
-                                            subtitle,
-                                            personalScore,
                                             reviewId,
                                             isHide
                                           }) => {
   const colors = useThemeColors();
-  const smallScreen = useMediaQuery('(max-width: 600px)');
+  const theme = useAppSelector(selectThemeMode);
 
   return (
     <Box>
@@ -35,14 +31,6 @@ export const ReviewItemBody: FC<Props> = ({
         <BaseNavLink to={`${routes.review.base}/${reviewId}`}>
           <Title variant={'h3'} title={title}/>
         </BaseNavLink>
-
-        <Box display={'flex'} justifyContent={'space-between'} mt={'10px'}>
-          <Title variant={'h4'} title={subtitle}/>
-          <PersonalScore
-            overallScore={personalScore}
-            isSmall={smallScreen}
-          />
-        </Box>
       </Box>
 
       <Box sx={{
@@ -51,9 +39,13 @@ export const ReviewItemBody: FC<Props> = ({
         paddingBottom: '15px',
       }}>
         <MDEditor.Markdown
+          className={'MDEditor'}
           source={body}
           style={{
             whiteSpace: 'pre-wrap',
+            backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
+            backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+            color: theme === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.main,
           }}
         />
       </Box>

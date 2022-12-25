@@ -41,5 +41,6 @@ export {BaseNavLink} from './baseNavLink/BaseNavLink';
 export {Tag, TagsCloud} from './tags';
 export {PersonalScore} from './scores';
 export {AddNewReviewButton} from './addNewReviewButton/AddNewReviewButton';
+export {ItemPicker} from './itemPicker/ItemPicker';
 
 

@@ -1,7 +1,15 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Box, Button, Container, Rating, TextField, useMediaQuery} from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Rating,
+  SelectChangeEvent,
+  TextField,
+  useMediaQuery
+} from "@mui/material";
 import MDEditor from '@uiw/react-md-editor';
-import {Breadcrumbs, ImgUploader, TagsPicker, Title} from "common";
+import {Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title} from "common";
 import {useAppDispatch, useAppSelector} from "hooks";
 import {addReviewImage, createReview, getTags} from "store/actions";
 import {useNavigate} from "react-router-dom";
@@ -13,6 +21,7 @@ import {
   selectUser
 } from "store/selectors";
 import {setIsCreatedNewReview} from "store/reducers/rewiewsReducer/reviewsSlice";
+import {groups} from "shared/constants";
 
 export const AddNewReview = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +44,7 @@ export const AddNewReview = () => {
     title: '',
     subtitle: '',
     body: '',
+    group: groups[0],
     tags: [] as string[],
     personalScore: 0,
     overallScore: 0,
@@ -48,9 +58,9 @@ export const AddNewReview = () => {
 
 
   const handleChangeTitle = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-     setReviewValue(reviewValue => ({...reviewValue, title: event.target.value}));
+    setReviewValue(reviewValue => ({...reviewValue, title: event.target.value}));
 
-     setError(error => ({...error, title: false}))
+    setError(error => ({...error, title: false}))
   }
 
   const handleChangeSubtitle = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,6 +81,12 @@ export const AddNewReview = () => {
 
   const handleChangePersonalScore = (newValue: number | null) => {
     setReviewValue(reviewValue => ({...reviewValue, personalScore: newValue as number}))
+  }
+
+  const handleChangeGroup = (event: SelectChangeEvent) => {
+    const value = event.target.value;
+
+    setReviewValue(reviewValue => ({...reviewValue, group: value}))
   }
 
   const handlePublishReview = () => {
@@ -103,6 +119,8 @@ export const AddNewReview = () => {
   }
 
 
+
+
   useEffect(() => {
     dispatch(getTags());
 
@@ -120,37 +138,44 @@ export const AddNewReview = () => {
 
   return (
     <Container sx={{paddingBottom: '50px'}}>
-      <Breadcrumbs />
+      <Breadcrumbs/>
 
-     <Box
-       sx={{
-       display: 'flex',
-       flexDirection: 'column',
-       gap: '15px',
-       marginBottom: '30px',
-     }}>
-       <TextField
-         label={<FormattedMessage id='app.user.add-new-review.field-title.title'/>}
-         variant="outlined"
-         value={reviewValue.title}
-         onChange={handleChangeTitle}
-         size={'small'}
-         required
-         error={error.title}
-         helperText={error.title ? 'Required' : ''}
-       />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '15px',
+          marginBottom: '30px',
+        }}>
 
-       <TextField
-         label={<FormattedMessage id='app.user.add-new-review.field-subtitle.title'/>}
-         variant="outlined"
-         value={reviewValue.subtitle}
-         onChange={handleChangeSubtitle}
-         size={'small'}
-         required
-         error={error.subtitle}
-         helperText={error.subtitle ? 'Required' : ''}
-       />
-     </Box>
+        <ItemPicker
+          valueList={groups}
+          changeValueCallback={handleChangeGroup}
+          startValue={reviewValue.group}
+        />
+
+        <TextField
+          label={<FormattedMessage id='app.user.add-new-review.field-title.title'/>}
+          variant="outlined"
+          value={reviewValue.title}
+          onChange={handleChangeTitle}
+          size={'small'}
+          required
+          error={error.title}
+          helperText={error.title ? 'Required' : ''}
+        />
+
+        <TextField
+          label={<FormattedMessage id='app.user.add-new-review.field-subtitle.title'/>}
+          variant="outlined"
+          value={reviewValue.subtitle}
+          onChange={handleChangeSubtitle}
+          size={'small'}
+          required
+          error={error.subtitle}
+          helperText={error.subtitle ? 'Required' : ''}
+        />
+      </Box>
 
       <Box
         sx={{
@@ -161,7 +186,7 @@ export const AddNewReview = () => {
           gap: '50px',
         }}
       >
-        <ImgUploader onChangeFileCallback={handleUploadFile} />
+        <ImgUploader onChangeFileCallback={handleUploadFile}/>
 
         <Box sx={{
           overflowWrap: 'break-word'

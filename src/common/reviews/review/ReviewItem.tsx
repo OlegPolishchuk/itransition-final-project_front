@@ -31,13 +31,13 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         created={review.created}
         userId={review.userId}
         userLikes={review.userLikes}
+        subtitle={review.subtitle}
+        personalScore={review.personalScore}
       />
 
       <ReviewItemBody
         title={review.title}
-        subtitle={review.subtitle}
         body={review.body}
-        personalScore={review.personalScore}
         reviewId={review._id}
         isHide={isHide}
       />

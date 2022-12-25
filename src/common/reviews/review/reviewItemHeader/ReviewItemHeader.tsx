@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
-import {Avatar, Box, IconButton, Typography} from "@mui/material";
+import {Avatar, Box, Typography} from "@mui/material";
 import {parseDate, routes} from "shared";
-import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
+import {useThemeColors} from "hooks";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import {selectIsUserAuth, selectUser} from "store/selectors";
-import {setReviewLike} from "store/actions";
+import {PersonalScore} from "common/scores";
 
 type Props = {
   userName: string;
@@ -13,6 +12,8 @@ type Props = {
   created: string;
   userId: string;
   userLikes: number;
+  subtitle: string;
+  personalScore: number;
 }
 
 export const ReviewItemHeader: FC<Props> = ({
@@ -20,10 +21,10 @@ export const ReviewItemHeader: FC<Props> = ({
                                               userAvatar,
                                               created,
                                               userId,
-                                             userLikes,
+                                              userLikes,
+                                              subtitle,
+                                              personalScore
                                             }) => {
-
-  const user = useAppSelector(selectUser);
 
   const colors = useThemeColors();
 
@@ -35,7 +36,6 @@ export const ReviewItemHeader: FC<Props> = ({
     fontSize: '10px',
     gap: '8px',
   };
-
 
 
   return (
@@ -82,15 +82,46 @@ export const ReviewItemHeader: FC<Props> = ({
 
         </Box>
 
-        <Typography>
-          <BaseNavLink to={`${routes.profile.base}/${userId}`}>
-            {userName}
-          </BaseNavLink>
-        </Typography>
+        <Box flexGrow={1}>
+          <Typography>
+            <BaseNavLink to={`${routes.profile.base}/${userId}`}>
+              {userName}
+            </BaseNavLink>
+          </Typography>
 
-        <Typography sx={{color: colors.grey.main,}}>
-          {parseDate(created)}
-        </Typography>
+          <Box sx={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+            <Typography
+              component={'div'}
+              variant={'subtitle2'}
+              sx={{color: colors.grey.main}}
+            >
+              On book:
+              <Typography
+                component={'span'}
+                variant={'h4'}
+                sx={{marginLeft: '10px'}}
+              >
+                <BaseNavLink to={'/'}>
+                  &laquo;{subtitle}&raquo;
+                </BaseNavLink>
+              </Typography>
+            </Typography>
+
+            <PersonalScore
+              personalScore={personalScore}
+            />
+          </Box>
+
+
+
+          <Typography
+            sx={{color: colors.grey.main, fontSize: '12px'}}
+          >
+            {parseDate(created)}
+          </Typography>
+        </Box>
+
+
       </Box>
 
     </Box>
