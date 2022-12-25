@@ -7,10 +7,12 @@ import {addReviewImage, createReview, getTags} from "store/actions";
 import {useNavigate} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import {
+  selectIsCreatedNewReview,
   selectSelectedUser,
   selectUploadedReviewImgSrc,
   selectUser
 } from "store/selectors";
+import {setIsCreatedNewReview} from "store/reducers/rewiewsReducer/reviewsSlice";
 
 export const AddNewReview = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +22,7 @@ export const AddNewReview = () => {
   const user = useAppSelector(selectUser);
   const selectedUser = useAppSelector(selectSelectedUser);
   const uploadedImgSrc = useAppSelector(selectUploadedReviewImgSrc);
+  const isCreatedNewReview = useAppSelector(selectIsCreatedNewReview);
 
   const userRole = user.role;
 
@@ -75,7 +78,6 @@ export const AddNewReview = () => {
     if (!handleCheckErrors()) {
       dispatch(createReview(reviewValue))
 
-      navigate(-1)
     }
   }
 
@@ -103,8 +105,17 @@ export const AddNewReview = () => {
 
   useEffect(() => {
     dispatch(getTags());
+
+    return () => {
+      dispatch(setIsCreatedNewReview(false))
+    }
   }, [])
 
+  useEffect(() => {
+    if (isCreatedNewReview) {
+      navigate(-1)
+    }
+  }, [isCreatedNewReview])
 
 
   return (

@@ -33,4 +33,6 @@ export {
   selectIsReviewLoading,
   selectIsFirstLoading,
   selectUploadedReviewImgSrc,
+  selectIsCreatedNewReview,
+  selectReviewsSortType,
 } from './reviews';

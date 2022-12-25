@@ -2,11 +2,17 @@ import React, {FC} from 'react';
 import {Box, IconButton, Rating, Typography} from "@mui/material";
 import {Tag} from "common/tags/tag/Tag";
 import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
-import {selectIsUserAuth, selectThemeMode, selectUser} from "store/selectors";
+import {
+  selectAdminCurrentUser,
+  selectIsUserAuth,
+  selectSelectedUser,
+  selectThemeMode,
+  selectUser
+} from "store/selectors";
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import {addOverallScore, setReviewLike} from "store/actions";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 
 type Props = {
@@ -14,9 +20,10 @@ type Props = {
   overallScore: number;
   comments: number;
   reviewId: string;
-  likes: number,
+  likes: number;
   likesId: string[];
   overallScoresId: string[];
+  userId: string;
 }
 
 export const ReviewItemFooter: FC<Props> = ({
@@ -27,29 +34,32 @@ export const ReviewItemFooter: FC<Props> = ({
                                               likesId,
                                               likes,
                                               overallScoresId,
+                                              userId,
                                             }) => {
   const dispatch = useAppDispatch();
 
   const isUserAuth = useAppSelector(selectIsUserAuth);
-  const user = useAppSelector(selectUser);
 
   const colors = useThemeColors();
   const theme = useAppSelector(selectThemeMode);
 
   const footerItemStyle = {display: 'flex', alignItems: 'center', gap: '10px'};
-  const disabledLike = likesId.includes(user._id);
-  const disabledScore = overallScoresId.includes(user._id);
+  const disabledScore = overallScoresId.includes(userId);
 
   const handleClick = () => {
 
   }
 
   const handleChangePersonalScore = (newValue: number | null) => {
-    dispatch(addOverallScore({reviewId, userId: user._id, score: newValue || 5}))
+    dispatch(addOverallScore({reviewId, userId, score: newValue || 5}))
   }
 
+  const disabledLike = likesId.includes(userId);
+
   const handleSetLike = () => {
-    dispatch(setReviewLike({reviewId, userId: user._id}))
+    if (likesId.includes(userId)) return;
+
+    dispatch(setReviewLike({reviewId, userId}))
   }
 
 
@@ -78,13 +88,13 @@ export const ReviewItemFooter: FC<Props> = ({
 
         <Box sx={footerItemStyle}>
           {isUserAuth
-            ? (
-              <IconButton
-                onClick={handleSetLike}
-                disabled={disabledLike}
-              >
-                <FavoriteBorderOutlinedIcon/>
-              </IconButton>)
+            ? (<IconButton
+              onClick={handleSetLike}
+              disabled={disabledLike}
+              sx={{padding: 0}}
+            >
+              <FavoriteBorderOutlinedIcon/>
+            </IconButton>)
             : <FavoriteBorderOutlinedIcon color={'disabled'}/>
           }
 

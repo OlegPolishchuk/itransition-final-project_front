@@ -1,1 +1,1 @@
-export type ReviewSortType = 'created' | 'personalScore' | 'overallScore';
+export type ReviewSortType = 'created' | 'personalScore' | 'overallScore' | 'likes';

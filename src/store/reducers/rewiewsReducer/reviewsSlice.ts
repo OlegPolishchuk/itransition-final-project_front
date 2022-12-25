@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-  addOverallScore, addReviewImage,
+  addOverallScore,
+  addReviewImage,
+  createReview,
   fetchMoreReviews,
   fetchUserReviews,
   getTags,
@@ -24,6 +26,7 @@ const initialState: ReviewsState = {
   },
   sortType: 'created',
   uploadedImgSrc: '',
+  isCreatedNewOne: false,
 }
 
 const reviewsSlice = createSlice({
@@ -36,6 +39,10 @@ const reviewsSlice = createSlice({
 
     setReviewsSortType: (state, action) => {
       state.sortType = action.payload;
+    },
+
+    setIsCreatedNewReview: (state, action) => {
+      state.isCreatedNewOne = action.payload;
     }
 
   },
@@ -86,8 +93,18 @@ const reviewsSlice = createSlice({
     })
 
     builder.addCase(setReviewLike.fulfilled, (state, action) => {
-      state.reviews = state.reviews.map(review => {
-        return  review._id === action.payload.review._id ? action.payload.review : review })
+      // state.reviews = state.reviews.map(review => {
+      //   return  review._id === action.payload.review._id ? action.payload.review : review })
+
+      state.reviews.forEach((review, index) => {
+        if (review._id === action.payload.review._id) {
+          state.reviews[index] = action.payload.review
+        }
+
+        if (review.userId === action.payload.review.userId) {
+          review.userLikes = action.payload.review.userLikes
+        }
+      })
     })
 
     builder.addCase(addOverallScore.fulfilled, (state, action) => {
@@ -98,9 +115,19 @@ const reviewsSlice = createSlice({
     builder.addCase(addReviewImage.fulfilled, (state, action) => {
       state.uploadedImgSrc = state.uploadedImgSrc.concat(` ${action.payload.imgSrc}`)
     })
+
+    builder.addCase(createReview.pending, state => {
+      state.isCreatedNewOne = false;
+    })
+    builder.addCase(createReview.fulfilled, state => {
+      state.isCreatedNewOne = true;
+    })
+    builder.addCase(createReview.rejected, state => {
+      state.isCreatedNewOne = false;
+    })
   },
 })
 
 
 export const reviewsReducer = reviewsSlice.reducer;
-export const {setReviewsPaginationParams, setReviewsSortType} = reviewsSlice.actions;
+export const {setReviewsPaginationParams, setReviewsSortType, setIsCreatedNewReview} = reviewsSlice.actions;

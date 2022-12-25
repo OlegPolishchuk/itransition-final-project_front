@@ -25,6 +25,7 @@ const initialState: AdminState = {
     created: '',
     lastLogin: '',
     reviewsCount: 0,
+    likes: 0,
   },
   totalCount: 0,
   tableSearchParams: {

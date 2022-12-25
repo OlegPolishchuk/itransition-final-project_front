@@ -93,11 +93,13 @@
 
   "app.navigation-main.latest.title": "Последние",
   "app.navigation-main.popular.title": "Популярные",
+  "app.navigation-main.scored.title": "Оцененные обзоры",
+  "app.navigation-main.profile.title": "Профиль",
+  "app.navigation-main.admin-panel.title": "Панель администратора",
 
   "app.page-main.latest.title": "Последние обзоры:",
   "app.page-main.popular.title": "Популярные обзоры:",
-  "app.navigation-main.profile.title": "Профиль",
-  "app.navigation-main.admin-panel.title": "Панель администратора",
+
 
   "app.page-main.button-show-more.title": "Показать больше",
 

@@ -6,3 +6,4 @@ export {selectIsReviewLoading} from './selectIsReviewLoading/selectIsReviewLoadi
 export {selectIsFirstLoading} from './selectIsFirstLoading/selectIsFirstLoading';
 export {selectReviewsSortType} from './selectReviewsSortParams/selectReviewsSortType';
 export {selectUploadedReviewImgSrc} from './selectUploadedReviewImgSrc/selectUploadedReviewImgSrc';
+export {selectIsCreatedNewReview} from './selectIsCreatingNewReview/selectIsCreatingNewReview';

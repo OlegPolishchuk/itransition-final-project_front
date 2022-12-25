@@ -11,7 +11,6 @@ import {AdminUserReviews} from "pages/adminPanel/adminUser/AdminUserReviews";
 import {routes} from "shared";
 
 export const AdminUser = () => {
-  console.log('AdminUser')
   const dispatch = useAppDispatch();
 
   const isInitialize = useAppSelector(selectIsInitialize);

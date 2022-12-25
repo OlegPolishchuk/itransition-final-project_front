@@ -16,7 +16,8 @@ export const routes = {
   notFound: '/not-found',
   mainPage: {
     base: '/',
-    popular: '/popular',
+    popular: '/likes',
+    scored: '/overallScore'
   },
   profile: {
     base: '/profile',

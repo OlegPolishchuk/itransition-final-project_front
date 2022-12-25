@@ -28,14 +28,18 @@ export const Reviews = () => {
 
   const handleLoadMore = () => {
     const newPage = page + 1;
-    const sortType: ReviewSortType = pathname === '/' ? "created" : 'overallScore';
+    const sortType: ReviewSortType = pathname === '/' ? "created" : getPathname(pathname);
 
     dispatch(setReviewsPaginationParams({page: newPage}))
     dispatch(fetchMoreReviews({reviewsSortParams: sortType, page: newPage}))
   }
 
+  const getPathname = (pathname: string) => {
+    return pathname.split('/')[1] as ReviewSortType
+  }
+
   useEffect(() => {
-    const sortType: ReviewSortType = pathname === '/' ? "created" : 'overallScore';
+    const sortType: ReviewSortType = pathname === '/' ? "created" : getPathname(pathname);
 
     dispatch(setReviewsPaginationParams({page: 0}))
     dispatch(fetchReviews({reviewsSortParams: sortType}))

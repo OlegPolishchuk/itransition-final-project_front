@@ -9,6 +9,7 @@ export type User = {
   created: string;
   lastLogin: string;
   reviewsCount: number;
+  likes: number;
 }
 
 export type UserRole = 'admin' | 'user';

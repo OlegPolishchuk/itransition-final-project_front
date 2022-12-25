@@ -50,9 +50,13 @@ export const ReviewItemBody: FC<Props> = ({
         overflow: isHide ? 'hidden' : '',
         paddingBottom: '15px',
       }}>
-        <MDEditor.Markdown source={body} style={{ whiteSpace: 'pre-wrap' }}/>
+        <MDEditor.Markdown
+          source={body}
+          style={{
+            whiteSpace: 'pre-wrap',
+          }}
+        />
       </Box>
-
 
 
       {isHide && (

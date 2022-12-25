@@ -9,6 +9,7 @@ import {
   selectUserRole
 } from "store/selectors";
 import {FormattedMessage} from "react-intl";
+import {useMediaQuery} from "@mui/material";
 
 type Props = {
   variant?: 'vertical' | 'horizontal';
@@ -22,6 +23,13 @@ export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
 
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
+
+  const isSmallScreen = useMediaQuery('(max-width: 900px)');
+
+  const profileLinkStyle = {
+    marginLeft: isSmallScreen ? '0' : '30px',
+    marginTop: isSmallScreen ? '30px' : '0',
+  }
 
 
   const navLinkStyles = {
@@ -69,11 +77,22 @@ export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
           </NavLink>
         </li>
 
+        <li>
+          <NavLink
+            onClick={handleClick}
+            style={activeNavLink}
+            to={routes.mainPage.scored}
+            end
+          >
+            <FormattedMessage id='app.navigation-main.scored.title'/>
+          </NavLink>
+        </li>
+
         {isUserAuth && (
           <>
             {userRole === 'admin'
             ? (
-            <li>
+            <li style={profileLinkStyle}>
               <NavLink
                 onClick={handleClick}
                 style={activeNavLink}
@@ -84,7 +103,7 @@ export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
             </li>
             )
             : (
-            <li>
+            <li style={profileLinkStyle}>
               <NavLink
                 onClick={handleClick}
                 style={activeNavLink}

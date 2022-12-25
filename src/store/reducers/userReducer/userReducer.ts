@@ -4,7 +4,7 @@ import {
   changeUserAvatar,
   fetchUser,
   getProfile,
-  loginUser,
+  loginUser, setReviewLike,
   twitterLogin
 } from "store/actions";
 import {googleLogin} from "store/actions/auth/googleLogin";
@@ -23,6 +23,7 @@ const initialState: UserState = {
     role: userRoles.user,
     status: 'active',
     reviewsCount: 0,
+    likes: 0,
   },
   selectedUser: {
     _id: '',
@@ -35,6 +36,7 @@ const initialState: UserState = {
     role: userRoles.user,
     status: 'active',
     reviewsCount: 0,
+    likes: 0,
   },
   isLoading: false,
 }
@@ -83,6 +85,7 @@ const userSlice = createSlice({
     builder.addCase(changeUserAvatar.rejected, state => {
       state.isLoading = false;
     })
+
   },
 })
 

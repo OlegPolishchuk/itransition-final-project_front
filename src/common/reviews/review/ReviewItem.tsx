@@ -30,6 +30,7 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         userAvatar={review.userAvatar}
         created={review.created}
         userId={review.userId}
+        userLikes={review.userLikes}
       />
 
       <ReviewItemBody
@@ -46,9 +47,10 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         overallScore={review.overallScore}
         comments={review.comments}
         reviewId={review._id}
-        likes={review.likes}
-        likesId={review.likesId}
         overallScoresId={review.overallScoresId}
+        likesId={review.likesId}
+        likes={review.likes}
+        userId={review.userId}
       />
 
     </Box>

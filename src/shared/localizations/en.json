@@ -92,6 +92,7 @@
   "app.breadcrumbs.title": "Return back",
 
   "app.navigation-main.latest.title": "Latest",
+  "app.navigation-main.scored.title": "Scored",
   "app.navigation-main.popular.title": "Popular",
   "app.navigation-main.profile.title": "Profile",
   "app.navigation-main.admin-panel.title": "Admin panel",
