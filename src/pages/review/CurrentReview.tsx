@@ -1,15 +1,10 @@
 import React, {useEffect} from 'react';
-import {NavLink, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "hooks";
 import {fetchReviews} from "store/actions";
-import {
-  selectIsReviewLoading,
-  selectReviews,
-  selectSelectedUser,
-  selectUser
-} from "store/selectors";
+import {selectIsReviewLoading, selectReviews, selectUser} from "store/selectors";
 import {Box, Button} from "@mui/material";
-import {BaseNavLink, Breadcrumbs, Loader, ReviewItem} from "common";
+import {Breadcrumbs, Loader, ReviewItem} from "common";
 import {routes} from "shared";
 import {setEditableReview} from "store/reducers/rewiewsReducer/reviewsSlice";
 
@@ -23,11 +18,10 @@ export const CurrentReview = () => {
   const review = useAppSelector(selectReviews)[0];
   const isLoading = useAppSelector(selectIsReviewLoading);
   const user = useAppSelector(selectUser);
-  const selectedUser = useAppSelector(selectSelectedUser);
 
   const userRole = user.role;
+  const userId = user._id
 
-  const userId = userRole === 'admin' ? selectedUser._id : user._id;
 
   const handleEditReview = () => {
     dispatch(setEditableReview(review))
@@ -38,6 +32,8 @@ export const CurrentReview = () => {
   useEffect(() => {
     dispatch(fetchReviews({reviewId}))
   }, [])
+
+
   return (
     <Box>
 
@@ -47,8 +43,7 @@ export const CurrentReview = () => {
       ? (<Loader />)
         :(
           <Box>
-
-            {userId === review.userId && (
+            {(userRole === 'admin' || userId === review.userId) && (
               <Box sx={{textAlign: 'end', marginBottom: '30px'}}>
                 <Button
                   color={'error'}

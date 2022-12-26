@@ -19,7 +19,7 @@ const initialState: ReviewsState = {
   editableReview: null,
   reviewCount: 0,
   error: '',
-  isLoading: false,
+  isLoading: true,
   isFirstLoading: true,
   paginationParams: {
       page: paginationDefaultParams.page,
