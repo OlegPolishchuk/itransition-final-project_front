@@ -6,7 +6,7 @@ import {
   fetchMoreReviews,
   fetchUserReviews,
   getTags,
-  setReviewLike
+  setReviewLike, updateReview
 } from "store/actions";
 import {paginationDefaultParams} from "shared";
 import {ReviewsState} from "store/types";
@@ -16,6 +16,7 @@ import {fetchReviews} from "store/actions/reviews/fetchReviews";
 const initialState: ReviewsState = {
   tags: [],
   reviews: [],
+  editableReview: null,
   reviewCount: 0,
   error: '',
   isLoading: false,
@@ -43,6 +44,10 @@ const reviewsSlice = createSlice({
 
     setIsCreatedNewReview: (state, action) => {
       state.isCreatedNewOne = action.payload;
+    },
+
+    setEditableReview: (state, action) => {
+      state.editableReview = action.payload;
     }
 
   },
@@ -93,8 +98,6 @@ const reviewsSlice = createSlice({
     })
 
     builder.addCase(setReviewLike.fulfilled, (state, action) => {
-      // state.reviews = state.reviews.map(review => {
-      //   return  review._id === action.payload.review._id ? action.payload.review : review })
 
       state.reviews.forEach((review, index) => {
         if (review._id === action.payload.review._id) {
@@ -125,9 +128,24 @@ const reviewsSlice = createSlice({
     builder.addCase(createReview.rejected, state => {
       state.isCreatedNewOne = false;
     })
+
+    builder.addCase(updateReview.pending, state => {
+      state.isCreatedNewOne = false;
+    })
+    builder.addCase(updateReview.fulfilled, state => {
+      state.isCreatedNewOne = true;
+    })
+    builder.addCase(updateReview.rejected, state => {
+      state.isCreatedNewOne = false;
+    })
   },
 })
 
 
 export const reviewsReducer = reviewsSlice.reducer;
-export const {setReviewsPaginationParams, setReviewsSortType, setIsCreatedNewReview} = reviewsSlice.actions;
+export const {
+  setReviewsPaginationParams,
+  setReviewsSortType,
+  setIsCreatedNewReview,
+  setEditableReview,
+} = reviewsSlice.actions;

@@ -11,7 +11,8 @@ export const routes = {
   },
   review: {
     base: '/review',
-    addNew: '/addReview'
+    addNew: '/review/addReview',
+    edit: '/review/editReview'
   },
   notFound: '/not-found',
   mainPage: {

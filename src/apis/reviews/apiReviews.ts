@@ -51,6 +51,10 @@ export const apiReviews = {
         'content-type': 'multipart/form-data'
       }
     })
+  },
+
+  updateReview(review: Review) {
+    return instance.put(apiRoutes.reviews.base, review)
   }
 
 }

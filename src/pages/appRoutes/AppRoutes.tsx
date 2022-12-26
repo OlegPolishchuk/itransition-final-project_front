@@ -47,6 +47,17 @@ export const AppRoutes: FC<Props> = ({isUserAuth, userRole, isInitialize}) => {
       />
 
       <Route
+        path={routes.review.edit}
+        element={
+          <ProtectedRoute
+            isUserAuth={isUserAuth}
+          >
+            <AddNewReview/>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path={`${routes.profile.myProfile}/:id`}
         element={
           <ProtectedRoute

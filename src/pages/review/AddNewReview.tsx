@@ -11,17 +11,22 @@ import {
 import MDEditor from '@uiw/react-md-editor';
 import {Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title} from "common";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {addReviewImage, createReview, getTags} from "store/actions";
+import {addReviewImage, createReview, getTags, updateReview} from "store/actions";
 import {useNavigate} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import {
+  selectEditableReview,
   selectIsCreatedNewReview,
   selectSelectedUser,
   selectUploadedReviewImgSrc,
   selectUser
 } from "store/selectors";
-import {setIsCreatedNewReview} from "store/reducers/rewiewsReducer/reviewsSlice";
+import {
+  setEditableReview,
+  setIsCreatedNewReview
+} from "store/reducers/rewiewsReducer/reviewsSlice";
 import {groups} from "shared/constants";
+
 
 export const AddNewReview = () => {
   const dispatch = useAppDispatch();
@@ -32,6 +37,7 @@ export const AddNewReview = () => {
   const selectedUser = useAppSelector(selectSelectedUser);
   const uploadedImgSrc = useAppSelector(selectUploadedReviewImgSrc);
   const isCreatedNewReview = useAppSelector(selectIsCreatedNewReview);
+  const editableReview = useAppSelector(selectEditableReview);
 
   const userRole = user.role;
 
@@ -41,13 +47,13 @@ export const AddNewReview = () => {
 
 
   const [reviewValue, setReviewValue] = useState({
-    title: '',
-    subtitle: '',
-    body: '',
-    group: groups[0],
-    tags: [] as string[],
-    personalScore: 0,
-    overallScore: 0,
+    title: editableReview ? editableReview.title : '',
+    subtitle: editableReview ? editableReview.subtitle : '',
+    body: editableReview ? editableReview.body : '',
+    group: editableReview ? editableReview.group : groups[0],
+    tags: editableReview ? editableReview.tags : [] as string[],
+    personalScore: editableReview ? editableReview.personalScore : 0,
+    overallScore: editableReview ? editableReview.overallScore : 0,
   });
 
   const [error, setError] = useState({
@@ -92,7 +98,14 @@ export const AddNewReview = () => {
   const handlePublishReview = () => {
 
     if (!handleCheckErrors()) {
-      dispatch(createReview(reviewValue))
+
+      if (editableReview) {
+        const updatedReview = {...editableReview, ...reviewValue};
+
+        return dispatch(updateReview(updatedReview))
+      } else {
+        return dispatch(createReview(reviewValue))
+      }
 
     }
   }
@@ -119,13 +132,12 @@ export const AddNewReview = () => {
   }
 
 
-
-
   useEffect(() => {
     dispatch(getTags());
 
     return () => {
-      dispatch(setIsCreatedNewReview(false))
+      dispatch(setIsCreatedNewReview(false));
+      dispatch(setEditableReview(null));
     }
   }, [])
 
@@ -234,7 +246,10 @@ export const AddNewReview = () => {
           color={'error'}
           onClick={handlePublishReview}
         >
-          <FormattedMessage id='app.user.add-new-review.button-publish.title'/>
+          {editableReview
+            ? <FormattedMessage id='app.user.add-new-review.button-edit.title'/>
+            : <FormattedMessage id='app.user.add-new-review.button-publish.title'/>
+          }
         </Button>
       </Box>
 

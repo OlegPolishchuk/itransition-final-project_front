@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Avatar, Box, Typography} from "@mui/material";
+import {Avatar, Box, Tooltip, Typography} from "@mui/material";
 import {getReviewHeaderGroupTitle, parseDate, routes} from "shared";
 import {useThemeColors} from "hooks";
 import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
@@ -70,16 +70,20 @@ export const ReviewItemHeader: FC<Props> = ({
               src={userAvatar}
             />
 
-            <Box sx={footerItemStyle}>
-              <FavoriteBorderOutlinedIcon
-                color={'disabled'}
-                sx={{width: '15px', height: '15px'}}
-              />
+            <Tooltip
+              title={<FormattedMessage id='app.user-score.tooltip.title'/>}
+            >
+              <Box sx={footerItemStyle}>
+                <FavoriteBorderOutlinedIcon
+                  color={'disabled'}
+                  sx={{width: '15px', height: '15px'}}
+                />
 
-              <Typography component={'span'} color={colors.warning.main}>
-                {userLikes ? userLikes : 0}
-              </Typography>
-            </Box>
+                <Typography component={'span'} color={colors.warning.main}>
+                  {userLikes ? userLikes : 0}
+                </Typography>
+              </Box>
+            </Tooltip>
 
           </Box>
 

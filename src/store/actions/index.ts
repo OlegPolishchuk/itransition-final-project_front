@@ -33,6 +33,7 @@ export {
   setReviewLike,
   addOverallScore,
   addReviewImage,
+  updateReview,
 } from './reviews';
 
 export {changeUserAvatar} from './user';

@@ -20,8 +20,6 @@ export const createReview = createAsyncThunk<void, Partial<Review>, {state: Root
          userAvatar = getState().userReducer.selectedUser.avatar;
       }
 
-      console.log(userAvatar, userRole, userId, userName)
-
       const newReviewData = {...reviewData, userAvatar, userName, userId}
 
       const res = await apiReviews.createNewReview(newReviewData)

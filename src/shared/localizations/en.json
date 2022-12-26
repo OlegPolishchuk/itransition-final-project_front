@@ -85,6 +85,7 @@
   "app.user.reviews.add-new-review.button.title": "Add new Review",
 
   "app.user.add-new-review.button-publish.title": "Publish",
+  "app.user.add-new-review.button-edit.title": "Save edit",
   "app.user.add-new-review.rating.title": "Give your score",
   "app.user.add-new-review.tags-picker.title": "Choose one or several tags",
   "app.user.add-new-review.field-title.title": "Title",
@@ -103,7 +104,7 @@
 
   "app.page-main.button-show-more.title": "See more",
 
-  "app.overall-score.tooltip.title": "overall score",
+  "app.user-score.tooltip.title": "Count of user's likes",
 
   "app.review-header.group-books.title": "On book",
   "app.review-header.group-games.title": "On game",

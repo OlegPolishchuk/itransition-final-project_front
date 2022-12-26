@@ -85,6 +85,7 @@
   "app.user.reviews.add-new-review.button.title": "Добавить новый обзор",
 
   "app.user.add-new-review.button-publish.title": "Опубликовать",
+  "app.user.add-new-review.button-edit.title": "Сохранить",
   "app.user.add-new-review.rating.title": "Дайте свою оценку",
   "app.user.add-new-review.tags-picker.title": "Выберете один или несколько тегов",
   "app.user.add-new-review.field-title.title": "Заголовок",
@@ -104,7 +105,7 @@
 
   "app.page-main.button-show-more.title": "Показать больше",
 
-  "app.overall-score.tooltip.title": "оценка пользвоателей",
+  "app.user-score.tooltip.title": "общее количество лайков",
 
   "app.review-header.group-books.title": "На книгу",
   "app.review-header.group-games.title": "На игру",

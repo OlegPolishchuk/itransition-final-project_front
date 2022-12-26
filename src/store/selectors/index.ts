@@ -35,4 +35,5 @@ export {
   selectUploadedReviewImgSrc,
   selectIsCreatedNewReview,
   selectReviewsSortType,
+  selectEditableReview,
 } from './reviews';
