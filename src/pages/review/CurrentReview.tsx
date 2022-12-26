@@ -1,12 +1,17 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "hooks";
-import {fetchReviews} from "store/actions";
-import {selectIsReviewLoading, selectReviews, selectUser} from "store/selectors";
+import {
+  selectIsReviewLoading,
+  selectReviews,
+  selectSelectedUser,
+  selectUser
+} from "store/selectors";
 import {Box, Button} from "@mui/material";
-import {Breadcrumbs, Loader, ReviewItem} from "common";
+import {Breadcrumbs, Comments, Loader, ReviewItem} from "common";
 import {routes} from "shared";
 import {setEditableReview} from "store/reducers/rewiewsReducer/reviewsSlice";
+import {closeConnection, createConnection, fetchReviews} from "store/actions";
 
 export const CurrentReview = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +23,13 @@ export const CurrentReview = () => {
   const review = useAppSelector(selectReviews)[0];
   const isLoading = useAppSelector(selectIsReviewLoading);
   const user = useAppSelector(selectUser);
+  const selectedUser = useAppSelector(selectSelectedUser);
 
   const userRole = user.role;
-  const userId = user._id
+
+  const userId = userRole === 'admin' ? selectedUser._id : user._id;
+  const userAvatar = userRole === 'admin' ? selectedUser.avatar : user.avatar;
+  const userName = userRole === 'admin' ? selectedUser.avatar : user.avatar;
 
 
   const handleEditReview = () => {
@@ -31,17 +40,23 @@ export const CurrentReview = () => {
 
   useEffect(() => {
     dispatch(fetchReviews({reviewId}))
+    dispatch(createConnection({userId, reviewId: reviewId as string}))
+
+    return () => {
+      dispatch(closeConnection())
+      console.log('unmount')
+    }
   }, [])
 
 
   return (
     <Box>
 
-      <Breadcrumbs />
+      <Breadcrumbs/>
 
       {isLoading
-      ? (<Loader />)
-        :(
+        ? (<Loader/>)
+        : (
           <Box>
             {(userRole === 'admin' || userId === review.userId) && (
               <Box sx={{textAlign: 'end', marginBottom: '30px'}}>
@@ -56,6 +71,14 @@ export const CurrentReview = () => {
             )}
 
             <ReviewItem review={review} isHide={false}/>
+
+            <Box mt={'50px'}>
+              <Comments
+                userId={userId}
+                userAvatar={userAvatar}
+                userName={userName}
+              />
+            </Box>
           </Box>
         )
       }

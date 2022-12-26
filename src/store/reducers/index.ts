@@ -18,3 +18,5 @@ export {
   reviewsReducer,
   setReviewsPaginationParams,
 } from './rewiewsReducer/reviewsSlice';
+
+export {commentsReducer} from './commentsReducer/commentsSlice';

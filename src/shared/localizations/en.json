@@ -105,6 +105,8 @@
   "app.page-main.button-show-more.title": "See more",
 
   "app.user-score.tooltip.title": "Count of user's likes",
+  "app.review-footer.like.tooltip.title": "likes",
+  "app.review-footer.overall-score.tooltip.title": "users score",
 
   "app.review-header.group-books.title": "On book",
   "app.review-header.group-games.title": "On game",

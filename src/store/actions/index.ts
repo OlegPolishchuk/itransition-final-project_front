@@ -38,3 +38,5 @@ export {
 
 export {changeUserAvatar} from './user';
 
+export {createConnection, closeConnection} from './comments';
+

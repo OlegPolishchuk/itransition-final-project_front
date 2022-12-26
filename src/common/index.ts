@@ -33,15 +33,28 @@ export {
 } from './reviews';
 
 export {SliderGenerator} from './sliderGenerator/SliderGenerator';
+
 export {CardItemTitle} from './cardItemTitle/CardItemTitle';
+
 export {MainCheckbox} from './mainCheckbox/MainCheckbox';
+
 export {NothingToShow} from './nothingToShow/NothingToShow';
+
 export {CustomPagination, DataGridCustomPagination} from './pagination';
+
 export {MainNav,AsideNav} from './navigations';
+
 export {BaseNavLink} from './baseNavLink/BaseNavLink';
+
 export {Tag, TagsCloud} from './tags';
+
 export {PersonalScore} from './scores';
+
 export {AddNewReviewButton} from './addNewReviewButton/AddNewReviewButton';
+
 export {ItemPicker} from './itemPicker/ItemPicker';
+
+export {Comments, CommentGenerator, CommentItem} from './comments';
+
 
 

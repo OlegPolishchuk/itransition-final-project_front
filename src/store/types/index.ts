@@ -23,6 +23,7 @@ export type {
   AdminState,
   AppState,
   ReviewsState,
+  CommentsState,
 } from './initialStates';
 
 export type {ThemeMode} from './themeMode';
@@ -44,3 +45,5 @@ export type {InitializeApp} from './initializeApp';
 export type {PaginationParams} from './paginationParams';
 export type {SliderValues} from './sliderValues';
 export type {ReviewSortType} from './reviewsSortParams';
+
+export type {Comment, Comments} from './comment';

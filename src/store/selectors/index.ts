@@ -37,3 +37,5 @@ export {
   selectReviewsSortType,
   selectEditableReview,
 } from './reviews';
+
+export {selectComments} from './comments';

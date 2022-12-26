@@ -3,6 +3,7 @@ import {
   adminReducer,
   appReducer,
   authReducer,
+  commentsReducer,
   reviewsReducer,
   userReducer
 } from "store/reducers";
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   userReducer,
   adminReducer,
   reviewsReducer,
+  commentsReducer,
 })
 
 export const store = configureStore({

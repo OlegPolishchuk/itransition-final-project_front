@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Box, IconButton, Rating, Typography} from "@mui/material";
+import {Box, IconButton, Rating, Tooltip, Typography} from "@mui/material";
 import {Tag} from "common/tags/tag/Tag";
 import {useAppDispatch, useAppSelector, useThemeColors} from "hooks";
 import {
@@ -13,6 +13,7 @@ import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import {addOverallScore, setReviewLike} from "store/actions";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import {FormattedMessage} from "react-intl";
 
 
 type Props = {
@@ -86,42 +87,54 @@ export const ReviewItemFooter: FC<Props> = ({
         }}
       >
 
-        <Box sx={footerItemStyle}>
-          {isUserAuth
-            ? (<IconButton
-              onClick={handleSetLike}
-              disabled={disabledLike}
-              sx={{padding: 0}}
-            >
-              <FavoriteBorderOutlinedIcon/>
-            </IconButton>)
-            : <FavoriteBorderOutlinedIcon color={'disabled'}/>
-          }
+        <Tooltip title={<FormattedMessage id='app.review-footer.like.tooltip.title'/>} >
+          <Box sx={footerItemStyle}>
+            {isUserAuth
+              ? (<IconButton
+                onClick={handleSetLike}
+                disabled={disabledLike}
+                sx={{padding: 0}}
+              >
+                <FavoriteBorderOutlinedIcon/>
+              </IconButton>)
+              : <FavoriteBorderOutlinedIcon color={'disabled'}/>
+            }
 
-          <Typography component={'span'} color={colors.warning.main}>
-            {likes ? likes : 0}
-          </Typography>
-        </Box>
+            <Typography component={'span'} color={colors.warning.main}>
+              {likes ? likes : 0}
+            </Typography>
+          </Box>
+        </Tooltip>
 
         <Box sx={footerItemStyle}>
           {isUserAuth
             ? (
               <>
-                <Rating
-                  value={overallScore}
-                  max={5}
-                  precision={0.5}
-                  disabled={disabledScore}
-                  onChange={(event, newValue) => handleChangePersonalScore(newValue)}
-                />
+                <Tooltip
+                  title={<FormattedMessage id='app.review-footer.overall-score.tooltip.title'/>}
+                >
+                  <Rating
+                    value={overallScore}
+                    max={5}
+                    precision={0.5}
+                    disabled={disabledScore}
+                    onChange={(event, newValue) => handleChangePersonalScore(newValue)}
+                  />
+                </Tooltip>
               </>
             )
             : (
               <>
-                <GradeOutlinedIcon color={'disabled'}/>
-                <Typography component={'span'} color={colors.warning.main}>
-                  {overallScore}
-                </Typography>
+                <Tooltip
+                  title={<FormattedMessage id='app.review-footer.overall-score.tooltip.title'/>}
+                >
+                  <>
+                    <GradeOutlinedIcon color={'disabled'}/>
+                    <Typography component={'span'} color={colors.warning.main}>
+                      {overallScore}
+                    </Typography>
+                  </>
+                </Tooltip>
               </>
 
             )

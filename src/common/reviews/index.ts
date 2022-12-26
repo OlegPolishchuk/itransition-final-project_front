@@ -6,3 +6,4 @@ export {Reviews} from './Reviews';
 export {ReviewsSorting} from './reviewsSorting/ReviewsSorting';
 export {ImgUploader} from './imgUploader/ImgUploader';
 export {GroupPicker} from './groupPicker/GroupPicker';
+export {Comments} from '../comments/Comments';
