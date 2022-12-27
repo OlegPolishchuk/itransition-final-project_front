@@ -52,7 +52,7 @@ export const CurrentReview = () => {
         ? (<Loader/>)
         : (
           <Box>
-            {(userRole === 'admin' || userId === review.userId) && (
+            {(userRole === 'admin' || userId === review.userId || userRole === 'manager') && (
               <Box sx={{textAlign: 'end', marginBottom: '30px'}}>
                 <Button
                   color={'error'}

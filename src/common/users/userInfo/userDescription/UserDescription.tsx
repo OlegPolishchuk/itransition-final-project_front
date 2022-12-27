@@ -22,7 +22,7 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
 
     const currentUser = useAppSelector(selectUser);
 
-    const fields = userRole === userRoles.admin
+    const fields = userRole === userRoles.admin || userRoles.manager
       ? userFields.admin
       : user._id === currentUser._id ? userFields.currentUser : userFields.user;
 

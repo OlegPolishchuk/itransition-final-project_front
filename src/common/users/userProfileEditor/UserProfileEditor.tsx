@@ -39,7 +39,8 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>( ({
           onChange={handleUserRoleChange}
         >
           <MenuItem value={userRoles.user}>{userRoles.user}</MenuItem>
-          <MenuItem value={userRoles.admin}>{userRoles.admin}</MenuItem>
+          {/*<MenuItem value={userRoles.admin}>{userRoles.admin}</MenuItem>*/}
+          <MenuItem value={userRoles.manager}>{userRoles.manager}</MenuItem>
         </Select>
       )
     }

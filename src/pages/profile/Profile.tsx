@@ -15,7 +15,7 @@ export const Profile = () => {
 
   const {id} = useParams();
 
-  const isMyProfile = user._id === id || userRole === 'admin';
+  const isMyProfile = user._id === id || userRole === 'admin' || userRole === 'manager';
 
   useEffect(() => {
     dispatch(fetchUser(id as string))

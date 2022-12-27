@@ -12,10 +12,11 @@ export type User = {
   likes: number;
 }
 
-export type UserRole = 'admin' | 'user';
+export type UserRole = 'admin' | 'user' | 'manager';
 export type UserStatus = 'active' | 'blocked';
 
 export type UserRoles = {
   admin: UserRole;
   user: UserRole;
+  manager: UserRole;
 }

@@ -90,7 +90,7 @@ export const MainNav: FC<Props> = ({variant = 'horizontal', callback}) => {
 
         {isUserAuth && (
           <>
-            {userRole === 'admin'
+            {(userRole === 'admin' || userRole === 'manager')
             ? (
             <li style={profileLinkStyle}>
               <NavLink

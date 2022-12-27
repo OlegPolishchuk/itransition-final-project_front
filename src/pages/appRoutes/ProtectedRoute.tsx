@@ -20,17 +20,19 @@ export const ProtectedRoute = React.memo(({
                                           }: Props) => {
   const navigate = useNavigate();
 
+
   useEffect(() => {
     if (!isUserAuth) navigate(routes.auth.login);
   }, [isUserAuth, isInitialize])
 
   useEffect(() => {
     if (checkAdmin) {
-      if (userRole !== userRoles.admin) {
+      if (userRole !== userRoles.admin && userRole !== userRoles.manager) {
         navigate(routes.mainPage.base)
       }
     }
   }, [userRole, checkAdmin, isInitialize, navigate])
+
 
   return (
     <>

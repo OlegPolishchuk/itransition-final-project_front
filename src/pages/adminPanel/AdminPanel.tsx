@@ -1,8 +1,6 @@
 import React from 'react';
 import {Box, Container} from "@mui/material";
 import {Outlet} from 'react-router-dom';
-import {BaseNavLink} from "common";
-import {routes} from "shared";
 import {AdminNav} from "pages/adminPanel/adminNav/AdminNav";
 
 
