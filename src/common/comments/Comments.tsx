@@ -1,6 +1,6 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {useAppDispatch, useAppSelector} from "hooks";
-import {selectComments} from "store/selectors";
+import {selectComments, selectIsUserAuth, selectUser} from "store/selectors";
 import {Box, Divider} from "@mui/material";
 import {CommentGenerator} from "common/comments/commentGenerator/CommentGenerator";
 import {CommentItem} from "common/comments/comment/CommentItem";
@@ -9,16 +9,18 @@ import {sendComment} from "store/actions/comments/sendComment";
 import {Comment} from "store/types";
 
 
-type Props = {
-  userId: string;
-  userAvatar: string;
-  userName: string;
-}
-
-export const Comments: FC<Props> = ({ userId, userName, userAvatar}) => {
+export const Comments = () => {
   const dispatch = useAppDispatch();
 
   const comments = useAppSelector(selectComments);
+  const isUserAuth = useAppSelector(selectIsUserAuth);
+  const user = useAppSelector(selectUser);
+
+  const userRole = user.role;
+
+  const userId =  user._id;
+  const userAvatar =  user.avatar;
+  const userName = userRole === 'admin' ? 'Admin' : user.userName;
 
   const handleSendComment = (comment: string) => {
     const commentData: Comment = {
@@ -28,6 +30,7 @@ export const Comments: FC<Props> = ({ userId, userName, userAvatar}) => {
       userAvatar,
       createdAt: new Date(),
     }
+
     dispatch(sendComment(commentData))
   }
 
@@ -35,15 +38,14 @@ export const Comments: FC<Props> = ({ userId, userName, userAvatar}) => {
   return (
     <Box>
 
-        <CommentGenerator sendCommentCallback={handleSendComment} />
+      {isUserAuth && <CommentGenerator sendCommentCallback={handleSendComment} />}
 
       {comments.length
       ? (
           <Box my={4}>
             {comments.map((comment, index) => (
-              <Box my={4}>
+              <Box my={4}  key={index}>
                 <CommentItem
-                  key={index}
                   comment={comment}
                 />
 

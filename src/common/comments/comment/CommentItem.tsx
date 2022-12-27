@@ -6,10 +6,10 @@ import {parseDate, routes} from "shared";
 import {useThemeColors} from "hooks";
 
 type Props = {
-  comment: Comment
+  comment: Comment;
 }
 
-export const CommentItem: FC<Props> = ({comment}) => {
+export const CommentItem: FC<Props> = ({comment }) => {
   const colors = useThemeColors();
 
   return (

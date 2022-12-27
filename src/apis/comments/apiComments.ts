@@ -1,18 +1,20 @@
 import {io} from "socket.io-client";
-import {Comment, Comments} from "store/types";
+import {Comment} from "store/types";
 
 const URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
+const ReconnectionDelay = 500;
 
 export const apiComments = {
-  socket: io(URL, {autoConnect: false}),
+  socket: io(URL, {autoConnect: false, reconnectionDelay: ReconnectionDelay}),
 
-  createConnection(userId: string, reviewId: string) {
-    this.socket.auth = {userId, reviewId};
+  createConnection(reviewId: string) {
+    this.socket.auth = {reviewId};
     this.socket.connect();
   },
 
   destroyConnection() {
     this.socket.disconnect();
+    this.socket.off();
   },
 
   subscribe(

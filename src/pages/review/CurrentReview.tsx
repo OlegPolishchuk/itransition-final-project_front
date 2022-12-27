@@ -23,14 +23,8 @@ export const CurrentReview = () => {
   const review = useAppSelector(selectReviews)[0];
   const isLoading = useAppSelector(selectIsReviewLoading);
   const user = useAppSelector(selectUser);
-  const selectedUser = useAppSelector(selectSelectedUser);
-
   const userRole = user.role;
-
-  const userId = userRole === 'admin' ? selectedUser._id : user._id;
-  const userAvatar = userRole === 'admin' ? selectedUser.avatar : user.avatar;
-  const userName = userRole === 'admin' ? selectedUser.avatar : user.avatar;
-
+  const userId = user._id;
 
   const handleEditReview = () => {
     dispatch(setEditableReview(review))
@@ -40,11 +34,10 @@ export const CurrentReview = () => {
 
   useEffect(() => {
     dispatch(fetchReviews({reviewId}))
-    dispatch(createConnection({userId, reviewId: reviewId as string}))
+    dispatch(createConnection(reviewId as string))
 
     return () => {
       dispatch(closeConnection())
-      console.log('unmount')
     }
   }, [])
 
@@ -73,11 +66,7 @@ export const CurrentReview = () => {
             <ReviewItem review={review} isHide={false}/>
 
             <Box mt={'50px'}>
-              <Comments
-                userId={userId}
-                userAvatar={userAvatar}
-                userName={userName}
-              />
+              <Comments />
             </Box>
           </Box>
         )

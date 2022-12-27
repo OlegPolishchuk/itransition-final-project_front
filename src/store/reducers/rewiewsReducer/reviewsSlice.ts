@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {
   addOverallScore,
   addReviewImage,
@@ -48,6 +48,10 @@ const reviewsSlice = createSlice({
 
     setEditableReview: (state, action) => {
       state.editableReview = action.payload;
+    },
+
+    incrementComments: (state, action: PayloadAction<string>) => {
+      state.reviews.map(review => review._id === action.payload ? review.comments += 1 : review)
     }
 
   },
@@ -148,4 +152,5 @@ export const {
   setReviewsSortType,
   setIsCreatedNewReview,
   setEditableReview,
+  incrementComments,
 } = reviewsSlice.actions;

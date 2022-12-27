@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useState} from 'react';
+import React, {ChangeEvent, FC, useRef, useState} from 'react';
 import {Box, Button, FormControl, TextField} from "@mui/material";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 export const CommentGenerator: FC<Props> = ({sendCommentCallback}) => {
   const [comment, setComment] = useState('');
 
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);
@@ -16,6 +17,8 @@ export const CommentGenerator: FC<Props> = ({sendCommentCallback}) => {
   const  handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
       sendCommentCallback(comment)
+
+      textAreaRef.current!.blur();
 
       setComment('')
     }
@@ -37,6 +40,7 @@ export const CommentGenerator: FC<Props> = ({sendCommentCallback}) => {
           minRows={5}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
+          inputRef={textAreaRef}
         />
       </FormControl>
 
