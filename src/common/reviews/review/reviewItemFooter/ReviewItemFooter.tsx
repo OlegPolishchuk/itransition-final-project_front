@@ -142,12 +142,14 @@ export const ReviewItemFooter: FC<Props> = ({
 
         </Box>
 
-        <Box sx={footerItemStyle}>
-          <CommentOutlinedIcon color={'disabled'}/>
-          <Typography component={'span'} color={colors.warning.main}>
-            {comments ? comments : 0}
-          </Typography>
-        </Box>
+        <Tooltip title={<FormattedMessage id='app.review.footer.comments.title'/>}>
+          <Box sx={footerItemStyle}>
+            <CommentOutlinedIcon color={'disabled'}/>
+            <Typography component={'span'} color={colors.warning.main}>
+              {comments ? comments : 0}
+            </Typography>
+          </Box>
+        </Tooltip>
 
       </Box>
     </footer>

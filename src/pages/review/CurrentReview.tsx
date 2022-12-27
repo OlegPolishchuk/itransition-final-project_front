@@ -12,6 +12,7 @@ import {Breadcrumbs, Comments, Loader, ReviewItem} from "common";
 import {routes} from "shared";
 import {setEditableReview} from "store/reducers/rewiewsReducer/reviewsSlice";
 import {closeConnection, createConnection, fetchReviews} from "store/actions";
+import {FormattedMessage} from "react-intl";
 
 export const CurrentReview = () => {
   const dispatch = useAppDispatch();
@@ -58,7 +59,7 @@ export const CurrentReview = () => {
                   variant={'contained'}
                   onClick={handleEditReview}
                 >
-                  Edit Review
+                  <FormattedMessage id='app.review.button-edit.title'/>
                 </Button>
               </Box>
             )}

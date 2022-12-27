@@ -105,12 +105,16 @@
   "app.page-main.button-show-more.title": "See more",
 
   "app.user-score.tooltip.title": "Count of user's likes",
-  "app.review-footer.like.tooltip.title": "likes",
-  "app.review-footer.overall-score.tooltip.title": "users score",
 
+  "app.review.button-edit.title": "Edit review",
+  "app.review-footer.like.tooltip.title": "likes",
+  "app.review-footer.overall-score.tooltip.title": "Users score",
+  "app.review.footer.comments.title": "Comments",
   "app.review-header.group-books.title": "On book",
   "app.review-header.group-games.title": "On game",
   "app.review-header.group-movies.title": "On movie",
   "app.review-header.group-music.title": "On song",
-  "app.review-body.see-more-button.title": "Show the entire review"
+  "app.review-body.see-more-button.title": "Show the entire review",
+
+  "app.comment.button-send.title": "Send comment"
 }

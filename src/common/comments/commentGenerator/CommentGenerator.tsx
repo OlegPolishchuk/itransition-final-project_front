@@ -1,5 +1,6 @@
 import React, {ChangeEvent, FC, useRef, useState} from 'react';
 import {Box, Button, FormControl, TextField} from "@mui/material";
+import {FormattedMessage} from "react-intl";
 
 type Props = {
   sendCommentCallback: (comment: string) => void;
@@ -50,7 +51,7 @@ export const CommentGenerator: FC<Props> = ({sendCommentCallback}) => {
           variant='outlined'
           onClick={handleSendComment}
         >
-          Send comment
+          <FormattedMessage id='app.comment.button-send.title'/>
         </Button>
 
       </Box>

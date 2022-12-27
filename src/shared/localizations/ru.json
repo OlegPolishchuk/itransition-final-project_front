@@ -106,12 +106,16 @@
   "app.page-main.button-show-more.title": "Показать больше",
 
   "app.user-score.tooltip.title": "общее количество лайков",
+
+  "app.review.button-edit.title": "Редактировать",
   "app.review-footer.like.tooltip.title": "Лайк",
   "app.review-footer.overall-score.tooltip.title": "Оценка пользователей",
-
+  "app.review.footer.comments.title": "комментарии",
   "app.review-header.group-books.title": "На книгу",
   "app.review-header.group-games.title": "На игру",
   "app.review-header.group-movies.title": "На фильм",
   "app.review-header.group-music.title": "На песню",
-  "app.review-body.see-more-button.title": "Показать полностью"
+  "app.review-body.see-more-button.title": "Показать полностью",
+
+  "app.comment.button-send.title": "Оставить комментарий"
 }
