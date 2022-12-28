@@ -20,9 +20,6 @@ export const TagsCloud = () => {
       display: 'flex',
       flexWrap: 'wrap',
       gap: '20px 10px',
-
-      position: 'sticky',
-      top: '50px',
     }}>
 
       {tags.map(tag  => (

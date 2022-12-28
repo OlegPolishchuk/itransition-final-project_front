@@ -18,7 +18,8 @@ export const routes = {
   mainPage: {
     base: '/',
     popular: '/likes',
-    scored: '/overallScore'
+    scored: '/overallScore',
+    search: '/search',
   },
   profile: {
     base: '/profile',

@@ -8,6 +8,7 @@ import {LocalePicker} from "common/header/localePicker/LocalePicker";
 import {AuthButton} from "common/header/authButton/AuthButton";
 import {AsideNav, MainNav} from "common/navigations";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import {Search} from "common/search";
 
 type Props = {
   themeMode: ThemeMode;
@@ -94,6 +95,15 @@ export const Header: FC<Props> = ({themeMode, isUserAuth}) => {
 
         </Container>
       </Box>
+
+      {isSmallScreen && (
+        <Container>
+          <Box mb={'50px'} textAlign={'end'}>
+            <Search />
+          </Box>
+        </Container>
+      )}
+
     </header>
   );
 };

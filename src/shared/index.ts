@@ -12,6 +12,7 @@ export {
   adminTableSearchParams,
   paginationDefaultParams,
   reviewsSliderValue,
+  inputSearchParams,
 } from './constants';
 
 export {

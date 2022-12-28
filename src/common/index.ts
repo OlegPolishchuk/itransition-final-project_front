@@ -56,5 +56,7 @@ export {ItemPicker} from './itemPicker/ItemPicker';
 
 export {Comments, CommentGenerator, CommentItem} from './comments';
 
+export {Search} from './search';
+
 
 

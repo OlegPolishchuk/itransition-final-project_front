@@ -8,17 +8,19 @@ import {
   selectReviews
 } from "store/selectors";
 import {Loader, NothingToShow, ReviewItem} from "common/index";
-import {useLocation} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 import {Box, Button} from "@mui/material";
 import {setReviewsPaginationParams} from "store/reducers";
 import {fetchMoreReviews} from "store/actions";
 import {FormattedMessage} from "react-intl";
 import {ReviewSortType} from "store/types";
+import {ReviewsList} from "common/reviews/reviewsList/ReviewsList";
 
 export const Reviews = () => {
   const dispatch = useAppDispatch();
 
   const {pathname} = useLocation();
+
 
   const reviews = useAppSelector(selectReviews);
   const isLoading = useAppSelector(selectIsReviewLoading);
@@ -42,48 +44,19 @@ export const Reviews = () => {
     const sortType: ReviewSortType = pathname === '/' ? "created" : getPathname(pathname);
 
     dispatch(setReviewsPaginationParams({page: 0}))
-    dispatch(fetchReviews({reviewsSortParams: sortType}))
+    dispatch(fetchReviews({ reviewsSortParams: sortType }))
   }, [pathname])
 
 
   return (
     <>
-
-      {(isLoading && isFirstLoading)
-        ? <Loader/>
-        : (
-          <>
-            {reviews.map(review => (
-              <ReviewItem
-                key={review._id}
-                review={review}
-                isHide
-              />
-            ))}
-
-            <Box textAlign={'center'}>
-
-              {(isLoading && reviews.length >= 10) && (
-                <Box textAlign={'center'}>
-                  <Loader/>
-                </Box>
-              )}
-
-              {totalCount > reviews.length
-                ? (<Button
-                  color={'secondary'}
-                  variant={'outlined'}
-                  onClick={handleLoadMore}
-                >
-                  <FormattedMessage id={'app.page-main.button-show-more.title'}/>
-                </Button>)
-                : (<NothingToShow title={'no more'}/>)
-              }
-            </Box>
-          </>
-        )
-      }
-
+      <ReviewsList
+        isLoading={isLoading}
+        isFirstLoading={isFirstLoading}
+        reviews={reviews}
+        totalCount={totalCount}
+        clickLoadMoreCallback={handleLoadMore}
+        />
     </>
   );
 };

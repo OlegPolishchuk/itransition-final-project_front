@@ -5,4 +5,5 @@ export type FetchReviews = {
   reviewId?: string;
   page?: number;
   limit?: number;
+  search? : string;
 }

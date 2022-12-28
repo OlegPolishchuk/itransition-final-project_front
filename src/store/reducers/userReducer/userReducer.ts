@@ -4,7 +4,7 @@ import {
   changeUserAvatar,
   fetchUser,
   getProfile,
-  loginUser, setReviewLike,
+  loginUser,
   twitterLogin
 } from "store/actions";
 import {googleLogin} from "store/actions/auth/googleLogin";

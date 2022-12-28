@@ -116,6 +116,8 @@
   "app.review-header.group-movies.title": "На фильм",
   "app.review-header.group-music.title": "На песню",
   "app.review-body.see-more-button.title": "Показать полностью",
+  "app.review.nothing-to-show.no-more.title": "Больше обзоров нет",
+  "app.review.nothing-to-show.no-reviews.title": "Нет обзоров",
 
   "app.comment.button-send.title": "Оставить комментарий"
 }

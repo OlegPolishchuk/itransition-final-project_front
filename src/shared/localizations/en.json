@@ -115,6 +115,8 @@
   "app.review-header.group-movies.title": "On movie",
   "app.review-header.group-music.title": "On song",
   "app.review-body.see-more-button.title": "Show the entire review",
+  "app.review.nothing-to-show.no-more.title": "There is not more reviews",
+  "app.review.nothing-to-show.no-reviews.title": "No reviews",
 
   "app.comment.button-send.title": "Send comment"
 }

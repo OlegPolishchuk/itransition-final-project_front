@@ -19,6 +19,9 @@ export {
 } from './adminPanel';
 
 export {Main} from './main/Main';
+
 export {CurrentReview, AddNewReview} from './review';
 
 export {Profile} from './profile/Profile';
+
+export {SearchReviews} from './search/SearchReviews';
