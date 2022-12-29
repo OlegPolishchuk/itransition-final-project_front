@@ -28,7 +28,7 @@ export const refreshToken = createAsyncThunk(
       if (!error.response) {
         throw e;
       }
-      debugger
+
       await dispatch(logoutUser());
       return rejectWithValue(error.message)
     }
