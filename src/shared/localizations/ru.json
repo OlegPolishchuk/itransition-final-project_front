@@ -119,5 +119,7 @@
   "app.review.nothing-to-show.no-more.title": "Больше обзоров нет",
   "app.review.nothing-to-show.no-reviews.title": "Нет обзоров",
 
+  "app.search-reviews.search-phrase.title": "Ключевая фраза:",
+
   "app.comment.button-send.title": "Оставить комментарий"
 }

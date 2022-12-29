@@ -14,6 +14,7 @@ import {
 import {Breadcrumbs, Title} from "common";
 import {ReviewsList} from "common/reviews";
 import {Box, Typography} from "@mui/material";
+import {FormattedMessage} from "react-intl";
 
 export const SearchReviews = () => {
   const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ export const SearchReviews = () => {
 
       <Box display={'flex'} alignItems={'center'} gap={'10px'} mb={'30px'}>
         <Typography variant={'subtitle2'}>
-          Ключевая фраза:
+          <FormattedMessage id='app.search-reviews.search-phrase.title'/>
         </Typography>
 
         <Typography variant={'h5'}>

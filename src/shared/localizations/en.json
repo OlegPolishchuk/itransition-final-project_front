@@ -118,5 +118,7 @@
   "app.review.nothing-to-show.no-more.title": "There is not more reviews",
   "app.review.nothing-to-show.no-reviews.title": "No reviews",
 
+  "app.search-reviews.search-phrase.title": "Search phrase:",
+
   "app.comment.button-send.title": "Send comment"
 }
