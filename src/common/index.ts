@@ -1,7 +1,7 @@
-export {TwitterAuth, AuthForm, GoogleAuth, GithubAuth} from './auth';
-export {Header, LocalePicker, ThemeToggle, AuthButton} from './header';
-export {MainLoader, Loader} from './loaders';
-export {Breadcrumbs} from './breadcrumbs/Breadcrumbs';
+export { TwitterAuth, AuthForm, GoogleAuth, GithubAuth } from './auth';
+export { Header, LocalePicker, ThemeToggle, AuthButton } from './header';
+export { MainLoader, Loader } from './loaders';
+export { Breadcrumbs } from './breadcrumbs/Breadcrumbs';
 
 export {
   UsersTable,
@@ -14,7 +14,7 @@ export {
   UserProfileEditor,
 } from './users';
 
-export {Title} from './title/Title';
+export { Title } from './title/Title';
 
 export {
   RandomReviewsGenerator,
@@ -32,31 +32,28 @@ export {
   GroupPicker,
 } from './reviews';
 
-export {SliderGenerator} from './sliderGenerator/SliderGenerator';
+export { SliderGenerator } from './sliderGenerator/SliderGenerator';
 
-export {CardItemTitle} from './cardItemTitle/CardItemTitle';
+export { CardItemTitle } from './cardItemTitle/CardItemTitle';
 
-export {MainCheckbox} from './mainCheckbox/MainCheckbox';
+export { MainCheckbox } from './mainCheckbox/MainCheckbox';
 
-export {NothingToShow} from './nothingToShow/NothingToShow';
+export { NothingToShow } from './nothingToShow/NothingToShow';
 
-export {CustomPagination, DataGridCustomPagination} from './pagination';
+export { CustomPagination, DataGridCustomPagination } from './pagination';
 
-export {MainNav,AsideNav} from './navigations';
+export { MainNav, AsideNav } from './navigations';
 
-export {BaseNavLink} from './baseNavLink/BaseNavLink';
+export { BaseNavLink } from './baseNavLink/BaseNavLink';
 
-export {Tag, TagsCloud} from './tags';
+export { Tag, TagsCloud } from './tags';
 
-export {PersonalScore} from './scores';
+export { PersonalScore } from './scores';
 
-export {AddNewReviewButton} from './addNewReviewButton/AddNewReviewButton';
+export { AddNewReviewButton } from './addNewReviewButton/AddNewReviewButton';
 
-export {ItemPicker} from './itemPicker/ItemPicker';
+export { ItemPicker } from './itemPicker/ItemPicker';
 
-export {Comments, CommentGenerator, CommentItem} from './comments';
+export { Comments, CommentGenerator, CommentItem } from './comments';
 
-export {Search} from './search';
-
-
-
+export { Search } from './search';

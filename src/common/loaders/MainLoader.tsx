@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export const MainLoader = () => {
+export const MainLoader = (): ReactElement => {
   return (
-    <div className='loader-wrapper'>
+    <div className="loader-wrapper">
       <span className="loader" />
     </div>
   );

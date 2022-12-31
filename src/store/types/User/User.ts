@@ -10,7 +10,7 @@ export type User = {
   lastLogin: string;
   reviewsCount: number;
   likes: number;
-}
+};
 
 export type UserRole = 'admin' | 'user' | 'manager';
 export type UserStatus = 'active' | 'blocked';
@@ -19,4 +19,4 @@ export type UserRoles = {
   admin: UserRole;
   user: UserRole;
   manager: UserRole;
-}
+};

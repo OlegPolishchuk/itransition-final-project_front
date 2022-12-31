@@ -1,2 +1,2 @@
-export {MainLoader} from './MainLoader';
-export {Loader} from './Loader';
+export { MainLoader } from './MainLoader';
+export { Loader } from './Loader';

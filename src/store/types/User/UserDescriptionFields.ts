@@ -1,4 +1,4 @@
 export type UserDescriptionFields = {
-  key : string;
+  key: string;
   editable: boolean;
-}
+};

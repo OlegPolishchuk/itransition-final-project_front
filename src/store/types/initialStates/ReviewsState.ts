@@ -1,4 +1,4 @@
-import {PaginationParams, Review, ReviewSortType} from "store/types";
+import { PaginationParams, Review, ReviewSortType } from 'store/types';
 
 export type ReviewsState = {
   reviews: Review[];
@@ -12,5 +12,4 @@ export type ReviewsState = {
   sortType: ReviewSortType;
   uploadedImgSrc: string;
   isCreatedNewOne: boolean;
-}
-
+};

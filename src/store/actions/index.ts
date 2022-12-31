@@ -20,6 +20,7 @@ export {
   deleteCurrentUser,
   fetchUser,
   deleteTags,
+  updateCurrentUser,
 } from './admin';
 
 export {

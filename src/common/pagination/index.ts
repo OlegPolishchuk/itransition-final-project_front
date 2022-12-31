@@ -1,2 +1,2 @@
-export {DataGridCustomPagination} from './DataGridCustomPagination';
-export {CustomPagination} from './CustomPagination';
+export { DataGridCustomPagination } from './DataGridCustomPagination';
+export { CustomPagination } from './CustomPagination';

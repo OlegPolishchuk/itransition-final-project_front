@@ -1,30 +1,34 @@
-import React, {FC} from 'react';
-import {Box} from "@mui/material";
-import {Review} from "store/types";
-import {ReviewItemHeader} from "common/reviews/review/reviewItemHeader/ReviewItemHeader";
-import {ReviewItemBody} from "common/reviews/review/reviewItemBody/ReviewItemBody";
-import {ReviewItemFooter} from "common/reviews/review/reviewItemFooter/ReviewItemFooter";
-import {useAppSelector, useThemeColors} from "hooks";
-import {selectThemeMode} from "store/selectors";
+import React, { FC } from 'react';
+
+import { Box } from '@mui/material';
+
+import { ReviewItemBody } from 'common/reviews/review/reviewItemBody/ReviewItemBody';
+import { ReviewItemFooter } from 'common/reviews/review/reviewItemFooter/ReviewItemFooter';
+import { ReviewItemHeader } from 'common/reviews/review/reviewItemHeader/ReviewItemHeader';
+import { useAppSelector, useThemeColors } from 'hooks';
+import { selectThemeMode } from 'store/selectors';
+import { Review } from 'store/types';
 
 type Props = {
   review: Review;
   isHide: boolean;
-}
+};
 
-export const ReviewItem: FC<Props> = ({review, isHide}) => {
+export const ReviewItem: FC<Props> = ({ review, isHide }) => {
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
 
   return (
-    <Box sx={{
-      marginBottom: '50px',
-      backgroundColor: theme === 'dark' ?  colors.primary.main : '#fff',
-      borderRadius: '4px',
-      backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-      '& > div': {padding: '15px'},
-    }}>
-
+    <Box
+      sx={{
+        marginBottom: '50px',
+        backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
+        borderRadius: '4px',
+        backgroundImage:
+          'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+        '& > div': { padding: '15px' },
+      }}
+    >
       <ReviewItemHeader
         userName={review.userName}
         userAvatar={review.userAvatar}
@@ -53,7 +57,6 @@ export const ReviewItem: FC<Props> = ({review, isHide}) => {
         likes={review.likes}
         userId={review.userId}
       />
-
     </Box>
   );
 };

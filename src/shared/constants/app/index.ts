@@ -1,2 +1,2 @@
-export {paginationDefaultParams} from './paginationDefaultParams';
-export {locales} from './locales';
+export { paginationDefaultParams } from './paginationDefaultParams';
+export { locales } from './locales';

@@ -1,1 +1,1 @@
-export type {Comment, Comments} from './Comments';
+export type { Comment, Comments } from './Comments';

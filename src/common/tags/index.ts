@@ -1,2 +1,2 @@
-export {Tag} from './tag/Tag';
-export {TagsCloud} from './TagsCloud';
+export { Tag } from './tag/Tag';
+export { TagsCloud } from './TagsCloud';

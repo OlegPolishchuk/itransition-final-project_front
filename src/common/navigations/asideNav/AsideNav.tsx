@@ -1,26 +1,26 @@
-import React, {FC} from 'react';
-import {Box, Divider} from "@mui/material";
-import {AuthButton} from "common/header";
-import {MainNav} from "common/navigations/mainNav/MainNav";
+import React, { ReactElement } from 'react';
 
+import { Box, Divider } from '@mui/material';
 
-export const AsideNav = () => {
+import { AuthButton } from 'common/header';
+import { MainNav } from 'common/navigations/mainNav/MainNav';
+
+export const AsideNav = (): ReactElement => {
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '20px',
-      padding: '20px',
-      width: '300px',
-    }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        padding: '20px',
+        width: '300px',
+      }}
+    >
+      <AuthButton />
 
-      <AuthButton/>
+      <Divider />
 
-      <Divider/>
-
-      <MainNav
-        variant={'vertical'}
-      />
+      <MainNav variant="vertical" />
     </Box>
   );
 };

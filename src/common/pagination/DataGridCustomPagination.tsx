@@ -1,29 +1,28 @@
-import React from 'react';
-import {Pagination} from "@mui/material";
+import React, { ReactElement } from 'react';
+
+import { Pagination } from '@mui/material';
 import {
   gridPageCountSelector,
   gridPageSelector,
-  gridRowCountSelector,
   useGridApiContext,
-  useGridSelector
-} from "@mui/x-data-grid";
+  useGridSelector,
+} from '@mui/x-data-grid';
 
-export const DataGridCustomPagination= () => {
+export const DataGridCustomPagination = (): ReactElement => {
   const apiRef = useGridApiContext();
 
   const page = useGridSelector(apiRef, gridPageSelector);
   const totalPageCount = useGridSelector(apiRef, gridPageCountSelector);
 
-
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    apiRef.current.setPage(value - 1)
-  }
+  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number): void => {
+    apiRef.current.setPage(value - 1);
+  };
 
   return (
     <Pagination
       variant="outlined"
       shape="rounded"
-      color='secondary'
+      color="secondary"
       count={totalPageCount}
       page={page + 1}
       onChange={handleChangePage}

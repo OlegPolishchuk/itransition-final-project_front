@@ -1,7 +1,7 @@
 export type Comments = {
-  comments: Comment[],
+  comments: Comment[];
   reviewId: string;
-}
+};
 
 export type Comment = {
   userId: string;
@@ -9,4 +9,4 @@ export type Comment = {
   userAvatar: string;
   createdAt: Date;
   message: string;
-}
+};

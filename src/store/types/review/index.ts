@@ -9,13 +9,12 @@ export type Review = {
   overallScore: number;
   overallScoresId: string[];
   comments: number;
-  created: string,
-  updated: string,
+  created: string;
+  updated: string;
   userId: string;
   userName: string;
   userLikes: number;
   userAvatar: string;
   likes: number;
   likesId: string[];
-}
-
+};

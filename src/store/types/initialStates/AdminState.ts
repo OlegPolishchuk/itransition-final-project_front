@@ -1,5 +1,5 @@
-import {User} from "store/types/User/User";
-import {TableSearchParams} from "store/types/usersTableSearchParams";
+import { User } from 'store/types/User/User';
+import { TableSearchParams } from 'store/types/usersTableSearchParams';
 
 export type AdminState = {
   users: User[];
@@ -9,4 +9,4 @@ export type AdminState = {
   currentUser: User;
   totalCount: number;
   tableSearchParams: TableSearchParams;
-}
+};

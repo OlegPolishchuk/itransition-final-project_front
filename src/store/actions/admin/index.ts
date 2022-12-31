@@ -5,3 +5,4 @@ export { generateRandomUsers } from './generateRandomUsers';
 export { deleteCurrentUser } from './deleteCurrentUser';
 export { fetchUser } from './fetchUser';
 export { deleteTags } from './deleteTags';
+export { updateCurrentUser } from './updateCurrentUser';

@@ -1,7 +1,7 @@
 export type {
   RandomUserData,
   RandomReviewsData,
-  GenerateRandomData
+  GenerateRandomData,
 } from './randomGenerator';
 
 export type {
@@ -14,7 +14,7 @@ export type {
 export type {
   UpdatedUsersStatusRequest,
   FetchReviews,
-  GenerateRandomReviewsRequest
+  GenerateRandomReviewsRequest,
 } from './requests';
 
 export type {
@@ -26,9 +26,9 @@ export type {
   CommentsState,
 } from './initialStates';
 
-export type {ThemeMode} from './themeMode';
-export type {Locale} from './locale';
-export type {TableSearchParams} from './usersTableSearchParams';
+export type { ThemeMode } from './themeMode';
+export type { Locale } from './locale';
+export type { TableSearchParams } from './usersTableSearchParams';
 
 export type {
   User,
@@ -40,10 +40,10 @@ export type {
   CommonFieldList,
 } from './User';
 
-export type {Review} from './review';
-export type {InitializeApp} from './initializeApp';
-export type {PaginationParams} from './paginationParams';
-export type {SliderValues} from './sliderValues';
-export type {ReviewSortType} from './reviewsSortParams';
+export type { Review } from './review';
+export type { InitializeApp } from './initializeApp';
+export type { PaginationParams } from './paginationParams';
+export type { SliderValues } from './sliderValues';
+export type { ReviewSortType } from './reviewsSortParams';
 
-export type {Comment, Comments} from './comment';
+export type { Comment, Comments } from './comment';

@@ -1,4 +1,4 @@
-import {Locale, ThemeMode} from "store/types";
+import { Locale, ThemeMode } from 'store/types';
 
 export type AppState = {
   isLoading: boolean;
@@ -8,4 +8,4 @@ export type AppState = {
   globalMessage: string;
   locale: Locale;
   isInitialize: boolean;
-}
+};

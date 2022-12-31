@@ -1,14 +1,15 @@
-import React, {FC} from 'react';
-import {FileUploader} from "react-drag-drop-files";
+import React, { FC } from 'react';
 
-const fileTypes = ["JPG", "PNG", "GIF"];
+import { FileUploader } from 'react-drag-drop-files';
+
+const fileTypes = ['JPG', 'PNG', 'GIF'];
 
 type Props = {
-  onChangeFileCallback: (file: File) => void
-}
+  onChangeFileCallback: (file: File) => void;
+};
 
-export const ImgUploader: FC<Props> = ({onChangeFileCallback}) => {
-  const handleChange = (file: File) => {
+export const ImgUploader: FC<Props> = ({ onChangeFileCallback }) => {
+  const handleChange = (file: File): void => {
     onChangeFileCallback(file);
   };
 

@@ -1,5 +1,5 @@
 export type AuthState = {
-  error: string,
-  accessToken: string,
-  isUserAuth: boolean,
-}
+  error: string;
+  accessToken: string;
+  isUserAuth: boolean;
+};
