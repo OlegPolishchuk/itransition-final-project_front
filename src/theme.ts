@@ -1,7 +1,7 @@
 import { PaletteMode } from '@mui/material';
 import { ThemeOptions } from '@mui/material/styles/createTheme';
 
-interface CustomTheme {
+export interface CustomTheme {
   grey: ColorItem;
   primary: ColorItem;
   secondary: ColorItem;

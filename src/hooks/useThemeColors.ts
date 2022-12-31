@@ -1,9 +1,9 @@
-import {useAppSelector} from "hooks/useAppSelector";
-import {selectThemeMode} from "store/selectors";
-import {colorTokens} from "theme";
+import { useAppSelector } from 'hooks/useAppSelector';
+import { selectThemeMode } from 'store/selectors';
+import { colorTokens, CustomTheme } from 'theme';
 
-export const useThemeColors = () => {
+export const useThemeColors = (): CustomTheme => {
   const themeMode = useAppSelector(selectThemeMode);
 
-  return colorTokens(themeMode)
-}
+  return colorTokens(themeMode);
+};
