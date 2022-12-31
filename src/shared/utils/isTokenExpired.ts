@@ -1,9 +1,13 @@
-import {tokenData} from "shared/constants/auth/tokenData";
-import {localStorageData} from "shared/constants";
+import { localStorageData } from 'shared/constants';
+import { tokenData } from 'shared/constants/auth/tokenData';
 
-export const isTokenExpired = () => {
-  const expiredTime = tokenData.expireTime * 1000;
-  const {tokenStartTime} = JSON.parse(localStorage.getItem(localStorageData.userData) as string);
+const tokenExpiredTimeRatio = 1000;
 
-  return Date.now() > tokenStartTime  + (expiredTime * tokenData.refreshTimeRatio);
-}
+export const isTokenExpired = (): boolean => {
+  const expiredTime = tokenData.expireTime * tokenExpiredTimeRatio;
+  const { tokenStartTime } = JSON.parse(
+    localStorage.getItem(localStorageData.userData) as string,
+  );
+
+  return Date.now() > tokenStartTime + expiredTime * tokenData.refreshTimeRatio;
+};

@@ -1,24 +1,21 @@
-import React from 'react';
-import {BaseNavLink} from "common/baseNavLink/BaseNavLink";
-import {routes} from "shared";
-import {FormattedMessage} from "react-intl";
-import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import React, { ReactElement } from 'react';
 
-export const AddNewReviewButton = () => {
+import { Button } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+
+import { routes } from 'shared';
+
+export const AddNewReviewButton = (): ReactElement => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(routes.review.addNew)
-  }
+  const handleClick = (): void => {
+    navigate(routes.review.addNew);
+  };
 
   return (
-    <Button
-      variant={'contained'}
-      color={'error'}
-      onClick={handleClick}
-    >
-      <FormattedMessage id='app.user.reviews.add-new-review.button.title'/>
+    <Button variant="contained" color="error" onClick={handleClick}>
+      <FormattedMessage id="app.user.reviews.add-new-review.button.title" />
     </Button>
   );
 };

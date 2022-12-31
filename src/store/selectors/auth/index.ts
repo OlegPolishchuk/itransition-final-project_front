@@ -1,2 +1,2 @@
-export {selectIsUserAuth} from './selectIsUserAuth/selectIsUserAuth';
-export {selectAccessToken} from './selectAccessToken/selectAccessToken';
+export { selectIsUserAuth } from './selectIsUserAuth/selectIsUserAuth';
+export { selectAccessToken } from './selectAccessToken/selectAccessToken';

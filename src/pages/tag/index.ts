@@ -1,0 +1,1 @@
+export { TagReviews } from './TagReviews';

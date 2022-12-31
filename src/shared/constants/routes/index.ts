@@ -1,2 +1,2 @@
-export {routes} from './routes';
-export {apiRoutes} from './apiRoutes';
+export { routes } from './routes';
+export { apiRoutes } from './apiRoutes';

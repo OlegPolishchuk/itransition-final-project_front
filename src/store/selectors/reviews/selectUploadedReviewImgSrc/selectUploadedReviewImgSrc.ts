@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectUploadedReviewImgSrc = (state: RootState) => state.reviewsReducer.uploadedImgSrc;
+export const selectUploadedReviewImgSrc = (state: RootState): string =>
+  state.reviewsReducer.uploadedImgSrc;

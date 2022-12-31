@@ -1,5 +1,5 @@
-import {instance} from "apis/instance/instance";
-import {apiRoutes} from "shared";
+import { instance } from 'apis/instance/instance';
+import { apiRoutes } from 'shared';
 
 export const apiTags = {
   getTags() {
@@ -7,6 +7,6 @@ export const apiTags = {
   },
 
   deleteTags(queryString: string) {
-    return instance.delete(`${apiRoutes.tags.base}?id=${queryString}`)
-  }
-}
+    return instance.delete(`${apiRoutes.tags.base}?id=${queryString}`);
+  },
+};

@@ -1,40 +1,40 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
+
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
-import {useNavigate} from "react-router-dom";
-import {Button} from "@mui/material";
-import {FormattedMessage} from "react-intl";
+import { Button } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   returnTo?: string;
-}
+};
 
-export const Breadcrumbs: FC<Props> = ({returnTo}) => {
+export const Breadcrumbs: FC<Props> = ({ returnTo }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-
+  const handleClick = (): void => {
     if (returnTo) {
-      navigate(returnTo)
+      navigate(returnTo);
+    } else {
+      navigate(-1);
     }
-    else {navigate(-1)}
-  }
+  };
 
   const style = {
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
     marginBottom: '20px',
-  }
+  };
 
   return (
     <Button
-      color={'secondary'}
+      color="secondary"
       style={style}
       startIcon={<KeyboardBackspaceOutlinedIcon />}
       onClick={handleClick}
     >
-      <FormattedMessage id={'app.breadcrumbs.title'} />
+      <FormattedMessage id="app.breadcrumbs.title" />
     </Button>
   );
 };
-

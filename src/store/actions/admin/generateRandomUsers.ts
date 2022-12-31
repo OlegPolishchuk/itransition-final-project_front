@@ -1,27 +1,33 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
-import {apiUsers} from "apis";
-import {fetchUsers} from "store/actions/admin/fetchUsers";
-import {RootState} from "store/store";
-import {GenerateRandomData} from "store/types";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-export const generateRandomUsers = createAsyncThunk<void, GenerateRandomData, {state: RootState}>(
-  'admin/generateRandomUsers', async (data: GenerateRandomData, {rejectWithValue, dispatch}) => {
+import { apiUsers } from 'apis';
+import { responseStatus } from 'shared';
+import { fetchUsers } from 'store/actions/admin/fetchUsers';
+import { RootState } from 'store/store';
+import { GenerateRandomData } from 'store/types';
 
+export const generateRandomUsers = createAsyncThunk<
+  void,
+  GenerateRandomData,
+  { state: RootState }
+>(
+  'admin/generateRandomUsers',
+  async (data: GenerateRandomData, { rejectWithValue, dispatch }) => {
     try {
       const res = await apiUsers.generateRandomUsers(data);
 
-      if (res.status === 200 || res.status === 201 || res.status === 204) {
+      if (res.status === responseStatus.goodStatus) {
         dispatch(fetchUsers());
       }
-    }
-    catch (e) {
+    } catch (e) {
       const err = e as AxiosError;
+
       if (!err.response) {
         throw e;
       }
 
-      return rejectWithValue(err.message)
+      return rejectWithValue(err.message);
     }
-  }
-)
+  },
+);

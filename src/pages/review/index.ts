@@ -1,2 +1,2 @@
-export {AddNewReview} from './AddNewReview';
-export {CurrentReview} from './CurrentReview';
+export { AddNewReview } from './AddNewReview';
+export { CurrentReview } from './CurrentReview';

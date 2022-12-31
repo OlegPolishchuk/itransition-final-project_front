@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { User } from 'store/types';
 
-export const selectUsers = (state: RootState) => state.adminReducer.users;
+export const selectUsers = (state: RootState): User[] => state.adminReducer.users;

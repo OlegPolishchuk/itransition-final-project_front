@@ -1,18 +1,21 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiAuth} from "apis";
-import {localStorageData} from "shared";
-import {AxiosError} from "axios";
-import {logoutUser} from "store/actions/auth/logoutUser";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+
+import { apiAuth } from 'apis';
+import { localStorageData } from 'shared';
+import { logoutUser } from 'store/actions/auth/logoutUser';
 
 export const refreshToken = createAsyncThunk(
-  'auth/refreshToken', async (_,{rejectWithValue, dispatch}) => {
-
+  'auth/refreshToken',
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const res = await apiAuth.refreshToken();
 
-      const storageData = JSON.parse(localStorage.getItem(localStorageData.userData) as string);
+      const storageData = JSON.parse(
+        localStorage.getItem(localStorageData.userData) as string,
+      );
 
-      const userId = storageData.userId;
+      const { userId } = storageData;
 
       const updatedStorageData = {
         userId,
@@ -25,13 +28,14 @@ export const refreshToken = createAsyncThunk(
       return res.data;
     } catch (e) {
       const error = e as AxiosError;
+
       if (!error.response) {
         throw e;
       }
 
       await dispatch(logoutUser());
-      return rejectWithValue(error.message)
-    }
 
-  }
-)
+      return rejectWithValue(error.message);
+    }
+  },
+);

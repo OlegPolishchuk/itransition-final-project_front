@@ -1,9 +1,9 @@
-export {getGithubUser} from './getGithubUser';
-export {twitterLogin} from './twitterLogin';
-export {googleLogin} from './googleLogin';
-export {getProfile} from './getProfile';
-export {refreshToken} from './refreshToken';
-export {getAccessToken} from './getAccessToken';
-export {logoutUser} from './logoutUser';
-export {loginUser} from './loginUser';
-export {registerUser} from './registerUser';
+export { getGithubUser } from './getGithubUser';
+export { twitterLogin } from './twitterLogin';
+export { googleLogin } from './googleLogin';
+export { getProfile } from './getProfile';
+export { refreshToken } from './refreshToken';
+export { getAccessToken } from './getAccessToken';
+export { logoutUser } from './logoutUser';
+export { loginUser } from './loginUser';
+export { registerUser } from './registerUser';

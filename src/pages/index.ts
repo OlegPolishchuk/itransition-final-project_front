@@ -1,6 +1,6 @@
-export {AppRoutes, ProtectedRoute} from './appRoutes';
-export {Register} from './register/Register';
-export {Login} from './login/Login';
+export { AppRoutes, ProtectedRoute } from './appRoutes';
+export { Register } from './register/Register';
+export { Login } from './login/Login';
 export {
   AdminPanel,
   AdminUser,
@@ -18,10 +18,12 @@ export {
   AdminTags,
 } from './adminPanel';
 
-export {Main} from './main/Main';
+export { Main } from './main/Main';
 
-export {CurrentReview, AddNewReview} from './review';
+export { CurrentReview, AddNewReview } from './review';
 
-export {Profile} from './profile/Profile';
+export { Profile } from './profile/Profile';
 
-export {SearchReviews} from './search/SearchReviews';
+export { SearchReviews } from './search/SearchReviews';
+
+export { TagReviews } from './tag';

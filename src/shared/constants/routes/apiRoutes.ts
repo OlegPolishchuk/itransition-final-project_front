@@ -2,7 +2,7 @@ const baseAuthPath = '/api/auth';
 const baseReviewsPath = '/reviews';
 const baseTagsPath = '/tags';
 const baseUsersPath = '/users';
-const baseUserPath = '/user'
+const baseUserPath = '/user';
 
 export const apiRoutes = {
   auth: {
@@ -30,5 +30,5 @@ export const apiRoutes = {
   },
   tags: {
     base: baseTagsPath,
-  }
-}
+  },
+};

@@ -1,3 +1,3 @@
 export const inputSearchParams = {
-  queryTitle: 'query'
-}
+  queryTitle: 'query',
+};

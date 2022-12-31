@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectReviewCount = (state: RootState) => state.reviewsReducer.reviewCount;
+export const selectReviewCount = (state: RootState): number =>
+  state.reviewsReducer.reviewCount;

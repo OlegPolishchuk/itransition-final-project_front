@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectGlobalMessage = (state: RootState) => state.appReducer.globalMessage;
+export const selectGlobalMessage = (state: RootState): string =>
+  state.appReducer.globalMessage;

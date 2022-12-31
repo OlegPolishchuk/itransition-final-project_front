@@ -1,11 +1,11 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {Comment} from "store/types";
-import {apiComments} from "apis/comments/apiComments";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { apiComments } from 'apis';
+import { Comment } from 'store/types';
 
 export const sendComment = createAsyncThunk(
-  'comments/sendComment' ,
+  'comments/sendComment',
   (comment: Comment) => {
-
-    apiComments.sendComment(comment)
-  }
-)
+    apiComments.sendComment(comment);
+  },
+);

@@ -1,3 +1,5 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { PaginationParams } from 'store/types';
 
-export const selectPaginationParams = (state: RootState) => state.reviewsReducer.paginationParams;
+export const selectPaginationParams = (state: RootState): PaginationParams =>
+  state.reviewsReducer.paginationParams;

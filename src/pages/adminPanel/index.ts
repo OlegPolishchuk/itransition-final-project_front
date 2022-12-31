@@ -1,21 +1,17 @@
-export {AdminPanel} from './AdminPanel';
+export { AdminPanel } from './AdminPanel';
 
-export {AdminNav} from './adminNav/AdminNav';
+export { AdminNav } from './adminNav/AdminNav';
 
-export {AdminTags} from './adminTags/AdminTags';
+export { AdminTags } from './adminTags/AdminTags';
 
-export {
-  UserStatusSwitcher,
-  CreateUserPanel,
-  LocaleSelect
-} from './createUserPanel';
+export { UserStatusSwitcher, CreateUserPanel, LocaleSelect } from './createUserPanel';
 
 export {
   AdminControlPanel,
   AdminUserCardsList,
   AdminUsersList,
   AdminReviewsTagsPicker,
-  AdminDataGridFooter
+  AdminDataGridFooter,
 } from './adminUsersList';
 
-export {AdminUserHeader, AdminUserReviews, AdminUser} from './adminUser';
+export { AdminUserHeader, AdminUserReviews, AdminUser } from './adminUser';

@@ -4,16 +4,16 @@ export {
   selectError,
   selectIsLoading,
   selectLocale,
-  selectIsInitialize
+  selectIsInitialize,
 } from './app';
 
-export {selectIsUserAuth, selectAccessToken} from './auth';
+export { selectIsUserAuth, selectAccessToken } from './auth';
 
 export {
   selectUser,
   selectUserRole,
   selectSelectedUser,
-  selectIsUserLoading
+  selectIsUserLoading,
 } from './user';
 
 export {
@@ -38,4 +38,4 @@ export {
   selectEditableReview,
 } from './reviews';
 
-export {selectComments} from './comments';
+export { selectComments } from './comments';

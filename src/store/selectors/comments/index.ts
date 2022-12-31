@@ -1,1 +1,1 @@
-export {selectComments} from './selectComments/selectComments';
+export { selectComments } from './selectComments/selectComments';

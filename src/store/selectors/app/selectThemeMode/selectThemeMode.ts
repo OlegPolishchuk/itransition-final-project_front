@@ -1,3 +1,5 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { ThemeMode } from 'store/types';
 
-export const selectThemeMode = (state: RootState) => state.appReducer.themeMode
+export const selectThemeMode = (state: RootState): ThemeMode =>
+  state.appReducer.themeMode;

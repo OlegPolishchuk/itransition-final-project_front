@@ -1,28 +1,34 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {FetchReviews, FetchReviewsResponse} from "store/types";
-import {apiReviews} from "apis";
-import {AxiosError} from "axios/index";
-import {RootState} from "store/store";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-export const fetchMoreReviews = createAsyncThunk<FetchReviewsResponse, undefined | FetchReviews, {state: RootState}>(
+import { apiReviews } from 'apis';
+import { RootState } from 'store/store';
+import { FetchReviews, FetchReviewsResponse } from 'store/types';
+
+export const fetchMoreReviews = createAsyncThunk<
+  FetchReviewsResponse,
+  undefined | FetchReviews,
+  { state: RootState }
+>(
   'reviews/fetchMoreReviews',
-  async (sortData:FetchReviews = {reviewsSortParams: 'created', reviewId: ''}, {rejectWithValue, getState}) => {
+  async (
+    sortData: FetchReviews = { reviewsSortParams: 'created', reviewId: '' },
+    { rejectWithValue, getState },
+  ) => {
     try {
-      const page =  sortData.page
+      const page = sortData.page
         ? sortData.page
-        :getState().reviewsReducer.paginationParams.page;
+        : getState().reviewsReducer.paginationParams.page;
 
-      const updatedSortData: FetchReviews = {...sortData, page };
+      const updatedSortData: FetchReviews = { ...sortData, page };
 
       const res = await apiReviews.getReviews(updatedSortData);
 
       return res.data;
-    }
-    catch (e) {
+    } catch (e) {
       const err = e as AxiosError;
 
       return rejectWithValue(err.message);
     }
-
-  }
-)
+  },
+);

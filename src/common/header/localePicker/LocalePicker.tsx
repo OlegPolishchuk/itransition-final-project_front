@@ -1,31 +1,31 @@
-import React from 'react';
-import {Box, FormControl, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import React, { ReactElement } from 'react';
 
-import {locales} from 'shared';
-import {useAppDispatch, useAppSelector} from "hooks";
-import {selectLocale} from "store/selectors";
-import {Locale} from "store/types";
-import {changeLocale} from "store/actions";
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { locales } from 'shared';
+import { changeLocale } from 'store/actions';
+import { selectLocale } from 'store/selectors';
+import { Locale } from 'store/types';
 
-export const LocalePicker = () => {
+export const LocalePicker = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const locale = useAppSelector(selectLocale);
 
-  const handleChangeLocale = (event: SelectChangeEvent) => {
+  const handleChangeLocale = (event: SelectChangeEvent): void => {
     const value = event.target.value as Locale;
 
-    dispatch(changeLocale(value))
-  }
+    dispatch(changeLocale(value));
+  };
 
   return (
     <Box>
       <FormControl>
         <Select
-          variant='outlined'
-          size='small'
-          id='select-locale'
+          variant="outlined"
+          size="small"
+          id="select-locale"
           value={locale}
           onChange={handleChangeLocale}
         >

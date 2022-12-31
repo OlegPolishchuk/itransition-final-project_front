@@ -1,27 +1,33 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
-import {apiReviews} from "apis";
-import {fetchUserReviews} from "store/actions/reviews/fetchUserReviews";
-import {RootState} from "store/store";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-export const deleteReviews = createAsyncThunk<void, {reviewsId: string[], userId: string}, {state: RootState}>(
+import { apiReviews } from 'apis';
+import { responseStatus } from 'shared';
+import { fetchUserReviews } from 'store/actions/reviews/fetchUserReviews';
+import { RootState } from 'store/store';
+
+export const deleteReviews = createAsyncThunk<
+  void,
+  { reviewsId: string[]; userId: string },
+  { state: RootState }
+>(
   'reviews/deleteReviews',
-  async ({reviewsId, userId}: {reviewsId: string[], userId: string}, {rejectWithValue, dispatch}) => {
-
+  async (
+    { reviewsId, userId }: { reviewsId: string[]; userId: string },
+    { rejectWithValue, dispatch },
+  ) => {
     try {
-      const queryString = reviewsId.join(' ')
-        .replaceAll(' ', '&id=');
+      const queryString = reviewsId.join(' ').replaceAll(' ', '&id=');
 
       const res = await apiReviews.deleteReviews(queryString);
 
-      if (res.status === 200 || res.status === 204) {
-        dispatch(fetchUserReviews(userId))
+      if (res.status === responseStatus.goodStatus) {
+        dispatch(fetchUserReviews(userId));
       }
-
-    }
-    catch (e) {
+    } catch (e) {
       const err = e as AxiosError;
+
       return rejectWithValue(err.message);
     }
-  }
-)
+  },
+);

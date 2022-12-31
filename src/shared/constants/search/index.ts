@@ -1,0 +1,1 @@
+export { inputSearchParams } from './inputSearchParams';

@@ -2,16 +2,16 @@ export {
   appReducer,
   clearGlobalMessage,
   setError,
-  toggleTheme
+  toggleTheme,
 } from './appReducer/appSlice';
 
-export {authReducer, setIsUserAuth} from './authReducer/authSlice';
-export {userReducer} from './userReducer/userReducer';
+export { authReducer, setIsUserAuth } from './authReducer/authSlice';
+export { userReducer } from './userReducer/userReducer';
 
 export {
   adminReducer,
   setTableSearchParams,
-  setCurrentUser
+  setCurrentUser,
 } from './adminReducer/adminReducer';
 
 export {
@@ -19,4 +19,4 @@ export {
   setReviewsPaginationParams,
 } from './rewiewsReducer/reviewsSlice';
 
-export {commentsReducer} from './commentsReducer/commentsSlice';
+export { commentsReducer } from './commentsReducer/commentsSlice';

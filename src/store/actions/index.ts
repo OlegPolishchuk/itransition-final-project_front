@@ -1,4 +1,5 @@
 export {
+  getProfile,
   loginUser,
   logoutUser,
   googleLogin,
@@ -6,11 +7,10 @@ export {
   getGithubUser,
   registerUser,
   refreshToken,
-  getProfile,
-  getAccessToken
+  getAccessToken,
 } from './auth';
 
-export {changeLocale,initializeApp, changeTheme} from './app';
+export { changeLocale, initializeApp, changeTheme } from './app';
 
 export {
   fetchUsers,
@@ -36,7 +36,6 @@ export {
   updateReview,
 } from './reviews';
 
-export {changeUserAvatar} from './user';
+export { changeUserAvatar } from './user';
 
-export {createConnection, closeConnection} from './comments';
-
+export { createConnection, closeConnection } from './comments';

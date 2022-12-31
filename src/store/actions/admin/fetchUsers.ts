@@ -1,22 +1,24 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiUsers} from "apis";
-import {AxiosError} from "axios";
-import {FetchUsersResponse} from "store/types/responses/FetchUsersResponse";
-import {RootState} from "store/store";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-export const fetchUsers = createAsyncThunk<FetchUsersResponse, void, {state: RootState}>(
-  'admin/fetchUsers', async (_, {rejectWithValue, getState}) => {
-    try {
-      const {page, limit} = getState().adminReducer.tableSearchParams;
+import { apiUsers } from 'apis';
+import { RootState } from 'store/store';
+import { FetchUsersResponse } from 'store/types/responses/FetchUsersResponse';
 
-      const res = await apiUsers.fetchUsers(page, limit);
+export const fetchUsers = createAsyncThunk<
+  FetchUsersResponse,
+  void,
+  { state: RootState }
+>('admin/fetchUsers', async (_, { rejectWithValue, getState }) => {
+  try {
+    const { page, limit } = getState().adminReducer.tableSearchParams;
 
-      return res.data;
-    }
-    catch (e) {
-      const error = e as AxiosError;
+    const res = await apiUsers.fetchUsers(page, limit);
 
-      return rejectWithValue(error.message)
-    }
+    return res.data;
+  } catch (e) {
+    const error = e as AxiosError;
+
+    return rejectWithValue(error.message);
   }
-)
+});

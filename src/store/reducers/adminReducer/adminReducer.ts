@@ -1,13 +1,14 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {userRoles, usersTablePaginationData, userStatus} from "shared";
-import {User, AdminState, TableSearchParams} from "store/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { userRoles, usersTablePaginationData, userStatus } from 'shared';
 import {
   generateRandomUsers,
   fetchUser,
   fetchUserReviews,
-  fetchUsers, changeUserAvatar
-} from "store/actions";
-
+  fetchUsers,
+  changeUserAvatar,
+} from 'store/actions';
+import { User, AdminState, TableSearchParams } from 'store/types';
 
 const initialState: AdminState = {
   users: [],
@@ -30,9 +31,9 @@ const initialState: AdminState = {
   totalCount: 0,
   tableSearchParams: {
     page: usersTablePaginationData.defaultPageNumber,
-    limit: usersTablePaginationData.defaultRowPerPage
-  }
-}
+    limit: usersTablePaginationData.defaultRowPerPage,
+  },
+};
 
 const adminSlice = createSlice({
   name: 'admin',
@@ -43,56 +44,55 @@ const adminSlice = createSlice({
     },
 
     setTableSearchParams: (state, action: PayloadAction<Partial<TableSearchParams>>) => {
-      state.tableSearchParams = {...state.tableSearchParams, ...action.payload};
-    }
+      state.tableSearchParams = { ...state.tableSearchParams, ...action.payload };
+    },
   },
   extraReducers: builder => {
-    builder.addCase(fetchUsers.pending, (state) => {
-      state.isLoading = true
-    })
+    builder.addCase(fetchUsers.pending, state => {
+      state.isLoading = true;
+    });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.users = action.payload.users;
       state.totalCount = action.payload.count;
       state.isLoading = false;
-    })
+    });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
-    })
+    });
 
-    builder.addCase(fetchUser.pending, (state) => {
+    builder.addCase(fetchUser.pending, state => {
       state.isLoading = true;
-    })
+    });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.currentUser = action.payload;
-    })
+    });
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
-    })
+    });
 
     builder.addCase(generateRandomUsers.pending, state => {
       state.isGenerating = true;
-    })
+    });
     builder.addCase(generateRandomUsers.fulfilled, state => {
-      state.isGenerating = false
-    })
+      state.isGenerating = false;
+    });
     builder.addCase(generateRandomUsers.rejected, (state, action) => {
       state.isGenerating = false;
       state.error = action.payload as string;
-    })
-
+    });
 
     builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
       state.currentUser.reviewsCount = action.payload.totalCount;
-    })
+    });
 
     builder.addCase(changeUserAvatar.fulfilled, (state, action) => {
       state.currentUser.avatar = action.payload.avatar;
-    })
+    });
   },
-})
+});
 
 export const adminReducer = adminSlice.reducer;
-export const {setCurrentUser, setTableSearchParams} = adminSlice.actions;
+export const { setCurrentUser, setTableSearchParams } = adminSlice.actions;

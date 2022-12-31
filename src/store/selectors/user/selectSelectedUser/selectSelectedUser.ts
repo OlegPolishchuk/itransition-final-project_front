@@ -1,3 +1,5 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { User } from 'store/types';
 
-export const selectSelectedUser = (state: RootState) => state.userReducer.selectedUser;
+export const selectSelectedUser = (state: RootState): User =>
+  state.userReducer.selectedUser;

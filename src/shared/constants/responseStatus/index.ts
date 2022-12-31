@@ -1,0 +1,1 @@
+export { responseStatus } from './responseStatus';

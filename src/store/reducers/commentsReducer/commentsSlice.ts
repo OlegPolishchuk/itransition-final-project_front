@@ -1,11 +1,12 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {CommentsState} from "store/types";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { CommentsState } from 'store/types';
 
 const initialState: CommentsState = {
   comments: [],
   reviewId: '',
   isLoading: true,
-}
+};
 
 const commentsSlice = createSlice({
   name: 'comments',
@@ -16,13 +17,11 @@ const commentsSlice = createSlice({
     },
 
     addComment: (state, action) => {
-      console.log(action.payload)
-      state.comments.push(action.payload)
-    }
+      state.comments.push(action.payload);
+    },
   },
-})
-
+});
 
 export const commentsReducer = commentsSlice.reducer;
 
-export const {setComments, addComment} = commentsSlice.actions;
+export const { setComments, addComment } = commentsSlice.actions;

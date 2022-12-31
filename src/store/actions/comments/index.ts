@@ -1,2 +1,2 @@
-export {createConnection} from './createConnection';
-export {closeConnection} from './closeConnection';
+export { createConnection } from './createConnection';
+export { closeConnection } from './closeConnection';

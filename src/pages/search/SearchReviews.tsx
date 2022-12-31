@@ -1,22 +1,24 @@
-import React, {useEffect} from 'react';
-import {useSearchParams} from "react-router-dom";
-import {setReviewsPaginationParams} from "store/reducers";
-import {fetchMoreReviews, fetchReviews} from "store/actions";
-import {useAppDispatch, useAppSelector} from "hooks";
-import {inputSearchParams} from "shared";
+import React, { ReactElement, useEffect } from 'react';
+
+import { Box, Typography } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { useSearchParams } from 'react-router-dom';
+
+import { Breadcrumbs } from 'common';
+import { ReviewsList } from 'common/reviews';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { inputSearchParams } from 'shared';
+import { fetchMoreReviews, fetchReviews } from 'store/actions';
+import { setReviewsPaginationParams } from 'store/reducers';
 import {
   selectIsFirstLoading,
   selectIsReviewLoading,
   selectPaginationParams,
   selectReviewCount,
-  selectReviews
-} from "store/selectors";
-import {Breadcrumbs, Title} from "common";
-import {ReviewsList} from "common/reviews";
-import {Box, Typography} from "@mui/material";
-import {FormattedMessage} from "react-intl";
+  selectReviews,
+} from 'store/selectors';
 
-export const SearchReviews = () => {
+export const SearchReviews = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
@@ -25,41 +27,35 @@ export const SearchReviews = () => {
 
   const reviews = useAppSelector(selectReviews);
   const isLoading = useAppSelector(selectIsReviewLoading);
-  const {page} = useAppSelector(selectPaginationParams);
+  const { page } = useAppSelector(selectPaginationParams);
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
-
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     const newPage = page + 1;
-    let search = searchQuery ? searchQuery : '';
+    const search = searchQuery || '';
 
-    dispatch(setReviewsPaginationParams({page: newPage}))
-    dispatch(fetchMoreReviews({search, page: newPage}))
-  }
-
+    dispatch(setReviewsPaginationParams({ page: newPage }));
+    dispatch(fetchMoreReviews({ search, page: newPage }));
+  };
 
   useEffect(() => {
+    const search = searchQuery || '';
 
-    let search = searchQuery ? searchQuery : '';
-
-    dispatch(setReviewsPaginationParams({page: 0}))
-    dispatch(fetchReviews({search}))
-  }, [searchQuery])
+    dispatch(setReviewsPaginationParams({ page: 0 }));
+    dispatch(fetchReviews({ search }));
+  }, [searchQuery]);
 
   return (
     <>
+      <Breadcrumbs />
 
-      <Breadcrumbs/>
-
-      <Box display={'flex'} alignItems={'center'} gap={'10px'} mb={'30px'}>
-        <Typography variant={'subtitle2'}>
-          <FormattedMessage id='app.search-reviews.search-phrase.title'/>
+      <Box display="flex" alignItems="center" gap="10px" mb="30px">
+        <Typography variant="subtitle2">
+          <FormattedMessage id="app.search-reviews.search-phrase.title" />
         </Typography>
 
-        <Typography variant={'h5'}>
-          {searchQuery}
-        </Typography>
+        <Typography variant="h5">{searchQuery}</Typography>
       </Box>
 
       <ReviewsList

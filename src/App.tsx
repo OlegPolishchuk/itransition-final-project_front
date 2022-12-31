@@ -1,36 +1,32 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "hooks";
+import React, { ReactElement, useEffect } from 'react';
 
-import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import {themeSettings} from 'theme';
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { IntlProvider } from 'react-intl';
+import { BrowserRouter } from 'react-router-dom';
 
+import { Header, MainLoader } from 'common';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { AppRoutes } from 'pages';
+import { locales } from 'shared';
+import enMessages from 'shared/localizations/en.json';
+import ruMessages from 'shared/localizations/ru.json';
+import { initializeApp } from 'store/actions';
 import {
   selectIsInitialize,
   selectIsLoading,
   selectIsUserAuth,
   selectLocale,
   selectThemeMode,
-  selectUserRole
-} from "store/selectors";
-import {initializeApp} from "store/actions";
-
-import {Header, MainLoader} from "common";
-import {AppRoutes} from "pages";
-
-
-import {IntlProvider} from "react-intl";
-import {locales} from "shared";
-import * as enMessages from 'shared/localizations/en.json';
-import ruMessages from 'shared/localizations/ru.json';
+  selectUserRole,
+} from 'store/selectors';
+import { themeSettings } from 'theme';
 
 const messages = {
   [locales.EN]: enMessages,
   [locales.RU]: ruMessages,
-}
+};
 
-
-export function App() {
+export const App = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const themeMode = useAppSelector(selectThemeMode);
@@ -40,39 +36,35 @@ export function App() {
   const userRole = useAppSelector(selectUserRole);
   const isInitialize = useAppSelector(selectIsInitialize);
 
-  const theme = createTheme(themeSettings(themeMode))
+  const theme = createTheme(themeSettings(themeMode));
 
   useEffect(() => {
     dispatch(initializeApp());
-  }, [])
+  }, []);
 
   return (
     <BrowserRouter>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <ThemeProvider theme={theme}>
-          <CssBaseline/>
+          <CssBaseline />
 
-          {isInitialize
-          ? (
-              <div className={'App'}>
+          {isInitialize ? (
+            <div className="App">
+              <Header themeMode={themeMode} />
 
-                <Header themeMode={themeMode} isUserAuth={isUserAuth}/>
-
-                <AppRoutes
-                  isUserAuth={isUserAuth}
-                  userRole={userRole}
-                  isInitialize={isInitialize}
-                />
-
-              </div>
-            )
-          : <MainLoader />
-          }
+              <AppRoutes
+                isUserAuth={isUserAuth}
+                userRole={userRole}
+                isInitialize={isInitialize}
+              />
+            </div>
+          ) : (
+            <MainLoader />
+          )}
 
           {isLoading && <MainLoader />}
         </ThemeProvider>
       </IntlProvider>
     </BrowserRouter>
   );
-}
-
+};

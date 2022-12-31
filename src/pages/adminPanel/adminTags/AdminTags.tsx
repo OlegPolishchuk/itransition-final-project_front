@@ -1,22 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "hooks";
-import {selectTags} from "store/selectors";
-import {deleteTags, getTags} from "store/actions";
+import React, { ReactElement, useEffect, useState } from 'react';
+
 import {
   Box,
   Button,
   Card,
   CardHeader,
   Checkbox,
-  Divider, Grid,
+  Divider,
+  Grid,
   List,
   ListItem,
-  ListItemIcon, ListItemText, useMediaQuery
-} from "@mui/material";
-import {Loader} from "common";
-import {FormattedMessage} from "react-intl";
+  ListItemIcon,
+  ListItemText,
+  useMediaQuery,
+} from '@mui/material';
+import { FormattedMessage } from 'react-intl';
 
-export const AdminTags = () => {
+import { Loader } from 'common';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { deleteTags, getTags } from 'store/actions';
+import { selectTags } from 'store/selectors';
+
+export const AdminTags = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
@@ -30,7 +35,7 @@ export const AdminTags = () => {
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const numberOfChecked = (items: string[]) =>
+  const numberOfChecked = (items: string[]): number =>
     intersection(checked, items).length;
 
   const handleToggleAll = (items: string[]) => () => {
@@ -54,29 +59,28 @@ export const AdminTags = () => {
     setChecked(newChecked);
   };
 
-  const handleCheckedRight = () => {
+  const handleCheckedRight = (): void => {
     setRight(right.concat(leftChecked));
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
   };
 
-  const handleCheckedLeft = () => {
+  const handleCheckedLeft = (): void => {
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
   };
 
-  const handleDeleteTags = () => {
-    dispatch(deleteTags(right))
+  const handleDeleteTags = (): void => {
+    dispatch(deleteTags(right));
 
     setRight([]);
-  }
+  };
 
-
-  const customList = (title: React.ReactNode, items: string[]) => (
+  const customList = (title: React.ReactNode, items: string[]): ReactElement => (
     <Card>
       <CardHeader
-        sx={{px: 2, py: 1}}
+        sx={{ px: 2, py: 1 }}
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
@@ -93,7 +97,7 @@ export const AdminTags = () => {
         title={title}
         subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
-      <Divider/>
+      <Divider />
       <List
         sx={{
           width: 350,
@@ -109,12 +113,7 @@ export const AdminTags = () => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
-            <ListItem
-              key={value}
-              role="listitem"
-              button
-              onClick={handleToggle(value)}
-            >
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
                   checked={checked.indexOf(value) !== -1}
@@ -125,101 +124,99 @@ export const AdminTags = () => {
                   }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={value}/>
+              <ListItemText id={labelId} primary={value} />
             </ListItem>
           );
         })}
-        <ListItem/>
+        <ListItem />
       </List>
     </Card>
   );
 
-
   useEffect(() => {
     dispatch(getTags());
-  }, [])
+  }, []);
 
   useEffect(() => {
-    setLeft(tags)
-  }, [tags])
+    setLeft(tags);
+  }, [tags]);
 
   return (
-    <>
-      {tags.length !== 0
-        ? (
-          <>
-            <Grid
-              container
-              spacing={2}
-              justifyContent="center"
-              alignItems="center"
-              direction={isSmallScreen ? 'column': 'row'}
-            >
-
-              <Grid item>
-                {customList(<FormattedMessage id='app.admin.tags.choices.title'/>, left)}
-              </Grid>
-
-              <Grid item>
-                <Grid container direction={isSmallScreen ? 'row' : 'column'} alignItems="center">
-                  <Button
-                    sx={{my: '15px', transform: `rotate(${isSmallScreen ? '90deg' : '0'})`}}
-                    variant="outlined"
-                    size="small"
-                    onClick={handleCheckedRight}
-                    disabled={leftChecked.length === 0}
-                    aria-label="move selected right"
-                  >
-                    &gt;
-                  </Button>
-                  <Button
-                    sx={{my: '15px', transform: `rotate(${isSmallScreen ? '90deg' : '0'})`}}
-                    variant="outlined"
-                    size="small"
-                    onClick={handleCheckedLeft}
-                    disabled={rightChecked.length === 0}
-                    aria-label="move selected left"
-                  >
-                    &lt;
-                  </Button>
-                </Grid>
-              </Grid>
-
-              <Grid item>
-                {customList(<FormattedMessage id='app.admin.tags.chosen.title'/>, right)}
-              </Grid>
-
+    <div>
+      {tags.length !== 0 ? (
+        <>
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+            direction={isSmallScreen ? 'column' : 'row'}
+          >
+            <Grid item>
+              {customList(<FormattedMessage id="app.admin.tags.choices.title" />, left)}
             </Grid>
 
-            <Box  sx={{textAlign: 'center', marginY: '50px'}}>
-
-              <Button
-                variant={"contained"}
-                color={'error'}
-                onClick={handleDeleteTags}
+            <Grid item>
+              <Grid
+                container
+                direction={isSmallScreen ? 'row' : 'column'}
+                alignItems="center"
               >
-                <FormattedMessage id='app.admin.tags.button-delete.title'/>
-              </Button>
+                <Button
+                  sx={{
+                    my: '15px',
+                    transform: `rotate(${isSmallScreen ? '90deg' : '0'})`,
+                  }}
+                  variant="outlined"
+                  size="small"
+                  onClick={handleCheckedRight}
+                  disabled={leftChecked.length === 0}
+                  aria-label="move selected right"
+                >
+                  &gt;
+                </Button>
+                <Button
+                  sx={{
+                    my: '15px',
+                    transform: `rotate(${isSmallScreen ? '90deg' : '0'})`,
+                  }}
+                  variant="outlined"
+                  size="small"
+                  onClick={handleCheckedLeft}
+                  disabled={rightChecked.length === 0}
+                  aria-label="move selected left"
+                >
+                  &lt;
+                </Button>
+              </Grid>
+            </Grid>
 
-            </Box>
-          </>
-        )
+            <Grid item>
+              {customList(<FormattedMessage id="app.admin.tags.chosen.title" />, right)}
+            </Grid>
+          </Grid>
 
-        : <Loader/>
-      }
-    </>
+          <Box sx={{ textAlign: 'center', marginY: '50px' }}>
+            <Button variant="contained" color="error" onClick={handleDeleteTags}>
+              <FormattedMessage id="app.admin.tags.button-delete.title" />
+            </Button>
+          </Box>
+        </>
+      ) : (
+        <Loader />
+      )}
+    </div>
   );
 };
 
-
-function not(a: string[], b: string[]) {
-  return a.filter((value) => b.indexOf(value) === -1);
+function not(a: string[], b: string[]): string[] {
+  return a.filter(value => b.indexOf(value) === -1);
 }
 
-function intersection(a: string[], b: string[]) {
-  return a.filter((value) => b.indexOf(value) !== -1);
+function intersection(a: string[], b: string[]): string[] {
+  return a.filter(value => b.indexOf(value) !== -1);
 }
 
-function union(a: string[], b: string[]) {
+function union(a: string[], b: string[]): string[] {
   return [...a, ...not(b, a)];
 }

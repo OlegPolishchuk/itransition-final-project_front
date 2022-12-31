@@ -1,13 +1,15 @@
-import React, {FC} from 'react';
-import {Box, Button} from "@mui/material";
-import BlockIcon from "@mui/icons-material/Block";
-import {FormattedMessage} from "react-intl";
-import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import {userStatus} from "shared";
-import {deleteUsers, updateUsersStatus} from "store/actions";
-import {GridSelectionModel} from "@mui/x-data-grid";
-import {useAppDispatch} from "hooks";
+import React, { FC } from 'react';
+
+import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
+import BlockIcon from '@mui/icons-material/Block';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { Box, Button } from '@mui/material';
+import { GridSelectionModel } from '@mui/x-data-grid';
+import { FormattedMessage } from 'react-intl';
+
+import { useAppDispatch } from 'hooks';
+import { userStatus } from 'shared';
+import { deleteUsers, updateUsersStatus } from 'store/actions';
 
 type Props = {
   selectionModel: GridSelectionModel;
@@ -15,86 +17,76 @@ type Props = {
   setSelectionModel: (newSelectionModel: GridSelectionModel) => void;
   setCardListSelection: (cardListSelection: string[]) => void;
   setMainCheckboxChecked: (mainCheckboxChecked: boolean) => void;
-}
+};
 
 export const AdminControlPanel: FC<Props> = ({
-                                               setSelectionModel,
-                                               selectionModel,
-                                               cardListSelection,
-                                               setCardListSelection,
-                                               setMainCheckboxChecked,
-                                             }) => {
+  setSelectionModel,
+  selectionModel,
+  cardListSelection,
+  setCardListSelection,
+  setMainCheckboxChecked,
+}) => {
   const dispatch = useAppDispatch();
 
   const disabled = !selectionModel.length && !cardListSelection.length;
 
-  const handleBlockUsers = () => {
-    const newData = selectionModel.length
-      ? [...selectionModel]
-      : [...cardListSelection];
+  const handleBlockUsers = (): void => {
+    const newData = selectionModel.length ? [...selectionModel] : [...cardListSelection];
 
-    const users = newData.map(id =>
-      ({id: `${id}`, status: userStatus.blocked}))
+    const users = newData.map(id => ({ id: `${id}`, status: userStatus.blocked }));
 
-    dispatch(updateUsersStatus(users))
+    dispatch(updateUsersStatus(users));
     setSelectionModel([]);
     setCardListSelection([]);
-  }
+  };
 
-  const handleUnblockUsers = () => {
-    const newData = selectionModel.length
-      ? [...selectionModel]
-      : [...cardListSelection];
+  const handleUnblockUsers = (): void => {
+    const newData = selectionModel.length ? [...selectionModel] : [...cardListSelection];
 
-    const users = newData.map(id =>
-      ({id: `${id}`, status: userStatus.active}))
+    const users = newData.map(id => ({ id: `${id}`, status: userStatus.active }));
 
-    dispatch(updateUsersStatus(users))
+    dispatch(updateUsersStatus(users));
     setSelectionModel([]);
     setCardListSelection([]);
-  }
+  };
 
-  const handleDeleteUsers = () => {
-    const usersIdToDelete = selectionModel.length
-      ? selectionModel
-      : cardListSelection;
+  const handleDeleteUsers = (): void => {
+    const usersIdToDelete = selectionModel.length ? selectionModel : cardListSelection;
 
     dispatch(deleteUsers(usersIdToDelete as string[]));
     setMainCheckboxChecked(false);
-  }
+  };
 
   return (
-    <Box className={'admin-controls'} justifyContent={'flex-end'} mb={'30px'}>
-
-      <Box className={'admin-controls-buttonGroup'}>
+    <Box className="admin-controls" justifyContent="flex-end" mb="30px">
+      <Box className="admin-controls-buttonGroup">
         <Button
-          variant={'outlined'}
-          endIcon={<BlockIcon color={'warning'}/>}
+          variant="outlined"
+          endIcon={<BlockIcon color="warning" />}
           onClick={handleBlockUsers}
           disabled={disabled}
         >
-          <FormattedMessage id='app.admin.button-block.title'/>
+          <FormattedMessage id="app.admin.button-block.title" />
         </Button>
 
         <Button
-          variant={'outlined'}
-          endIcon={<BeenhereOutlinedIcon color={'info'}/>}
+          variant="outlined"
+          endIcon={<BeenhereOutlinedIcon color="info" />}
           onClick={handleUnblockUsers}
           disabled={disabled}
         >
-          <FormattedMessage id='app.admin.button-unblock.title'/>
+          <FormattedMessage id="app.admin.button-unblock.title" />
         </Button>
 
         <Button
-          variant={'outlined'}
-          endIcon={<DeleteOutlinedIcon color={'error'}/>}
+          variant="outlined"
+          endIcon={<DeleteOutlinedIcon color="error" />}
           onClick={handleDeleteUsers}
           disabled={disabled}
         >
-          <FormattedMessage id='app.admin.button-delete.title'/>
+          <FormattedMessage id="app.admin.button-delete.title" />
         </Button>
       </Box>
-
     </Box>
   );
 };

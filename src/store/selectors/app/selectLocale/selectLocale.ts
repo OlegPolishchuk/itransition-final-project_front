@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { Locale } from 'store/types';
 
-export const selectLocale = (state: RootState) => state.appReducer.locale;
+export const selectLocale = (state: RootState): Locale => state.appReducer.locale;

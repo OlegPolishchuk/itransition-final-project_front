@@ -1,19 +1,19 @@
-import React, {FC} from 'react';
-import {IResolveParams, LoginSocialGithub} from "reactjs-social-login";
-import {Button} from "@mui/material";
+import React, { FC } from 'react';
+
 import GitHubIcon from '@mui/icons-material/GitHub';
-import {FormattedMessage} from "react-intl";
+import { Button } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { IResolveParams, LoginSocialGithub } from 'reactjs-social-login';
 
 const REDIRECT_URI = window.location.href;
 const client_id = process.env.REACT_APP_GITHUB_CLIENT_ID as string;
 const client_secret = process.env.REACT_APP_GITHUB_CLIENT_SECRET as string;
 
 type Props = {
-  onResolve: ({provider, data}: IResolveParams) => void
-}
+  onResolve: ({ provider, data }: IResolveParams) => void;
+};
 
-export const GithubAuth: FC<Props> = ({onResolve}) => {
-
+export const GithubAuth: FC<Props> = ({ onResolve }) => {
   return (
     <LoginSocialGithub
       isOnlyGetToken
@@ -22,16 +22,11 @@ export const GithubAuth: FC<Props> = ({onResolve}) => {
       redirect_uri={REDIRECT_URI}
       onResolve={onResolve}
       onReject={(err: any) => {
-        console.log(err)
+        console.log(err);
       }}
     >
-      <Button
-        fullWidth
-        variant={'outlined'}
-        color={'secondary'}
-        startIcon={<GitHubIcon />}
-      >
-        <FormattedMessage id='app.auth.button-github.title'/>
+      <Button fullWidth variant="outlined" color="secondary" startIcon={<GitHubIcon />}>
+        <FormattedMessage id="app.auth.button-github.title" />
       </Button>
     </LoginSocialGithub>
   );

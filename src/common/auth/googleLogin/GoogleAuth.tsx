@@ -1,43 +1,45 @@
-import React, {useEffect} from 'react';
-import {gapi} from "gapi-script";
-import GoogleLogin, {GoogleLoginResponse, GoogleLoginResponseOffline} from "react-google-login";
-import {useAppDispatch} from "hooks";
-import {SocialResponse} from "store/types/responses/SocialResponse";
-import {googleLogin} from "store/actions/auth/googleLogin";
-import {Button} from "@mui/material";
+import React, { ReactElement, useEffect } from 'react';
+
 import GoogleIcon from '@mui/icons-material/Google';
-import {FormattedMessage} from "react-intl";
+import { Button } from '@mui/material';
+import { gapi } from 'gapi-script';
+import GoogleLogin, {
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+} from 'react-google-login';
+import { FormattedMessage } from 'react-intl';
+
+import { useAppDispatch } from 'hooks';
+import { googleLogin } from 'store/actions/auth/googleLogin';
+import { SocialResponse } from 'store/types/responses/SocialResponse';
 
 const client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID as string;
 
-export const GoogleAuth = () => {
+export const GoogleAuth = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const handleSuccess = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+  const handleSuccess = (res: GoogleLoginResponse | GoogleLoginResponseOffline): void => {
     const googleRes = res as GoogleLoginResponse;
 
     const data: SocialResponse = {
       login: googleRes.profileObj.email,
-    }
+    };
 
-    dispatch(googleLogin(data))
-  }
+    dispatch(googleLogin(data));
+  };
 
-  const handleFailure = () => {
-
-  }
+  const handleFailure = (): void => {};
 
   useEffect(() => {
-    const initClient = () => {
+    const initClient = (): void => {
       gapi.auth2.init({
         client_id,
         scope: '',
-      })
-    }
+      });
+    };
 
-    gapi.load('client:auth2', initClient)
-
-  }, [])
+    gapi.load('client:auth2', initClient);
+  }, []);
 
   return (
     <GoogleLogin
@@ -48,11 +50,11 @@ export const GoogleAuth = () => {
       render={renderProps => (
         <Button
           onClick={renderProps.onClick}
-          variant={'outlined'}
-          color={'secondary'}
-          startIcon={<GoogleIcon/>}
+          variant="outlined"
+          color="secondary"
+          startIcon={<GoogleIcon />}
         >
-          <FormattedMessage id='app.auth.button-google.title'/>
+          <FormattedMessage id="app.auth.button-google.title" />
         </Button>
       )}
     />

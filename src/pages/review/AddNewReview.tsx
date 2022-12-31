@@ -1,4 +1,5 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+
 import {
   Box,
   Button,
@@ -6,29 +7,29 @@ import {
   Rating,
   SelectChangeEvent,
   TextField,
-  useMediaQuery
-} from "@mui/material";
+  useMediaQuery,
+} from '@mui/material';
 import MDEditor from '@uiw/react-md-editor';
-import {Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title} from "common";
-import {useAppDispatch, useAppSelector} from "hooks";
-import {addReviewImage, createReview, getTags, updateReview} from "store/actions";
-import {useNavigate} from "react-router-dom";
-import {FormattedMessage} from "react-intl";
+import { FormattedMessage } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+
+import { Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title } from 'common';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { groups } from 'shared/constants';
+import { addReviewImage, createReview, getTags, updateReview } from 'store/actions';
+import {
+  setEditableReview,
+  setIsCreatedNewReview,
+} from 'store/reducers/rewiewsReducer/reviewsSlice';
 import {
   selectEditableReview,
   selectIsCreatedNewReview,
   selectSelectedUser,
   selectUploadedReviewImgSrc,
-  selectUser
-} from "store/selectors";
-import {
-  setEditableReview,
-  setIsCreatedNewReview
-} from "store/reducers/rewiewsReducer/reviewsSlice";
-import {groups} from "shared/constants";
+  selectUser,
+} from 'store/selectors';
 
-
-export const AddNewReview = () => {
+export const AddNewReview = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -45,13 +46,12 @@ export const AddNewReview = () => {
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
-
   const [reviewValue, setReviewValue] = useState({
     title: editableReview ? editableReview.title : '',
     subtitle: editableReview ? editableReview.subtitle : '',
     body: editableReview ? editableReview.body : '',
     group: editableReview ? editableReview.group : groups[0],
-    tags: editableReview ? editableReview.tags : [] as string[],
+    tags: editableReview ? editableReview.tags : ([] as string[]),
     personalScore: editableReview ? editableReview.personalScore : 0,
     overallScore: editableReview ? editableReview.overallScore : 0,
   });
@@ -59,78 +59,83 @@ export const AddNewReview = () => {
   const [error, setError] = useState({
     title: false,
     subtitle: false,
-    tags: false
-  })
+    tags: false,
+  });
 
+  const handleChangeTitle = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
+    setReviewValue(reviewValue => ({ ...reviewValue, title: event.target.value }));
 
-  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setReviewValue(reviewValue => ({...reviewValue, title: event.target.value}));
+    setError(error => ({ ...error, title: false }));
+  };
 
-    setError(error => ({...error, title: false}))
-  }
+  const handleChangeSubtitle = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
+    setReviewValue(reviewValue => ({ ...reviewValue, subtitle: event.target.value }));
 
-  const handleChangeSubtitle = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setReviewValue(reviewValue => ({...reviewValue, subtitle: event.target.value}));
+    setError(error => ({ ...error, subtitle: false }));
+  };
 
-    setError(error => ({...error, subtitle: false}))
-  }
+  const handleChangeBody = (value?: string): void => {
+    if (value) {
+      setReviewValue(reviewValue => ({ ...reviewValue, body: value }));
+    }
+  };
 
-  const handleChangeBody = (value?: string) => {
-    value && setReviewValue(reviewValue => ({...reviewValue, body: value}));
-  }
+  const handleChangeTags = (tags: string[]): void => {
+    setReviewValue(reviewValue => ({ ...reviewValue, tags }));
 
-  const handleChangeTags = (tags: string[]) => {
-    setReviewValue(reviewValue => ({...reviewValue, tags: tags}))
+    setError(error => ({ ...error, tags: false }));
+  };
 
-    setError(error => ({...error, tags: false}))
-  }
+  const handleChangePersonalScore = (newValue: number | null): void => {
+    setReviewValue(reviewValue => ({
+      ...reviewValue,
+      personalScore: newValue as number,
+    }));
+  };
 
-  const handleChangePersonalScore = (newValue: number | null) => {
-    setReviewValue(reviewValue => ({...reviewValue, personalScore: newValue as number}))
-  }
+  const handleChangeGroup = (event: SelectChangeEvent): void => {
+    const { value } = event.target;
 
-  const handleChangeGroup = (event: SelectChangeEvent) => {
-    const value = event.target.value;
+    setReviewValue(reviewValue => ({ ...reviewValue, group: value }));
+  };
 
-    setReviewValue(reviewValue => ({...reviewValue, group: value}))
-  }
-
-  const handlePublishReview = () => {
-
+  const handlePublishReview = (): any => {
     if (!handleCheckErrors()) {
-
       if (editableReview) {
-        const updatedReview = {...editableReview, ...reviewValue};
+        const updatedReview = { ...editableReview, ...reviewValue };
 
-        return dispatch(updateReview(updatedReview))
-      } else {
-        return dispatch(createReview(reviewValue))
+        return dispatch(updateReview(updatedReview));
       }
 
+      return dispatch(createReview(reviewValue));
     }
-  }
+  };
 
-  const handleCheckErrors = () => {
+  const handleCheckErrors = (): boolean => {
     const errors = {
       title: reviewValue.title === '',
       subtitle: reviewValue.subtitle === '',
       tags: reviewValue.tags.length === 0,
-    }
+    };
 
     setError(errors);
 
     const values = Object.values(errors);
 
-    return values.some(value => value)
-  }
+    return values.some(value => value);
+  };
 
-  const handleUploadFile = (file: File) => {
+  const handleUploadFile = (file: File): void => {
     const formData = new FormData();
-    formData.append('file', file, `${userId}-${Date.now()}-${file.name}`)
+
+    formData.append('file', file, `${userId}-${Date.now()}-${file.name}`);
 
     dispatch(addReviewImage(formData));
-  }
-
+  };
 
   useEffect(() => {
     dispatch(getTags());
@@ -138,19 +143,18 @@ export const AddNewReview = () => {
     return () => {
       dispatch(setIsCreatedNewReview(false));
       dispatch(setEditableReview(null));
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     if (isCreatedNewReview) {
-      navigate(-1)
+      navigate(-1);
     }
-  }, [isCreatedNewReview])
-
+  }, [isCreatedNewReview]);
 
   return (
-    <Container sx={{paddingBottom: '50px'}}>
-      <Breadcrumbs/>
+    <Container sx={{ paddingBottom: '50px' }}>
+      <Breadcrumbs />
 
       <Box
         sx={{
@@ -158,8 +162,8 @@ export const AddNewReview = () => {
           flexDirection: 'column',
           gap: '15px',
           marginBottom: '30px',
-        }}>
-
+        }}
+      >
         <ItemPicker
           valueList={groups}
           changeValueCallback={handleChangeGroup}
@@ -167,22 +171,22 @@ export const AddNewReview = () => {
         />
 
         <TextField
-          label={<FormattedMessage id='app.user.add-new-review.field-title.title'/>}
+          label={<FormattedMessage id="app.user.add-new-review.field-title.title" />}
           variant="outlined"
           value={reviewValue.title}
           onChange={handleChangeTitle}
-          size={'small'}
+          size="small"
           required
           error={error.title}
           helperText={error.title ? 'Required' : ''}
         />
 
         <TextField
-          label={<FormattedMessage id='app.user.add-new-review.field-subtitle.title'/>}
+          label={<FormattedMessage id="app.user.add-new-review.field-subtitle.title" />}
           variant="outlined"
           value={reviewValue.subtitle}
           onChange={handleChangeSubtitle}
-          size={'small'}
+          size="small"
           required
           error={error.subtitle}
           helperText={error.subtitle ? 'Required' : ''}
@@ -198,39 +202,38 @@ export const AddNewReview = () => {
           gap: '50px',
         }}
       >
-        <ImgUploader onChangeFileCallback={handleUploadFile}/>
+        <ImgUploader onChangeFileCallback={handleUploadFile} />
 
-        <Box sx={{
-          overflowWrap: 'break-word'
-        }}>
+        <Box
+          sx={{
+            overflowWrap: 'break-word',
+          }}
+        >
           {uploadedImgSrc}
         </Box>
       </Box>
-
 
       <MDEditor
         value={reviewValue.body}
         onChange={handleChangeBody}
         preview={isSmallScreen ? 'edit' : 'live'}
-        style={{minHeight: '400px'}}
+        style={{ minHeight: '400px' }}
       />
 
-      <Box mt={'30px'}>
+      <Box mt="30px">
         <Title
-          variant={"subtitle2"}
-          title={<FormattedMessage id='app.user.add-new-review.tags-picker.title'/>}
+          variant="subtitle2"
+          title={<FormattedMessage id="app.user.add-new-review.tags-picker.title" />}
           color={error.tags ? 'error' : ''}
         />
 
-        <TagsPicker
-          handleChangeOptionCallback={handleChangeTags}
-        />
+        <TagsPicker handleChangeOptionCallback={handleChangeTags} />
       </Box>
 
-      <Box mt={'30px'}>
+      <Box mt="30px">
         <Title
-          variant={'subtitle2'}
-          title={<FormattedMessage id='app.user.add-new-review.rating.title'/>}
+          variant="subtitle2"
+          title={<FormattedMessage id="app.user.add-new-review.rating.title" />}
         />
 
         <Rating
@@ -240,19 +243,15 @@ export const AddNewReview = () => {
         />
       </Box>
 
-      <Box textAlign={'center'} mt={'50px'}>
-        <Button
-          variant={'contained'}
-          color={'error'}
-          onClick={handlePublishReview}
-        >
-          {editableReview
-            ? <FormattedMessage id='app.user.add-new-review.button-edit.title'/>
-            : <FormattedMessage id='app.user.add-new-review.button-publish.title'/>
-          }
+      <Box textAlign="center" mt="50px">
+        <Button variant="contained" color="error" onClick={handlePublishReview}>
+          {editableReview ? (
+            <FormattedMessage id="app.user.add-new-review.button-edit.title" />
+          ) : (
+            <FormattedMessage id="app.user.add-new-review.button-publish.title" />
+          )}
         </Button>
       </Box>
-
     </Container>
   );
 };

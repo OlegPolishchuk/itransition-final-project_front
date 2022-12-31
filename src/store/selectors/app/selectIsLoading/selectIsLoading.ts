@@ -1,3 +1,3 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectIsLoading = (state: RootState) => state.appReducer.isLoading;
+export const selectIsLoading = (state: RootState): boolean => state.appReducer.isLoading;

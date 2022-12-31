@@ -1,6 +1,1 @@
-export const groups = [
-  'books',
-  'movies',
-  'games',
-  'music'
-]
+export const groups = ['books', 'movies', 'games', 'music'];

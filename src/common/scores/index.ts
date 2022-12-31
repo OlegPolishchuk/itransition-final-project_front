@@ -1,1 +1,1 @@
-export {PersonalScore} from 'common/scores/PersonalScore';
+export { PersonalScore } from 'common/scores/PersonalScore';

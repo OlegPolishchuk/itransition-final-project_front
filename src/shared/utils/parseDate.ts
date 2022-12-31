@@ -1,6 +1,6 @@
-export const parseDate = (date: string) => {
-  const updatedDate = Date.parse(`${date}`)
-  const  options: Intl.DateTimeFormatOptions  = {
+export const parseDate = (date: string): string => {
+  const updatedDate = Date.parse(`${date}`);
+  const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
@@ -8,5 +8,5 @@ export const parseDate = (date: string) => {
     minute: 'numeric',
   };
 
-  return new Intl.DateTimeFormat('ru', options).format(updatedDate)
-}
+  return new Intl.DateTimeFormat('ru', options).format(updatedDate);
+};

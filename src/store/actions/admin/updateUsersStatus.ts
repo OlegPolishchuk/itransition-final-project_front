@@ -1,28 +1,31 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiUsers} from "apis";
-import {fetchUsers} from "store/actions/admin/fetchUsers";
-import {AxiosError} from "axios";
-import {UpdatedUsersStatusRequest} from "store/types/requests/UpdatedUsersStatusRequest";
-import {RootState} from "store/store";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-export const updateUsersStatus = createAsyncThunk<void, UpdatedUsersStatusRequest[], {state: RootState}>(
-  'blockUsers', async (users: UpdatedUsersStatusRequest[], {rejectWithValue, dispatch}) => {
+import { apiUsers } from 'apis';
+import { responseStatus } from 'shared';
+import { fetchUsers } from 'store/actions/admin/fetchUsers';
+import { RootState } from 'store/store';
+import { UpdatedUsersStatusRequest } from 'store/types/requests/UpdatedUsersStatusRequest';
+
+export const updateUsersStatus = createAsyncThunk<
+  void,
+  UpdatedUsersStatusRequest[],
+  { state: RootState }
+>(
+  'blockUsers',
+  async (users: UpdatedUsersStatusRequest[], { rejectWithValue, dispatch }) => {
     if (!users.length) return;
 
     try {
-
       const res = await apiUsers.updateUsersStatus(users);
 
-      if (res.status === 200 || res.status === 204) {
+      if (res.status === responseStatus.goodStatus) {
         dispatch(fetchUsers());
       }
-    }
-    catch (e) {
-      console.log(e);
-
+    } catch (e) {
       const error = e as AxiosError;
-      return rejectWithValue(error.message)
-    }
 
-  }
-)
+      return rejectWithValue(error.message);
+    }
+  },
+);

@@ -1,3 +1,3 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectTags = (state: RootState) => state.reviewsReducer.tags
+export const selectTags = (state: RootState): string[] => state.reviewsReducer.tags;

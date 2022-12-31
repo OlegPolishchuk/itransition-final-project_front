@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
 
-export const selectIsUsersLoading = (state: RootState) => state.adminReducer.isLoading;
+export const selectIsUsersLoading = (state: RootState): boolean =>
+  state.adminReducer.isLoading;

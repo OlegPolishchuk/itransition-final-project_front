@@ -3,4 +3,4 @@ export const localStorageData = {
   theme: 'theme',
   locale: 'locale',
   token: 'token',
-}
+};

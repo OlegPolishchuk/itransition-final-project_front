@@ -1,3 +1,4 @@
-import {RootState} from "store/store";
+import { RootState } from 'store/store';
+import { Review } from 'store/types';
 
-export const selectReviews = (state: RootState) => state.reviewsReducer.reviews
+export const selectReviews = (state: RootState): Review[] => state.reviewsReducer.reviews;

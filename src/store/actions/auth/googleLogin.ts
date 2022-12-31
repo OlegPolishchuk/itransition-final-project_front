@@ -1,29 +1,29 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {apiAuth} from "apis";
-import {AxiosError} from "axios";
-import {User} from "store/types/User/User";
-import {SocialResponse} from "store/types/responses/SocialResponse";
-import {localStorageService} from "services";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+
+import { apiAuth } from 'apis';
+import { localStorageService } from 'services';
+import { SocialResponse, User } from 'store/types';
 
 export const googleLogin = createAsyncThunk<User, SocialResponse>(
-  'auth/googleLogin', async (data:SocialResponse, {rejectWithValue}) => {
-
+  'auth/googleLogin',
+  async (data: SocialResponse, { rejectWithValue }) => {
     try {
-      const {login} = data;
-      const res = await apiAuth.socialLogin({login});
+      const { login } = data;
+      const res = await apiAuth.socialLogin({ login });
 
       localStorageService.setAuthUserData(res.data);
-      return res.data;
 
+      return res.data;
     } catch (e) {
+      console.log(e);
       const error = e as AxiosError;
 
       if (!error.response) {
-        throw e
+        throw e;
       }
 
-      return rejectWithValue(error.message)
+      return rejectWithValue(error.message);
     }
-
-  }
-)
+  },
+);

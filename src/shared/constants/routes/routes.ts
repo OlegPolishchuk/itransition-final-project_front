@@ -5,14 +5,14 @@ export const routes = {
   },
   admin: {
     main: '/admin',
-    user:'/admin/user',
+    user: '/admin/user',
     review: '/admin/review',
     tags: '/admin/tags',
   },
   review: {
     base: '/review',
     addNew: '/review/addReview',
-    edit: '/review/editReview'
+    edit: '/review/editReview',
   },
   notFound: '/not-found',
   mainPage: {
@@ -25,5 +25,7 @@ export const routes = {
     base: '/profile',
     myProfile: '/myProfile',
   },
-  protectedRoute: '/protected'
-}
+  tags: {
+    base: '/tags',
+  },
+};

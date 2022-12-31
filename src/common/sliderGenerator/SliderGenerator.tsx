@@ -1,7 +1,8 @@
-import React, {ChangeEvent, FC, ReactNode} from 'react';
-import {Box, Input, Slider, Typography} from "@mui/material";
-import {SliderValues} from "store/types";
+import React, { ChangeEvent, FC, ReactNode } from 'react';
 
+import { Box, Input, Slider, Typography } from '@mui/material';
+
+import { SliderValues } from 'store/types';
 
 type Props = {
   itemsCount: number | string | Array<number | string>;
@@ -10,31 +11,29 @@ type Props = {
   handleBlur: () => void;
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
   title?: ReactNode;
-}
+};
 
 export const SliderGenerator: FC<Props> = ({
-                                             sliderValue,
-                                             itemsCount,
-                                             handleSliderChange,
-                                             handleBlur,
-                                             handleInputChange,
-                                             title
-                                           }) => {
-  const {MAX_SLIDER, MIN_SLIDER, MAX_SLIDER_INPUT, MARKS} = sliderValue;
-
+  sliderValue,
+  itemsCount,
+  handleSliderChange,
+  handleBlur,
+  handleInputChange,
+  title,
+}) => {
+  const { MAX_SLIDER, MIN_SLIDER, MAX_SLIDER_INPUT, MARKS } = sliderValue;
 
   return (
-    <Box className={'slider-box'}>
-
+    <Box className="slider-box">
       {title && (
         <Typography id="input-slider" gutterBottom>
           {title}
         </Typography>
       )}
 
-      <Box className={'slider-wrapper'}>
+      <Box className="slider-wrapper">
         <Slider
-          color={'secondary'}
+          color="secondary"
           value={typeof itemsCount === 'number' ? itemsCount : 0}
           onChange={handleSliderChange}
           step={1}
