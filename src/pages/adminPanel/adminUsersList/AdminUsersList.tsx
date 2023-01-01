@@ -1,51 +1,37 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
-import {Avatar, Box, Button, Card, CardHeader, Grid, Typography} from "@mui/material";
-import BlockIcon from "@mui/icons-material/Block";
-import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import {CreateUserPanel, UsersTable} from "common";
-import {User} from "store/types/User/User";
-import {GridColDef, GridSelectionModel} from "@mui/x-data-grid";
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { Box } from '@mui/material';
+import { GridSelectionModel } from '@mui/x-data-grid';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
+
+import { CreateUserPanel, UsersTable } from 'common';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { AdminControlPanel, AdminUserCardsList } from 'pages';
 import {
   adminTableSearchParams,
-  getWindowWidth, paginationDefaultParams,
-  parseDate,
+  getWindowWidth,
+  paginationDefaultParams,
   routes,
-  userRoles,
   usersTablePaginationData,
-  userStatus
-} from "shared";
-import {AdminPanelSettingsOutlined, LockOpenOutlined} from "@mui/icons-material";
-import {useAppDispatch, useAppSelector} from "hooks";
+  adminTableColumns,
+} from 'shared';
+import { fetchUsers } from 'store/actions';
+import { setCurrentUser, setTableSearchParams } from 'store/reducers';
 import {
-  deleteUsers,
-  fetchUsers,
-  getTags,
-  initializeApp,
-  updateUsersStatus
-} from "store/actions";
-import {
-  selectAdminTableSearchParams, selectIsInitialize, selectIsUsersLoading,
+  selectAdminTableSearchParams,
+  selectIsUsersLoading,
   selectTotalCount,
-  selectUsers
-} from "store/selectors";
-import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
-import {
-  setCurrentUser,
-  setTableSearchParams
-} from "store/reducers";
-import {FormattedMessage} from "react-intl";
-import {RootState} from "store/store";
-import {adminTableColumns} from 'shared';
-import { AdminControlPanel, AdminUserCardsList } from 'pages';
+  selectUsers,
+} from 'store/selectors';
+import { User } from 'store/types/User/User';
 
+const smallScreenSize = 900;
 
-export const AdminUsersList = () => {
+export const AdminUsersList = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
-  const isInitiaize = useAppSelector(selectIsInitialize);
   const users = useAppSelector(selectUsers);
   const isUsersLoading = useAppSelector(selectIsUsersLoading);
   const totalUsersCount = useAppSelector(selectTotalCount);
@@ -59,64 +45,66 @@ export const AdminUsersList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = Number(searchParams.get(adminTableSearchParams.page)) || tableSearchParams.page;
-  const limit = Number(searchParams.get(adminTableSearchParams.limit)) || tableSearchParams.limit;
+  const page =
+    Number(searchParams.get(adminTableSearchParams.page)) || tableSearchParams.page;
+  const limit =
+    Number(searchParams.get(adminTableSearchParams.limit)) || tableSearchParams.limit;
 
-  const rowsPerPageOptions = usersTablePaginationData.rowsPerPage
+  const rowsPerPageOptions = usersTablePaginationData.rowsPerPage;
 
-  const handleRowClick = (user: User) => {
+  const handleRowClick = (user: User): void => {
     const userPagePaginationPrams = {
-      'page': `${paginationDefaultParams.page}`,
-      'limit': `${paginationDefaultParams.limit}`
-    }
+      page: `${paginationDefaultParams.page}`,
+      limit: `${paginationDefaultParams.limit}`,
+    };
 
-    dispatch(setCurrentUser(user))
+    dispatch(setCurrentUser(user));
 
     navigate({
       pathname: `${routes.admin.user}/${user._id}`,
-      search: `${createSearchParams(userPagePaginationPrams)}`
-    })
-  }
+      search: `${createSearchParams(userPagePaginationPrams)}`,
+    });
+  };
 
-  const handleChangePage = (page: number) => {
-    dispatch(setTableSearchParams({page}));
+  const handleChangePage = (page: number): void => {
+    dispatch(setTableSearchParams({ page }));
 
     searchParams.set(`${adminTableSearchParams.page}`, `${page}`);
     setSearchParams(searchParams);
-  }
+  };
 
-  const handleChangeLimit = (limit: number) => {
-    dispatch(setTableSearchParams({limit}));
+  const handleChangeLimit = (limit: number): void => {
+    dispatch(setTableSearchParams({ limit }));
 
     searchParams.set(`${adminTableSearchParams.limit}`, `${limit}`);
     setSearchParams(searchParams);
-  }
+  };
 
   useEffect(() => {
-    dispatch(setTableSearchParams({
-      page,
-      limit,
-    }))
+    dispatch(
+      setTableSearchParams({
+        page,
+        limit,
+      }),
+    );
 
     searchParams.set(`${adminTableSearchParams.page}`, `${page}`);
     searchParams.set(`${adminTableSearchParams.limit}`, `${limit}`);
     setSearchParams(searchParams);
-  }, [])
-
+  }, []);
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [tableSearchParams.page, tableSearchParams.limit])
+  }, [tableSearchParams.page, tableSearchParams.limit]);
 
   useEffect(() => {
-    const resizeListener = () => {
+    const resizeListener = (): void => {
       setWindowWidth(getWindowWidth());
 
-      if (windowWidth >= 900) {
-        setCardListSelection([])
-      }
-      else {
-        setSelectionModel([])
+      if (windowWidth >= smallScreenSize) {
+        setCardListSelection([]);
+      } else {
+        setSelectionModel([]);
       }
     };
 
@@ -124,13 +112,12 @@ export const AdminUsersList = () => {
 
     return () => {
       window.removeEventListener('resize', resizeListener);
-    }
-  }, [windowWidth])
+    };
+  }, [windowWidth]);
 
   return (
-    <Box className={'admin-admin-list'}>
-
-      <CreateUserPanel/>
+    <Box className="admin-admin-list">
+      <CreateUserPanel />
 
       <AdminControlPanel
         selectionModel={selectionModel}
@@ -140,40 +127,36 @@ export const AdminUsersList = () => {
         setMainCheckboxChecked={setCardsListMainCheckbox}
       />
 
-      {windowWidth >= 900
-        ? (
-          <Box>
-            <UsersTable
-              columns={adminTableColumns}
-              rows={users}
-              rowsPerPageOptions={rowsPerPageOptions}
-              selectionModel={selectionModel}
-              setSelectionModel={setSelectionModel}
-              handleRowClickCallback={handleRowClick}
-              totalUsersCount={totalUsersCount}
-              pageSize={limit}
-              setPageSize={handleChangeLimit}
-              pageNumber={page}
-              onPageChange={handleChangePage}
-              loading={isUsersLoading}
-            />
-          </Box>
-        )
-        : (
-          <AdminUserCardsList
-            users={users}
-            setCardListSelection={setCardListSelection}
-            cardListSelection={cardListSelection}
-            mainCheckboxChecked={cardsListMainCheckbox}
-            setMainCheckboxChecked={setCardsListMainCheckbox}
-            totalCount={totalUsersCount}
-            page={page}
-            limitPerPage={limit}
-            onChangeCallback={handleChangePage}
+      {windowWidth >= smallScreenSize ? (
+        <Box>
+          <UsersTable
+            columns={adminTableColumns}
+            rows={users}
+            rowsPerPageOptions={rowsPerPageOptions}
+            selectionModel={selectionModel}
+            setSelectionModel={setSelectionModel}
+            handleRowClickCallback={handleRowClick}
+            totalUsersCount={totalUsersCount}
+            pageSize={limit}
+            setPageSize={handleChangeLimit}
+            pageNumber={page}
+            onPageChange={handleChangePage}
+            loading={isUsersLoading}
           />
-        )
-      }
-
+        </Box>
+      ) : (
+        <AdminUserCardsList
+          users={users}
+          setCardListSelection={setCardListSelection}
+          cardListSelection={cardListSelection}
+          mainCheckboxChecked={cardsListMainCheckbox}
+          setMainCheckboxChecked={setCardsListMainCheckbox}
+          totalCount={totalUsersCount}
+          page={page}
+          limitPerPage={limit}
+          onChangeCallback={handleChangePage}
+        />
+      )}
     </Box>
   );
 };
