@@ -27,3 +27,5 @@ export { Profile } from './profile/Profile';
 export { SearchReviews } from './search/SearchReviews';
 
 export { TagReviews } from './tag';
+
+export { NotFound } from './notFound/NotFound';

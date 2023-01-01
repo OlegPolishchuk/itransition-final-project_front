@@ -120,5 +120,7 @@
 
   "app.search-reviews.search-phrase.title": "Search phrase:",
 
-  "app.comment.button-send.title": "Send comment"
+  "app.comment.button-send.title": "Send comment",
+
+  "app.not-found.title": "Oops! Page Not Found"
 }

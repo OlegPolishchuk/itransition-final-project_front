@@ -121,5 +121,7 @@
 
   "app.search-reviews.search-phrase.title": "Ключевая фраза:",
 
-  "app.comment.button-send.title": "Оставить комментарий"
+  "app.comment.button-send.title": "Оставить комментарий",
+
+  "app.not-found.title": "Упс! Страница не найдена"
 }

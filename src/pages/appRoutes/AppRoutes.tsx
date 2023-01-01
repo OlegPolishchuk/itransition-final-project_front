@@ -17,6 +17,7 @@ import {
   AdminTags,
   SearchReviews,
   TagReviews,
+  NotFound,
 } from 'pages';
 import { routes } from 'shared';
 import { UserRole } from 'store/types';
@@ -93,7 +94,9 @@ export const AppRoutes: FC<Props> = ({ isUserAuth, userRole, isInitialize }) => 
         <Route path={routes.admin.tags} element={<AdminTags />} />
       </Route>
 
-      <Route path={routes.notFound} element={<div>Not Found</div>} />
+      <Route path={routes.notFound} element={<NotFound />} />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
