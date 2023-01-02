@@ -23,6 +23,7 @@ export const GoogleAuth = (): ReactElement => {
 
     const data: SocialResponse = {
       login: googleRes.profileObj.email,
+      name: googleRes.profileObj.name,
     };
 
     dispatch(googleLogin(data));

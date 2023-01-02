@@ -17,7 +17,7 @@ export const getGithubUser = createAsyncThunk(
       const { login } = gitHubResponse.data;
 
       console.log(`gitHubThunk login =`, login);
-      const res = await apiAuth.socialLogin({ login });
+      const res = await apiAuth.socialLogin({ login, name: '' });
 
       console.log(`gitHubThunk, res =`, res);
       localStorageService.setAuthUserData(res.data);

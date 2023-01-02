@@ -16,7 +16,7 @@ export const deleteUsers = createAsyncThunk<void, string[], { state: RootState }
 
       const res = await apiUsers.deleteUsers(queryString);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.noContent) {
         dispatch(fetchUsers());
       }
     } catch (e) {

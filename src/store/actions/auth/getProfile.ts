@@ -12,7 +12,7 @@ export const getProfile = createAsyncThunk(
     try {
       const res = await apiAuth.getProfile(token);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.ok) {
         const user = res.data;
         const { token } = user;
 

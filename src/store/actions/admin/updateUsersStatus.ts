@@ -19,7 +19,7 @@ export const updateUsersStatus = createAsyncThunk<
     try {
       const res = await apiUsers.updateUsersStatus(users);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.noContent) {
         dispatch(fetchUsers());
       }
     } catch (e) {

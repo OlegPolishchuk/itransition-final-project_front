@@ -27,7 +27,7 @@ export const generateRandomReviews = createAsyncThunk<
 
       const res = await apiReviews.generateRandomReviews(updatedData);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.created) {
         dispatch(fetchUserReviews(userId));
       }
     } catch (e) {

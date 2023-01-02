@@ -6,13 +6,17 @@ import { FormattedMessage } from 'react-intl';
 import { IResolveParams, LoginSocialTwitter } from 'reactjs-social-login';
 
 const REDIRECT_URI = window.location.href;
-const client_id = process.env.REACT_APP_TWITTER_API_KEY as string;
+// const REDIRECT_URI = 'http://127.0.0.1:3000/api/auth/login';
+const client_id = process.env.REACT_APP_TWITTER_CLIENT_ID as string;
+// const client_id = process.env.REACT_APP_TWITTER_API_KEY as string;
 
 type Props = {
   onResolve: ({ provider, data }: IResolveParams) => void;
 };
 
 export const TwitterAuth: FC<Props> = ({ onResolve }) => {
+  console.log(REDIRECT_URI);
+
   return (
     <LoginSocialTwitter
       client_id={client_id}

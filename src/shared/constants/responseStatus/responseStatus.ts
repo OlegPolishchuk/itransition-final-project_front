@@ -4,5 +4,7 @@ const noContentStatus = 204;
 
 export const responseStatus = {
   unAuthorized: 401,
-  goodStatus: okStatus || createStatus || noContentStatus,
+  ok: okStatus,
+  created: createStatus,
+  noContent: noContentStatus,
 };

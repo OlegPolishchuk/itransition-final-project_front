@@ -9,8 +9,8 @@ export const googleLogin = createAsyncThunk<User, SocialResponse>(
   'auth/googleLogin',
   async (data: SocialResponse, { rejectWithValue }) => {
     try {
-      const { login } = data;
-      const res = await apiAuth.socialLogin({ login });
+      const { login, name } = data;
+      const res = await apiAuth.socialLogin({ login, name });
 
       localStorageService.setAuthUserData(res.data);
 

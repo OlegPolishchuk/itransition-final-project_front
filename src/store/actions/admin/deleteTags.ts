@@ -13,7 +13,7 @@ export const deleteTags = createAsyncThunk(
 
       const res = await apiTags.deleteTags(queryString);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.noContent) {
         dispatch(getTags());
       }
     } catch (e) {

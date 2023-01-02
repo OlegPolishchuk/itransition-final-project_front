@@ -22,6 +22,7 @@ export const GithubAuth: FC<Props> = ({ onResolve }) => {
       redirect_uri={REDIRECT_URI}
       onResolve={onResolve}
       onReject={(err: any) => {
+        console.log('REJECT!!');
         console.log(err);
       }}
     >
@@ -29,5 +30,9 @@ export const GithubAuth: FC<Props> = ({ onResolve }) => {
         <FormattedMessage id="app.auth.button-github.title" />
       </Button>
     </LoginSocialGithub>
+
+    // <Button fullWidth variant="outlined" color="secondary" startIcon={<GitHubIcon />}>
+    //   <FormattedMessage id="app.auth.button-github.title" />
+    // </Button>
   );
 };

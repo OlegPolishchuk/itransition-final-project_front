@@ -12,7 +12,7 @@ export const updateCurrentUser = createAsyncThunk(
     try {
       const res = await apiUsers.updateCurrentUser(user);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.ok) {
         dispatch(fetchUser(user._id as string));
       }
     } catch (e) {

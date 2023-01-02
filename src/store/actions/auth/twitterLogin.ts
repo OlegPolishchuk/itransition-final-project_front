@@ -8,7 +8,7 @@ export const twitterLogin = createAsyncThunk(
   'auth/twitterLogin',
   async (login: string, { rejectWithValue }) => {
     try {
-      const res = await apiAuth.socialLogin({ login });
+      const res = await apiAuth.socialLogin({ login, name: '' });
 
       localStorageService.setAuthUserData(res.data);
 

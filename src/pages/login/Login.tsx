@@ -42,6 +42,8 @@ export const Login = (): ReactElement => {
   }, []);
 
   const handleTwitterResolve = ({ provider, data }: IResolveParams): void => {
+    console.log(provider);
+    console.log(data);
     setProvider(provider);
     setProfile(data);
   };

@@ -21,7 +21,7 @@ export const deleteReviews = createAsyncThunk<
 
       const res = await apiReviews.deleteReviews(queryString);
 
-      if (res.status === responseStatus.goodStatus) {
+      if (res.status === responseStatus.ok) {
         dispatch(fetchUserReviews(userId));
       }
     } catch (e) {
