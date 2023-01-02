@@ -16,6 +16,7 @@ const PUBLIC_ROUTES = [
   apiRoutes.auth.logout,
   routes.auth.register,
   apiRoutes.auth.social,
+  apiRoutes.auth.github,
   apiRoutes.auth.refresh,
   apiRoutes.reviews.base,
   apiRoutes.reviews.userReviews,

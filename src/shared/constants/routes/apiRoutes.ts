@@ -12,6 +12,7 @@ export const apiRoutes = {
     profile: `${baseAuthPath}/getProfile`,
     logout: `${baseAuthPath}/logout`,
     social: `${baseAuthPath}/socialAuth`,
+    github: `${baseAuthPath}/github`,
   },
   users: {
     base: baseUsersPath,

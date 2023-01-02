@@ -9,8 +9,7 @@ import { IResolveParams } from 'reactjs-social-login';
 import { AuthForm, GithubAuth, GoogleAuth, TwitterAuth } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
 import { routes, userRoles } from 'shared';
-import { loginUser, twitterLogin } from 'store/actions';
-import { getGithubUser } from 'store/actions/auth/getGithubUser';
+import { loginUser, twitterLogin, getGithubUser } from 'store/actions';
 import { setError } from 'store/reducers';
 import { selectError, selectIsUserAuth, selectUserRole } from 'store/selectors';
 
@@ -94,7 +93,7 @@ export const Login = (): ReactElement => {
 
           <TwitterAuth onResolve={handleTwitterResolve} />
 
-          <GithubAuth onResolve={handleTwitterResolve} />
+          <GithubAuth />
         </Box>
 
         <AuthForm submitCallback={onSubmit} buttonTitle={authFormButtonTitle}>

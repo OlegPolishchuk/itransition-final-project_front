@@ -7,10 +7,10 @@ import {
   logoutUser,
   registerUser,
   twitterLogin,
+  getGithubUser,
+  googleLogin,
+  refreshToken,
 } from 'store/actions';
-import { getGithubUser } from 'store/actions/auth/getGithubUser';
-import { googleLogin } from 'store/actions/auth/googleLogin';
-import { refreshToken } from 'store/actions/auth/refreshToken';
 import { AuthState } from 'store/types/initialStates/AuthState';
 
 const initialState: AuthState = {

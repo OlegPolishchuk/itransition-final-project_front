@@ -26,4 +26,8 @@ export const apiAuth = {
   socialLogin(data: SocialResponse) {
     return instance.post<User>(apiRoutes.auth.social, data);
   },
+
+  githubLogin(code: string) {
+    return instance.post(apiRoutes.auth.github, { code });
+  },
 };

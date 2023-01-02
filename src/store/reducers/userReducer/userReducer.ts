@@ -7,10 +7,10 @@ import {
   getProfile,
   loginUser,
   twitterLogin,
+  getGithubUser,
+  googleLogin,
 } from 'store/actions';
-import { getGithubUser } from 'store/actions/auth/getGithubUser';
-import { googleLogin } from 'store/actions/auth/googleLogin';
-import { UserState } from 'store/types/initialStates/UserState';
+import { UserState } from 'store/types';
 
 const initialState: UserState = {
   user: {
