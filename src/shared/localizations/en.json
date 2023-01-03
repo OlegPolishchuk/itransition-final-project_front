@@ -10,7 +10,7 @@
   "app.auth.button-login.title": "SIGN IN",
   "app.auth.button-register.title": "SIGN UP",
   "app.auth.button-google.title": "SIGN IN WITH GOOGLE",
-  "app.auth.button-twitter.title": "SIGN IN WITH TWITTER",
+  "app.auth.button-facebook.title": "SIGN IN WITH FACEBOOK",
   "app.auth.button-github.title": "SIGN IN WITH GITHUB",
 
   "app.header.button.login.title": "LOGIN",

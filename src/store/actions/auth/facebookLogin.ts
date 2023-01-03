@@ -3,12 +3,15 @@ import { AxiosError } from 'axios';
 
 import { apiAuth } from 'apis';
 import { localStorageService } from 'services';
+import { SocialResponse } from 'store/types';
 
-export const getGithubUser = createAsyncThunk(
-  'auth/getGithubToken',
-  async (code: string, { rejectWithValue }) => {
+export const facebookLogin = createAsyncThunk(
+  'auth/facebookLogin',
+  async (data: SocialResponse, { rejectWithValue }) => {
     try {
-      const res = await apiAuth.githubLogin(code);
+      const { login, name, avatar_url } = data;
+
+      const res = await apiAuth.socialLogin({ login, name, avatar_url });
 
       localStorageService.setAuthUserData(res.data);
 

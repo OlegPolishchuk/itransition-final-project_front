@@ -3,11 +3,11 @@ export {
   loginUser,
   logoutUser,
   googleLogin,
-  twitterLogin,
   getGithubUser,
   registerUser,
   refreshToken,
   getAccessToken,
+  facebookLogin,
 } from './auth';
 
 export { changeLocale, initializeApp, changeTheme } from './app';

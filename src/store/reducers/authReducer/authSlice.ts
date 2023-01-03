@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
+  facebookLogin,
+  getGithubUser,
   getProfile,
+  googleLogin,
   initializeApp,
   loginUser,
   logoutUser,
-  registerUser,
-  twitterLogin,
-  getGithubUser,
-  googleLogin,
   refreshToken,
+  registerUser,
 } from 'store/actions';
 import { AuthState } from 'store/types/initialStates/AuthState';
 
@@ -73,7 +73,7 @@ const authSlice = createSlice({
       state.accessToken = payload.token;
     });
 
-    builder.addCase(twitterLogin.fulfilled, (state, { payload }) => {
+    builder.addCase(facebookLogin.fulfilled, (state, { payload }) => {
       state.isUserAuth = true;
       state.accessToken = payload.token;
     });

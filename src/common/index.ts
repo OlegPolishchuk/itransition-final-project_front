@@ -1,4 +1,4 @@
-export { TwitterAuth, AuthForm, GoogleAuth, GithubAuth } from './auth';
+export { AuthForm, GoogleAuth, GithubAuth, FacebookAuth } from './auth';
 export { Header, LocalePicker, ThemeToggle, AuthButton } from './header';
 export { MainLoader, Loader } from './loaders';
 export { Breadcrumbs } from './breadcrumbs/Breadcrumbs';

@@ -4,9 +4,9 @@ import {
   initializeApp,
   loginUser,
   registerUser,
-  twitterLogin,
   getGithubUser,
   changeLocale,
+  facebookLogin,
 } from 'store/actions';
 import { AppState, Locale } from 'store/types';
 
@@ -84,13 +84,13 @@ const appSlice = createSlice({
       state.globalMessage = '';
     });
 
-    builder.addCase(twitterLogin.pending, state => {
+    builder.addCase(facebookLogin.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(twitterLogin.fulfilled, state => {
+    builder.addCase(facebookLogin.fulfilled, state => {
       state.isLoading = false;
     });
-    builder.addCase(twitterLogin.rejected, state => {
+    builder.addCase(facebookLogin.rejected, state => {
       state.isLoading = false;
     });
 

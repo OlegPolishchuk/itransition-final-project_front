@@ -9,7 +9,6 @@ import { useAppDispatch } from 'hooks';
 import { getGithubUser } from 'store/actions';
 
 const client_id = process.env.REACT_APP_GITHUB_CLIENT_ID as string;
-
 const GithubURL = 'https://github.com/login/oauth/authorize';
 
 export const GithubAuth = (): ReactElement => {

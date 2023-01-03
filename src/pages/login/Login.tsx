@@ -6,12 +6,13 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IResolveParams } from 'reactjs-social-login';
 
-import { AuthForm, GithubAuth, GoogleAuth, TwitterAuth } from 'common';
+import { AuthForm, FacebookAuth, GithubAuth, GoogleAuth } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
 import { routes, userRoles } from 'shared';
-import { loginUser, twitterLogin, getGithubUser } from 'store/actions';
+import { facebookLogin, getGithubUser, loginUser } from 'store/actions';
 import { setError } from 'store/reducers';
 import { selectError, selectIsUserAuth, selectUserRole } from 'store/selectors';
+import { SocialResponse } from 'store/types';
 
 type Inputs = {
   email: string;
@@ -40,9 +41,7 @@ export const Login = (): ReactElement => {
     setProvider('');
   }, []);
 
-  const handleTwitterResolve = ({ provider, data }: IResolveParams): void => {
-    console.log(provider);
-    console.log(data);
+  const handleSocialResolve = ({ provider, data }: IResolveParams): void => {
     setProvider(provider);
     setProfile(data);
   };
@@ -69,10 +68,14 @@ export const Login = (): ReactElement => {
         dispatch(getGithubUser(access_token));
       }
 
-      if (provider === 'twitter') {
-        const login = profile.username;
+      if (provider === 'facebook') {
+        const data: SocialResponse = {
+          login: `${profile.id}_${profile.email}`,
+          name: profile.name,
+          avatar_url: profile.picture.data.url,
+        };
 
-        dispatch(twitterLogin(login));
+        dispatch(facebookLogin(data));
       }
     }
 
@@ -91,7 +94,7 @@ export const Login = (): ReactElement => {
         <Box className="wrapper">
           <GoogleAuth />
 
-          <TwitterAuth onResolve={handleTwitterResolve} />
+          <FacebookAuth onResolve={handleSocialResolve} />
 
           <GithubAuth />
         </Box>

@@ -10,7 +10,7 @@
   "app.auth.button-login.title": "Войти",
   "app.auth.button-register.title": "Регистрация",
   "app.auth.button-google.title": "Войти через GOOGLE",
-  "app.auth.button-twitter.title": "Войти через TWITTER",
+  "app.auth.button-facebook.title": "Войти через FACEBOOK",
   "app.auth.button-github.title": "Войти через GITHUB",
 
   "app.header.button.login.title": "Войти",

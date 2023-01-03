@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { userRoles } from 'shared';
 import {
   changeUserAvatar,
+  facebookLogin,
   fetchUser,
-  getProfile,
-  loginUser,
-  twitterLogin,
   getGithubUser,
+  getProfile,
   googleLogin,
+  loginUser,
 } from 'store/actions';
 import { UserState } from 'store/types';
 
@@ -58,7 +58,7 @@ const userSlice = createSlice({
     builder.addCase(googleLogin.fulfilled, (state, action) => {
       state.user = action.payload;
     });
-    builder.addCase(twitterLogin.fulfilled, (state, action) => {
+    builder.addCase(facebookLogin.fulfilled, (state, action) => {
       state.user = action.payload;
     });
     builder.addCase(getGithubUser.fulfilled, (state, action) => {
