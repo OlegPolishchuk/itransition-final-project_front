@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Breadcrumbs, Title } from 'common';
 import { ReviewsList } from 'common/reviews';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { paginationDefaultParams } from 'shared';
 import { fetchMoreReviews, fetchReviews } from 'store/actions';
 import { setReviewsPaginationParams } from 'store/reducers';
 import {
@@ -29,13 +30,15 @@ export const TagReviews = (): ReactElement => {
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
+  const { limit } = paginationDefaultParams;
+
   const tagsParams = params.get('tag') as string;
   const tags = tagsParams.split(',');
 
   const handleLoadMore = (): void => {
     const newPage = page + 1;
 
-    dispatch(setReviewsPaginationParams({ page: newPage }));
+    dispatch(setReviewsPaginationParams({ page: newPage, limit }));
     dispatch(fetchMoreReviews({ tags, page: newPage }));
   };
 
@@ -46,7 +49,7 @@ export const TagReviews = (): ReactElement => {
   };
 
   useEffect(() => {
-    dispatch(setReviewsPaginationParams({ page: 0 }));
+    dispatch(setReviewsPaginationParams({ page: 0, limit }));
     dispatch(fetchReviews({ tags }));
   }, [tagsParams]);
 

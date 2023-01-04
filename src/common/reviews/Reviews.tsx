@@ -24,7 +24,7 @@ export const Reviews = (): ReactElement => {
 
   const reviews = useAppSelector(selectReviews);
   const isLoading = useAppSelector(selectIsReviewLoading);
-  const { page } = useAppSelector(selectPaginationParams);
+  const { page, limit } = useAppSelector(selectPaginationParams);
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
@@ -32,14 +32,14 @@ export const Reviews = (): ReactElement => {
     const newPage = page + 1;
     const sortType: ReviewSortType = pathname === '/' ? 'created' : getPathname(pathname);
 
-    dispatch(setReviewsPaginationParams({ page: newPage }));
+    dispatch(setReviewsPaginationParams({ page: newPage, limit }));
     dispatch(fetchMoreReviews({ reviewsSortParams: sortType, page: newPage }));
   };
 
   useEffect(() => {
     const sortType: ReviewSortType = pathname === '/' ? 'created' : getPathname(pathname);
 
-    dispatch(setReviewsPaginationParams({ page: 0 }));
+    dispatch(setReviewsPaginationParams({ page: 0, limit }));
     dispatch(fetchReviews({ reviewsSortParams: sortType }));
   }, [pathname]);
 

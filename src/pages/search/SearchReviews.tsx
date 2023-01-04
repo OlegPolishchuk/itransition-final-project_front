@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Breadcrumbs } from 'common';
 import { ReviewsList } from 'common/reviews';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { inputSearchParams } from 'shared';
+import { inputSearchParams, paginationDefaultParams } from 'shared';
 import { fetchMoreReviews, fetchReviews } from 'store/actions';
 import { setReviewsPaginationParams } from 'store/reducers';
 import {
@@ -31,18 +31,20 @@ export const SearchReviews = (): ReactElement => {
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
+  const { limit } = paginationDefaultParams;
+
   const handleLoadMore = (): void => {
     const newPage = page + 1;
     const search = searchQuery || '';
 
-    dispatch(setReviewsPaginationParams({ page: newPage }));
+    dispatch(setReviewsPaginationParams({ page: newPage, limit }));
     dispatch(fetchMoreReviews({ search, page: newPage }));
   };
 
   useEffect(() => {
     const search = searchQuery || '';
 
-    dispatch(setReviewsPaginationParams({ page: 0 }));
+    dispatch(setReviewsPaginationParams({ page: 0, limit }));
     dispatch(fetchReviews({ search }));
   }, [searchQuery]);
 

@@ -12,7 +12,7 @@ import {
   updateReview,
 } from 'store/actions';
 import { fetchReviews } from 'store/actions/reviews/fetchReviews';
-import { ReviewsState } from 'store/types';
+import { PaginationParams, Review, ReviewSortType, ReviewsState } from 'store/types';
 
 const initialState: ReviewsState = {
   tags: [],
@@ -35,19 +35,19 @@ const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   reducers: {
-    setReviewsPaginationParams: (state, action) => {
+    setReviewsPaginationParams: (state, action: PayloadAction<PaginationParams>) => {
       state.paginationParams = { ...state.paginationParams, ...action.payload };
     },
 
-    setReviewsSortType: (state, action) => {
+    setReviewsSortType: (state, action: PayloadAction<ReviewSortType>) => {
       state.sortType = action.payload;
     },
 
-    setIsCreatedNewReview: (state, action) => {
+    setIsCreatedNewReview: (state, action: PayloadAction<boolean>) => {
       state.isCreatedNewOne = action.payload;
     },
 
-    setEditableReview: (state, action) => {
+    setEditableReview: (state, action: PayloadAction<Review | null>) => {
       state.editableReview = action.payload;
     },
 

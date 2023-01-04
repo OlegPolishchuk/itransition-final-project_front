@@ -25,7 +25,7 @@ import {
   selectReviews,
 } from 'store/selectors';
 import { selectReviewsSortType } from 'store/selectors/reviews';
-import { Review } from 'store/types';
+import { Review, ReviewSortType } from 'store/types';
 
 type Props = {
   userId: string;
@@ -76,7 +76,7 @@ export const UserReviews: FC<Props> = ({ userId, isMyProfile }) => {
   };
 
   const handleChangePage = (page: number): void => {
-    dispatch(setReviewsPaginationParams({ page }));
+    dispatch(setReviewsPaginationParams({ page, limit }));
 
     searchParams.set('page', `${page}`);
     setSearchParams(searchParams);
@@ -85,7 +85,9 @@ export const UserReviews: FC<Props> = ({ userId, isMyProfile }) => {
   const handleChangeReviewsSortParams = (
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
-    dispatch(setReviewsSortType((event.target as HTMLInputElement).value));
+    const { value } = event.target as HTMLInputElement;
+
+    dispatch(setReviewsSortType(value as ReviewSortType));
   };
 
   useEffect(() => {
