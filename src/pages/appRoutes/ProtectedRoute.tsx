@@ -17,6 +17,8 @@ export const ProtectedRoute = React.memo(
   ({ isUserAuth, children, userRole, isInitialize, checkAdmin }: Props) => {
     const navigate = useNavigate();
 
+    console.log('protected route rendered');
+
     useEffect(() => {
       if (!isUserAuth) navigate(routes.auth.login);
     }, [isUserAuth, isInitialize]);

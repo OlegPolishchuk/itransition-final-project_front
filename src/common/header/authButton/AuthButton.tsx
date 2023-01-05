@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
@@ -11,7 +11,7 @@ import { routes } from 'shared';
 import { logoutUser } from 'store/actions';
 import { selectIsUserAuth } from 'store/selectors';
 
-export const AuthButton = (): ReactElement => {
+export const AuthButton = memo((): ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -46,4 +46,4 @@ export const AuthButton = (): ReactElement => {
       )}
     </div>
   );
-};
+});

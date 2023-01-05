@@ -38,6 +38,7 @@ export const App = (): ReactElement => {
 
   const theme = createTheme(themeSettings(themeMode));
 
+  console.log('app rendered');
   useEffect(() => {
     dispatch(initializeApp());
   }, []);

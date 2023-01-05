@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
@@ -8,7 +8,7 @@ import { changeLocale } from 'store/actions';
 import { selectLocale } from 'store/selectors';
 import { Locale } from 'store/types';
 
-export const LocalePicker = (): ReactElement => {
+export const LocalePicker = memo((): ReactElement => {
   const dispatch = useAppDispatch();
 
   const locale = useAppSelector(selectLocale);
@@ -35,4 +35,4 @@ export const LocalePicker = (): ReactElement => {
       </FormControl>
     </Box>
   );
-};
+});

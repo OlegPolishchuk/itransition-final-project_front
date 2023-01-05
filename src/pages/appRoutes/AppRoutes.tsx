@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
 import { Reviews } from 'common';
 import {
+  AddNewReview,
   AdminPanel,
+  AdminTags,
   AdminUser,
   AdminUsersList,
+  CurrentReview,
   Login,
   Main,
+  NotFound,
+  Profile,
   ProtectedRoute,
   Register,
-  CurrentReview,
-  Profile,
-  AddNewReview,
-  AdminTags,
   SearchReviews,
   TagReviews,
-  NotFound,
 } from 'pages';
 import { routes } from 'shared';
 import { UserRole } from 'store/types';
@@ -28,75 +28,79 @@ type Props = {
   userRole: UserRole;
 };
 
-export const AppRoutes: FC<Props> = ({ isUserAuth, userRole, isInitialize }) => {
-  return (
-    <Routes>
-      <Route path={routes.auth.register} element={<Register />} />
-      <Route path={routes.auth.login} element={<Login />} />
+export const AppRoutes = memo(
+  ({ isUserAuth, userRole, isInitialize }: Props): ReactElement => {
+    console.log('AppRoutes rendered');
 
-      <Route path={routes.mainPage.base} element={<Main />}>
-        <Route index element={<Reviews />} />
-        <Route path={routes.mainPage.popular} element={<Reviews />} />
-        <Route path={routes.mainPage.scored} element={<Reviews />} />
-        <Route path={routes.mainPage.search} element={<SearchReviews />} />
-        <Route path={routes.tags.base} element={<TagReviews />} />
-        <Route path={`${routes.review.base}/:reviewId`} element={<CurrentReview />} />
-      </Route>
+    return (
+      <Routes>
+        <Route path={routes.auth.register} element={<Register />} />
+        <Route path={routes.auth.login} element={<Login />} />
 
-      <Route
-        path={routes.review.addNew}
-        element={
-          <ProtectedRoute isUserAuth={isUserAuth}>
-            <AddNewReview />
-          </ProtectedRoute>
-        }
-      />
+        <Route path={routes.mainPage.base} element={<Main />}>
+          <Route index element={<Reviews />} />
+          <Route path={routes.mainPage.popular} element={<Reviews />} />
+          <Route path={routes.mainPage.scored} element={<Reviews />} />
+          <Route path={routes.mainPage.search} element={<SearchReviews />} />
+          <Route path={routes.tags.base} element={<TagReviews />} />
+          <Route path={`${routes.review.base}/:reviewId`} element={<CurrentReview />} />
+        </Route>
 
-      <Route
-        path={routes.review.edit}
-        element={
-          <ProtectedRoute isUserAuth={isUserAuth}>
-            <AddNewReview />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path={routes.review.addNew}
+          element={
+            <ProtectedRoute isUserAuth={isUserAuth}>
+              <AddNewReview />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path={`${routes.profile.myProfile}/:id`}
-        element={
-          <ProtectedRoute isUserAuth={isUserAuth}>
-            <Profile />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path={routes.review.edit}
+          element={
+            <ProtectedRoute isUserAuth={isUserAuth}>
+              <AddNewReview />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path={`${routes.profile.base}/:id`} element={<Profile />} />
+        <Route
+          path={`${routes.profile.myProfile}/:id`}
+          element={
+            <ProtectedRoute isUserAuth={isUserAuth}>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path={routes.admin.main}
-        element={
-          <ProtectedRoute
-            isUserAuth={isUserAuth}
-            userRole={userRole}
-            isInitialize={isInitialize}
-            checkAdmin
-          >
-            <AdminPanel />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<AdminUsersList />} />
+        <Route path={`${routes.profile.base}/:id`} element={<Profile />} />
 
-        <Route path={`${routes.admin.user}/:userId`} element={<AdminUser />} />
+        <Route
+          path={routes.admin.main}
+          element={
+            <ProtectedRoute
+              isUserAuth={isUserAuth}
+              userRole={userRole}
+              isInitialize={isInitialize}
+              checkAdmin
+            >
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AdminUsersList />} />
 
-        <Route path={`${routes.admin.review}/:reviewId`} element={<CurrentReview />} />
+          <Route path={`${routes.admin.user}/:userId`} element={<AdminUser />} />
 
-        <Route path={routes.admin.tags} element={<AdminTags />} />
-      </Route>
+          <Route path={`${routes.admin.review}/:reviewId`} element={<CurrentReview />} />
 
-      <Route path={routes.notFound} element={<NotFound />} />
+          <Route path={routes.admin.tags} element={<AdminTags />} />
+        </Route>
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-};
+        <Route path={routes.notFound} element={<NotFound />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    );
+  },
+);

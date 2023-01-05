@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { Box, Container, Drawer, IconButton, useMediaQuery } from '@mui/material';
@@ -19,13 +19,14 @@ type Props = {
 export const Header: FC<Props> = ({ themeMode }) => {
   const dispatch = useAppDispatch();
 
+  console.log('header rendered');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
-  const handleChangeTheme = (): void => {
+  const handleChangeTheme = useCallback((): void => {
     dispatch(changeTheme());
-  };
+  }, []);
 
   const toggleDrawer =
     (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -47,16 +48,7 @@ export const Header: FC<Props> = ({ themeMode }) => {
   return (
     <header>
       <Box boxShadow={2}>
-        <Container
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            padding: '10px',
-            gap: '30px',
-            marginBottom: '50px',
-          }}
-        >
+        <Container sx={style.container}>
           {!isSmallScreen && (
             <Box mr="auto">
               <MainNav />
@@ -90,11 +82,26 @@ export const Header: FC<Props> = ({ themeMode }) => {
 
       {isSmallScreen && (
         <Container>
-          <Box mb="50px" textAlign="end">
+          <Box sx={style.search_wrapper_small_screen}>
             <Search />
           </Box>
         </Container>
       )}
     </header>
   );
+};
+
+const style = {
+  container: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: '10px',
+    gap: '30px',
+    marginBottom: '50px',
+  },
+  search_wrapper_small_screen: {
+    marginBottom: '50px',
+    textAlign: 'end',
+  },
 };

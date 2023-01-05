@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
@@ -11,7 +11,7 @@ type Props = {
   callback: () => void;
 };
 
-export const ThemeToggle: FC<Props> = ({ themeMode, callback }) => {
+export const ThemeToggle: FC<Props> = memo(({ themeMode, callback }: Props) => {
   return (
     <Box>
       <IconButton onClick={callback}>
@@ -19,4 +19,4 @@ export const ThemeToggle: FC<Props> = ({ themeMode, callback }) => {
       </IconButton>
     </Box>
   );
-};
+});

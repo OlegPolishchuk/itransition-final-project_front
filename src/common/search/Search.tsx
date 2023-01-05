@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement, useState } from 'react';
+import React, { ChangeEvent, memo, ReactElement, useState } from 'react';
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { FormControl, InputAdornment, OutlinedInput } from '@mui/material';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { inputSearchParams, routes } from 'shared';
 
-export const Search = (): ReactElement => {
+export const Search = memo((): ReactElement => {
   const navigate = useNavigate();
 
   const [value, setValue] = useState('');
@@ -28,13 +28,7 @@ export const Search = (): ReactElement => {
   };
 
   return (
-    <FormControl
-      variant="standard"
-      sx={{
-        width: '100%',
-        maxWidth: '450px',
-      }}
-    >
+    <FormControl variant="standard" sx={formControlStyle}>
       <OutlinedInput
         placeholder="Search"
         size="small"
@@ -50,4 +44,9 @@ export const Search = (): ReactElement => {
       />
     </FormControl>
   );
+});
+
+const formControlStyle = {
+  width: '100%',
+  maxWidth: '450px',
 };

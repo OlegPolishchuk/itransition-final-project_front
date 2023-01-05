@@ -28,6 +28,12 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
+  const listStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: variant === 'vertical' ? 'column' : 'row',
+    gap: '30px',
+  };
+
   const profileLinkStyle = {
     marginLeft: isSmallScreen ? '0' : '30px',
     marginTop: isSmallScreen ? '30px' : '0',
@@ -55,13 +61,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
 
   return (
     <nav>
-      <ul
-        style={{
-          display: 'flex',
-          flexDirection: variant === 'vertical' ? 'column' : 'row',
-          gap: '30px',
-        }}
-      >
+      <ul style={listStyle}>
         <li>
           <NavLink
             onClick={handleClick}

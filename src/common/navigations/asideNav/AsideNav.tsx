@@ -7,15 +7,7 @@ import { MainNav } from 'common/navigations/mainNav/MainNav';
 
 export const AsideNav = (): ReactElement => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        padding: '20px',
-        width: '300px',
-      }}
-    >
+    <Box sx={wrapperStyle}>
       <AuthButton />
 
       <Divider />
@@ -23,4 +15,12 @@ export const AsideNav = (): ReactElement => {
       <MainNav variant="vertical" />
     </Box>
   );
+};
+
+const wrapperStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+  padding: '20px',
+  width: '300px',
 };
