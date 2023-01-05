@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -11,30 +11,32 @@ import { setReviewsPaginationParams } from 'store/reducers';
 import {
   selectIsFirstLoading,
   selectIsReviewLoading,
-  selectPaginationParams,
+  selectPaginationParamsLimit,
   selectReviewCount,
   selectReviews,
 } from 'store/selectors';
+import { selectPaginationParamsPage } from 'store/selectors/reviews';
 import { ReviewSortType } from 'store/types';
 
-export const Reviews = (): ReactElement => {
+export const Reviews = memo((): ReactElement => {
   const dispatch = useAppDispatch();
 
   const { pathname } = useLocation();
 
   const reviews = useAppSelector(selectReviews);
   const isLoading = useAppSelector(selectIsReviewLoading);
-  const { page, limit } = useAppSelector(selectPaginationParams);
+  const page = useAppSelector(selectPaginationParamsPage);
+  const limit = useAppSelector(selectPaginationParamsLimit);
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 
-  const handleLoadMore = (): void => {
+  const handleLoadMore = useCallback((): void => {
     const newPage = page + 1;
     const sortType: ReviewSortType = pathname === '/' ? 'created' : getPathname(pathname);
 
     dispatch(setReviewsPaginationParams({ page: newPage, limit }));
     dispatch(fetchMoreReviews({ reviewsSortParams: sortType, page: newPage }));
-  };
+  }, [page, pathname, limit]);
 
   useEffect(() => {
     const sortType: ReviewSortType = pathname === '/' ? 'created' : getPathname(pathname);
@@ -52,4 +54,4 @@ export const Reviews = (): ReactElement => {
       clickLoadMoreCallback={handleLoadMore}
     />
   );
-};
+});

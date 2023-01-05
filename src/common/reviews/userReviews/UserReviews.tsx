@@ -20,11 +20,14 @@ import { setReviewsPaginationParams } from 'store/reducers';
 import { setReviewsSortType } from 'store/reducers/rewiewsReducer/reviewsSlice';
 import {
   selectIsReviewLoading,
-  selectPaginationParams,
+  selectPaginationParamsLimit,
   selectReviewCount,
   selectReviews,
 } from 'store/selectors';
-import { selectReviewsSortType } from 'store/selectors/reviews';
+import {
+  selectPaginationParamsPage,
+  selectReviewsSortType,
+} from 'store/selectors/reviews';
 import { Review, ReviewSortType } from 'store/types';
 
 type Props = {
@@ -37,7 +40,8 @@ export const UserReviews: FC<Props> = ({ userId, isMyProfile }) => {
 
   const reviews = useAppSelector(selectReviews);
   const totalCount = useAppSelector(selectReviewCount);
-  const { page, limit } = useAppSelector(selectPaginationParams);
+  const page = useAppSelector(selectPaginationParamsPage);
+  const limit = useAppSelector(selectPaginationParamsLimit);
   const reviewsSortType = useAppSelector(selectReviewsSortType);
   const isLoading = useAppSelector(selectIsReviewLoading);
 

@@ -8,7 +8,7 @@ export const fetchReviews = createAsyncThunk<
   FetchReviewsResponse,
   undefined | FetchReviews
 >(
-  'reviews/fetchLatestReviews',
+  'reviews/fetchReviews',
   async (
     sortData: FetchReviews = { reviewsSortParams: 'created', reviewId: '' },
     { rejectWithValue },

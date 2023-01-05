@@ -7,6 +7,7 @@ import {
   getGithubUser,
   changeLocale,
   facebookLogin,
+  changeTheme,
 } from 'store/actions';
 import { AppState, Locale } from 'store/types';
 
@@ -24,9 +25,6 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    toggleTheme: state => {
-      state.themeMode = state.themeMode === 'light' ? 'dark' : 'light';
-    },
     clearGlobalMessage: state => {
       state.globalMessage = '';
     },
@@ -50,6 +48,10 @@ const appSlice = createSlice({
     });
     builder.addCase(initializeApp.rejected, state => {
       state.isLoading = false;
+    });
+
+    builder.addCase(changeTheme.fulfilled, (state, action) => {
+      state.themeMode = action.payload;
     });
 
     builder.addCase(registerUser.pending, state => {
@@ -111,4 +113,4 @@ const appSlice = createSlice({
 });
 
 export const appReducer = appSlice.reducer;
-export const { toggleTheme, clearGlobalMessage, setError, setLocale } = appSlice.actions;
+export const { clearGlobalMessage, setError, setLocale } = appSlice.actions;

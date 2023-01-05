@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Avatar, Box, Tooltip, Typography } from '@mui/material';
@@ -20,73 +20,33 @@ type Props = {
   group: string;
 };
 
-export const ReviewItemHeader: FC<Props> = ({
-  userName,
-  userAvatar,
-  created,
-  userId,
-  userLikes,
-  subtitle,
-  personalScore,
-  group,
-}) => {
-  const colors = useThemeColors();
+export const ReviewItemHeader = memo(
+  ({
+    userName,
+    userAvatar,
+    created,
+    userId,
+    userLikes,
+    subtitle,
+    personalScore,
+    group,
+  }: Props): ReactElement => {
+    const colors = useThemeColors();
 
-  const footerItemStyle = {
-    display: 'flex',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '10px',
-    gap: '8px',
-  };
+    return (
+      <Box sx={style.headerWrapper}>
+        <Box sx={style.avatarWrapper}>
+          <Avatar sx={style.avatar} alt={userName} src={userAvatar} />
 
-  return (
-    <Box
-      sx={{
-        padding: '10px',
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '15px',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar
-              sx={{ width: '50px', height: '50px' }}
-              alt={userName}
-              src={userAvatar}
-            />
+          <Tooltip title={<FormattedMessage id="app.user-score.tooltip.title" />}>
+            <Box sx={style.footerItem}>
+              <FavoriteBorderOutlinedIcon color="disabled" sx={style.likeIcon} />
 
-            <Tooltip title={<FormattedMessage id="app.user-score.tooltip.title" />}>
-              <Box sx={footerItemStyle}>
-                <FavoriteBorderOutlinedIcon
-                  color="disabled"
-                  sx={{ width: '15px', height: '15px' }}
-                />
-
-                <Typography component="span" color={colors.warning.main}>
-                  {userLikes || 0}
-                </Typography>
-              </Box>
-            </Tooltip>
-          </Box>
+              <Typography component="span" color={colors.warning.main}>
+                {userLikes || 0}
+              </Typography>
+            </Box>
+          </Tooltip>
         </Box>
 
         <Box flexGrow={1}>
@@ -94,9 +54,7 @@ export const ReviewItemHeader: FC<Props> = ({
             <BaseNavLink to={`${routes.profile.base}/${userId}`}>{userName}</BaseNavLink>
           </Typography>
 
-          <Box
-            sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}
-          >
+          <Box sx={style.userDescriptionWrapper}>
             <Typography
               component="div"
               variant="subtitle2"
@@ -116,6 +74,35 @@ export const ReviewItemHeader: FC<Props> = ({
           </Typography>
         </Box>
       </Box>
-    </Box>
-  );
+    );
+  },
+);
+
+const style = {
+  footerItem: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '10px',
+    gap: '8px',
+  },
+
+  headerWrapper: { display: 'flex', gap: '15px' },
+
+  avatarWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  avatar: { width: '50px', height: '50px' },
+
+  likeIcon: { width: '15px', height: '15px' },
+
+  userDescriptionWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
 };

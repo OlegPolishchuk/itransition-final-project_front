@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -24,117 +24,118 @@ type Props = {
   userId: string;
 };
 
-export const ReviewItemFooter: FC<Props> = ({
-  tags,
-  overallScore,
-  comments,
-  reviewId,
-  likesId,
-  likes,
-  overallScoresId,
-  userId,
-}) => {
-  const dispatch = useAppDispatch();
+export const ReviewItemFooter = memo(
+  ({
+    tags,
+    overallScore,
+    comments,
+    reviewId,
+    likesId,
+    likes,
+    overallScoresId,
+    userId,
+  }: Props): ReactElement => {
+    const dispatch = useAppDispatch();
 
-  const isUserAuth = useAppSelector(selectIsUserAuth);
+    const isUserAuth = useAppSelector(selectIsUserAuth);
 
-  const colors = useThemeColors();
-  const theme = useAppSelector(selectThemeMode);
+    const colors = useThemeColors();
+    const theme = useAppSelector(selectThemeMode);
 
-  const footerItemStyle = { display: 'flex', alignItems: 'center', gap: '10px' };
-  const disabledScore = overallScoresId.includes(userId);
+    const footerItemStyle = { display: 'flex', alignItems: 'center', gap: '10px' };
 
-  const handleClick = (): void => {};
+    const footerLowPanelStyle = {
+      backgroundColor: theme === 'dark' ? '#464242' : '#f6f6f6',
+      padding: '10px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '30px',
+    };
 
-  const handleChangeOverallScore = (newValue: number | null): void => {
-    dispatch(addOverallScore({ reviewId, userId, score: newValue || MaxOverallScore }));
-  };
+    const disabledScore = overallScoresId.includes(userId);
 
-  const disabledLike = likesId.includes(userId);
+    const handleChangeOverallScore = (newValue: number | null): void => {
+      dispatch(addOverallScore({ reviewId, userId, score: newValue || MaxOverallScore }));
+    };
 
-  const handleSetLike = (): void => {
-    if (likesId.includes(userId)) return;
+    const disabledLike = likesId.includes(userId);
 
-    dispatch(setReviewLike({ reviewId, userId }));
-  };
+    const handleSetLike = (): void => {
+      if (likesId.includes(userId)) return;
 
-  return (
-    <footer>
-      <Box mb="15px" px="10px">
-        {tags.map(tag => (
-          <Tag key={tag} title={tag} size="small" clickCallback={handleClick} />
-        ))}
-      </Box>
+      dispatch(setReviewLike({ reviewId, userId }));
+    };
 
-      <Box
-        sx={{
-          backgroundColor: theme === 'dark' ? '#464242' : '#f6f6f6',
-          padding: '10px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '30px',
-        }}
-      >
-        <Tooltip title={<FormattedMessage id="app.review-footer.like.tooltip.title" />}>
-          <Box sx={footerItemStyle}>
-            {isUserAuth ? (
-              <IconButton
-                onClick={handleSetLike}
-                disabled={disabledLike}
-                sx={{ padding: 0 }}
-              >
-                <FavoriteBorderOutlinedIcon />
-              </IconButton>
-            ) : (
-              <FavoriteBorderOutlinedIcon color="disabled" />
-            )}
-
-            <Typography component="span" color={colors.warning.main}>
-              {likes || 0}
-            </Typography>
-          </Box>
-        </Tooltip>
-
-        <Box sx={footerItemStyle}>
-          {isUserAuth ? (
-            <Tooltip
-              title={
-                <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
-              }
-            >
-              <Rating
-                value={overallScore}
-                max={5}
-                precision={0.5}
-                disabled={disabledScore}
-                onChange={(event, newValue) => handleChangeOverallScore(newValue)}
-              />
-            </Tooltip>
-          ) : (
-            <Tooltip
-              title={
-                <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
-              }
-            >
-              <>
-                <GradeOutlinedIcon color="disabled" />
-                <Typography component="span" color={colors.warning.main}>
-                  {overallScore}
-                </Typography>
-              </>
-            </Tooltip>
-          )}
+    return (
+      <footer>
+        <Box mb="15px" px="10px">
+          {tags.map(tag => (
+            <Tag key={tag} title={tag} size="small" />
+          ))}
         </Box>
 
-        <Tooltip title={<FormattedMessage id="app.review.footer.comments.title" />}>
+        <Box sx={footerLowPanelStyle}>
+          <Tooltip title={<FormattedMessage id="app.review-footer.like.tooltip.title" />}>
+            <Box sx={footerItemStyle}>
+              {isUserAuth ? (
+                <IconButton
+                  onClick={handleSetLike}
+                  disabled={disabledLike}
+                  sx={{ padding: 0 }}
+                >
+                  <FavoriteBorderOutlinedIcon />
+                </IconButton>
+              ) : (
+                <FavoriteBorderOutlinedIcon color="disabled" />
+              )}
+
+              <Typography component="span" color={colors.warning.main}>
+                {likes || 0}
+              </Typography>
+            </Box>
+          </Tooltip>
+
           <Box sx={footerItemStyle}>
-            <CommentOutlinedIcon color="disabled" />
-            <Typography component="span" color={colors.warning.main}>
-              {comments || 0}
-            </Typography>
+            {isUserAuth ? (
+              <Tooltip
+                title={
+                  <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
+                }
+              >
+                <Rating
+                  value={overallScore}
+                  max={5}
+                  precision={0.5}
+                  disabled={disabledScore}
+                  onChange={(event, newValue) => handleChangeOverallScore(newValue)}
+                />
+              </Tooltip>
+            ) : (
+              <Tooltip
+                title={
+                  <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
+                }
+              >
+                <Box display="flex">
+                  <GradeOutlinedIcon color="disabled" />
+                  <Typography component="span" color={colors.warning.main}>
+                    {overallScore}
+                  </Typography>
+                </Box>
+              </Tooltip>
+            )}
           </Box>
-        </Tooltip>
-      </Box>
-    </footer>
-  );
-};
+
+          <Tooltip title={<FormattedMessage id="app.review.footer.comments.title" />}>
+            <Box sx={footerItemStyle}>
+              <CommentOutlinedIcon color="disabled" />
+              <Typography component="span" color={colors.warning.main}>
+                {comments || 0}
+              </Typography>
+            </Box>
+          </Tooltip>
+        </Box>
+      </footer>
+    );
+  },
+);

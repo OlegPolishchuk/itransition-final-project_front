@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { Box } from '@mui/material';
 import MDEditor from '@uiw/react-md-editor';
@@ -16,9 +16,27 @@ type Props = {
   isHide: boolean;
 };
 
-export const ReviewItemBody: FC<Props> = ({ body, title, reviewId, isHide }) => {
+export const ReviewItemBody = memo(({ body, title, reviewId, isHide }: Props) => {
   const colors = useThemeColors();
   const theme = useAppSelector(selectThemeMode);
+
+  const MDEditorStyle = useMemo(() => {
+    return {
+      whiteSpace: 'pre-wrap',
+      backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
+      backgroundImage:
+        'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+      color: theme === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.main,
+    } as const;
+  }, [theme]);
+
+  const MDEditorWrapperStyle = useMemo(() => {
+    return {
+      maxHeight: isHide ? '300px' : '100%',
+      overflow: isHide ? 'hidden' : '',
+      paddingBottom: '15px',
+    };
+  }, [isHide]);
 
   return (
     <Box>
@@ -28,24 +46,8 @@ export const ReviewItemBody: FC<Props> = ({ body, title, reviewId, isHide }) => 
         </BaseNavLink>
       </Box>
 
-      <Box
-        sx={{
-          maxHeight: isHide ? '300px' : '100%',
-          overflow: isHide ? 'hidden' : '',
-          paddingBottom: '15px',
-        }}
-      >
-        <MDEditor.Markdown
-          className="MDEditor"
-          source={body}
-          style={{
-            whiteSpace: 'pre-wrap',
-            backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
-            backgroundImage:
-              'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-            color: theme === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.main,
-          }}
-        />
+      <Box sx={MDEditorWrapperStyle}>
+        <MDEditor.Markdown className="MDEditor" source={body} style={MDEditorStyle} />
       </Box>
 
       {isHide && (
@@ -60,4 +62,4 @@ export const ReviewItemBody: FC<Props> = ({ body, title, reviewId, isHide }) => 
       )}
     </Box>
   );
-};
+});

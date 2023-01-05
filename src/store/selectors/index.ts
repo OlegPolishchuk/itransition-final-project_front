@@ -28,7 +28,7 @@ export {
 export {
   selectReviews,
   selectTags,
-  selectPaginationParams,
+  selectPaginationParamsLimit,
   selectReviewCount,
   selectIsReviewLoading,
   selectIsFirstLoading,

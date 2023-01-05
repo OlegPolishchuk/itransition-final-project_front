@@ -1,12 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Box, Container, Grid, useMediaQuery } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 import { Search, TagsCloud } from 'common';
 
-export const Main = (): ReactElement => {
+export const Main = memo((): ReactElement => {
   const isLargeScreen = useMediaQuery('(min-width: 900px)');
+
+  console.log('main rendered');
 
   return (
     <Container sx={{ paddingBottom: '50px' }}>
@@ -29,4 +31,4 @@ export const Main = (): ReactElement => {
       </Grid>
     </Container>
   );
-};
+});

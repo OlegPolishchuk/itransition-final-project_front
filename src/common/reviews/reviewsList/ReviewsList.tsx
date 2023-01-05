@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { Box, Button } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
@@ -18,52 +18,48 @@ type Props = {
   clickLoadMoreCallback: () => void;
 };
 
-export const ReviewsList: FC<Props> = ({
-  clickLoadMoreCallback,
-  reviews,
-  isFirstLoading,
-  totalCount,
-  isLoading,
-}) => {
-  return (
-    <Box>
-      {isLoading && isFirstLoading ? (
-        <Loader />
-      ) : (
-        <>
-          {reviews.map(review => (
-            <ReviewItem key={review._id} review={review} isHide />
-          ))}
+export const ReviewsList: FC<Props> = memo(
+  ({ clickLoadMoreCallback, reviews, isFirstLoading, totalCount, isLoading }: Props) => {
+    return (
+      <Box>
+        {isLoading && isFirstLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {reviews.map(review => (
+              <ReviewItem key={review._id} review={review} isHide />
+            ))}
 
-          <Box textAlign="center">
-            {isLoading && reviews.length >= LoadingReviewsBorderValue && (
-              <Box textAlign="center">
-                <Loader />
-              </Box>
-            )}
+            <Box textAlign="center">
+              {isLoading && reviews.length >= LoadingReviewsBorderValue && (
+                <Box textAlign="center">
+                  <Loader />
+                </Box>
+              )}
 
-            {totalCount > reviews.length ? (
-              <Button
-                color="secondary"
-                variant="outlined"
-                onClick={clickLoadMoreCallback}
-              >
-                <FormattedMessage id="app.page-main.button-show-more.title" />
-              </Button>
-            ) : (
-              <NothingToShow
-                title={
-                  reviews.length > 0 ? (
-                    <FormattedMessage id="app.review.nothing-to-show.no-more.title" />
-                  ) : (
-                    <FormattedMessage id="app.review.nothing-to-show.no-reviews.title" />
-                  )
-                }
-              />
-            )}
-          </Box>
-        </>
-      )}
-    </Box>
-  );
-};
+              {totalCount > reviews.length ? (
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  onClick={clickLoadMoreCallback}
+                >
+                  <FormattedMessage id="app.page-main.button-show-more.title" />
+                </Button>
+              ) : (
+                <NothingToShow
+                  title={
+                    reviews.length > 0 ? (
+                      <FormattedMessage id="app.review.nothing-to-show.no-more.title" />
+                    ) : (
+                      <FormattedMessage id="app.review.nothing-to-show.no-reviews.title" />
+                    )
+                  }
+                />
+              )}
+            </Box>
+          </>
+        )}
+      </Box>
+    );
+  },
+);

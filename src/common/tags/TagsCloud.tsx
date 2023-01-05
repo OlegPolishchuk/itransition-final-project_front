@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { memo, ReactElement, useEffect } from 'react';
 
 import { Box } from '@mui/material';
 
@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { getTags } from 'store/actions';
 import { selectTags } from 'store/selectors';
 
-export const TagsCloud = (): ReactElement => {
+export const TagsCloud = memo((): ReactElement => {
   const dispatch = useAppDispatch();
 
   const tags = useAppSelector(selectTags);
@@ -30,4 +30,4 @@ export const TagsCloud = (): ReactElement => {
       ))}
     </Box>
   );
-};
+});

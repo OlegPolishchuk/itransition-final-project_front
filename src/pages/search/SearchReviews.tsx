@@ -13,10 +13,10 @@ import { setReviewsPaginationParams } from 'store/reducers';
 import {
   selectIsFirstLoading,
   selectIsReviewLoading,
-  selectPaginationParams,
   selectReviewCount,
   selectReviews,
 } from 'store/selectors';
+import { selectPaginationParamsPage } from 'store/selectors/reviews';
 
 export const SearchReviews = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ export const SearchReviews = (): ReactElement => {
 
   const reviews = useAppSelector(selectReviews);
   const isLoading = useAppSelector(selectIsReviewLoading);
-  const { page } = useAppSelector(selectPaginationParams);
+  const page = useAppSelector(selectPaginationParamsPage);
   const totalCount = useAppSelector(selectReviewCount);
   const isFirstLoading = useAppSelector(selectIsFirstLoading);
 

@@ -1,6 +1,9 @@
 export { selectReviews } from './selectReviews/selectReviews';
 export { selectTags } from './selectTags/selectTags';
-export { selectPaginationParams } from './selectPaginationParams/selectPaginationParams';
+export {
+  selectPaginationParamsLimit,
+  selectPaginationParamsPage,
+} from './selectPaginationParams';
 export { selectReviewCount } from './selectReviewCount/selectReviewCount';
 export { selectIsReviewLoading } from './selectIsReviewLoading/selectIsReviewLoading';
 export { selectIsFirstLoading } from './selectIsFirstLoading/selectIsFirstLoading';
