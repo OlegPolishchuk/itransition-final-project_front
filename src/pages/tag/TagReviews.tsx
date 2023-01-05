@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { memo, ReactElement, useCallback, useEffect } from 'react';
 
 import { Autocomplete, Box, TextField } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
@@ -18,7 +18,7 @@ import {
 } from 'store/selectors';
 import { selectPaginationParamsPage } from 'store/selectors/reviews';
 
-export const TagReviews = (): ReactElement => {
+export const TagReviews = memo((): ReactElement => {
   const dispatch = useAppDispatch();
 
   const [params, setParams] = useSearchParams();
@@ -35,18 +35,18 @@ export const TagReviews = (): ReactElement => {
   const tagsParams = params.get('tag') as string;
   const tags = tagsParams.split(',');
 
-  const handleLoadMore = (): void => {
+  const handleLoadMore = useCallback((): void => {
     const newPage = page + 1;
 
     dispatch(setReviewsPaginationParams({ page: newPage, limit }));
     dispatch(fetchMoreReviews({ tags, page: newPage }));
-  };
+  }, [page, limit]);
 
-  const handleAddTag = (value: string[]): void => {
+  const handleAddTag = useCallback((value: string[]): void => {
     params.set('tag', value.join(','));
 
     setParams(params);
-  };
+  }, []);
 
   useEffect(() => {
     dispatch(setReviewsPaginationParams({ page: 0, limit }));
@@ -82,4 +82,4 @@ export const TagReviews = (): ReactElement => {
       />
     </>
   );
-};
+});

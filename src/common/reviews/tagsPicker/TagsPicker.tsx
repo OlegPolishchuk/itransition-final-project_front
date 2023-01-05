@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { memo, ReactElement, useEffect, useState } from 'react';
 
 import { StylesConfig } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
@@ -15,7 +15,7 @@ type Option = {
   label: string;
 };
 
-export const TagsPicker: FC<Props> = ({ handleChangeOptionCallback }) => {
+export const TagsPicker = memo(({ handleChangeOptionCallback }: Props): ReactElement => {
   const tags = useAppSelector(selectTags);
   const theme = useAppSelector(selectThemeMode);
 
@@ -85,4 +85,4 @@ export const TagsPicker: FC<Props> = ({ handleChangeOptionCallback }) => {
       escapeClearsValue
     />
   );
-};
+});

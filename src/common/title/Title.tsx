@@ -1,4 +1,4 @@
-import React, { ElementType, FC } from 'react';
+import React, { ElementType, memo, ReactElement } from 'react';
 
 import { Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
@@ -13,7 +13,7 @@ type Props = {
   component?: ElementType;
 };
 
-export const Title: FC<Props> = ({ title, component, color, variant }) => {
+export const Title = memo(({ title, component, color, variant }: Props): ReactElement => {
   return (
     <Typography
       component={component || 'p'}
@@ -23,4 +23,4 @@ export const Title: FC<Props> = ({ title, component, color, variant }) => {
       {title}
     </Typography>
   );
-};
+});

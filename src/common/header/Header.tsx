@@ -19,7 +19,6 @@ type Props = {
 export const Header: FC<Props> = ({ themeMode }) => {
   const dispatch = useAppDispatch();
 
-  console.log('header rendered');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');

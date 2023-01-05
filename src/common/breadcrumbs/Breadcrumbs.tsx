@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 import { Button } from '@mui/material';
@@ -9,7 +9,7 @@ type Props = {
   returnTo?: string;
 };
 
-export const Breadcrumbs: FC<Props> = ({ returnTo }) => {
+export const Breadcrumbs = memo(({ returnTo }: Props): ReactElement => {
   const navigate = useNavigate();
 
   const handleClick = (): void => {
@@ -37,4 +37,4 @@ export const Breadcrumbs: FC<Props> = ({ returnTo }) => {
       <FormattedMessage id="app.breadcrumbs.title" />
     </Button>
   );
-};
+});

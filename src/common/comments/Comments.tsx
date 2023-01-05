@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Box, Divider } from '@mui/material';
 
@@ -10,7 +10,7 @@ import { sendComment } from 'store/actions/comments/sendComment';
 import { selectComments, selectIsUserAuth, selectUser } from 'store/selectors';
 import { Comment } from 'store/types';
 
-export const Comments = (): ReactElement => {
+export const Comments = memo((): ReactElement => {
   const dispatch = useAppDispatch();
 
   const comments = useAppSelector(selectComments);
@@ -54,4 +54,4 @@ export const Comments = (): ReactElement => {
       )}
     </Box>
   );
-};
+});

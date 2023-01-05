@@ -21,6 +21,7 @@ import { selectPaginationParamsPage } from 'store/selectors/reviews';
 export const SearchReviews = (): ReactElement => {
   const dispatch = useAppDispatch();
 
+  console.log('searchReviews rendered');
   const [searchParams] = useSearchParams();
 
   const searchQuery = searchParams.get(inputSearchParams.queryTitle);

@@ -1,4 +1,10 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   Box,
@@ -79,9 +85,9 @@ export const AddNewReview = (): ReactElement => {
   };
 
   const handleChangeBody = (value?: string): void => {
-    if (value) {
-      setReviewValue(reviewValue => ({ ...reviewValue, body: value }));
-    }
+    const newValue = value!;
+
+    setReviewValue(reviewValue => ({ ...reviewValue, body: newValue }));
   };
 
   const handleChangeTags = (tags: string[]): void => {
@@ -97,11 +103,11 @@ export const AddNewReview = (): ReactElement => {
     }));
   };
 
-  const handleChangeGroup = (event: SelectChangeEvent): void => {
+  const handleChangeGroup = useCallback((event: SelectChangeEvent): void => {
     const { value } = event.target;
 
     setReviewValue(reviewValue => ({ ...reviewValue, group: value }));
-  };
+  }, []);
 
   const handlePublishReview = (): any => {
     if (!handleCheckErrors()) {
@@ -129,13 +135,16 @@ export const AddNewReview = (): ReactElement => {
     return values.some(value => value);
   };
 
-  const handleUploadFile = (file: File): void => {
-    const formData = new FormData();
+  const handleUploadFile = useCallback(
+    (file: File): void => {
+      const formData = new FormData();
 
-    formData.append('file', file, `${userId}-${Date.now()}-${file.name}`);
+      formData.append('file', file, `${userId}-${Date.now()}-${file.name}`);
 
-    dispatch(addReviewImage(formData));
-  };
+      dispatch(addReviewImage(formData));
+    },
+    [userId],
+  );
 
   useEffect(() => {
     dispatch(getTags());
@@ -153,17 +162,10 @@ export const AddNewReview = (): ReactElement => {
   }, [isCreatedNewReview]);
 
   return (
-    <Container sx={{ paddingBottom: '50px' }}>
+    <Container sx={style.container}>
       <Breadcrumbs />
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '15px',
-          marginBottom: '30px',
-        }}
-      >
+      <Box sx={style.headerWrapper}>
         <ItemPicker
           valueList={groups}
           changeValueCallback={handleChangeGroup}
@@ -193,31 +195,17 @@ export const AddNewReview = (): ReactElement => {
         />
       </Box>
 
-      <Box
-        sx={{
-          marginBottom: '30px',
-          display: 'flex',
-          flexDirection: isSmallScreen ? 'column' : 'row',
-          alignItems: 'center',
-          gap: '50px',
-        }}
-      >
+      <Box sx={style.uploaderWrapper(isSmallScreen)}>
         <ImgUploader onChangeFileCallback={handleUploadFile} />
 
-        <Box
-          sx={{
-            overflowWrap: 'break-word',
-          }}
-        >
-          {uploadedImgSrc}
-        </Box>
+        <Box sx={style.uploadImgSrcWrapper}>{uploadedImgSrc}</Box>
       </Box>
 
       <MDEditor
         value={reviewValue.body}
         onChange={handleChangeBody}
         preview={isSmallScreen ? 'edit' : 'live'}
-        style={{ minHeight: '400px' }}
+        style={style.MDEditorStyle}
       />
 
       <Box mt="30px">
@@ -254,4 +242,27 @@ export const AddNewReview = (): ReactElement => {
       </Box>
     </Container>
   );
+};
+
+const style = {
+  container: { paddingBottom: '50px' },
+
+  headerWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+    marginBottom: '30px',
+  },
+
+  uploaderWrapper: (isSmallScreen: boolean) => ({
+    marginBottom: '30px',
+    display: 'flex',
+    flexDirection: isSmallScreen ? 'column' : 'row',
+    alignItems: 'center',
+    gap: '50px',
+  }),
+
+  uploadImgSrcWrapper: { overflowWrap: 'break-word' },
+
+  MDEditorStyle: { minHeight: '400px' },
 };
