@@ -1,4 +1,4 @@
-import { UserRole } from 'shared';
+import { UserRole, UserStatus } from 'shared';
 
 export type User = {
   _id: string;
@@ -7,11 +7,9 @@ export type User = {
   avatar: string;
   token: string;
   role: UserRole;
-  status: string;
+  status: UserStatus;
   created: string;
   lastLogin: string;
   reviewsCount: number;
   likes: number;
 };
-
-export type UserStatus = 'active' | 'blocked';

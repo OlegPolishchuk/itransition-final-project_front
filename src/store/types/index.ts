@@ -32,7 +32,6 @@ export type { TableSearchParams } from './usersTableSearchParams';
 
 export type {
   User,
-  UserStatus,
   UserDescriptionFields,
   UserFieldsList,
   CommonFieldList,

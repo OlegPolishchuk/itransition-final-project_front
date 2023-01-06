@@ -17,7 +17,7 @@ import { FormattedMessage } from 'react-intl';
 import { RandomReviewsGenerator, SliderGenerator, Title } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { LocaleSelect, UserStatusSwitcher } from 'pages';
-import { locales, usersSliderValue, userStatus } from 'shared';
+import { locales, usersSliderValue, UserStatus } from 'shared';
 import { generateRandomUsers, getTags } from 'store/actions';
 import { selectIsGenerating } from 'store/selectors';
 import { Locale, RandomReviewsData, RandomUserData } from 'store/types';
@@ -30,7 +30,7 @@ export const CreateUserPanel = memo(() => {
   const [randomUsersData, setRandomUsersData] = useState<RandomUserData>({
     usersCount: 0,
     locale: locales.EN,
-    status: userStatus.active,
+    status: UserStatus.Active,
   });
 
   const [randomReviewsData, setRandomReviewsData] = useState<RandomReviewsData>({
@@ -69,9 +69,9 @@ export const CreateUserPanel = memo(() => {
     setRandomUsersData(data => ({
       ...data,
       status:
-        randomUsersData.status === userStatus.active
-          ? userStatus.blocked
-          : userStatus.active,
+        randomUsersData.status === UserStatus.Active
+          ? UserStatus.Blocked
+          : UserStatus.Active,
     }));
   };
 
@@ -93,7 +93,7 @@ export const CreateUserPanel = memo(() => {
     setRandomUsersData({
       usersCount: 0,
       locale: locales.EN,
-      status: userStatus.active,
+      status: UserStatus.Active,
     });
 
     setRandomReviewsData({ reviewsCount: 0, tags: [] });

@@ -18,7 +18,7 @@ import { NavLink } from 'react-router-dom';
 
 import { CustomPagination, MainCheckbox } from 'common';
 import { useThemeColors } from 'hooks';
-import { addCheckboxIntoObjectList, routes, UserRole, userStatus } from 'shared';
+import { addCheckboxIntoObjectList, routes, UserRole, UserStatus } from 'shared';
 import { User } from 'store/types/User/User';
 
 type Props = {
@@ -123,7 +123,7 @@ export const AdminUserCardsList: FC<Props> = ({
                 padding="0 0 0 16px"
               >
                 <Box>
-                  {user.status === userStatus.blocked ? (
+                  {user.status === UserStatus.Blocked ? (
                     <BlockOutlinedIcon color="warning" />
                   ) : (
                     <VerifiedUserOutlinedIcon color="secondary" />

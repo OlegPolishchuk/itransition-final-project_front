@@ -8,7 +8,7 @@ import { GridSelectionModel } from '@mui/x-data-grid';
 import { FormattedMessage } from 'react-intl';
 
 import { useAppDispatch } from 'hooks';
-import { userStatus } from 'shared';
+import { UserStatus } from 'shared';
 import { deleteUsers, updateUsersStatus } from 'store/actions';
 
 type Props = {
@@ -33,7 +33,7 @@ export const AdminControlPanel: FC<Props> = ({
   const handleBlockUsers = (): void => {
     const newData = selectionModel.length ? [...selectionModel] : [...cardListSelection];
 
-    const users = newData.map(id => ({ id: `${id}`, status: userStatus.blocked }));
+    const users = newData.map(id => ({ id: `${id}`, status: UserStatus.Blocked }));
 
     dispatch(updateUsersStatus(users));
     setSelectionModel([]);
@@ -43,7 +43,7 @@ export const AdminControlPanel: FC<Props> = ({
   const handleUnblockUsers = (): void => {
     const newData = selectionModel.length ? [...selectionModel] : [...cardListSelection];
 
-    const users = newData.map(id => ({ id: `${id}`, status: userStatus.active }));
+    const users = newData.map(id => ({ id: `${id}`, status: UserStatus.Active }));
 
     dispatch(updateUsersStatus(users));
     setSelectionModel([]);

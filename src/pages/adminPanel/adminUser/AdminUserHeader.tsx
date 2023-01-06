@@ -8,9 +8,8 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'hooks';
-import { userStatus } from 'shared';
-import { deleteCurrentUser } from 'store/actions/admin';
-import { updateCurrentUser } from 'store/actions/admin/updateCurrentUser';
+import { UserStatus } from 'shared';
+import { updateCurrentUser, deleteCurrentUser } from 'store/actions';
 
 type Props = {
   user: { [key: string]: any };
@@ -21,7 +20,7 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
 
   const navigate = useNavigate();
 
-  const handleUpdateUserStatus = (status: string): void => {
+  const handleUpdateUserStatus = (status: UserStatus): void => {
     const updatedUser = {
       ...user,
       status,
@@ -39,7 +38,7 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
   return (
     <Box className="admin-controls">
       <Box className="admin-user-header-status">
-        {user.status === userStatus.blocked ? (
+        {user.status === UserStatus.Blocked ? (
           <Tooltip
             title={<FormattedMessage id="app.user.info.tooltip-status-blocked" />}
             placement="top"
@@ -57,12 +56,12 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
       </Box>
 
       <Box className="admin-controls-buttonGroup">
-        {user.status === userStatus.active ? (
+        {user.status === UserStatus.Active ? (
           <Button
             variant="outlined"
             endIcon={<BlockOutlinedIcon color="warning" />}
-            onClick={() => handleUpdateUserStatus(userStatus.blocked)}
-            disabled={user.status === userStatus.blocked}
+            onClick={() => handleUpdateUserStatus(UserStatus.Blocked)}
+            disabled={user.status === UserStatus.Blocked}
           >
             <FormattedMessage id="app.user.info.button-block.title" />
           </Button>
@@ -70,8 +69,8 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
           <Button
             variant="outlined"
             endIcon={<VerifiedUserOutlinedIcon color="info" />}
-            onClick={() => handleUpdateUserStatus(userStatus.active)}
-            disabled={user.status === userStatus.active}
+            onClick={() => handleUpdateUserStatus(UserStatus.Active)}
+            disabled={user.status === UserStatus.Active}
           >
             <FormattedMessage id="app.user.info.button-unblock.title" />
           </Button>

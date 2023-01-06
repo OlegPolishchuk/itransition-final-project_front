@@ -4,7 +4,6 @@ export {
   emailRegexp,
   locales,
   apiRoutes,
-  userStatus,
   userFields,
   usersSliderValue,
   usersTablePaginationData,
@@ -25,6 +24,6 @@ export {
   getPathname,
 } from './utils';
 
-export { UserRole } from './enums';
+export { UserRole, UserStatus } from './enums';
 
 export { adminTableColumns } from './adminTableColumns/adminTableColumns';

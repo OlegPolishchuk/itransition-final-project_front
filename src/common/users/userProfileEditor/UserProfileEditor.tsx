@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { useThemeColors } from 'hooks';
-import { UserRole, userStatus } from 'shared';
+import { UserRole, UserStatus } from 'shared';
 import { CommonFieldList } from 'store/types/User/UserFieldsList';
 
 type Props = {
@@ -52,8 +52,8 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
       if (field.value === 'status') {
         resultJSX = (
           <Select value={userCopy[field.value]} onChange={handleChangeUserStatus}>
-            <MenuItem value={userStatus.active}>{userStatus.active}</MenuItem>
-            <MenuItem value={userStatus.blocked}>{userStatus.blocked}</MenuItem>
+            <MenuItem value={UserStatus.Active}>{UserStatus.Active}</MenuItem>
+            <MenuItem value={UserStatus.Blocked}>{UserStatus.Blocked}</MenuItem>
           </Select>
         );
       }

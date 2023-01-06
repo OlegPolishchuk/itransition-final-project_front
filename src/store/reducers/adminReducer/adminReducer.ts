@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { UserRole, usersTablePaginationData, userStatus } from 'shared';
+import { UserRole, usersTablePaginationData, UserStatus } from 'shared';
 import {
   changeUserAvatar,
   fetchUser,
@@ -16,7 +16,7 @@ const initialState: AdminState = {
   isGenerating: false,
   error: '',
   currentUser: {
-    status: userStatus.active,
+    status: UserStatus.Active,
     _id: '',
     userName: '',
     avatar: '',

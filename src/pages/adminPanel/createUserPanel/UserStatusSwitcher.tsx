@@ -4,7 +4,7 @@ import { Box, Stack, Switch, Typography } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
 
 import { useThemeColors } from 'hooks';
-import { userStatus } from 'shared';
+import { UserStatus } from 'shared';
 
 type Props = {
   status: string;
@@ -22,19 +22,19 @@ export const UserStatusSwitcher: FC<Props> = ({ status, handleChangeStatus }) =>
 
       <Box className="status-switcher">
         <Stack direction="row" spacing={1} alignItems="center">
-          <Typography color={status === userStatus.blocked ? colors.grey.main : ''}>
+          <Typography color={status === UserStatus.Blocked ? colors.grey.main : ''}>
             <FormattedMessage id="app.admin.generate.switcher-blocked.title" />
           </Typography>
 
           <Switch
             color="secondary"
             size="medium"
-            checked={status === userStatus.active}
+            checked={status === UserStatus.Active}
             onChange={handleChangeStatus}
             inputProps={{ 'aria-label': 'controlled' }}
           />
 
-          <Typography color={status === userStatus.active ? colors.secondary.main : ''}>
+          <Typography color={status === UserStatus.Active ? colors.secondary.main : ''}>
             <FormattedMessage id="app.admin.generate.switcher-active.title" />
           </Typography>
         </Stack>

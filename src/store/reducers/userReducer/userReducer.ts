@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { UserRole } from 'shared';
+import { UserRole, UserStatus } from 'shared';
 import {
   changeUserAvatar,
   facebookLogin,
@@ -22,7 +22,7 @@ const initialState: UserState = {
     avatar: '',
     userName: '',
     role: UserRole.User,
-    status: 'active',
+    status: UserStatus.Active,
     reviewsCount: 0,
     likes: 0,
   },
@@ -35,7 +35,7 @@ const initialState: UserState = {
     avatar: '',
     userName: '',
     role: UserRole.User,
-    status: 'active',
+    status: UserStatus.Active,
     reviewsCount: 0,
     likes: 0,
   },
