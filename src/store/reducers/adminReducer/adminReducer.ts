@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { userRoles, usersTablePaginationData, userStatus } from 'shared';
+import { UserRole, usersTablePaginationData, userStatus } from 'shared';
 import {
-  generateRandomUsers,
+  changeUserAvatar,
   fetchUser,
   fetchUserReviews,
   fetchUsers,
-  changeUserAvatar,
+  generateRandomUsers,
 } from 'store/actions';
-import { User, AdminState, TableSearchParams } from 'store/types';
+import { AdminState, TableSearchParams, User } from 'store/types';
 
 const initialState: AdminState = {
   users: [],
@@ -20,7 +20,7 @@ const initialState: AdminState = {
     _id: '',
     userName: '',
     avatar: '',
-    role: userRoles.user,
+    role: UserRole.User,
     login: '',
     token: '',
     created: '',

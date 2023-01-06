@@ -21,7 +21,7 @@ import {
   selectAdminTableSearchParams,
   selectIsUsersLoading,
   selectTotalCount,
-  selectUsers,
+  selectUsersWithoutAdmin,
 } from 'store/selectors';
 import { User } from 'store/types/User/User';
 
@@ -32,7 +32,7 @@ export const AdminUsersList = (): ReactElement => {
 
   const navigate = useNavigate();
 
-  const users = useAppSelector(selectUsers);
+  const users = useAppSelector(selectUsersWithoutAdmin);
   const isUsersLoading = useAppSelector(selectIsUsersLoading);
   const totalUsersCount = useAppSelector(selectTotalCount);
   const tableSearchParams = useAppSelector(selectAdminTableSearchParams);

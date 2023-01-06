@@ -1,4 +1,4 @@
-export { selectUsers } from './selectUsers/selectUsers';
+export { selectUsersWithoutAdmin } from './selectUsers/selectUsers';
 export { selectAdminCurrentUser } from 'store/selectors/admin/selectAdminCurrentUser/selectAdminCurrentUser';
 export { selectTotalCount } from './selectTotalCount/selectTotalCount';
 export { selectAdminTableSearchParams } from './selectAdminTableSearchParams/selectAdminTableSearchParams';

@@ -3,11 +3,11 @@ import React, { forwardRef } from 'react';
 import { Box, SelectChangeEvent, Typography } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
 
-import { UserProfileEditor } from 'common/users/userProfileEditor/UserProfileEditor';
+import { UserProfileEditor } from 'common';
 import { useAppSelector, useThemeColors } from 'hooks';
-import { userFields, userRoles } from 'shared';
+import { userFields, UserRole } from 'shared';
 import { selectThemeMode, selectUser, selectUserRole } from 'store/selectors';
-import { User } from 'store/types/User/User';
+import { User } from 'store/types';
 
 type Props = {
   user: User;
@@ -26,7 +26,7 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
 
     let fields;
 
-    if (userRole === userRoles.admin || userRoles.manager) {
+    if (userRole === UserRole.Admin || UserRole.Manager) {
       fields = userFields.admin;
     } else if (user._id === currentUser._id) {
       fields = userFields.currentUser;

@@ -3,7 +3,6 @@ export {
   localStorageData,
   emailRegexp,
   locales,
-  userRoles,
   apiRoutes,
   userStatus,
   userFields,
@@ -25,5 +24,7 @@ export {
   getReviewHeaderGroupTitle,
   getPathname,
 } from './utils';
+
+export { UserRole } from './enums';
 
 export { adminTableColumns } from './adminTableColumns/adminTableColumns';

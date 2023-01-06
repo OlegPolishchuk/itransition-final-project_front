@@ -11,8 +11,6 @@ type Props = {
 
 export const ItemPicker = memo(
   ({ changeValueCallback, valueList, value, style }: Props): ReactElement => {
-    console.log('itemPicker rendered');
-
     return (
       <FormControl style={style || {}}>
         <Select

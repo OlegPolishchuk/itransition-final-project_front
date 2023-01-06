@@ -10,7 +10,7 @@ import {
 
 import { useAppSelector, useThemeColors } from 'hooks';
 import { AdminDataGridFooter } from 'pages';
-import { userRoles } from 'shared';
+import { UserRole } from 'shared';
 import { selectThemeMode } from 'store/selectors';
 import { User } from 'store/types/User/User';
 
@@ -80,11 +80,11 @@ export const UsersTable: FC<Props> = ({
         getRowId={(row: User) => row._id}
         checkboxSelection
         disableSelectionOnClick
-        isRowSelectable={params => params.row.role !== userRoles.admin}
+        isRowSelectable={params => params.row.role !== UserRole.Admin}
         getRowClassName={param =>
           `row-role--${param.row.role} row-status--${param.row.status}`
         }
-        isCellEditable={params => params.row.role !== userRoles.admin}
+        isCellEditable={params => params.row.role !== UserRole.Admin}
         selectionModel={selectionModel}
         onSelectionModelChange={handleSelectRow}
         onRowClick={handleRowClick}

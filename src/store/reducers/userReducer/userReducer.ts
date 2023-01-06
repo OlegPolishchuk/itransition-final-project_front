@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userRoles } from 'shared';
+import { UserRole } from 'shared';
 import {
   changeUserAvatar,
   facebookLogin,
@@ -21,7 +21,7 @@ const initialState: UserState = {
     lastLogin: '',
     avatar: '',
     userName: '',
-    role: userRoles.user,
+    role: UserRole.User,
     status: 'active',
     reviewsCount: 0,
     likes: 0,
@@ -34,7 +34,7 @@ const initialState: UserState = {
     lastLogin: '',
     avatar: '',
     userName: '',
-    role: userRoles.user,
+    role: UserRole.User,
     status: 'active',
     reviewsCount: 0,
     likes: 0,
@@ -52,6 +52,7 @@ const userSlice = createSlice({
         state.user = payload;
       }
     });
+
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
     });

@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { UserRole } from 'shared';
 import { groups } from 'shared/constants';
 import { addReviewImage, createReview, getTags, updateReview } from 'store/actions';
 import {
@@ -48,7 +49,7 @@ export const AddNewReview = (): ReactElement => {
 
   const userRole = user.role;
 
-  const userId = userRole === 'admin' ? selectedUser._id : user._id;
+  const userId = userRole === UserRole.Admin ? selectedUser._id : user._id;
 
   const isSmallScreen = useMediaQuery('(max-width: 900px)');
 

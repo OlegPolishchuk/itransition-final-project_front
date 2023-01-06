@@ -19,8 +19,7 @@ import {
   SearchReviews,
   TagReviews,
 } from 'pages';
-import { routes } from 'shared';
-import { UserRole } from 'store/types';
+import { routes, UserRole } from 'shared';
 
 type Props = {
   isUserAuth: boolean;

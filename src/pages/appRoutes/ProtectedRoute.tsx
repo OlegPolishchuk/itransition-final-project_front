@@ -2,8 +2,7 @@ import React, { ReactNode, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { routes, userRoles } from 'shared';
-import { UserRole } from 'store/types';
+import { routes, UserRole } from 'shared';
 
 type Props = {
   isUserAuth: boolean;
@@ -25,7 +24,7 @@ export const ProtectedRoute = React.memo(
 
     useEffect(() => {
       if (checkAdmin) {
-        if (userRole !== userRoles.admin && userRole !== userRoles.manager) {
+        if (userRole !== UserRole.Admin && userRole !== UserRole.Manager) {
           navigate(routes.mainPage.base);
         }
       }

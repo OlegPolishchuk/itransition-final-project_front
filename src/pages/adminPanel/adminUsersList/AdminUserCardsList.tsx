@@ -18,7 +18,7 @@ import { NavLink } from 'react-router-dom';
 
 import { CustomPagination, MainCheckbox } from 'common';
 import { useThemeColors } from 'hooks';
-import { addCheckboxIntoObjectList, routes, userRoles, userStatus } from 'shared';
+import { addCheckboxIntoObjectList, routes, UserRole, userStatus } from 'shared';
 import { User } from 'store/types/User/User';
 
 type Props = {
@@ -55,7 +55,7 @@ export const AdminUserCardsList: FC<Props> = ({
 
     if (checked) {
       const idList = users
-        .filter(user => user.role !== userRoles.admin)
+        .filter(user => user.role !== UserRole.Admin)
         .map(user => user._id);
 
       setCardListSelection(idList);
@@ -132,14 +132,11 @@ export const AdminUserCardsList: FC<Props> = ({
 
                 <Typography variant="h5">{user._id}</Typography>
 
-                {user.role !== userRoles.admin && (
-                  <Checkbox
-                    checked={user.checked}
-                    disabled={user.role === userRoles.admin}
-                    onChange={e => handleChangeCurrentCheckbox(e, user._id)}
-                    color="secondary"
-                  />
-                )}
+                <Checkbox
+                  checked={user.checked}
+                  onChange={e => handleChangeCurrentCheckbox(e, user._id)}
+                  color="secondary"
+                />
               </Box>
 
               <CardHeader

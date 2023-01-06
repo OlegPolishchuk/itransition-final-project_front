@@ -5,19 +5,22 @@ import { useParams } from 'react-router-dom';
 
 import { Breadcrumbs, UserInfo, UserReviews } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { UserRole } from 'shared';
 import { fetchUser } from 'store/actions';
 import { selectSelectedUser, selectUser, selectUserRole } from 'store/selectors';
 
 export const Profile = (): ReactElement => {
   const dispatch = useAppDispatch();
 
+  console.log('profile rendered');
   const selectedUser = useAppSelector(selectSelectedUser);
   const user = useAppSelector(selectUser);
   const userRole = useAppSelector(selectUserRole);
 
   const { id } = useParams();
 
-  const isMyProfile = user._id === id || userRole === 'admin' || userRole === 'manager';
+  const isMyProfile =
+    user._id === id || userRole === UserRole.Admin || userRole === UserRole.Manager;
 
   useEffect(() => {
     dispatch(fetchUser(id as string));

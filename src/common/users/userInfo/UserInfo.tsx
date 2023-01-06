@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { UserAvatar, UserDescription } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { AdminUserHeader } from 'pages';
+import { UserRole } from 'shared';
 import { updateCurrentUser } from 'store/actions';
 import { selectUserRole } from 'store/selectors';
 import { User } from 'store/types';
@@ -76,7 +77,7 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
         display: 'flex',
       }}
     >
-      {userRole === 'admin' && (
+      {userRole === UserRole.Admin && (
         <Grid item xs={12} sm={12}>
           <AdminUserHeader user={userCopy} />
         </Grid>

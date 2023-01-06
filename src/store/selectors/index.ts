@@ -17,7 +17,7 @@ export {
 } from './user';
 
 export {
-  selectUsers,
+  selectUsersWithoutAdmin,
   selectAdminCurrentUser,
   selectTotalCount,
   selectAdminTableSearchParams,

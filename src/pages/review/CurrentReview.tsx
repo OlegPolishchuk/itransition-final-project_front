@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Breadcrumbs, Comments, Loader, ReviewItem } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { routes } from 'shared';
+import { routes, UserRole } from 'shared';
 import { closeConnection, createConnection, fetchReviews } from 'store/actions';
 import { setEditableReview } from 'store/reducers/rewiewsReducer/reviewsSlice';
 import { selectIsReviewLoading, selectReviews, selectUser } from 'store/selectors';
@@ -47,9 +47,9 @@ export const CurrentReview = (): ReactElement => {
         <Loader />
       ) : (
         <Box>
-          {(userRole === 'admin' ||
+          {(userRole === UserRole.Admin ||
             userId === review.userId ||
-            userRole === 'manager') && (
+            userRole === UserRole.Manager) && (
             <Box sx={{ textAlign: 'end', marginBottom: '30px' }}>
               <Button color="error" variant="contained" onClick={handleEditReview}>
                 <FormattedMessage id="app.review.button-edit.title" />

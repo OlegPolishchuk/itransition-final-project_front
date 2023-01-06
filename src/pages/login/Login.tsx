@@ -8,7 +8,7 @@ import { IResolveParams } from 'reactjs-social-login';
 
 import { AuthForm, FacebookAuth, GithubAuth, GoogleAuth } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
-import { routes, userRoles } from 'shared';
+import { routes, UserRole } from 'shared';
 import { facebookLogin, getGithubUser, loginUser } from 'store/actions';
 import { setError } from 'store/reducers';
 import { selectError, selectIsUserAuth, selectUserRole } from 'store/selectors';
@@ -56,7 +56,7 @@ export const Login = (): ReactElement => {
 
   useEffect(() => {
     if (isUserAuth) {
-      navigate(userRole === userRoles.user ? routes.mainPage.base : routes.admin.main);
+      navigate(userRole === UserRole.User ? routes.mainPage.base : routes.admin.main);
     }
   }, [isUserAuth, userRole]);
 

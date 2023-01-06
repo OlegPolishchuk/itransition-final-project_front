@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { apiReviews } from 'apis';
+import { UserRole } from 'shared';
 import { RootState } from 'store/store';
 import { Review } from 'store/types';
 
@@ -15,7 +16,7 @@ export const createReview = createAsyncThunk<void, Partial<Review>, { state: Roo
       let userId = getState().userReducer.user._id;
       let userAvatar = getState().userReducer.user.avatar;
 
-      if (userRole === 'admin') {
+      if (userRole === UserRole.Admin) {
         userName = getState().userReducer.selectedUser.userName;
         userId = getState().userReducer.selectedUser._id;
         userAvatar = getState().userReducer.selectedUser.avatar;

@@ -5,7 +5,7 @@ export {
   adminTableSearchParams,
 } from './admin';
 
-export { userFields, userRoles, userStatus } from './user';
+export { userFields, userStatus } from './user';
 export { routes, apiRoutes } from './routes';
 export { emailRegexp, localStorageData, tokenData } from './auth';
 export { paginationDefaultParams, locales } from './app';

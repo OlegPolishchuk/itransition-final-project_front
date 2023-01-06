@@ -8,8 +8,7 @@ import {
 import { Box } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 
-import { userRoles } from 'shared/constants';
-import { parseDate } from 'shared/utils';
+import { parseDate, UserRole } from 'shared';
 
 export const adminTableColumns: GridColDef[] = [
   { field: '_id', headerName: 'ID', flex: 2 },
@@ -53,9 +52,9 @@ export const adminTableColumns: GridColDef[] = [
         >
           <span>{role}</span>
 
-          {role === userRoles.admin && <AdminPanelSettingsOutlined />}
-          {role === userRoles.user && <LockOpenOutlined />}
-          {role === userRoles.manager && <SecurityOutlined />}
+          {role === UserRole.Admin && <AdminPanelSettingsOutlined />}
+          {role === UserRole.User && <LockOpenOutlined />}
+          {role === UserRole.Manager && <SecurityOutlined />}
         </Box>
       );
     },

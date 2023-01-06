@@ -6,6 +6,7 @@ import { CommentItem } from 'common/comments/comment/CommentItem';
 import { CommentGenerator } from 'common/comments/commentGenerator/CommentGenerator';
 import { NothingToShow } from 'common/nothingToShow/NothingToShow';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { UserRole } from 'shared';
 import { sendComment } from 'store/actions/comments/sendComment';
 import { selectComments, selectIsUserAuth, selectUser } from 'store/selectors';
 import { Comment } from 'store/types';
@@ -21,7 +22,7 @@ export const Comments = memo((): ReactElement => {
 
   const userId = user._id;
   const userAvatar = user.avatar;
-  const userName = userRole === 'admin' ? 'Admin' : user.userName;
+  const userName = userRole === UserRole.Admin ? UserRole.Admin : user.userName;
 
   const handleSendComment = (comment: string): void => {
     const commentData: Comment = {

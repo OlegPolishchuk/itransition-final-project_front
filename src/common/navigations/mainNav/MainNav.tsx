@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { useAppSelector, useThemeColors } from 'hooks';
-import { routes } from 'shared';
+import { routes, UserRole } from 'shared';
 import {
   selectIsUserAuth,
   selectThemeMode,
@@ -96,7 +96,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
 
         {isUserAuth && (
           <div>
-            {userRole === 'admin' || userRole === 'manager' ? (
+            {userRole === UserRole.Admin || userRole === UserRole.Manager ? (
               <li style={profileLinkStyle}>
                 <NavLink
                   onClick={handleClick}

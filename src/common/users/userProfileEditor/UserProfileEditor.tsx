@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { useThemeColors } from 'hooks';
-import { userRoles, userStatus } from 'shared';
+import { UserRole, userStatus } from 'shared';
 import { CommonFieldList } from 'store/types/User/UserFieldsList';
 
 type Props = {
@@ -42,9 +42,9 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
       if (field.value === 'role') {
         resultJSX = (
           <Select value={userCopy[field.value]} onChange={handleUserRoleChange}>
-            <MenuItem value={userRoles.user}>{userRoles.user}</MenuItem>
+            <MenuItem value={UserRole.User}>{UserRole.User}</MenuItem>
             {/* <MenuItem value={userRoles.admin}>{userRoles.admin}</MenuItem> */}
-            <MenuItem value={userRoles.manager}>{userRoles.manager}</MenuItem>
+            <MenuItem value={UserRole.Manager}>{UserRole.Manager}</MenuItem>
           </Select>
         );
       }
