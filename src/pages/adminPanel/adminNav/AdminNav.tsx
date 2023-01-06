@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Box } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
@@ -8,7 +8,7 @@ import { useAppSelector, useThemeColors } from 'hooks';
 import { routes } from 'shared';
 import { selectThemeMode } from 'store/selectors';
 
-export const AdminNav = (): ReactElement => {
+export const AdminNav = memo((): ReactElement => {
   const theme = useAppSelector(selectThemeMode);
   const colors = useThemeColors();
 
@@ -46,4 +46,4 @@ export const AdminNav = (): ReactElement => {
       </NavLink>
     </Box>
   );
-};
+});

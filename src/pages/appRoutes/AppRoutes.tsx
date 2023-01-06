@@ -29,8 +29,6 @@ type Props = {
 
 export const AppRoutes = memo(
   ({ isUserAuth, userRole, isInitialize }: Props): ReactElement => {
-    console.log('AppRoutes rendered');
-
     return (
       <Routes>
         <Route path={routes.auth.register} element={<Register />} />

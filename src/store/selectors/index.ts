@@ -20,7 +20,8 @@ export {
   selectUsersWithoutAdmin,
   selectAdminCurrentUser,
   selectTotalCount,
-  selectAdminTableSearchParams,
+  selectAdminTableSearchParamsPage,
+  selectAdminTableSearchParamsLimit,
   selectIsGenerating,
   selectIsUsersLoading,
 } from './admin';

@@ -46,6 +46,7 @@ export const UsersTable: FC<Props> = ({
   const theme = useAppSelector(selectThemeMode);
   const themeColors = useThemeColors();
 
+  console.log('userTableRendered');
   const handleSelectRow = (newSelectionModel: GridSelectionModel): void => {
     setSelectionModel(newSelectionModel);
   };

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { GridSelectionModel } from '@mui/x-data-grid';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -8,24 +8,22 @@ import { CreateUserPanel, UsersTable } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { AdminControlPanel, AdminUserCardsList } from 'pages';
 import {
+  adminTableColumns,
   adminTableSearchParams,
-  getWindowWidth,
   paginationDefaultParams,
   routes,
   usersTablePaginationData,
-  adminTableColumns,
 } from 'shared';
 import { fetchUsers } from 'store/actions';
 import { setCurrentUser, setTableSearchParams } from 'store/reducers';
 import {
-  selectAdminTableSearchParams,
+  selectAdminTableSearchParamsLimit,
+  selectAdminTableSearchParamsPage,
   selectIsUsersLoading,
   selectTotalCount,
   selectUsersWithoutAdmin,
 } from 'store/selectors';
 import { User } from 'store/types/User/User';
-
-const smallScreenSize = 900;
 
 export const AdminUsersList = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -35,9 +33,10 @@ export const AdminUsersList = (): ReactElement => {
   const users = useAppSelector(selectUsersWithoutAdmin);
   const isUsersLoading = useAppSelector(selectIsUsersLoading);
   const totalUsersCount = useAppSelector(selectTotalCount);
-  const tableSearchParams = useAppSelector(selectAdminTableSearchParams);
+  const page = useAppSelector(selectAdminTableSearchParamsPage);
+  const limit = useAppSelector(selectAdminTableSearchParamsLimit);
 
-  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+  const isSmallScreen = useMediaQuery('(max-width: 900px)');
 
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>([]);
   const [cardListSelection, setCardListSelection] = useState<string[]>([]);
@@ -45,10 +44,8 @@ export const AdminUsersList = (): ReactElement => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page =
-    Number(searchParams.get(adminTableSearchParams.page)) || tableSearchParams.page;
-  const limit =
-    Number(searchParams.get(adminTableSearchParams.limit)) || tableSearchParams.limit;
+  const pageParams = Number(searchParams.get(adminTableSearchParams.page)) || page;
+  const limitParams = Number(searchParams.get(adminTableSearchParams.limit)) || limit;
 
   const rowsPerPageOptions = usersTablePaginationData.rowsPerPage;
 
@@ -83,37 +80,27 @@ export const AdminUsersList = (): ReactElement => {
   useEffect(() => {
     dispatch(
       setTableSearchParams({
-        page,
-        limit,
+        page: pageParams,
+        limit: limitParams,
       }),
     );
 
-    searchParams.set(`${adminTableSearchParams.page}`, `${page}`);
-    searchParams.set(`${adminTableSearchParams.limit}`, `${limit}`);
+    searchParams.set(`${adminTableSearchParams.page}`, `${pageParams}`);
+    searchParams.set(`${adminTableSearchParams.limit}`, `${limitParams}`);
     setSearchParams(searchParams);
   }, []);
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [tableSearchParams.page, tableSearchParams.limit]);
+  }, [page, limit]);
 
   useEffect(() => {
-    const resizeListener = (): void => {
-      setWindowWidth(getWindowWidth());
-
-      if (windowWidth >= smallScreenSize) {
-        setCardListSelection([]);
-      } else {
-        setSelectionModel([]);
-      }
-    };
-
-    window.addEventListener('resize', resizeListener);
-
-    return () => {
-      window.removeEventListener('resize', resizeListener);
-    };
-  }, [windowWidth]);
+    if (!isSmallScreen) {
+      setCardListSelection([]);
+    } else {
+      setSelectionModel([]);
+    }
+  }, [isSmallScreen]);
 
   return (
     <Box className="admin-admin-list">
@@ -127,7 +114,7 @@ export const AdminUsersList = (): ReactElement => {
         setMainCheckboxChecked={setCardsListMainCheckbox}
       />
 
-      {windowWidth >= smallScreenSize ? (
+      {!isSmallScreen ? (
         <Box>
           <UsersTable
             columns={adminTableColumns}
