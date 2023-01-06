@@ -22,6 +22,7 @@ import {
   routes,
 } from 'shared';
 import { Review } from 'store/types';
+import { CustomTheme } from 'theme';
 
 type Props = {
   reviews: Review[];
@@ -37,7 +38,7 @@ export const ReviewList: FC<Props> = ({
   pageNumber,
 }) => {
   const themeColors = useThemeColors();
-  const largeScreen = useMediaQuery('(min-width: 900px)');
+  const isLargeScreen = useMediaQuery('(min-width: 900px)');
   const listItemIndexRatio = pageNumber * paginationDefaultParams.limit;
 
   const handleChangeCurrentCheckbox = (
@@ -47,8 +48,8 @@ export const ReviewList: FC<Props> = ({
     const { checked } = event.target;
 
     setReviewsWithCheckbox(
-      reviewsWithCheckbox.map(reviw =>
-        reviw._id === id ? { ...reviw, checked } : reviw,
+      reviewsWithCheckbox.map(review =>
+        review._id === id ? { ...review, checked } : review,
       ),
     );
   };
@@ -90,14 +91,7 @@ export const ReviewList: FC<Props> = ({
             />
           </Box>
 
-          <CardContent
-            sx={{
-              display: 'flex',
-              flexDirection: largeScreen ? 'row' : 'column',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-            }}
-          >
+          <CardContent sx={style.cardContentWrapper(isLargeScreen)}>
             <CardItemTitle title="title" description={review.title} />
 
             <CardItemTitle title="Subject Title" description={review.subtitle} />
@@ -117,14 +111,7 @@ export const ReviewList: FC<Props> = ({
             />
           </CardContent>
 
-          <CardActions
-            sx={{
-              justifyContent: 'center',
-              '& .navLink': {
-                color: themeColors.secondary.main,
-              },
-            }}
-          >
+          <CardActions sx={style.cardActionsWrapper(themeColors)}>
             <Box textAlign="center">
               <Button variant="outlined" color="secondary">
                 <NavLink className="navLink" to={`${routes.review.base}/${review._id}`}>
@@ -137,4 +124,20 @@ export const ReviewList: FC<Props> = ({
       ))}
     </>
   );
+};
+
+const style = {
+  cardContentWrapper: (isLargeScreen: boolean) => ({
+    display: 'flex',
+    flexDirection: isLargeScreen ? 'row' : 'column',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  }),
+
+  cardActionsWrapper: (themeColors: CustomTheme) => ({
+    justifyContent: 'center',
+    '& .navLink': {
+      color: themeColors.secondary.main,
+    },
+  }),
 };

@@ -37,7 +37,7 @@ export type {
   CommonFieldList,
 } from './User';
 
-export type { Review } from './review';
+export type { Review, ReviewWithCheckbox } from './review';
 export type { InitializeApp } from './initializeApp';
 export type { PaginationParams } from './paginationParams';
 export type { SliderValues } from './sliderValues';

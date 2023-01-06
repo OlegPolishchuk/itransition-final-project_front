@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { Pagination } from '@mui/material';
 
@@ -9,26 +9,23 @@ type Props = {
   limitPerPage: number;
 };
 
-export const CustomPagination: FC<Props> = ({
-  page,
-  onChangeCallback,
-  totalCount,
-  limitPerPage,
-}) => {
-  const totalPageCount = Math.ceil(totalCount / limitPerPage);
+export const CustomPagination = memo(
+  ({ page, onChangeCallback, totalCount, limitPerPage }: Props): ReactElement => {
+    const totalPageCount = Math.ceil(totalCount / limitPerPage);
 
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number): void => {
-    onChangeCallback(value - 1);
-  };
+    const handleChangePage = (event: React.ChangeEvent<unknown>, value: number): void => {
+      onChangeCallback(value - 1);
+    };
 
-  return (
-    <Pagination
-      variant="outlined"
-      shape="rounded"
-      color="secondary"
-      count={totalPageCount}
-      page={page + 1}
-      onChange={handleChangePage}
-    />
-  );
-};
+    return (
+      <Pagination
+        variant="outlined"
+        shape="rounded"
+        color="secondary"
+        count={totalPageCount}
+        page={page + 1}
+        onChange={handleChangePage}
+      />
+    );
+  },
+);

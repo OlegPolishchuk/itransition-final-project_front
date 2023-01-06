@@ -12,7 +12,6 @@ import { selectSelectedUser, selectUser, selectUserRole } from 'store/selectors'
 export const Profile = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  console.log('profile rendered');
   const selectedUser = useAppSelector(selectSelectedUser);
   const user = useAppSelector(selectUser);
   const userRole = useAppSelector(selectUserRole);
@@ -32,7 +31,7 @@ export const Profile = (): ReactElement => {
         <Breadcrumbs />
       </Box>
 
-      <UserInfo user={selectedUser} isMyProfile={isMyProfile} />
+      <UserInfo key={selectedUser._id} user={selectedUser} isMyProfile={isMyProfile} />
 
       <Divider sx={{ margin: '50px 0' }} />
 

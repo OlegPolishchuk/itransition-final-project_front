@@ -18,3 +18,5 @@ export type Review = {
   likes: number;
   likesId: string[];
 };
+
+export type ReviewWithCheckbox = Review & { checked: boolean };

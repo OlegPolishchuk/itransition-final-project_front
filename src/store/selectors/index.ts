@@ -36,6 +36,7 @@ export {
   selectIsCreatedNewReview,
   selectReviewsSortType,
   selectEditableReview,
+  selectReviewsWithCheckbox,
 } from './reviews';
 
 export { selectComments } from './comments';

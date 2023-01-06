@@ -41,9 +41,12 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
       }
       if (field.value === 'role') {
         resultJSX = (
-          <Select value={userCopy[field.value]} onChange={handleUserRoleChange}>
+          <Select
+            value={userCopy[field.value]}
+            onChange={handleUserRoleChange}
+            size="small"
+          >
             <MenuItem value={UserRole.User}>{UserRole.User}</MenuItem>
-            {/* <MenuItem value={userRoles.admin}>{userRoles.admin}</MenuItem> */}
             <MenuItem value={UserRole.Manager}>{UserRole.Manager}</MenuItem>
           </Select>
         );
@@ -51,7 +54,11 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
 
       if (field.value === 'status') {
         resultJSX = (
-          <Select value={userCopy[field.value]} onChange={handleChangeUserStatus}>
+          <Select
+            value={userCopy[field.value]}
+            onChange={handleChangeUserStatus}
+            size="small"
+          >
             <MenuItem value={UserStatus.Active}>{UserStatus.Active}</MenuItem>
             <MenuItem value={UserStatus.Blocked}>{UserStatus.Blocked}</MenuItem>
           </Select>

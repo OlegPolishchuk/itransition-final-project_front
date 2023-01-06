@@ -1,4 +1,5 @@
 export { selectReviews } from './selectReviews/selectReviews';
+export { selectReviewsWithCheckbox } from './selectReviewsWithCheckbox/selectReviewsWithCheckbox';
 export { selectTags } from './selectTags/selectTags';
 export {
   selectPaginationParamsLimit,

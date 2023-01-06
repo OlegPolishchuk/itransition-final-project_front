@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { memo, ReactElement } from 'react';
 
 import { FormControlLabel, Radio, useMediaQuery } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -12,7 +12,7 @@ type Props = {
   onChangeCallback: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const ReviewsSorting: FC<Props> = ({ value, onChangeCallback }) => {
+export const ReviewsSorting = memo(({ value, onChangeCallback }: Props): ReactElement => {
   const isRowDirection = useMediaQuery('(min-width: 600px)');
 
   return (
@@ -52,4 +52,4 @@ export const ReviewsSorting: FC<Props> = ({ value, onChangeCallback }) => {
       </RadioGroup>
     </FormControl>
   );
-};
+});

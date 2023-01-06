@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { memo, ReactElement, useEffect, useRef, useState } from 'react';
 
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -19,13 +19,13 @@ type Props = {
   isMyProfile: boolean;
 };
 
-export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
+export const UserInfo = memo(({ user, isMyProfile }: Props): ReactElement => {
   const dispatch = useAppDispatch();
 
   const userRole = useAppSelector(selectUserRole);
 
   const [editMode, setEditMode] = useState(false);
-  const [userCopy, setUserCopy] = useState<{ [key: string]: any }>({ ...user });
+  const [userCopy, setUserCopy] = useState<{ [key: string]: any }>(() => ({ ...user }));
 
   const userNameRef = useRef<HTMLInputElement>(null);
 
@@ -65,18 +65,8 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [editMode]);
 
-  useEffect(() => {
-    setUserCopy({ ...user });
-  }, [user]);
-
   return (
-    <Grid
-      container
-      rowSpacing={8}
-      sx={{
-        display: 'flex',
-      }}
-    >
+    <Grid container rowSpacing={8} sx={style.flex}>
       {userRole === UserRole.Admin && (
         <Grid item xs={12} sm={12}>
           <AdminUserHeader user={userCopy} />
@@ -87,17 +77,7 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
         <UserAvatar avatarSrc={user.avatar} userId={user._id} isMyProfile={isMyProfile} />
       </Grid>
 
-      <Grid
-        item
-        xs={12}
-        sm={8}
-        md={9}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '30px',
-        }}
-      >
+      <Grid item xs={12} sm={8} md={9} sx={style.userDescriptionWrapper}>
         <UserDescription
           user={user}
           editMode={editMode}
@@ -110,10 +90,10 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
           {isMyProfile && (
             <div>
               {editMode ? (
-                <Box sx={{ display: 'flex' }}>
+                <Box sx={style.flex}>
                   <ButtonGroup>
                     <Button
-                      sx={{ minWidth: '100px' }}
+                      sx={style.saveCanselBtn}
                       variant="outlined"
                       color="secondary"
                       endIcon={<SaveAsOutlinedIcon />}
@@ -123,7 +103,7 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
                     </Button>
 
                     <Button
-                      sx={{ minWidth: '100px' }}
+                      sx={style.saveCanselBtn}
                       variant="outlined"
                       color="success"
                       endIcon={<CancelOutlinedIcon />}
@@ -135,7 +115,7 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
                 </Box>
               ) : (
                 <Button
-                  sx={{ width: '200px' }}
+                  sx={style.editBtn}
                   variant="outlined"
                   endIcon={<EditOutlinedIcon />}
                   onClick={() => setEditMode(true)}
@@ -149,4 +129,17 @@ export const UserInfo: FC<Props> = ({ user, isMyProfile }) => {
       </Grid>
     </Grid>
   );
+});
+
+const style = {
+  flex: { display: 'flex' },
+
+  userDescriptionWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '30px',
+  },
+
+  editBtn: { width: '200px' },
+  saveCanselBtn: { minWidth: '100px' },
 };

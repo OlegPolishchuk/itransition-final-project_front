@@ -33,11 +33,6 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
     } else {
       fields = userFields.user;
     }
-    // userRole === userRoles.admin || userRoles.manager
-    //   ? userFields.admin
-    //   : user._id === currentUser._id
-    //   ? userFields.currentUser
-    //   : userFields.user;
 
     const fieldColor =
       themeMode === 'light' ? themeColors.primary.main : themeColors.secondary.main;
