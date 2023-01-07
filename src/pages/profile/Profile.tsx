@@ -18,6 +18,7 @@ export const Profile = (): ReactElement => {
 
   const { id } = useParams();
 
+  console.log('user in Profile', selectedUser);
   const isMyProfile =
     user._id === id || userRole === UserRole.Admin || userRole === UserRole.Manager;
 
@@ -31,7 +32,11 @@ export const Profile = (): ReactElement => {
         <Breadcrumbs />
       </Box>
 
-      <UserInfo key={selectedUser._id} user={selectedUser} isMyProfile={isMyProfile} />
+      <UserInfo
+        key={`${selectedUser._id}_${selectedUser.userName}`}
+        user={selectedUser}
+        isMyProfile={isMyProfile}
+      />
 
       <Divider sx={{ margin: '50px 0' }} />
 

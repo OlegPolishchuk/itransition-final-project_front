@@ -9,7 +9,6 @@ import { routes } from 'shared';
 export const AddNewReviewButton = memo((): ReactElement => {
   const navigate = useNavigate();
 
-  console.log('addNewReviewButton rendered');
   const handleClick = (): void => {
     navigate(routes.review.addNew);
   };

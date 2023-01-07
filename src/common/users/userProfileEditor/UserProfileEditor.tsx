@@ -11,6 +11,7 @@ import {
 import { useThemeColors } from 'hooks';
 import { UserRole, UserStatus } from 'shared';
 import { CommonFieldList } from 'store/types/User/UserFieldsList';
+import { CustomTheme } from 'theme';
 
 type Props = {
   field: CommonFieldList;
@@ -18,11 +19,12 @@ type Props = {
   handleUserRoleChange: (event: SelectChangeEvent) => void;
   handleChangeUserStatus: (event: SelectChangeEvent) => void;
   fieldColor?: string;
+  error: string;
 };
 
 export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
   (
-    { field, userCopy, handleUserRoleChange, handleChangeUserStatus, fieldColor },
+    { field, userCopy, handleUserRoleChange, handleChangeUserStatus, fieldColor, error },
     usernameRef,
   ) => {
     const themeColors = useThemeColors();
@@ -32,11 +34,22 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
     if (field.editable) {
       if (field.value === 'userName') {
         resultJSX = (
-          <TextField
-            inputRef={usernameRef}
-            size="small"
-            defaultValue={userCopy[field.value]}
-          />
+          <div style={style.fieldWrapper}>
+            <TextField
+              inputRef={usernameRef}
+              size="small"
+              defaultValue={userCopy[field.value]}
+            />
+            {error && (
+              <Typography
+                component="span"
+                variant="subtitle2"
+                sx={style.error(themeColors)}
+              >
+                {error}
+              </Typography>
+            )}
+          </div>
         );
       }
       if (field.value === 'role') {
@@ -78,3 +91,14 @@ export const UserProfileEditor = forwardRef<HTMLInputElement, Props>(
     return <div>{resultJSX}</div>;
   },
 );
+
+const style = {
+  fieldWrapper: { position: 'relative' as const },
+
+  error: (colors: CustomTheme) => ({
+    position: 'absolute',
+    bottom: '-41px',
+    right: '0',
+    color: colors.success.main,
+  }),
+};

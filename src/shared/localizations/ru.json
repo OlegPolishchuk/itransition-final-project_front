@@ -62,6 +62,8 @@
   "app.user.info.field-created.title": "Дата Создания",
   "app.user.info.field-lastLogin.title": "Последний раз был онлайн:",
 
+  "app.user.info.field-likes.title": "Лайки",
+
   "app.user.info.tooltip-status-blocked": "Забокирован",
   "app.user.info.tooltip-status-active": "Активный",
 

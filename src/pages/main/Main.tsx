@@ -8,8 +8,6 @@ import { Search, TagsCloud } from 'common';
 export const Main = memo((): ReactElement => {
   const isLargeScreen = useMediaQuery('(min-width: 900px)');
 
-  console.log('main rendered');
-
   return (
     <Container sx={{ paddingBottom: '50px' }}>
       <Grid container spacing={4}>

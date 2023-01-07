@@ -80,7 +80,7 @@ export const AdminTags = (): ReactElement => {
   const customList = (title: React.ReactNode, items: string[]): ReactElement => (
     <Card>
       <CardHeader
-        sx={{ px: 2, py: 1 }}
+        sx={style.cardHeader}
         avatar={
           <Checkbox
             onClick={handleToggleAll(items)}
@@ -98,17 +98,7 @@ export const AdminTags = (): ReactElement => {
         subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
       <Divider />
-      <List
-        sx={{
-          width: 350,
-          height: 230,
-          bgcolor: 'background.paper',
-          overflow: 'auto',
-        }}
-        dense
-        component="div"
-        role="list"
-      >
+      <List sx={style.list} dense component="div" role="list">
         {items.map((value: string) => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
@@ -163,10 +153,7 @@ export const AdminTags = (): ReactElement => {
                 alignItems="center"
               >
                 <Button
-                  sx={{
-                    my: '15px',
-                    transform: `rotate(${isSmallScreen ? '90deg' : '0'})`,
-                  }}
+                  sx={style.switcher(isSmallScreen)}
                   variant="outlined"
                   size="small"
                   onClick={handleCheckedRight}
@@ -176,10 +163,7 @@ export const AdminTags = (): ReactElement => {
                   &gt;
                 </Button>
                 <Button
-                  sx={{
-                    my: '15px',
-                    transform: `rotate(${isSmallScreen ? '90deg' : '0'})`,
-                  }}
+                  sx={style.switcher(isSmallScreen)}
                   variant="outlined"
                   size="small"
                   onClick={handleCheckedLeft}
@@ -196,7 +180,7 @@ export const AdminTags = (): ReactElement => {
             </Grid>
           </Grid>
 
-          <Box sx={{ textAlign: 'center', marginY: '50px' }}>
+          <Box sx={style.buttonsWrapper}>
             <Button variant="contained" color="error" onClick={handleDeleteTags}>
               <FormattedMessage id="app.admin.tags.button-delete.title" />
             </Button>
@@ -220,3 +204,21 @@ function intersection(a: string[], b: string[]): string[] {
 function union(a: string[], b: string[]): string[] {
   return [...a, ...not(b, a)];
 }
+
+const style = {
+  cardHeader: { px: 2, py: 1 },
+
+  list: {
+    width: 350,
+    height: 230,
+    bgcolor: 'background.paper',
+    overflow: 'auto',
+  },
+
+  switcher: (isSmallScreen: boolean) => ({
+    my: '15px',
+    transform: `rotate(${isSmallScreen ? '90deg' : '0'})`,
+  }),
+
+  buttonsWrapper: { textAlign: 'center', marginY: '50px' },
+};

@@ -1,4 +1,4 @@
-import React, { memo, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -19,33 +19,51 @@ type Props = {
   isMyProfile: boolean;
 };
 
-export const UserInfo = memo(({ user, isMyProfile }: Props): ReactElement => {
+const MAX_USERNAME_LENGTH = 50;
+
+export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
   const dispatch = useAppDispatch();
 
   const userRole = useAppSelector(selectUserRole);
 
   const [editMode, setEditMode] = useState(false);
   const [userCopy, setUserCopy] = useState<{ [key: string]: any }>(() => ({ ...user }));
+  const [userNameError, setUserNameError] = useState('');
 
   const userNameRef = useRef<HTMLInputElement>(null);
+
+  const validateEditData = (): void => {
+    const usernameInput = userNameRef.current as HTMLInputElement;
+    const username = usernameInput.value.length ? usernameInput.value : userCopy.userName;
+
+    if (username.length > MAX_USERNAME_LENGTH) {
+      setUserNameError(`Max length should be less then ${MAX_USERNAME_LENGTH} char`);
+    } else {
+      setUserNameError('');
+      handleSaveUserDescription();
+    }
+  };
 
   const handleSaveUserDescription = (): void => {
     const usernameInput = userNameRef.current as HTMLInputElement;
     const username = usernameInput.value.length ? usernameInput.value : userCopy.userName;
 
-    setEditMode(false);
+    if (!userNameError) {
+      setEditMode(false);
 
-    const userData = {
-      ...userCopy,
-      userName: username,
-    };
+      const userData = {
+        ...userCopy,
+        userName: username,
+      };
 
-    dispatch(updateCurrentUser(userData));
+      dispatch(updateCurrentUser(userData));
+    }
   };
 
   const handleCancelEditing = (): void => {
     setUserCopy({ ...user });
     setEditMode(false);
+    setUserNameError('');
   };
 
   useEffect(() => {
@@ -83,6 +101,7 @@ export const UserInfo = memo(({ user, isMyProfile }: Props): ReactElement => {
           editMode={editMode}
           userCopy={userCopy}
           setUserCopy={setUserCopy}
+          errorMessage={userNameError}
           ref={userNameRef}
         />
 
@@ -97,7 +116,7 @@ export const UserInfo = memo(({ user, isMyProfile }: Props): ReactElement => {
                       variant="outlined"
                       color="secondary"
                       endIcon={<SaveAsOutlinedIcon />}
-                      onClick={handleSaveUserDescription}
+                      onClick={validateEditData}
                     >
                       <FormattedMessage id="app.user.info.button-save.title" />
                     </Button>
@@ -129,7 +148,7 @@ export const UserInfo = memo(({ user, isMyProfile }: Props): ReactElement => {
       </Grid>
     </Grid>
   );
-});
+};
 
 const style = {
   flex: { display: 'flex' },

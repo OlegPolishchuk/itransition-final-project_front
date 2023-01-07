@@ -14,10 +14,11 @@ type Props = {
   editMode: boolean;
   userCopy: { [key: string]: any };
   setUserCopy: (userCopy: { [key: string]: any }) => void;
+  errorMessage: string;
 };
 
 export const UserDescription = forwardRef<HTMLInputElement, Props>(
-  ({ user, editMode, setUserCopy, userCopy }, userNameRef) => {
+  ({ user, editMode, setUserCopy, userCopy, errorMessage }, userNameRef) => {
     const themeColors = useThemeColors();
     const themeMode = useAppSelector(selectThemeMode);
     const userRole = useAppSelector(selectUserRole);
@@ -26,7 +27,7 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
 
     let fields;
 
-    if (userRole === UserRole.Admin || UserRole.Manager) {
+    if (userRole === UserRole.Admin || userRole === UserRole.Manager) {
       fields = userFields.admin;
     } else if (user._id === currentUser._id) {
       fields = userFields.currentUser;
@@ -45,26 +46,12 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
       setUserCopy((user: object) => ({ ...user, status: event.target.value }));
     };
 
-    const styleForInfoField = {
-      display: 'flex',
-      justifyContent: 'space-between',
-      color: '#706f6f',
-      height: '30px',
-    };
-
     return (
-      <Box
-        sx={{
-          minWidth: '300px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '15px',
-        }}
-      >
+      <Box sx={style.wrapper}>
         {fields.map((field, index) => (
           <Typography
             key={`${field.value}${index}`}
-            style={styleForInfoField}
+            style={style.styleForInfoField}
             component="div"
           >
             <FormattedMessage id={field.title} />
@@ -77,6 +64,7 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
                 handleChangeUserStatus={handleChangeUserStatus}
                 handleUserRoleChange={handleUserRoleChange}
                 fieldColor={fieldColor}
+                error={errorMessage}
               />
             ) : (
               <Typography
@@ -92,3 +80,19 @@ export const UserDescription = forwardRef<HTMLInputElement, Props>(
     );
   },
 );
+
+const style = {
+  wrapper: {
+    minWidth: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+  },
+
+  styleForInfoField: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    color: '#706f6f',
+    height: '30px',
+  },
+};

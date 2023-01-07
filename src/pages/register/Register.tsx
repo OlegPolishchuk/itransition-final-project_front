@@ -30,6 +30,8 @@ export const Register = (): ReactElement => {
 
   const authFormButtonTitle = <FormattedMessage id="app.auth.button-register.title" />;
 
+  const fullWidthStyle = { width: '100%' };
+
   const onSubmit: SubmitHandler<Inputs> = (data): void => {
     dispatch(registerUser(data));
   };
@@ -63,11 +65,7 @@ export const Register = (): ReactElement => {
         open={!!globalMessage}
         onClose={handleCloseSuccessAlert}
       >
-        <Alert
-          onClose={handleCloseSuccessAlert}
-          severity="success"
-          sx={{ width: '100%' }}
-        >
+        <Alert onClose={handleCloseSuccessAlert} severity="success" sx={fullWidthStyle}>
           {globalMessage}
         </Alert>
       </Snackbar>
@@ -77,7 +75,7 @@ export const Register = (): ReactElement => {
         open={!!error}
         onClose={handleCLoseErrorAlert}
       >
-        <Alert onClose={handleCLoseErrorAlert} severity="error" sx={{ width: '100%' }}>
+        <Alert onClose={handleCLoseErrorAlert} severity="error" sx={fullWidthStyle}>
           {error}
         </Alert>
       </Snackbar>

@@ -15,7 +15,8 @@ import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
 import { locales } from 'shared';
 import { generateRandomReviews, getTags } from 'store/actions';
 import { selectTags, selectThemeMode } from 'store/selectors';
-import { Locale, RandomReviewsData } from 'store/types';
+import { Locale, RandomReviewsData, ThemeMode } from 'store/types';
+import { CustomTheme } from 'theme';
 
 type Props = {
   userId: string;
@@ -62,17 +63,12 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
   };
 
   return (
-    <Box sx={{ marginTop: '50px' }}>
+    <Box sx={style.wrapper}>
       <Title variant="h4" title={<FormattedMessage id="app.user.reviews.title" />} />
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <Box sx={style.controlsWrapper}>
         <FormControlLabel
-          sx={{ alignSelf: 'flex-end' }}
+          sx={style.controlCheckbox}
           control={
             <Checkbox
               checked={showGeneratorPanel}
@@ -85,16 +81,8 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
           }
         />
 
-        <Collapse sx={{ margin: '30px 0' }} in={showGeneratorPanel}>
-          <Box
-            sx={{
-              width: '100%',
-              padding: '16px',
-              backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
-              backgroundImage:
-                'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));',
-            }}
-          >
+        <Collapse sx={style.collapse} in={showGeneratorPanel}>
+          <Box sx={style.reviewGeneratorWrapper(theme, colors)}>
             <RandomReviewsGenerator
               data={randomReviewsData}
               setDataCallback={setRandomReviewData}
@@ -105,12 +93,7 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
               />
             </RandomReviewsGenerator>
 
-            <Box
-              sx={{
-                margin: '30px 0',
-                textAlign: 'center',
-              }}
-            >
+            <Box sx={style.buttonGenerateWrapper}>
               <Button
                 className="button-generate-user"
                 variant="contained"
@@ -128,4 +111,30 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
       <UserReviews userId={userId} isMyProfile />
     </Box>
   );
+};
+
+const style = {
+  wrapper: { marginTop: '50px' },
+
+  controlsWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  controlCheckbox: { alignSelf: 'flex-end' },
+
+  collapse: { margin: '30px 0' },
+
+  reviewGeneratorWrapper: (themeMode: ThemeMode, colors: CustomTheme) => ({
+    width: '100%',
+    padding: '16px',
+    backgroundColor: themeMode === 'dark' ? colors.primary.main : '#fff',
+    backgroundImage:
+      'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));',
+  }),
+
+  buttonGenerateWrapper: {
+    margin: '30px 0',
+    textAlign: 'center',
+  },
 };

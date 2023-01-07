@@ -70,7 +70,7 @@ export const Login = (): ReactElement => {
 
       if (provider === 'facebook') {
         const data: SocialResponse = {
-          login: `${profile.id}_${profile.email}`,
+          login: profile.id,
           name: profile.name,
           avatar_url: profile.picture.data.url,
         };

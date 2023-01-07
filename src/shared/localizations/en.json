@@ -37,7 +37,15 @@
   "app.admin.generate.tags-picker.radio-random.title": "Random",
   "app.admin.generate.tags-picker.radio-custom.title": "Custom",
 
+  "app.admin.navigation.users.title": "Users",
+  "app.admin.navigation.tags.title": "Tags",
+
+  "app.admin.tags.button-delete.title": "Delete tags",
+  "app.admin.tags.choices.title": "Choices",
+  "app.admin.tags.chosen.title": "Chosen",
+
   "app.admin.card-list.main-checkbox.title": "Choose All",
+
   "app.user.card-list.link-info.title": "View info",
 
   "app.user.info.button-edit.title": "Edit",
@@ -45,13 +53,6 @@
   "app.user.info.button-cancel.title": "Cancel",
 
   "app.user.info.avatar.button-change.title": "Change Avatar",
-
-  "app.admin.navigation.users.title": "Users",
-  "app.admin.navigation.tags.title": "Tags",
-
-  "app.admin.tags.button-delete.title": "Delete tags",
-  "app.admin.tags.choices.title": "Choices",
-  "app.admin.tags.chosen.title": "Chosen",
 
   "app.user.info.field-id.title": "User ID",
   "app.user.info.field-login.title": "User Login",
@@ -61,6 +62,7 @@
   "app.user.info.field-reviews.title": "User Reviews Count",
   "app.user.info.field-created.title": "Created",
   "app.user.info.field-lastLogin.title": "Last Login",
+  "app.user.info.field-likes.title": "Likes",
 
   "app.user.info.tooltip-status-blocked": "Blocked",
   "app.user.info.tooltip-status-active": "Active",

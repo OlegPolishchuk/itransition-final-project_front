@@ -33,6 +33,11 @@ export const AuthForm: FC<Props> = ({ submitCallback, children, buttonTitle }) =
   );
   const loginErrorMessage = <FormattedMessage id="app.auth-form.input-login.error" />;
 
+  const buttonsWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
   return (
     <form onSubmit={handleSubmit(submitCallback)} className="wrapper">
       <TextField
@@ -59,12 +64,7 @@ export const AuthForm: FC<Props> = ({ submitCallback, children, buttonTitle }) =
         helperText={errors.password && passErrorMessageLength}
       />
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
+      <Box sx={buttonsWrapperStyle}>
         <Button
           color="secondary"
           type="submit"

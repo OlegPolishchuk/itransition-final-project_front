@@ -12,7 +12,9 @@ import { useAppSelector, useThemeColors } from 'hooks';
 import { AdminDataGridFooter } from 'pages';
 import { UserRole } from 'shared';
 import { selectThemeMode } from 'store/selectors';
+import { ThemeMode } from 'store/types';
 import { User } from 'store/types/User/User';
+import { CustomTheme } from 'theme';
 
 type Props = {
   columns: GridColDef[];
@@ -46,7 +48,6 @@ export const UsersTable: FC<Props> = ({
   const theme = useAppSelector(selectThemeMode);
   const themeColors = useThemeColors();
 
-  console.log('userTableRendered');
   const handleSelectRow = (newSelectionModel: GridSelectionModel): void => {
     setSelectionModel(newSelectionModel);
   };
@@ -56,17 +57,7 @@ export const UsersTable: FC<Props> = ({
   };
 
   return (
-    <Box
-      sx={{
-        height: '500px',
-        '& .row-role--admin': {
-          backgroundColor: theme === 'light' ? '#efefef' : 'rgba(255, 255, 255, 0.08)',
-        },
-        '& .row-status--blocked': {
-          color: '#b2b1b1',
-        },
-      }}
-    >
+    <Box sx={style.wrapper(theme)}>
       <DataGrid
         className="admin-table-dataGrid"
         columns={columns}
@@ -102,12 +93,26 @@ export const UsersTable: FC<Props> = ({
           },
         }}
         loading={loading}
-        sx={{
-          '& .MuiLinearProgress-colorPrimary': {
-            backgroundColor: themeColors.secondary.main,
-          },
-        }}
+        sx={style.table(themeColors)}
       />
     </Box>
   );
+};
+
+const style = {
+  wrapper: (themeMode: ThemeMode) => ({
+    height: '500px',
+    '& .row-role--admin': {
+      backgroundColor: themeMode === 'light' ? '#efefef' : 'rgba(255, 255, 255, 0.08)',
+    },
+    '& .row-status--blocked': {
+      color: '#b2b1b1',
+    },
+  }),
+
+  table: (themeColors: CustomTheme) => ({
+    '& .MuiLinearProgress-colorPrimary': {
+      backgroundColor: themeColors.secondary.main,
+    },
+  }),
 };

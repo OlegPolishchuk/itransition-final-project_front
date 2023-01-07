@@ -28,7 +28,6 @@ export const AdminControlPanel: FC<Props> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  console.log('adminControlPanel rendered');
   const disabled = !selectionModel.length && !cardListSelection.length;
 
   const handleBlockUsers = (): void => {
