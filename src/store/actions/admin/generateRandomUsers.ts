@@ -17,7 +17,7 @@ export const generateRandomUsers = createAsyncThunk<
     try {
       const res = await apiUsers.generateRandomUsers(data);
 
-      if (res.status === responseStatus.ok) {
+      if (res.status === responseStatus.created) {
         dispatch(fetchUsers());
       }
     } catch (e) {

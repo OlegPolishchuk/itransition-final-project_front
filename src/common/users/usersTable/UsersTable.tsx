@@ -101,7 +101,6 @@ export const UsersTable: FC<Props> = ({
 
 const style = {
   wrapper: (themeMode: ThemeMode) => ({
-    height: '500px',
     '& .row-role--admin': {
       backgroundColor: themeMode === 'light' ? '#efefef' : 'rgba(255, 255, 255, 0.08)',
     },
@@ -111,6 +110,7 @@ const style = {
   }),
 
   table: (themeColors: CustomTheme) => ({
+    minHeight: '595px',
     '& .MuiLinearProgress-colorPrimary': {
       backgroundColor: themeColors.secondary.main,
     },
