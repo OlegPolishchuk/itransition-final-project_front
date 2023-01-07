@@ -57,8 +57,7 @@ const adminSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
+      setValuesAfterReject(state, action);
     });
 
     builder.addCase(fetchUser.pending, state => {
@@ -69,8 +68,7 @@ const adminSlice = createSlice({
       state.currentUser = action.payload;
     });
     builder.addCase(fetchUser.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
+      setValuesAfterReject(state, action);
     });
 
     builder.addCase(generateRandomUsers.pending, state => {
@@ -80,8 +78,7 @@ const adminSlice = createSlice({
       state.isGenerating = false;
     });
     builder.addCase(generateRandomUsers.rejected, (state, action) => {
-      state.isGenerating = false;
-      state.error = action.payload as string;
+      setValuesAfterReject(state, action);
     });
 
     builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
@@ -93,6 +90,11 @@ const adminSlice = createSlice({
     });
   },
 });
+
+const setValuesAfterReject = <T>(state: AdminState, action: PayloadAction<T>): void => {
+  state.isLoading = false;
+  state.error = action.payload as string;
+};
 
 export const adminReducer = adminSlice.reducer;
 export const { setCurrentUser, setTableSearchParams } = adminSlice.actions;

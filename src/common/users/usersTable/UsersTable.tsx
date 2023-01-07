@@ -110,7 +110,7 @@ const style = {
   }),
 
   table: (themeColors: CustomTheme) => ({
-    minHeight: '595px',
+    minHeight: '500px',
     '& .MuiLinearProgress-colorPrimary': {
       backgroundColor: themeColors.secondary.main,
     },

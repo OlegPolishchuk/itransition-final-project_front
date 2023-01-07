@@ -12,7 +12,13 @@ import {
   updateReview,
 } from 'store/actions';
 import { fetchReviews } from 'store/actions/reviews/fetchReviews';
-import { PaginationParams, Review, ReviewSortType, ReviewsState } from 'store/types';
+import {
+  FetchReviewsResponse,
+  PaginationParams,
+  Review,
+  ReviewSortType,
+  ReviewsState,
+} from 'store/types';
 
 const initialState: ReviewsState = {
   tags: [],
@@ -61,18 +67,18 @@ const reviewsSlice = createSlice({
     builder.addCase(getTags.fulfilled, (state, action) => {
       state.tags = action.payload;
     });
+    builder.addCase(getTags.rejected, (state, action) => {
+      setRejectedData(state, action);
+    });
 
     builder.addCase(fetchUserReviews.pending, state => {
       state.isLoading = true;
     });
     builder.addCase(fetchUserReviews.fulfilled, (state, action) => {
-      state.reviews = action.payload.reviews;
-      state.reviewCount = action.payload.totalCount;
-      state.isLoading = false;
+      setFulfilledReviewsData(state, action);
     });
     builder.addCase(fetchUserReviews.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
+      setRejectedData(state, action);
     });
 
     builder.addCase(fetchReviews.pending, state => {
@@ -80,14 +86,11 @@ const reviewsSlice = createSlice({
       state.isFirstLoading = true;
     });
     builder.addCase(fetchReviews.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.reviews = action.payload.reviews;
-      state.reviewCount = action.payload.totalCount;
+      setFulfilledReviewsData(state, action);
       state.isFirstLoading = false;
     });
     builder.addCase(fetchReviews.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
+      setRejectedData(state, action);
     });
 
     builder.addCase(fetchMoreReviews.pending, state => {
@@ -99,8 +102,7 @@ const reviewsSlice = createSlice({
       state.reviewCount = action.payload.totalCount;
     });
     builder.addCase(fetchMoreReviews.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload as string;
+      setRejectedData(state, action);
     });
 
     builder.addCase(setReviewLike.fulfilled, (state, action) => {
@@ -146,6 +148,20 @@ const reviewsSlice = createSlice({
     });
   },
 });
+
+const setRejectedData = <T>(state: ReviewsState, action: PayloadAction<T>): void => {
+  state.isLoading = false;
+  state.error = action.payload as string;
+};
+
+const setFulfilledReviewsData = (
+  state: ReviewsState,
+  action: PayloadAction<FetchReviewsResponse>,
+): void => {
+  state.isLoading = false;
+  state.reviews = action.payload.reviews;
+  state.reviewCount = action.payload.totalCount;
+};
 
 export const reviewsReducer = reviewsSlice.reducer;
 export const {

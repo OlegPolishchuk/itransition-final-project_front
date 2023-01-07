@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { apiAuth } from 'apis';
 import { localStorageService } from 'services';
-import { localStorageData, responseStatus } from 'shared';
+import { localStorageData } from 'shared';
 import { logoutUser } from 'store/actions';
 
 export const getProfile = createAsyncThunk(
@@ -12,22 +12,20 @@ export const getProfile = createAsyncThunk(
     try {
       const res = await apiAuth.getProfile(token);
 
-      if (res.status === responseStatus.ok) {
-        const user = res.data;
-        const { token } = user;
+      const user = res.data;
+      const accessToken = user.token;
 
-        const { tokenStartTime } = localStorageService.getItem(localStorageData.userData);
+      const { tokenStartTime } = localStorageService.getItem(localStorageData.userData);
 
-        const dataToLocalStorage = {
-          token,
-          userId: user._id,
-          tokenStartTime,
-        };
+      const dataToLocalStorage = {
+        token: accessToken,
+        userId: user._id,
+        tokenStartTime,
+      };
 
-        localStorageService.setAuthUserData(dataToLocalStorage);
+      localStorageService.setAuthUserData(dataToLocalStorage);
 
-        return res.data;
-      }
+      return res.data;
     } catch (e) {
       const error = e as AxiosError;
 

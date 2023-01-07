@@ -28,10 +28,6 @@ export const apiAuth = {
   },
 
   githubLogin(code: string) {
-    return instance.post(apiRoutes.auth.github, { code });
-  },
-
-  twitterLogin(token: string) {
-    return instance.post(apiRoutes.auth.twitter, { token });
+    return instance.post<User>(apiRoutes.auth.github, { code });
   },
 };

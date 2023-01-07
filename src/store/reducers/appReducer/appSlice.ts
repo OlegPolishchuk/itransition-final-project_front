@@ -55,8 +55,7 @@ const appSlice = createSlice({
     });
 
     builder.addCase(registerUser.pending, state => {
-      state.error = '';
-      state.isLoading = true;
+      setPendingValues(state);
       state.globalMessage = '';
     });
     builder.addCase(
@@ -67,23 +66,18 @@ const appSlice = createSlice({
       },
     );
     builder.addCase(registerUser.rejected, (state, action) => {
-      state.error = action.payload?.message as string;
-      state.isLoading = false;
-      state.globalMessage = '';
+      setValuesAfterReject(state, action);
     });
 
     builder.addCase(loginUser.pending, state => {
-      state.error = '';
-      state.isLoading = true;
+      setPendingValues(state);
     });
     builder.addCase(loginUser.fulfilled, state => {
       state.isLoading = false;
       state.error = '';
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      state.error = action.payload as string;
-      state.isLoading = false;
-      state.globalMessage = '';
+      setValuesAfterReject(state, action);
     });
 
     builder.addCase(facebookLogin.pending, state => {
@@ -111,6 +105,17 @@ const appSlice = createSlice({
     });
   },
 });
+
+const setValuesAfterReject = <T>(state: AppState, action: PayloadAction<T>): void => {
+  state.error = action.payload as string;
+  state.isLoading = false;
+  state.globalMessage = '';
+};
+
+const setPendingValues = (state: AppState): void => {
+  state.error = '';
+  state.isLoading = true;
+};
 
 export const appReducer = appSlice.reducer;
 export const { clearGlobalMessage, setError, setLocale } = appSlice.actions;
