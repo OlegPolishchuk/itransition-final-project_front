@@ -5,3 +5,4 @@ export { getWindowWidth } from './getWindowWidth';
 export { addCheckboxIntoObjectList } from './addCheckboxIntoObjectList';
 export { getReviewHeaderGroupTitle } from './getReviewHeaderGroupTitle';
 export { getPathname } from './getPathname';
+export { formatMessage } from './formatMessage';

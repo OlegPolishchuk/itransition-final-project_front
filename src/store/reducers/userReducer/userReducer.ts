@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { UserRole, UserStatus } from 'shared';
 import {
   changeUserAvatar,
+  createReview,
   facebookLogin,
   fetchUser,
   getGithubUser,
@@ -86,6 +87,10 @@ const userSlice = createSlice({
     });
     builder.addCase(changeUserAvatar.rejected, state => {
       state.isLoading = false;
+    });
+
+    builder.addCase(createReview.fulfilled, state => {
+      state.user.reviewsCount += 1;
     });
   },
 });

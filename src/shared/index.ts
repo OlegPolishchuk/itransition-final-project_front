@@ -22,6 +22,7 @@ export {
   addCheckboxIntoObjectList,
   getReviewHeaderGroupTitle,
   getPathname,
+  formatMessage,
 } from './utils';
 
 export { UserRole, UserStatus } from './enums';

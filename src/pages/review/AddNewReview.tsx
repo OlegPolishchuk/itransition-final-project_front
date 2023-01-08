@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 
 import {
   Box,
@@ -12,16 +6,21 @@ import {
   Container,
   Rating,
   SelectChangeEvent,
-  TextField,
   useMediaQuery,
 } from '@mui/material';
 import MDEditor from '@uiw/react-md-editor';
-import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
-import { Breadcrumbs, ImgUploader, ItemPicker, TagsPicker, Title } from 'common';
+import {
+  Breadcrumbs,
+  CustomTextField,
+  ImgUploader,
+  ItemPicker,
+  TagsPicker,
+  Title,
+} from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { UserRole } from 'shared';
+import { formatMessage, UserRole } from 'shared';
 import { groups } from 'shared/constants';
 import { addReviewImage, createReview, getTags, updateReview } from 'store/actions';
 import {
@@ -35,6 +34,8 @@ import {
   selectUploadedReviewImgSrc,
   selectUser,
 } from 'store/selectors';
+
+const localeMessage = formatMessage('user.add-new-review');
 
 export const AddNewReview = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -68,22 +69,6 @@ export const AddNewReview = (): ReactElement => {
     subtitle: false,
     tags: false,
   });
-
-  const handleChangeTitle = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ): void => {
-    setReviewValue(reviewValue => ({ ...reviewValue, title: event.target.value }));
-
-    setError(error => ({ ...error, title: false }));
-  };
-
-  const handleChangeSubtitle = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ): void => {
-    setReviewValue(reviewValue => ({ ...reviewValue, subtitle: event.target.value }));
-
-    setError(error => ({ ...error, subtitle: false }));
-  };
 
   const handleChangeBody = (value?: string): void => {
     const newValue = value!;
@@ -173,26 +158,20 @@ export const AddNewReview = (): ReactElement => {
           value={reviewValue.group}
         />
 
-        <TextField
-          label={<FormattedMessage id="app.user.add-new-review.field-title.title" />}
-          variant="outlined"
-          value={reviewValue.title}
-          onChange={handleChangeTitle}
-          size="small"
-          required
-          error={error.title}
-          helperText={error.title ? 'Required' : ''}
+        <CustomTextField
+          state={reviewValue}
+          setState={setReviewValue}
+          fieldName="title"
+          error={error}
+          setError={setError}
         />
 
-        <TextField
-          label={<FormattedMessage id="app.user.add-new-review.field-subtitle.title" />}
-          variant="outlined"
-          value={reviewValue.subtitle}
-          onChange={handleChangeSubtitle}
-          size="small"
-          required
-          error={error.subtitle}
-          helperText={error.subtitle ? 'Required' : ''}
+        <CustomTextField
+          state={reviewValue}
+          setState={setReviewValue}
+          fieldName="subtitle"
+          error={error}
+          setError={setError}
         />
       </Box>
 
@@ -212,7 +191,7 @@ export const AddNewReview = (): ReactElement => {
       <Box mt="30px">
         <Title
           variant="subtitle2"
-          title={<FormattedMessage id="app.user.add-new-review.tags-picker.title" />}
+          title={localeMessage('tags-picker')}
           color={error.tags ? 'error' : ''}
         />
 
@@ -220,10 +199,7 @@ export const AddNewReview = (): ReactElement => {
       </Box>
 
       <Box mt="30px">
-        <Title
-          variant="subtitle2"
-          title={<FormattedMessage id="app.user.add-new-review.rating.title" />}
-        />
+        <Title variant="subtitle2" title={localeMessage('rating')} />
 
         <Rating
           value={reviewValue.personalScore}
@@ -234,11 +210,9 @@ export const AddNewReview = (): ReactElement => {
 
       <Box textAlign="center" mt="50px">
         <Button variant="contained" color="error" onClick={handlePublishReview}>
-          {editableReview ? (
-            <FormattedMessage id="app.user.add-new-review.button-edit.title" />
-          ) : (
-            <FormattedMessage id="app.user.add-new-review.button-publish.title" />
-          )}
+          {editableReview
+            ? localeMessage('button-edit')
+            : localeMessage('button-publish')}
         </Button>
       </Box>
     </Container>
