@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 
 import { Box } from '@mui/material';
 import MDEditor from '@uiw/react-md-editor';
@@ -8,6 +8,8 @@ import { BaseNavLink, Title } from 'common';
 import { useAppSelector, useThemeColors } from 'hooks';
 import { routes } from 'shared';
 import { selectThemeMode } from 'store/selectors';
+import { ThemeMode } from 'store/types';
+import { CustomTheme } from 'theme';
 
 type Props = {
   title: string;
@@ -20,24 +22,6 @@ export const ReviewItemBody = memo(({ body, title, reviewId, isHide }: Props) =>
   const colors = useThemeColors();
   const theme = useAppSelector(selectThemeMode);
 
-  const MDEditorStyle = useMemo(() => {
-    return {
-      whiteSpace: 'pre-wrap',
-      backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
-      backgroundImage:
-        'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-      color: theme === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.main,
-    } as const;
-  }, [theme]);
-
-  const MDEditorWrapperStyle = useMemo(() => {
-    return {
-      maxHeight: isHide ? '300px' : '100%',
-      overflow: isHide ? 'hidden' : '',
-      paddingBottom: '15px',
-    };
-  }, [isHide]);
-
   return (
     <Box>
       <Box mb="20px">
@@ -46,8 +30,12 @@ export const ReviewItemBody = memo(({ body, title, reviewId, isHide }: Props) =>
         </BaseNavLink>
       </Box>
 
-      <Box sx={MDEditorWrapperStyle}>
-        <MDEditor.Markdown className="MDEditor" source={body} style={MDEditorStyle} />
+      <Box sx={style.MDEditorWrapperStyle(isHide)}>
+        <MDEditor.Markdown
+          className="MDEditor"
+          source={body}
+          style={style.MDEditorStyle(theme, colors)}
+        />
       </Box>
 
       {isHide && (
@@ -63,3 +51,22 @@ export const ReviewItemBody = memo(({ body, title, reviewId, isHide }: Props) =>
     </Box>
   );
 });
+
+const style = {
+  MDEditorStyle: (theme: ThemeMode, colors: CustomTheme) =>
+    ({
+      whiteSpace: 'pre-wrap',
+      backgroundColor: theme === 'dark' ? colors.primary.main : '#fff',
+      backgroundImage:
+        'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+      color: theme === 'dark' ? 'rgba(255,255,255,.6)' : colors.primary.main,
+      // color: colors.primary.main,
+    } as const),
+
+  MDEditorWrapperStyle: (isHide: boolean) =>
+    ({
+      maxHeight: isHide ? '300px' : '100%',
+      overflow: isHide ? 'hidden' : '',
+      paddingBottom: '15px',
+    } as const),
+};
