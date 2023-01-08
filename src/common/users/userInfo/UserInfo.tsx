@@ -85,7 +85,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
 
   return (
     <Grid container rowSpacing={8} sx={style.flex}>
-      {userRole === UserRole.Admin && (
+      {(userRole === UserRole.Admin || userRole === UserRole.Manager) && (
         <Grid item xs={12} sm={12}>
           <AdminUserHeader user={userCopy} />
         </Grid>

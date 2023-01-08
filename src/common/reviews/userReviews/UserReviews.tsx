@@ -13,7 +13,9 @@ import { useSearchParams } from 'react-router-dom';
 
 import {
   AddNewReviewButton,
+  CustomDialog,
   CustomPagination,
+  DeleteReviewsDialogText,
   Loader,
   NothingToShow,
   ReviewHeader,
@@ -53,10 +55,19 @@ export const UserReviews = memo(({ userId, isMyProfile }: Props): ReactElement =
 
   const [mainCheckbox, setMainCheckbox] = useState(false);
   const [reviewsWithCheckbox, setReviewsWithCheckbox] = useState(reviews);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = Number(searchParams.get('page')) || page;
   const limitParam = Number(searchParams.get('limit')) || limit;
+
+  const handleModalOpen = (): void => {
+    setModalOpen(true);
+  };
+
+  const handleModalsClose = (): void => {
+    setModalOpen(false);
+  };
 
   const disabledDeleteButton = useMemo(() => {
     return reviewsWithCheckbox.filter(review => review.checked).length === 0;
@@ -78,13 +89,17 @@ export const UserReviews = memo(({ userId, isMyProfile }: Props): ReactElement =
     [reviewsWithCheckbox],
   );
 
+  const getReviewsToDelete = (): string[] => {
+    return reviewsWithCheckbox.filter(review => review.checked).map(review => review._id);
+  };
+
   const handleDelete = useCallback((): void => {
-    const reviewsId = reviewsWithCheckbox
-      .filter(review => review.checked)
-      .map(review => review._id);
+    const reviewsId = getReviewsToDelete();
 
     dispatch(deleteReviews({ reviewsId, userId }));
+
     setMainCheckbox(false);
+    setModalOpen(false);
   }, [reviewsWithCheckbox, userId]);
 
   const handleChangePage = useCallback((page: number): void => {
@@ -134,7 +149,7 @@ export const UserReviews = memo(({ userId, isMyProfile }: Props): ReactElement =
                 <ReviewHeader
                   isMainCheckboxChecked={mainCheckbox}
                   handleChangeMainCheckbox={handleChangeMainCheckbox}
-                  deleteCallback={handleDelete}
+                  deleteCallback={handleModalOpen}
                   disabled={disabledDeleteButton}
                 />
               </Box>
@@ -174,6 +189,14 @@ export const UserReviews = memo(({ userId, isMyProfile }: Props): ReactElement =
           />
         </>
       )}
+
+      <CustomDialog
+        open={modalOpen}
+        acceptCallback={handleDelete}
+        canselCallback={handleModalsClose}
+      >
+        <DeleteReviewsDialogText deleteReviews={getReviewsToDelete()} />
+      </CustomDialog>
     </>
   );
 });

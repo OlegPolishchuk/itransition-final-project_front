@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -7,6 +7,7 @@ import { Box, Button, Tooltip } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
+import { CustomDialog, DeleteUsersDialogText } from 'common';
 import { useAppDispatch } from 'hooks';
 import { UserStatus } from 'shared';
 import { updateCurrentUser, deleteCurrentUser } from 'store/actions';
@@ -19,6 +20,16 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = (): void => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = (): void => {
+    setOpenModal(false);
+  };
 
   const handleUpdateUserStatus = (status: UserStatus): void => {
     const updatedUser = {
@@ -79,11 +90,19 @@ export const AdminUserHeader: FC<Props> = ({ user }) => {
         <Button
           variant="outlined"
           endIcon={<DeleteOutlineOutlinedIcon color="error" />}
-          onClick={handleDeleteUser}
+          onClick={handleOpenModal}
         >
           <FormattedMessage id="app.user.info.button-delete.title" />
         </Button>
       </Box>
+
+      <CustomDialog
+        open={openModal}
+        acceptCallback={handleDeleteUser}
+        canselCallback={handleCloseModal}
+      >
+        <DeleteUsersDialogText usersIdToDelete={[`${user._id}`]} />
+      </CustomDialog>
     </Box>
   );
 };

@@ -124,5 +124,14 @@
 
   "app.comment.button-send.title": "Send comment",
 
-  "app.not-found.title": "Oops! Page Not Found"
+  "app.not-found.title": "Oops! Page Not Found",
+
+  "app.dialog.button-access.title": "ok",
+  "app.dialog.button-cansel.title": "cansel",
+
+  "app.dialog.text-delete-users.multiply.title": "Delete this users?",
+  "app.dialog.text-delete-users.single.title": "Delete user?",
+
+  "app.dialog.text-delete-reviews.multiply.title": "Delete this reviews?",
+  "app.dialog.text-delete-reviews.single.title": "Delete review?"
 }

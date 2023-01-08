@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
 import BlockIcon from '@mui/icons-material/Block';
@@ -7,6 +7,7 @@ import { Box, Button } from '@mui/material';
 import { GridSelectionModel } from '@mui/x-data-grid';
 import { FormattedMessage } from 'react-intl';
 
+import { CustomDialog, DeleteUsersDialogText } from 'common';
 import { useAppDispatch } from 'hooks';
 import { UserStatus } from 'shared';
 import { deleteUsers, updateUsersStatus } from 'store/actions';
@@ -27,6 +28,8 @@ export const AdminControlPanel: FC<Props> = ({
   setMainCheckboxChecked,
 }) => {
   const dispatch = useAppDispatch();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const disabled = !selectionModel.length && !cardListSelection.length;
 
@@ -55,6 +58,16 @@ export const AdminControlPanel: FC<Props> = ({
 
     dispatch(deleteUsers(usersIdToDelete as string[]));
     setMainCheckboxChecked(false);
+
+    handleCloseModal();
+  };
+
+  const handleOpenModal = (): void => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = (): void => {
+    setModalOpen(false);
   };
 
   return (
@@ -81,12 +94,25 @@ export const AdminControlPanel: FC<Props> = ({
         <Button
           variant="outlined"
           endIcon={<DeleteOutlinedIcon color="error" />}
-          onClick={handleDeleteUsers}
+          // onClick={handleDeleteUsers}
+          onClick={handleOpenModal}
           disabled={disabled}
         >
           <FormattedMessage id="app.admin.button-delete.title" />
         </Button>
       </Box>
+
+      <CustomDialog
+        open={modalOpen}
+        acceptCallback={handleDeleteUsers}
+        canselCallback={handleCloseModal}
+      >
+        <DeleteUsersDialogText
+          usersIdToDelete={
+            (selectionModel.length ? selectionModel : cardListSelection) as string[]
+          }
+        />
+      </CustomDialog>
     </Box>
   );
 };

@@ -125,5 +125,14 @@
 
   "app.comment.button-send.title": "Оставить комментарий",
 
-  "app.not-found.title": "Упс! Страница не найдена"
+  "app.not-found.title": "Упс! Страница не найдена",
+
+  "app.dialog.button-access.title": "ок",
+  "app.dialog.button-cansel.title": "отмена",
+
+  "app.dialog.text-delete-users.multiply.title": "Удалить пользователей?",
+  "app.dialog.text-delete-users.single.title": "Удалить пользователя?",
+
+  "app.dialog.text-delete-reviews.multiply.title": "Удалить обзоры?",
+  "app.dialog.text-delete-reviews.single.title": "Удалить обзор?"
 }

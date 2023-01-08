@@ -18,7 +18,6 @@ export const Profile = (): ReactElement => {
 
   const { id } = useParams();
 
-  console.log('user in Profile', selectedUser);
   const isMyProfile =
     user._id === id || userRole === UserRole.Admin || userRole === UserRole.Manager;
 

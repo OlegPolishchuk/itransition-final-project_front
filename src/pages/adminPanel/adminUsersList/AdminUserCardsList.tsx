@@ -20,6 +20,7 @@ import { CustomPagination, MainCheckbox } from 'common';
 import { useThemeColors } from 'hooks';
 import { addCheckboxIntoObjectList, routes, UserRole, UserStatus } from 'shared';
 import { User } from 'store/types/User/User';
+import { CustomTheme } from 'theme';
 
 type Props = {
   users: User[];
@@ -116,12 +117,7 @@ export const AdminUserCardsList: FC<Props> = ({
         return (
           <Grid key={user._id} item xs={12} sm={6}>
             <Card>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                padding="0 0 0 16px"
-              >
+              <Box sx={style.cardWrapper}>
                 <Box>
                   {user.status === UserStatus.Blocked ? (
                     <BlockOutlinedIcon color="warning" />
@@ -145,14 +141,7 @@ export const AdminUserCardsList: FC<Props> = ({
                 subheader={<Typography>{user.userName}</Typography>}
               />
 
-              <CardActions
-                sx={{
-                  justifyContent: 'center',
-                  '& .navLink': {
-                    color: themeColors.secondary.main,
-                  },
-                }}
-              >
+              <CardActions sx={style.cardActionsWrapper(themeColors)}>
                 <Box textAlign="center">
                   <Button variant="outlined" color="secondary">
                     <NavLink className="navLink" to={`${routes.admin.user}/${user._id}`}>
@@ -178,4 +167,20 @@ export const AdminUserCardsList: FC<Props> = ({
       </Grid>
     </Grid>
   );
+};
+
+const style = {
+  cardWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 0 0 16px',
+  },
+
+  cardActionsWrapper: (colors: CustomTheme) => ({
+    justifyContent: 'center',
+    '& .navLink': {
+      color: colors.secondary.main,
+    },
+  }),
 };
