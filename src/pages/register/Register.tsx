@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 
-import { Alert, Box, Button, Snackbar, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { AuthForm } from 'common';
+import { AuthForm, CustomSnackbar } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
 import { routes } from 'shared';
 import { registerUser } from 'store/actions';
@@ -29,8 +29,6 @@ export const Register = (): ReactElement => {
   const navLinkColor = themeColors.secondary.second;
 
   const authFormButtonTitle = <FormattedMessage id="app.auth.button-register.title" />;
-
-  const fullWidthStyle = { width: '100%' };
 
   const onSubmit: SubmitHandler<Inputs> = (data): void => {
     dispatch(registerUser(data));
@@ -60,25 +58,17 @@ export const Register = (): ReactElement => {
         </Button>
       </AuthForm>
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      <CustomSnackbar
         open={!!globalMessage}
-        onClose={handleCloseSuccessAlert}
-      >
-        <Alert onClose={handleCloseSuccessAlert} severity="success" sx={fullWidthStyle}>
-          {globalMessage}
-        </Alert>
-      </Snackbar>
+        closeCallback={handleCloseSuccessAlert}
+        message={globalMessage}
+      />
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      <CustomSnackbar
         open={!!error}
-        onClose={handleCLoseErrorAlert}
-      >
-        <Alert onClose={handleCLoseErrorAlert} severity="error" sx={fullWidthStyle}>
-          {error}
-        </Alert>
-      </Snackbar>
+        closeCallback={handleCLoseErrorAlert}
+        message={error}
+      />
     </Box>
   );
 };

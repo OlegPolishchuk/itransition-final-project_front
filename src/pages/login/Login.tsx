@@ -1,23 +1,22 @@
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
-import { Alert, Box, Button, Snackbar, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { IResolveParams } from 'reactjs-social-login';
 
-import { AuthForm, FacebookAuth, GithubAuth, GoogleAuth } from 'common';
+import { AuthForm, CustomSnackbar, FacebookAuth, GithubAuth, GoogleAuth } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
-import { routes, UserRole } from 'shared';
-import { facebookLogin, getGithubUser, loginUser } from 'store/actions';
+import { formatMessage, routes, UserRole } from 'shared';
+import { loginUser } from 'store/actions';
 import { setError } from 'store/reducers';
 import { selectError, selectIsUserAuth, selectUserRole } from 'store/selectors';
-import { SocialResponse } from 'store/types';
 
 type Inputs = {
   email: string;
   password: string;
 };
+
+const localeMessage = formatMessage('auth');
 
 export const Login = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -31,20 +30,7 @@ export const Login = (): ReactElement => {
   const themeColors = useThemeColors();
   const navLinkColor = themeColors.secondary.second;
 
-  const [provider, setProvider] = useState('');
-  const [profile, setProfile] = useState<any>();
-
-  const authFormButtonTitle = <FormattedMessage id="app.auth.button-login.title" />;
-
-  const onLogoutSuccess = useCallback(() => {
-    setProfile(null);
-    setProvider('');
-  }, []);
-
-  const handleSocialResolve = ({ provider, data }: IResolveParams): void => {
-    setProvider(provider);
-    setProfile(data);
-  };
+  const authFormButtonTitle = localeMessage('button-login');
 
   const handleCLoseErrorAlert = (): void => {
     dispatch(setError(''));
@@ -60,41 +46,15 @@ export const Login = (): ReactElement => {
     }
   }, [isUserAuth, userRole]);
 
-  useEffect(() => {
-    if (profile) {
-      const { access_token } = profile;
-
-      if (provider === 'github') {
-        dispatch(getGithubUser(access_token));
-      }
-
-      if (provider === 'facebook') {
-        const data: SocialResponse = {
-          login: profile.id,
-          name: profile.name,
-          avatar_url: profile.picture.data.url,
-        };
-
-        dispatch(facebookLogin(data));
-      }
-    }
-
-    if (profile && !isUserAuth) {
-      onLogoutSuccess();
-    }
-  }, [profile, provider, isUserAuth]);
-
   return (
     <Box className="authContainer">
-      <Typography variant="h3">
-        <FormattedMessage id="app.auth.login.title" />
-      </Typography>
+      <Typography variant="h3">{localeMessage('login')}</Typography>
 
       <Box boxShadow={1} className="login_box">
         <Box className="wrapper">
           <GoogleAuth />
 
-          <FacebookAuth onResolve={handleSocialResolve} />
+          <FacebookAuth />
 
           <GithubAuth />
         </Box>
@@ -102,21 +62,17 @@ export const Login = (): ReactElement => {
         <AuthForm submitCallback={onSubmit} buttonTitle={authFormButtonTitle}>
           <Button variant="text" color="secondary">
             <NavLink to={routes.auth.register} style={{ color: navLinkColor }}>
-              <FormattedMessage id="app.auth.button-register.title" />
+              {localeMessage('button-register')}
             </NavLink>
           </Button>
         </AuthForm>
       </Box>
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      <CustomSnackbar
         open={!!error}
-        onClose={handleCLoseErrorAlert}
-      >
-        <Alert onClose={handleCLoseErrorAlert} severity="error" sx={{ width: '100%' }}>
-          {error}
-        </Alert>
-      </Snackbar>
+        closeCallback={handleCLoseErrorAlert}
+        message={error}
+      />
     </Box>
   );
 };
