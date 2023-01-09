@@ -5,12 +5,13 @@ import BlockIcon from '@mui/icons-material/Block';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { Box, Button } from '@mui/material';
 import { GridSelectionModel } from '@mui/x-data-grid';
-import { FormattedMessage } from 'react-intl';
 
 import { CustomDialog, DeleteUsersDialogText } from 'common';
 import { useAppDispatch } from 'hooks';
-import { UserStatus } from 'shared';
+import { formatMessage, UserStatus } from 'shared';
 import { deleteUsers, updateUsersStatus } from 'store/actions';
+
+const localeMessage = formatMessage('app.admin.button-');
 
 type Props = {
   selectionModel: GridSelectionModel;
@@ -79,7 +80,7 @@ export const AdminControlPanel: FC<Props> = ({
           onClick={handleBlockUsers}
           disabled={disabled}
         >
-          <FormattedMessage id="app.admin.button-block.title" />
+          {localeMessage('block')}
         </Button>
 
         <Button
@@ -88,17 +89,16 @@ export const AdminControlPanel: FC<Props> = ({
           onClick={handleUnblockUsers}
           disabled={disabled}
         >
-          <FormattedMessage id="app.admin.button-unblock.title" />
+          {localeMessage('unblock')}
         </Button>
 
         <Button
           variant="outlined"
           endIcon={<DeleteOutlinedIcon color="error" />}
-          // onClick={handleDeleteUsers}
           onClick={handleOpenModal}
           disabled={disabled}
         >
-          <FormattedMessage id="app.admin.button-delete.title" />
+          {localeMessage('delete')}
         </Button>
       </Box>
 

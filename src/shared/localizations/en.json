@@ -4,8 +4,8 @@
 
   "app.auth-form.input-login.placeholder": "Login",
   "app.auth-form.input-password.placeholder": "Password",
-  "app.auth-form.input-login.error": "Invalid login",
-  "app.auth-form.input-password.error-length": "Min length id 6 char",
+  "app.auth-form.input-login.error.title": "Invalid login",
+  "app.auth-form.input-password.error-length.title": "Min length id 6 char",
 
   "app.auth.button-login.title": "SIGN IN",
   "app.auth.button-register.title": "SIGN UP",
@@ -64,8 +64,8 @@
   "app.user.info.field-lastLogin.title": "Last Login",
   "app.user.info.field-likes.title": "Likes",
 
-  "app.user.info.tooltip-status-blocked": "Blocked",
-  "app.user.info.tooltip-status-active": "Active",
+  "app.user.info.tooltip-status-blocked.title": "Blocked",
+  "app.user.info.tooltip-status-active.title": "Active",
 
   "app.user.info.button-block.title": "Block",
   "app.user.info.button-unblock.title": "Unblock",

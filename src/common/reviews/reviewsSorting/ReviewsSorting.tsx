@@ -3,9 +3,11 @@ import React, { memo, ReactElement } from 'react';
 import { FormControlLabel, Radio, useMediaQuery } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import RadioGroup from '@mui/material/RadioGroup';
-import { FormattedMessage } from 'react-intl';
 
 import { Title } from 'common/title/Title';
+import { formatMessage } from 'shared';
+
+const localeMessage = formatMessage('user.reviews-list');
 
 type Props = {
   value: string;
@@ -17,10 +19,7 @@ export const ReviewsSorting = memo(({ value, onChangeCallback }: Props): ReactEl
 
   return (
     <FormControl>
-      <Title
-        variant="subtitle2"
-        title={<FormattedMessage id="app.user.reviews-list.sorting.title" />}
-      />
+      <Title variant="subtitle2" title={localeMessage('sorting')} />
 
       <RadioGroup
         row={isRowDirection}
@@ -31,23 +30,19 @@ export const ReviewsSorting = memo(({ value, onChangeCallback }: Props): ReactEl
         <FormControlLabel
           value="created"
           control={<Radio color="secondary" />}
-          label={<FormattedMessage id="app.user.reviews-list.sorting.date-radio.title" />}
+          label={localeMessage('sorting.date-radio')}
         />
 
         <FormControlLabel
           value="overallScore"
           control={<Radio color="secondary" />}
-          label={
-            <FormattedMessage id="app.user.reviews-list.sorting.overallScore-radio.title" />
-          }
+          label={localeMessage('sorting.overallScore-radio')}
         />
 
         <FormControlLabel
           value="personalScore"
           control={<Radio color="secondary" />}
-          label={
-            <FormattedMessage id="app.user.reviews-list.sorting.personalScore-radio.title" />
-          }
+          label={localeMessage('sorting.personalScore-radio')}
         />
       </RadioGroup>
     </FormControl>

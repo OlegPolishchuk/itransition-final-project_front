@@ -2,9 +2,11 @@ import React, { memo, ReactElement } from 'react';
 
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Box, Button } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { MainCheckbox } from 'common/mainCheckbox/MainCheckbox';
+import { formatMessage } from 'shared';
+
+const localeMessage = formatMessage('user.reviews-list');
 
 type Props = {
   isMainCheckboxChecked: boolean;
@@ -25,7 +27,7 @@ export const ReviewHeader = memo(
         <MainCheckbox
           checked={isMainCheckboxChecked}
           changeCallback={handleChangeMainCheckbox}
-          label={<FormattedMessage id="app.user.reviews-list.main-checkbox.title" />}
+          label={localeMessage('main-checkbox')}
         />
 
         <Button
@@ -35,7 +37,7 @@ export const ReviewHeader = memo(
           disabled={disabled}
           sx={{ marginLeft: '20px' }}
         >
-          <FormattedMessage id="app.user.reviews-list.header.button.delete.title" />
+          {localeMessage('header.button.delete')}
         </Button>
       </Box>
     );

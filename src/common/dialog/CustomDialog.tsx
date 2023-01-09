@@ -1,7 +1,10 @@
 import React, { ReactElement, ReactNode } from 'react';
 
 import { Button, Dialog, DialogActions, DialogContent } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
+
+import { formatMessage } from 'shared';
+
+const localeMessage = formatMessage('dialog.button-');
 
 type Props = {
   open: boolean;
@@ -30,10 +33,10 @@ export const CustomDialog = ({
       <DialogContent sx={style.content}>{children}</DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={canselCallback}>
-          {canselButtonTitle || <FormattedMessage id="app.dialog.button-cansel.title" />}
+          {canselButtonTitle || localeMessage('cansel')}
         </Button>
         <Button variant="outlined" color="error" onClick={acceptCallback} autoFocus>
-          {acceptButtonTitle || <FormattedMessage id="app.dialog.button-access.title" />}
+          {acceptButtonTitle || localeMessage('access')}
         </Button>
       </DialogActions>
     </Dialog>

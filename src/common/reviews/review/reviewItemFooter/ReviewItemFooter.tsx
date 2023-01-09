@@ -4,14 +4,15 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import { Box, IconButton, Rating, Tooltip, Typography } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { Tag } from 'common/tags/tag/Tag';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
+import { formatMessage } from 'shared';
 import { addOverallScore, setReviewLike } from 'store/actions';
 import { selectIsUserAuth, selectThemeMode } from 'store/selectors';
 
 const MaxOverallScore = 5;
+const localeMessage = formatMessage('review-footer');
 
 type Props = {
   tags: string[];
@@ -75,7 +76,7 @@ export const ReviewItemFooter = memo(
         </Box>
 
         <Box sx={footerLowPanelStyle}>
-          <Tooltip title={<FormattedMessage id="app.review-footer.like.tooltip.title" />}>
+          <Tooltip title={localeMessage('like.tooltip')}>
             <Box sx={footerItemStyle}>
               {isUserAuth ? (
                 <IconButton
@@ -97,11 +98,7 @@ export const ReviewItemFooter = memo(
 
           <Box sx={footerItemStyle}>
             {isUserAuth ? (
-              <Tooltip
-                title={
-                  <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
-                }
-              >
+              <Tooltip title={localeMessage('overall-score.tooltip')}>
                 <Rating
                   value={overallScore}
                   max={5}
@@ -111,11 +108,7 @@ export const ReviewItemFooter = memo(
                 />
               </Tooltip>
             ) : (
-              <Tooltip
-                title={
-                  <FormattedMessage id="app.review-footer.overall-score.tooltip.title" />
-                }
-              >
+              <Tooltip title={localeMessage('overall-score.tooltip')}>
                 <Box display="flex">
                   <GradeOutlinedIcon color="disabled" />
                   <Typography component="span" color={colors.warning.main}>
@@ -126,7 +119,7 @@ export const ReviewItemFooter = memo(
             )}
           </Box>
 
-          <Tooltip title={<FormattedMessage id="app.review.footer.comments.title" />}>
+          <Tooltip title={localeMessage('comments')}>
             <Box sx={footerItemStyle}>
               <CommentOutlinedIcon color="disabled" />
               <Typography component="span" color={colors.warning.main}>

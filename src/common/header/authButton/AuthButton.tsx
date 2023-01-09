@@ -3,13 +3,14 @@ import React, { memo, ReactElement } from 'react';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { Button } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { routes } from 'shared';
+import { formatMessage, routes } from 'shared';
 import { logoutUser } from 'store/actions';
 import { selectIsUserAuth } from 'store/selectors';
+
+const localeMessage = formatMessage('header.button');
 
 export const AuthButton = memo((): ReactElement => {
   const dispatch = useAppDispatch();
@@ -33,7 +34,7 @@ export const AuthButton = memo((): ReactElement => {
           onClick={handleLogout}
           endIcon={<ExitToAppOutlinedIcon />}
         >
-          <FormattedMessage id="app.header.button.logout.title" />
+          {localeMessage('logout')}
         </Button>
       ) : (
         <Button
@@ -41,7 +42,7 @@ export const AuthButton = memo((): ReactElement => {
           onClick={handleRedirectToLogin}
           endIcon={<LoginOutlinedIcon />}
         >
-          <FormattedMessage id="app.header.button.login.title" />
+          {localeMessage('login')}
         </Button>
       )}
     </div>

@@ -8,15 +8,16 @@ import {
   FormControlLabel,
   SelectChangeEvent,
 } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { LocaleSelect, RandomReviewsGenerator, Title, UserReviews } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
-import { locales } from 'shared';
+import { formatMessage, locales } from 'shared';
 import { generateRandomReviews, getTags } from 'store/actions';
 import { selectTags, selectThemeMode } from 'store/selectors';
 import { Locale, RandomReviewsData, ThemeMode } from 'store/types';
 import { CustomTheme } from 'theme';
+
+const localeMessage = formatMessage('');
 
 type Props = {
   userId: string;
@@ -64,7 +65,7 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
 
   return (
     <Box sx={style.wrapper}>
-      <Title variant="h4" title={<FormattedMessage id="app.user.reviews.title" />} />
+      <Title variant="h4" title={localeMessage('user.reviews')} />
 
       <Box sx={style.controlsWrapper}>
         <FormControlLabel
@@ -76,9 +77,7 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
               color="secondary"
             />
           }
-          label={
-            <FormattedMessage id="app.user.reviews-list.header.collapse-button.title" />
-          }
+          label={localeMessage('user.reviews-list.header.collapse-button')}
         />
 
         <Collapse sx={style.collapse} in={showGeneratorPanel}>
@@ -101,7 +100,7 @@ export const AdminUserReviews: FC<Props> = ({ userId }) => {
                 onClick={handleGenerateRandomReviews}
                 disabled={randomReviewsData.reviewsCount === 0}
               >
-                <FormattedMessage id="app.admin.generate.button.title" />
+                {localeMessage('admin.generate.button')}
               </Button>
             </Box>
           </Box>

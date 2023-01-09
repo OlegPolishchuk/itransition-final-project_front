@@ -2,12 +2,11 @@ import React, { ReactElement } from 'react';
 
 import { Box, Button, Typography } from '@mui/material';
 import { SubmitHandler } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { AuthForm, CustomSnackbar } from 'common';
 import { useAppDispatch, useAppSelector, useThemeColors } from 'hooks';
-import { routes } from 'shared';
+import { formatMessage, routes } from 'shared';
 import { registerUser } from 'store/actions';
 import { clearGlobalMessage, setError } from 'store/reducers';
 import { selectError, selectGlobalMessage } from 'store/selectors/app';
@@ -16,6 +15,8 @@ type Inputs = {
   email: string;
   password: string;
 };
+
+const localeMessage = formatMessage('auth');
 
 export const Register = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ export const Register = (): ReactElement => {
   const themeColors = useThemeColors();
   const navLinkColor = themeColors.secondary.second;
 
-  const authFormButtonTitle = <FormattedMessage id="app.auth.button-register.title" />;
+  const authFormButtonTitle = localeMessage('button-register');
 
   const onSubmit: SubmitHandler<Inputs> = (data): void => {
     dispatch(registerUser(data));
@@ -46,14 +47,12 @@ export const Register = (): ReactElement => {
 
   return (
     <Box className="authContainer">
-      <Typography variant="h3">
-        <FormattedMessage id="app.auth.register.title" />
-      </Typography>
+      <Typography variant="h3">{localeMessage('register')}</Typography>
 
       <AuthForm submitCallback={onSubmit} buttonTitle={authFormButtonTitle}>
         <Button variant="text" color="secondary">
           <NavLink to={routes.auth.login} style={{ color: navLinkColor }}>
-            <FormattedMessage id="app.auth.button-login.title" />
+            {localeMessage('button-login')}
           </NavLink>
         </Button>
       </AuthForm>

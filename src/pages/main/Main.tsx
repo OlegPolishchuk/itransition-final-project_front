@@ -1,11 +1,11 @@
-import React, { memo, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Box, Container, Grid, useMediaQuery } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 import { Search, TagsCloud } from 'common';
 
-export const Main = memo((): ReactElement => {
+export const Main = (): ReactElement => {
   const isLargeScreen = useMediaQuery('(min-width: 900px)');
 
   return (
@@ -29,4 +29,4 @@ export const Main = memo((): ReactElement => {
       </Grid>
     </Container>
   );
-});
+};

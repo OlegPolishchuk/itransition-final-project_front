@@ -1,13 +1,15 @@
 import React, { memo, ReactElement, ReactNode } from 'react';
 
 import { Box } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { SliderGenerator } from 'common/sliderGenerator/SliderGenerator';
 import { Title } from 'common/title/Title';
 import { AdminReviewsTagsPicker } from 'pages';
+import { formatMessage } from 'shared';
 import { reviewsSliderValue } from 'shared/constants';
 import { RandomReviewsData } from 'store/types/randomGenerator/RandomReviewsData';
+
+const localeMessage = formatMessage('admin');
 
 type Props = {
   data: RandomReviewsData;
@@ -54,10 +56,7 @@ export const RandomReviewsGenerator = memo(
 
     return (
       <Box>
-        <Title
-          variant="h5"
-          title={<FormattedMessage id="app.admin.generate-reviews.title" />}
-        />
+        <Title variant="h5" title={localeMessage('generate-reviews')} />
 
         <Box className="admin-controls-wrapper" mt="20px">
           <AdminReviewsTagsPicker setTags={handleSetTags} />
@@ -68,7 +67,7 @@ export const RandomReviewsGenerator = memo(
             handleSliderChange={handleReviewsSliderChange}
             handleBlur={handleReviewsSliderBlur}
             handleInputChange={handleReviewSliderInputChange}
-            title={<FormattedMessage id="app.admin.generate.slider-reviews.title" />}
+            title={localeMessage('generate.slider-reviews')}
           />
 
           {children && children}

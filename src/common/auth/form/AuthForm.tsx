@@ -2,11 +2,12 @@ import React, { FC, ReactNode } from 'react';
 
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
 
 import { useAppSelector } from 'hooks';
-import { emailRegexp } from 'shared';
+import { emailRegexp, formatMessage } from 'shared';
 import { selectGlobalMessage } from 'store/selectors/app';
+
+const localeMessage = formatMessage('auth-form');
 
 type Inputs = {
   email: string;
@@ -28,10 +29,8 @@ export const AuthForm: FC<Props> = ({ submitCallback, children, buttonTitle }) =
     formState: { errors },
   } = useForm<Inputs>({ mode: 'onSubmit' });
 
-  const passErrorMessageLength = (
-    <FormattedMessage id="app.auth-form.input-password.error-length" />
-  );
-  const loginErrorMessage = <FormattedMessage id="app.auth-form.input-login.error" />;
+  const passErrorMessageLength = localeMessage('input-password.error-length');
+  const loginErrorMessage = localeMessage('input-login.error');
 
   const buttonsWrapperStyle = {
     display: 'flex',

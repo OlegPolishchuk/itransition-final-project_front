@@ -4,12 +4,11 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
 import { Box, Button, ButtonGroup, Grid } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { UserAvatar, UserDescription } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { AdminUserHeader } from 'pages';
-import { UserRole } from 'shared';
+import { formatMessage, UserRole } from 'shared';
 import { updateCurrentUser } from 'store/actions';
 import { selectUserRole } from 'store/selectors';
 import { User } from 'store/types';
@@ -20,6 +19,7 @@ type Props = {
 };
 
 const MAX_USERNAME_LENGTH = 50;
+const localeMessage = formatMessage('user.info.button-');
 
 export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
   const dispatch = useAppDispatch();
@@ -118,7 +118,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                       endIcon={<SaveAsOutlinedIcon />}
                       onClick={validateEditData}
                     >
-                      <FormattedMessage id="app.user.info.button-save.title" />
+                      {localeMessage('save')}
                     </Button>
 
                     <Button
@@ -128,7 +128,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                       endIcon={<CancelOutlinedIcon />}
                       onClick={handleCancelEditing}
                     >
-                      <FormattedMessage id="app.user.info.button-cancel.title" />
+                      {localeMessage('cancel')}
                     </Button>
                   </ButtonGroup>
                 </Box>
@@ -139,7 +139,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                   endIcon={<EditOutlinedIcon />}
                   onClick={() => setEditMode(true)}
                 >
-                  <FormattedMessage id="app.user.info.button-edit.title" />
+                  {localeMessage('edit')}
                 </Button>
               )}
             </div>

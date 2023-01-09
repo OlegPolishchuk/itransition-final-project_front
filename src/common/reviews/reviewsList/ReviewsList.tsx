@@ -6,9 +6,11 @@ import { FormattedMessage } from 'react-intl';
 import { Loader } from 'common/loaders';
 import { NothingToShow } from 'common/nothingToShow/NothingToShow';
 import { ReviewItem } from 'common/reviews/review';
+import { formatMessage } from 'shared';
 import { Review } from 'store/types';
 
 const LoadingReviewsBorderValue = 10;
+const localeMessage = formatMessage('review.nothing-to-show');
 
 type Props = {
   isLoading: boolean;
@@ -48,11 +50,9 @@ export const ReviewsList: FC<Props> = memo(
               ) : (
                 <NothingToShow
                   title={
-                    reviews.length > 0 ? (
-                      <FormattedMessage id="app.review.nothing-to-show.no-more.title" />
-                    ) : (
-                      <FormattedMessage id="app.review.nothing-to-show.no-reviews.title" />
-                    )
+                    reviews.length > 0
+                      ? localeMessage('no-more')
+                      : localeMessage('no-reviews')
                   }
                 />
               )}

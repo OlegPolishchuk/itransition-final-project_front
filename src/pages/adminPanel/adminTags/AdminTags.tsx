@@ -14,12 +14,14 @@ import {
   ListItemText,
   useMediaQuery,
 } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 
 import { Loader } from 'common';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { formatMessage } from 'shared';
 import { deleteTags, getTags } from 'store/actions';
 import { selectTags } from 'store/selectors';
+
+const localeMessage = formatMessage('admin.tags');
 
 export const AdminTags = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -142,9 +144,7 @@ export const AdminTags = (): ReactElement => {
             alignItems="center"
             direction={isSmallScreen ? 'column' : 'row'}
           >
-            <Grid item>
-              {customList(<FormattedMessage id="app.admin.tags.choices.title" />, left)}
-            </Grid>
+            <Grid item>{customList(localeMessage('choices'), left)}</Grid>
 
             <Grid item>
               <Grid
@@ -175,14 +175,12 @@ export const AdminTags = (): ReactElement => {
               </Grid>
             </Grid>
 
-            <Grid item>
-              {customList(<FormattedMessage id="app.admin.tags.chosen.title" />, right)}
-            </Grid>
+            <Grid item>{customList(localeMessage('chosen'), right)}</Grid>
           </Grid>
 
           <Box sx={style.buttonsWrapper}>
             <Button variant="contained" color="error" onClick={handleDeleteTags}>
-              <FormattedMessage id="app.admin.tags.button-delete.title" />
+              {localeMessage('button-delete')}
             </Button>
           </Box>
         </>

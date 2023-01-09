@@ -1,12 +1,13 @@
 import React, { memo, ReactElement } from 'react';
 
 import { Box } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { useAppSelector, useThemeColors } from 'hooks';
-import { routes } from 'shared';
+import { formatMessage, routes } from 'shared';
 import { selectThemeMode } from 'store/selectors';
+
+const localeMessage = formatMessage('admin.navigation');
 
 export const AdminNav = memo((): ReactElement => {
   const theme = useAppSelector(selectThemeMode);
@@ -38,11 +39,11 @@ export const AdminNav = memo((): ReactElement => {
       }}
     >
       <NavLink style={activeNavLink} to={routes.admin.main} end>
-        <FormattedMessage id="app.admin.navigation.users.title" />
+        {localeMessage('users')}
       </NavLink>
 
       <NavLink style={activeNavLink} to={routes.admin.tags}>
-        <FormattedMessage id="app.admin.navigation.tags.title" />
+        {localeMessage('tags')}
       </NavLink>
     </Box>
   );

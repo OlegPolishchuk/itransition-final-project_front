@@ -13,14 +13,21 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { CustomPagination, MainCheckbox } from 'common';
 import { useThemeColors } from 'hooks';
-import { addCheckboxIntoObjectList, routes, UserRole, UserStatus } from 'shared';
+import {
+  addCheckboxIntoObjectList,
+  formatMessage,
+  routes,
+  UserRole,
+  UserStatus,
+} from 'shared';
 import { User } from 'store/types/User/User';
 import { CustomTheme } from 'theme';
+
+const localeMessage = formatMessage('user.card-list');
 
 type Props = {
   users: User[];
@@ -109,7 +116,7 @@ export const AdminUserCardsList: FC<Props> = ({
         <MainCheckbox
           checked={mainCheckboxChecked}
           changeCallback={handleChangeMainCheckbox}
-          label={<FormattedMessage id="app.admin.card-list.main-checkbox.title" />}
+          label={localeMessage('main-checkbox')}
         />
       </Grid>
 
@@ -145,7 +152,7 @@ export const AdminUserCardsList: FC<Props> = ({
                 <Box textAlign="center">
                   <Button variant="outlined" color="secondary">
                     <NavLink className="navLink" to={`${routes.admin.user}/${user._id}`}>
-                      <FormattedMessage id="app.user.card-list.link-info.title" />
+                      {localeMessage('link-info')}
                     </NavLink>
                   </Button>
                 </Box>

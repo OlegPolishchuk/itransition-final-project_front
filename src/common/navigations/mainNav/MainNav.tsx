@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 
 import { useMediaQuery } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { useAppSelector, useThemeColors } from 'hooks';
-import { routes, UserRole } from 'shared';
+import { formatMessage, routes, UserRole } from 'shared';
 import {
   selectIsUserAuth,
   selectThemeMode,
   selectUser,
   selectUserRole,
 } from 'store/selectors';
+
+const localeMessage = formatMessage('navigation-main');
 
 type Props = {
   variant?: 'vertical' | 'horizontal';
@@ -69,7 +70,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
             to={routes.mainPage.base}
             end
           >
-            <FormattedMessage id="app.navigation-main.latest.title" />
+            {localeMessage('latest')}
           </NavLink>
         </li>
 
@@ -79,7 +80,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
             style={activeNavLink}
             to={routes.mainPage.popular}
           >
-            <FormattedMessage id="app.navigation-main.popular.title" />
+            {localeMessage('popular')}
           </NavLink>
         </li>
 
@@ -90,7 +91,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
             to={routes.mainPage.scored}
             end
           >
-            <FormattedMessage id="app.navigation-main.scored.title" />
+            {localeMessage('scored')}
           </NavLink>
         </li>
 
@@ -103,7 +104,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
                   style={activeNavLink}
                   to={routes.admin.main}
                 >
-                  <FormattedMessage id="app.navigation-main.admin-panel.title" />
+                  {localeMessage('admin-panel')}
                 </NavLink>
               </li>
             ) : (
@@ -113,7 +114,7 @@ export const MainNav: FC<Props> = ({ variant = 'horizontal', callback }) => {
                   style={activeNavLink}
                   to={`${routes.profile.myProfile}/${user._id}`}
                 >
-                  <FormattedMessage id="app.navigation-main.profile.title" />
+                  {localeMessage('profile')}
                 </NavLink>
               </li>
             )}
