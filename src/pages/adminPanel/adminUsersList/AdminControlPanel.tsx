@@ -11,7 +11,7 @@ import { useAppDispatch } from 'hooks';
 import { formatMessage, UserStatus } from 'shared';
 import { deleteUsers, updateUsersStatus } from 'store/actions';
 
-const localeMessage = formatMessage('app.admin.button-');
+const localeMessage = formatMessage('admin');
 
 type Props = {
   selectionModel: GridSelectionModel;
@@ -80,7 +80,7 @@ export const AdminControlPanel: FC<Props> = ({
           onClick={handleBlockUsers}
           disabled={disabled}
         >
-          {localeMessage('block')}
+          {localeMessage('button-block')}
         </Button>
 
         <Button
@@ -89,7 +89,7 @@ export const AdminControlPanel: FC<Props> = ({
           onClick={handleUnblockUsers}
           disabled={disabled}
         >
-          {localeMessage('unblock')}
+          {localeMessage('button-unblock')}
         </Button>
 
         <Button
@@ -98,7 +98,7 @@ export const AdminControlPanel: FC<Props> = ({
           onClick={handleOpenModal}
           disabled={disabled}
         >
-          {localeMessage('delete')}
+          {localeMessage('button-delete')}
         </Button>
       </Box>
 
