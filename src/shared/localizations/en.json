@@ -111,7 +111,7 @@
   "app.review.button-edit.title": "Edit review",
   "app.review-footer.like.tooltip.title": "likes",
   "app.review-footer.overall-score.tooltip.title": "Users score",
-  "app.review.footer.comments.title": "Comments",
+  "app.review-footer.comments.title": "Comments",
   "app.review-header.group-books.title": "On book",
   "app.review-header.group-games.title": "On game",
   "app.review-header.group-movies.title": "On movie",

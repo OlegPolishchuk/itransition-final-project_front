@@ -19,7 +19,7 @@ type Props = {
 };
 
 const MAX_USERNAME_LENGTH = 50;
-const localeMessage = formatMessage('user.info.button-');
+const localeMessage = formatMessage('user.info');
 
 export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
   const dispatch = useAppDispatch();
@@ -118,7 +118,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                       endIcon={<SaveAsOutlinedIcon />}
                       onClick={validateEditData}
                     >
-                      {localeMessage('save')}
+                      {localeMessage('button-save')}
                     </Button>
 
                     <Button
@@ -128,7 +128,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                       endIcon={<CancelOutlinedIcon />}
                       onClick={handleCancelEditing}
                     >
-                      {localeMessage('cancel')}
+                      {localeMessage('button-cancel')}
                     </Button>
                   </ButtonGroup>
                 </Box>
@@ -139,7 +139,7 @@ export const UserInfo = ({ user, isMyProfile }: Props): ReactElement => {
                   endIcon={<EditOutlinedIcon />}
                   onClick={() => setEditMode(true)}
                 >
-                  {localeMessage('edit')}
+                  {localeMessage('button-edit')}
                 </Button>
               )}
             </div>
